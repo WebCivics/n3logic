@@ -64,21 +64,31 @@ export const LogicBuiltins: N3Builtin[] = [
     description: 'log:or(x, y) is true if x or y is true',
     apply: (x: any, y: any) => {
       debugTrace('[log:or] input:', x, y, 'getValue:', getValue(x), getValue(y));
-      // True if either is a non-empty string (not 'false'), or 'true'.
-      function isTruthyStringOrBool(v: any): boolean {
+      // Fix: True if either is a non-empty string (not 'false'), or boolean true.
+      function isTruthy(v: any): boolean {
         const val = getValue(v);
-        if (typeof v === 'object' && v.type === 'Literal') {
+        // Handle RDF literal objects
+        if (v && typeof v === 'object' && v.type === 'Literal') {
           if (typeof v.value === 'string') {
+            // Non-empty string except 'false' is truthy
             return v.value !== '' && v.value !== 'false';
+          }
+          if (typeof v.value === 'boolean') {
+            return v.value === true;
           }
           return Boolean(v.value);
         }
+        // Handle primitive strings
         if (typeof val === 'string') {
           return val !== '' && val !== 'false';
         }
+        // Handle booleans and other types
+        if (typeof val === 'boolean') {
+          return val === true;
+        }
         return Boolean(val);
       }
-      const result = isTruthyStringOrBool(x) || isTruthyStringOrBool(y);
+      const result = isTruthy(x) || isTruthy(y);
       debugTrace('[log:or] output:', result);
       return result;
     }
