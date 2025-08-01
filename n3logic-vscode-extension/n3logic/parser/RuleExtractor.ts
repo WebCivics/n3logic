@@ -28,8 +28,8 @@ export function extractRules(n3Text: string): Array<{ antecedent: string, conseq
     rulesText = preprocessed.replace(/^@forAll[^\n.]*\s*\./m, '').trim();
   }
 
-  // Use a regex to match { ... } => { ... } . blocks anywhere in the string
-  const ruleRegex = /\{([\s\S]*?)\}[ \t]*=>[ \t]*\{([\s\S]*?)\}[ \t]*\./gm;
+  // Use a regex to match { ... } => { ... } . blocks anywhere in the string, robust to single-line and multi-line, with or without spaces
+  const ruleRegex = /\{\s*([\s\S]*?)\s*\}[ \t]*=>[ \t]*\{\s*([\s\S]*?)\s*\}[ \t]*\./gm;
   const rules: Array<{ antecedent: string, consequent: string, quantifiers?: string[] }> = [];
   let match: RegExpExecArray | null;
   while ((match = ruleRegex.exec(rulesText)) !== null) {

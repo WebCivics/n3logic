@@ -31,5 +31,5 @@ export function debugTrace(...args: any[]) {
 }
 
 export function debugLog(...args: any[]) {
-  debugInfo(...args);
+  if (DEBUG) console.debug('[N3LogicReasoner][DEBUG]', ...args);
 }

@@ -4,26 +4,20 @@
 ### Problem: log:or returns true if either is true (string and boolean cases)
 - **Description:**
   - The test expects that `log:or(lit('x'), lit(''))` and `log:or(lit(''), lit('x'))` both return `true`.
-  - The current implementation returns `false` for `log:or(lit('x'), lit(''))`, which is incorrect.
-  - The logic is not symmetric: it does not treat either argument as independently truthy if it is a non-empty string (not 'false').
-- **Root Cause:**
-  - The `isTruthy` function or its application does not correctly handle the case where only one argument is a non-empty string.
-  - The function may be short-circuiting or not evaluating both arguments properly.
+  - The current implementation still returns `false` for `log:or(lit('x'), lit(''))` (or the reverse), which is incorrect.
+  - Multiple attempts to fix the logic, value extraction, and symmetry have not resolved the issue.
+- **Root Cause (as of Aug 1, 2025):**
+  - The `isTruthy` function and value extraction logic have been refactored to treat both arguments identically and symmetrically, always using string comparison except for booleans.
+  - Despite this, the test still fails, suggesting the issue may be deeper (possibly in the test harness, argument construction, or an unexpected mutation/side effect).
+  - Debug output for the failing case should be analyzed to determine the actual values and truthiness being computed at runtime.
 
 ## 2. tests/reasoner.test.ts
 ### Problem: N3LogicReasoner › supports custom builtins
 - **Description:**
   - The test expects 3 inferred triples, but only 2 are produced.
   - The rule involving a custom builtin is not firing as expected.
-- **Root Cause:**
-  - The parser is not extracting or applying rules correctly, or the matcher is not invoking the custom builtin as intended.
-  - This may be due to issues in rule extraction, triple matching, or builtin registration.
+- **Root Cause (as of Aug 1, 2025):**
+  - The parser and rule extractor are now robust and extract the rule, but the matcher or reasoner is not invoking the custom builtin as intended.
+  - The matcher logic for builtins is under investigation to ensure the registered custom builtin is called for the triple with the custom predicate.
+  - This may be due to issues in builtin triple matching, argument binding, or builtin registration in the reasoner.
 
-## 3. tests/reasoner/debug.test.ts
-### Problem: debugLog and setDebug › should log when DEBUG is true
-- **Description:**
-  - The test expects the debug log function to be called when DEBUG is set to true.
-  - The test fails because the log function is not called (received 0 calls).
-- **Root Cause:**
-  - The debug logging mechanism is not triggering the log output as expected when DEBUG is enabled.
-  - This could be due to the way the spy is set up, or the debugLog/setDebug implementation not affecting the logging as intended.
