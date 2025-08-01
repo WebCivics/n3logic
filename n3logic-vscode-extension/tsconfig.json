@@ -4,12 +4,14 @@
     "module": "commonjs",
     "declaration": true,
     "outDir": "./dist",
-    "rootDir": "./n3logic",
+    "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "lib": ["es2020"],
+  "types": ["node", "jest"]
   },
-  "include": ["n3logic/**/*.ts"],
-  "exclude": ["node_modules", "dist", "n3logic/**/*.test.ts"]
+  "include": ["n3logic/**/*.ts", "tests/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }

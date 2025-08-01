@@ -41,9 +41,29 @@ export const LogicBuiltins: N3Builtin[] = [
     arity: 2,
     description: 'log:or(x, y) is true if x or y is true',
     apply: (x: any, y: any) => {
-      // Returns true if either argument is a literal with a non-empty string value
-      const isTruthy = (v: any) => v && v.type === 'Literal' && typeof v.value === 'string' && v.value.length > 0;
-      return isTruthy(x) || isTruthy(y);
+      // Only empty string or 'false' (case-insensitive) is false; all other non-empty strings are true
+      const isTruthy = (v: any, label: string) => {
+        const val = getValue(v);
+        let result;
+        if (typeof val === 'string') {
+          result = val.length > 0 && val.trim().toLowerCase() !== 'false';
+        } else {
+          result = Boolean(val);
+        }
+        // Debug output
+        if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV !== 'production') {
+          // eslint-disable-next-line no-console
+          console.log(`[log:or debug] isTruthy(${label}): type=`, typeof v, 'input=', v, 'getValue=', val, 'result=', result);
+        }
+        return result;
+      };
+      const resX = isTruthy(x, 'x');
+      const resY = isTruthy(y, 'y');
+      if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV !== 'production') {
+        // eslint-disable-next-line no-console
+        console.log(`[log:or debug] x:`, x, 'y:', y, 'isTruthy(x):', resX, 'isTruthy(y):', resY);
+      }
+      return resX || resY;
     }
   },
   {

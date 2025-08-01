@@ -7,13 +7,8 @@ export function tripleToString(triple: N3Triple): string {
 }
 
 export function stringToTriple(str: string): N3Triple {
-  const parser = new N3LogicParser();
-  const [s, p, o] = str.split(' ');
-  return {
-    subject: parser['parseTerm'](s),
-    predicate: parser['parseTerm'](p),
-    object: parser['parseTerm'](o)
-  };
+  const [subject, predicate, object] = str.split(' ');
+  return { subject, predicate, object };
 }
 
 export function termToString(term: N3Term): string {

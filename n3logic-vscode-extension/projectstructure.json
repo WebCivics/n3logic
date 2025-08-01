@@ -1,0 +1,124 @@
+{
+  "root": "n3logic-vscode-extension",
+  "folders": [
+    {
+      "name": "n3logic",
+      "path": "n3logic/",
+      "subfolders": [
+        {
+          "name": "builtins",
+          "files": [
+            "N3LogicListBuiltins.ts",
+            "N3LogicLogicBuiltins.ts",
+            "N3LogicMathBuiltins.ts",
+            "N3LogicOtherBuiltins.ts",
+            "N3LogicStringBuiltins.ts",
+            "N3LogicTimeBuiltins.ts",
+            "N3LogicTypeBuiltins.ts"
+          ]
+        },
+        {
+          "name": "parser",
+          "files": [
+            "RuleExtractor.ts",
+            "TermTokenizer.ts",
+            "TripleSplitter.ts",
+            "TripleTokenizer.ts"
+          ]
+        },
+        {
+          "name": "reasoner",
+          "files": [
+            "builtinEvaluator.ts",
+            "builtinsManager.ts",
+            "debug.ts",
+            "hooks.ts",
+            "matcher.ts",
+            "tripleUtils.ts"
+          ]
+        }
+      ],
+      "files": [
+        "cli.js",
+        "index.ts",
+        "N3LogicAIAgentHelper.ts",
+        "N3LogicBuiltins.ts",
+        "N3LogicHelpers.ts",
+        "N3LogicParser.ts",
+        "N3LogicReasoner.ts",
+        "N3LogicTypes.ts"
+      ]
+    },
+    {
+      "name": "tests",
+      "path": "tests/",
+      "subfolders": [
+        {
+          "name": "builtins",
+          "files": [
+            "N3LogicListBuiltins.test.ts",
+            "N3LogicLogicBuiltins.test.ts",
+            "N3LogicMathBuiltins.test.ts",
+            "N3LogicOtherBuiltins.test.ts",
+            "N3LogicStringBuiltins.test.ts",
+            "N3LogicTimeBuiltins.test.ts",
+            "N3LogicTypeBuiltins.test.ts"
+          ]
+        },
+        {
+          "name": "parser",
+          "files": [
+            "RuleExtractor.test.ts",
+            "TermTokenizer.test.ts",
+            "TripleSplitter.test.ts",
+            "TripleTokenizer.test.ts"
+          ]
+        },
+        {
+          "name": "reasoner",
+          "files": [
+            "builtinEvaluator.test.ts",
+            "builtinsManager.test.ts",
+            "debug.test.ts",
+            "hooks.test.ts",
+            "tripleUtils.test.ts"
+          ]
+        }
+      ],
+      "files": [
+        "compliance.test.ts",
+        "interop.test.ts",
+        "N3LogicAIAgentHelper.test.ts",
+        "N3LogicBuiltins.test.ts",
+        "N3LogicHelpers.test.ts",
+        "N3LogicParser.test.ts",
+        "N3LogicTypes.test.ts",
+        "reasoner.test.ts",
+        "RuleExtractor.test.ts"
+      ]
+    }
+  ],
+  "configFiles": [
+    ".eslintrc.json",
+    "jest.config.js",
+    "jest.log-reporter.js",
+    "language-configuration.json",
+    "package-lock.json",
+    "package.json",
+    "README.md",
+    "TODO.md",
+    "tsconfig.cjs.json",
+    "tsconfig.esm.json",
+    "tsconfig.json",
+    "tsconfig.root.json",
+    "tsconfig.test.json"
+  ],
+  "otherDirs": [
+    ".github/",
+    ".vscode/",
+    "dist/",
+    "logs/",
+    "node_modules/",
+    "syntaxes/"
+  ]
+}

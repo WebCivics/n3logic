@@ -36,10 +36,15 @@ describe('N3LogicReasoner', () => {
 		reasoner.setDebug(true);
 		reasoner.loadOntology(n3, 'n3');
 		const result: N3ReasonerResult = reasoner.reason();
+		// Debug: print all inferred triples
+		// eslint-disable-next-line no-console
+		console.log('[TEST reasoner] All inferred triples:', JSON.stringify(result.triples, null, 2));
 		expect(result.triples).toHaveLength(2);
 		const inferredTriple = result.triples.find(t =>
 			t.predicate && typeof t.predicate === 'object' && 'value' in t.predicate && t.predicate.value === 'c'
 		);
+		// eslint-disable-next-line no-console
+		console.log('[TEST reasoner] Inferred triple for predicate c:', inferredTriple);
 		expect(inferredTriple).toBeDefined();
 		expect(
 			inferredTriple && inferredTriple.subject && typeof inferredTriple.subject === 'object' && 'value' in inferredTriple.subject
@@ -85,11 +90,15 @@ describe('N3LogicReasoner', () => {
 		console.log('[TEST] Parsed rules:', JSON.stringify(parsed.rules, null, 2));
 		reasoner.loadOntology(n3, 'n3');
 		const result: N3ReasonerResult = reasoner.reason();
-		console.log('[TEST] Result triples:', JSON.stringify(result.triples, null, 2));
+		// Debug: print all inferred triples
+		// eslint-disable-next-line no-console
+		console.log('[TEST reasoner custom builtins] All inferred triples:', JSON.stringify(result.triples, null, 2));
 		expect(result.triples).toHaveLength(3);
 		const inferredTriple = result.triples.find(t =>
 			t.predicate && typeof t.predicate === 'object' && 'value' in t.predicate && t.predicate.value === 'c'
 		);
+		// eslint-disable-next-line no-console
+		console.log('[TEST reasoner custom builtins] Inferred triple for predicate c:', inferredTriple);
 		expect(inferredTriple).toBeDefined();
 		expect(
 			inferredTriple && inferredTriple.subject && typeof inferredTriple.subject === 'object' && 'value' in inferredTriple.subject
