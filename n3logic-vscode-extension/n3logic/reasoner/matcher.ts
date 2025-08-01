@@ -144,35 +144,36 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
   let results: Array<Record<string, N3Term>> = [];
   // Try each triple as the builtin, recursively match the rest
   for (let i = 0; i < patterns.length; i++) {
-  const triple = patterns[i];
-  debugLog('[MATCHER][DEBUG] Checking pattern triple #', i, ':', JSON.stringify(triple));
-  debugLog('[MATCHER][DEBUG][LOGGING] Pattern triple details:', JSON.stringify(triple, null, 2));
-  // Always extract predicate as string for builtin matching
-  let predicateUri: string | undefined = undefined;
-  if (triple.predicate && typeof triple.predicate === 'object' && 'value' in triple.predicate) {
-    predicateUri = String(triple.predicate.value);
-  } else if (typeof triple.predicate === 'string') {
-    predicateUri = triple.predicate;
-  }
-  debugLog('[MATCHER][DEBUG][LOGGING] Attempting builtin match for triple predicate:', predicateUri);
-  debugLog('[MATCHER][DEBUG][LOGGING] All builtins at this point:', builtins ? builtins.map(b => b.uri) : builtins);
-  // Find builtin by comparing string value of predicate to builtin.uri
-  let builtin = undefined;
-  if (builtins && predicateUri) {
-    for (const b of builtins) {
-      debugLog('[MATCHER][DEBUG][LOGGING] Checking builtin candidate:', b.uri, 'against predicateUri:', predicateUri);
-      if (b.uri === predicateUri) {
-        debugLog('[MATCHER][DEBUG][LOGGING] Builtin match found:', b.uri);
-        builtin = b;
-        break;
+    const triple = patterns[i];
+    debugLog('[MATCHER][DEBUG] Checking pattern triple #', i, ':', JSON.stringify(triple));
+    debugLog('[MATCHER][DEBUG][LOGGING] Pattern triple details:', JSON.stringify(triple, null, 2));
+    // Always extract predicate as string for builtin matching
+    let predicateUri: string | undefined = undefined;
+    if (triple.predicate && typeof triple.predicate === 'object' && 'value' in triple.predicate) {
+      predicateUri = String(triple.predicate.value);
+    } else if (typeof triple.predicate === 'string') {
+      predicateUri = triple.predicate;
+    }
+    debugLog('[MATCHER][DEBUG][LOGGING] Attempting builtin match for triple predicate:', predicateUri);
+    debugLog('[MATCHER][DEBUG][LOGGING] All builtins at this point:', builtins ? builtins.map(b => b.uri) : builtins);
+    // Find builtin by comparing string value of predicate to builtin.uri
+    let builtin = undefined;
+    if (builtins && predicateUri) {
+      for (const b of builtins) {
+        debugLog('[MATCHER][DEBUG][LOGGING] Checking builtin candidate:', b.uri, 'against predicateUri:', predicateUri);
+        if (b.uri === predicateUri) {
+          debugLog('[MATCHER][DEBUG][LOGGING] Builtin match found:', b.uri);
+          builtin = b;
+          break;
+        }
+      }
+      if (!builtin) {
+        debugLog('[MATCHER][DEBUG][LOGGING] No builtin match found for predicateUri:', predicateUri);
       }
     }
-    if (!builtin) {
-      debugLog('[MATCHER][DEBUG][LOGGING] No builtin match found for predicateUri:', predicateUri);
-    }
-  }
-  debugLog('[MATCHER][DEBUG] Builtin found:', !!builtin);
-  debugLog('[MATCHER][DEBUG][LOGGING] Builtin predicateUri:', predicateUri);
+    debugLog('[MATCHER][DEBUG] Builtin found:', !!builtin, 'for predicateUri:', predicateUri, 'triple:', JSON.stringify(triple));
+    if (builtin) {
+      debugLog('[MATCHER][DEBUG][LOGGING] Invoking builtin:', builtin.uri, 'with triple:', JSON.stringify(triple));
     if (builtin) {
       // Recursively match the rest of the patterns (excluding this one)
       const rest = patterns.slice(0, i).concat(patterns.slice(i + 1));
@@ -226,18 +227,17 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
             }
             let args: N3Term[] = [sVal];
             debugLog('[MATCHER][DEBUG] Builtin (arity 1) args:', JSON.stringify(args));
-            debugLog('[BUILTIN ARGS][TRACE] Applying builtin (arity 1):', builtin.uri, 'args:', JSON.stringify(args), 'mergedBindings:', JSON.stringify(mergedBindings), 'triple:', JSON.stringify(triple));
-            debugLog('[MATCHER][DEBUG][LOGGING] Builtin.apply (arity 1) args:', args, 'mergedBindings:', mergedBindings);
+            debugLog('[BUILTIN][DEBUG][INVOKE] About to call builtin.apply (arity 1):', builtin.uri, 'args:', JSON.stringify(args), 'mergedBindings:', JSON.stringify(mergedBindings), 'triple:', JSON.stringify(triple));
             try {
               debugLog('[MATCHER][DEBUG] Invoking builtin.apply (arity 1) with args:', JSON.stringify(args));
               const result = builtin.apply(...args);
               debugLog('[MATCHER][DEBUG][LOGGING] Builtin.apply (arity 1) result:', result, 'for args:', args);
-              debugLog('[BUILTIN ARGS][TRACE] Builtin result:', result, 'for args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
+              debugLog('[BUILTIN][DEBUG][INVOKE] Builtin result:', result, 'for args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
               if (result === true) {
-                debugLog('[BUILTIN ARGS][TRACE] Builtin returned true, pushing bindings:', JSON.stringify(mergedBindings));
+                debugLog('[BUILTIN][DEBUG][INVOKE] Builtin returned true, pushing bindings:', JSON.stringify(mergedBindings));
                 results.push(normalizeBindings({ ...mergedBindings }));
               } else {
-                debugLog('[BUILTIN ARGS][TRACE] Builtin returned false, skipping bindings:', JSON.stringify(mergedBindings));
+                debugLog('[BUILTIN][DEBUG][INVOKE] Builtin returned false, skipping bindings:', JSON.stringify(mergedBindings));
               }
             } catch (e) {
               debugLog('[MATCHER][ERROR] Exception in builtin (arity 1):', e, 'args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
@@ -265,21 +265,19 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
               }
               let args: N3Term[] = [sVal, oVal];
               debugLog('[MATCHER][DEBUG] Builtin (arity 2) args:', JSON.stringify(args));
-              debugLog('[MATCHER][DEBUG][LOGGING] Builtin.apply (arity 2) args:', args, 'mergedBindings:', mergedBindings);
-              debugLog('[MATCHER][DEBUG] Invoking builtin.apply (arity 2) with args:', JSON.stringify(args));
-              debugLog('[BUILTIN ARGS][TRACE] Applying builtin (arity 2):', builtin.uri, 'args:', JSON.stringify(args), 'mergedBindings:', JSON.stringify(mergedBindings), 'triple:', JSON.stringify(triple));
+              debugLog('[BUILTIN][DEBUG][INVOKE] About to call builtin.apply (arity 2):', builtin.uri, 'args:', JSON.stringify(args), 'mergedBindings:', JSON.stringify(mergedBindings), 'triple:', JSON.stringify(triple));
               try {
                 const result = builtin.apply(...args);
                 debugLog('[MATCHER][DEBUG][LOGGING] Builtin.apply (arity 2) result:', result, 'for args:', args);
-                debugLog('[BUILTIN ARGS][TRACE] Builtin result:', result, 'for args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
+                debugLog('[BUILTIN][DEBUG][INVOKE] Builtin result:', result, 'for args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
                 if (result === true) {
-                  debugLog('[BUILTIN ARGS][TRACE] Builtin returned true, pushing bindings:', JSON.stringify(mergedBindings));
+                  debugLog('[BUILTIN][DEBUG][INVOKE] Builtin returned true, pushing bindings:', JSON.stringify(mergedBindings));
                   results.push(normalizeBindings({ ...mergedBindings }));
                 } else {
-                  debugLog('[BUILTIN ARGS][TRACE] Builtin returned false, skipping bindings:', JSON.stringify(mergedBindings));
+                  debugLog('[BUILTIN][DEBUG][INVOKE] Builtin returned false, skipping bindings:', JSON.stringify(mergedBindings));
                 }
               } catch (e) {
-                debugLog('[BUILTIN ARGS][ERROR] Exception in builtin (arity 2):', e, 'args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
+                debugLog('[BUILTIN][DEBUG][INVOKE][ERROR] Exception in builtin (arity 2):', e, 'args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
               }
             }
           }
