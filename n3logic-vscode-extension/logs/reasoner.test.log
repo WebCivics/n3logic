@@ -2,25 +2,34 @@ Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts
 Status: FAIL
 
 Test: N3LogicReasoner performs basic forward chaining
-Status: passed
-
-
-Test: N3LogicReasoner supports custom builtins
 Status: failed
-Failure: Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
-
-Expected length: [32m3[39m
-Received length: [31m2[39m
-Received array:  [31m["<a> <b> \"foo\" .", "<a> <b> \"bar\" ."][39m
-    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:97:26)
+Failure: Error: ENOENT: no such file or directory, open 'F:\github-dev\n3logic\logs\reasoner.test.log'
+    at Object.writeFileSync (node:fs:2368:20)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:40:5)
     at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
     at new Promise (<anonymous>)
     at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
-    at _callCircusTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1009:40)
+    at _callCircusHook (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:978:40)
     at processTicksAndRejections (node:internal/process/task_queues:95:5)
-    at _runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:949:3)
-    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:839:13)
-    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:829:11)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:775:7)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+
+Test: N3LogicReasoner supports custom builtins
+Status: failed
+Failure: Error: ENOENT: no such file or directory, open 'F:\github-dev\n3logic\logs\reasoner.test.log'
+    at Object.writeFileSync (node:fs:2368:20)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:40:5)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusHook (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:978:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:775:7)
     at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
     at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
     at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
@@ -29,5 +38,19 @@ Received array:  [31m["<a> <b> \"foo\" .", "<a> <b> \"bar\" ."][39m
     at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
 
 Test: N3LogicReasoner supports plugins and hooks
-Status: passed
-
+Status: failed
+Failure: Error: ENOENT: no such file or directory, open 'F:\github-dev\n3logic\logs\reasoner.test.log'
+    at Object.writeFileSync (node:fs:2368:20)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:40:5)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusHook (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:978:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:775:7)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)

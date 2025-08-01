@@ -1,21 +1,34 @@
 FAILED TESTS SUMMARY
 ====================
-File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts
-Test: N3LogicReasoner supports custom builtins
-Message: Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
-
-Expected length: [32m3[39m
-Received length: [31m2[39m
-Received array:  [31m["<a> <b> \"foo\" .", "<a> <b> \"bar\" ."][39m
-    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:97:26)
+File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts
+Test: LogicBuiltins log:not returns true if argument is false
+Message: Error: ENOENT: no such file or directory, open 'F:\github-dev\logs\N3LogicLogicBuiltins.test.log'
+    at Object.writeFileSync (node:fs:2368:20)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:59:6)
     at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
     at new Promise (<anonymous>)
     at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
-    at _callCircusTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1009:40)
+    at _callCircusHook (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:978:40)
     at processTicksAndRejections (node:internal/process/task_queues:95:5)
-    at _runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:949:3)
-    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:839:13)
-    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:829:11)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:775:7)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+
+File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts
+Test: LogicBuiltins log:equalTo returns true if values are equal
+Message: Error: ENOENT: no such file or directory, open 'F:\github-dev\logs\N3LogicLogicBuiltins.test.log'
+    at Object.writeFileSync (node:fs:2368:20)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:59:6)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusHook (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:978:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:775:7)
     at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
     at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
     at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
@@ -25,21 +38,15 @@ Received array:  [31m["<a> <b> \"foo\" .", "<a> <b> \"bar\" ."][39m
 
 File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts
 Test: LogicBuiltins log:or returns true if either is true (string and boolean cases)
-Message: Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
-
-Expected: [32mtrue[39m
-Received: [31mfalse[39m
-    at F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:112:22
-    at Array.forEach (<anonymous>)
-    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:109:11)
+Message: Error: ENOENT: no such file or directory, open 'F:\github-dev\logs\N3LogicLogicBuiltins.test.log'
+    at Object.writeFileSync (node:fs:2368:20)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:59:6)
     at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
     at new Promise (<anonymous>)
     at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
-    at _callCircusTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1009:40)
+    at _callCircusHook (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:978:40)
     at processTicksAndRejections (node:internal/process/task_queues:95:5)
-    at _runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:949:3)
-    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:839:13)
-    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:829:11)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:775:7)
     at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
     at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
     at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
@@ -47,646 +54,128 @@ Received: [31mfalse[39m
     at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
     at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
 
+File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts
+Test: LogicBuiltins log:and returns true if both are true
+Message: Error: ENOENT: no such file or directory, open 'F:\github-dev\logs\N3LogicLogicBuiltins.test.log'
+    at Object.writeFileSync (node:fs:2368:20)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:59:6)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusHook (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:978:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:775:7)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
 
-DEBUG LOG OUTPUT (latest session):
-=================================
-[REASONER][START] Asserted triples: [
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "1"
-    }
-  }
-]
-[PROVENANCE][ADD] {
-  "subject": {
-    "type": "IRI",
-    "value": "a"
-  },
-  "predicate": {
-    "type": "IRI",
-    "value": "b"
-  },
-  "object": {
-    "type": "Literal",
-    "value": "1"
-  },
-  "_id": 1,
-  "_provenance": "asserted"
-} asserted
-[REASONER][ASSERTED][CANONICAL] [
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "1"
-    },
-    "_id": 1,
-    "_provenance": "asserted"
-  }
-]
-[PROVENANCE][ADD] {
-  "subject": "a",
-  "predicate": "b",
-  "object": "\"1\"",
-  "_id": 2,
-  "_provenance": "inferred"
-} inferred
-[PROVENANCE][ADD] {
-  "subject": "a",
-  "predicate": "c",
-  "object": "\"1\"",
-  "_id": 3,
-  "_provenance": "inferred"
-} inferred
-[REASONER][INFERRED][RAW] [
-  "a b \"1\"",
-  "a c \"1\""
-]
-[REASONER][INFERRED][CANONICAL] [
-  {
-    "subject": "a",
-    "predicate": "b",
-    "object": "\"1\"",
-    "_id": 2,
-    "_provenance": "inferred"
-  },
-  {
-    "subject": "a",
-    "predicate": "c",
-    "object": "\"1\"",
-    "_id": 3,
-    "_provenance": "inferred"
-  }
-]
-[REASONER][TRIPLE][ADD][ASSERTED] {
-  "subject": {
-    "type": "IRI",
-    "value": "a"
-  },
-  "predicate": {
-    "type": "IRI",
-    "value": "b"
-  },
-  "object": {
-    "type": "Literal",
-    "value": "1"
-  },
-  "_id": 1,
-  "_provenance": "asserted"
-}
-[REASONER][TRIPLE][ADD][INFERRED] {
-  "subject": "a",
-  "predicate": "b",
-  "object": "\"1\"",
-  "_id": 2,
-  "_provenance": "inferred"
-}
-[REASONER][TRIPLE][ADD][INFERRED] {
-  "subject": "a",
-  "predicate": "c",
-  "object": "\"1\"",
-  "_id": 3,
-  "_provenance": "inferred"
-}
-[REASONER][ALL][TRIPLES][PRE-FILTER] [
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "1"
-    },
-    "_id": 1,
-    "_provenance": "asserted"
-  },
-  {
-    "subject": "a",
-    "predicate": "b",
-    "object": "\"1\"",
-    "_id": 2,
-    "_provenance": "inferred"
-  },
-  {
-    "subject": "a",
-    "predicate": "c",
-    "object": "\"1\"",
-    "_id": 3,
-    "_provenance": "inferred"
-  }
-]
-[REASONER][ALL][TRIPLES][POST-FILTER] [
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "1"
-    },
-    "_id": 1,
-    "_provenance": "asserted"
-  },
-  {
-    "subject": "a",
-    "predicate": "b",
-    "object": "\"1\"",
-    "_id": 2,
-    "_provenance": "inferred"
-  },
-  {
-    "subject": "a",
-    "predicate": "c",
-    "object": "\"1\"",
-    "_id": 3,
-    "_provenance": "inferred"
-  }
-]
-[REASONER][ALL][TRIPLES][N3] [
-  "<a> <b> \"1\" .",
-  "<a> <c> \"1\" ."
-]
-[REASONER][START] Asserted triples: [
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "foo"
-    }
-  },
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "bar"
-    }
-  }
-]
-[PROVENANCE][ADD] {
-  "subject": {
-    "type": "IRI",
-    "value": "a"
-  },
-  "predicate": {
-    "type": "IRI",
-    "value": "b"
-  },
-  "object": {
-    "type": "Literal",
-    "value": "foo"
-  },
-  "_id": 1,
-  "_provenance": "asserted"
-} asserted
-[PROVENANCE][ADD] {
-  "subject": {
-    "type": "IRI",
-    "value": "a"
-  },
-  "predicate": {
-    "type": "IRI",
-    "value": "b"
-  },
-  "object": {
-    "type": "Literal",
-    "value": "bar"
-  },
-  "_id": 2,
-  "_provenance": "asserted"
-} asserted
-[REASONER][ASSERTED][CANONICAL] [
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "foo"
-    },
-    "_id": 1,
-    "_provenance": "asserted"
-  },
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "bar"
-    },
-    "_id": 2,
-    "_provenance": "asserted"
-  }
-]
-[PROVENANCE][ADD] {
-  "subject": "a",
-  "predicate": "b",
-  "object": "\"foo\"",
-  "_id": 3,
-  "_provenance": "inferred"
-} inferred
-[PROVENANCE][ADD] {
-  "subject": "a",
-  "predicate": "b",
-  "object": "\"bar\"",
-  "_id": 4,
-  "_provenance": "inferred"
-} inferred
-[REASONER][INFERRED][RAW] [
-  "a b \"foo\"",
-  "a b \"bar\""
-]
-[REASONER][INFERRED][CANONICAL] [
-  {
-    "subject": "a",
-    "predicate": "b",
-    "object": "\"foo\"",
-    "_id": 3,
-    "_provenance": "inferred"
-  },
-  {
-    "subject": "a",
-    "predicate": "b",
-    "object": "\"bar\"",
-    "_id": 4,
-    "_provenance": "inferred"
-  }
-]
-[REASONER][TRIPLE][ADD][ASSERTED] {
-  "subject": {
-    "type": "IRI",
-    "value": "a"
-  },
-  "predicate": {
-    "type": "IRI",
-    "value": "b"
-  },
-  "object": {
-    "type": "Literal",
-    "value": "foo"
-  },
-  "_id": 1,
-  "_provenance": "asserted"
-}
-[REASONER][TRIPLE][ADD][ASSERTED] {
-  "subject": {
-    "type": "IRI",
-    "value": "a"
-  },
-  "predicate": {
-    "type": "IRI",
-    "value": "b"
-  },
-  "object": {
-    "type": "Literal",
-    "value": "bar"
-  },
-  "_id": 2,
-  "_provenance": "asserted"
-}
-[REASONER][TRIPLE][ADD][INFERRED] {
-  "subject": "a",
-  "predicate": "b",
-  "object": "\"foo\"",
-  "_id": 3,
-  "_provenance": "inferred"
-}
-[REASONER][TRIPLE][ADD][INFERRED] {
-  "subject": "a",
-  "predicate": "b",
-  "object": "\"bar\"",
-  "_id": 4,
-  "_provenance": "inferred"
-}
-[REASONER][ALL][TRIPLES][PRE-FILTER] [
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "foo"
-    },
-    "_id": 1,
-    "_provenance": "asserted"
-  },
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "bar"
-    },
-    "_id": 2,
-    "_provenance": "asserted"
-  },
-  {
-    "subject": "a",
-    "predicate": "b",
-    "object": "\"foo\"",
-    "_id": 3,
-    "_provenance": "inferred"
-  },
-  {
-    "subject": "a",
-    "predicate": "b",
-    "object": "\"bar\"",
-    "_id": 4,
-    "_provenance": "inferred"
-  }
-]
-[REASONER][ALL][TRIPLES][POST-FILTER] [
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "foo"
-    },
-    "_id": 1,
-    "_provenance": "asserted"
-  },
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "bar"
-    },
-    "_id": 2,
-    "_provenance": "asserted"
-  },
-  {
-    "subject": "a",
-    "predicate": "b",
-    "object": "\"foo\"",
-    "_id": 3,
-    "_provenance": "inferred"
-  },
-  {
-    "subject": "a",
-    "predicate": "b",
-    "object": "\"bar\"",
-    "_id": 4,
-    "_provenance": "inferred"
-  }
-]
-[REASONER][ALL][TRIPLES][N3] [
-  "<a> <b> \"foo\" .",
-  "<a> <b> \"bar\" ."
-]
-[REASONER][START] Asserted triples: [
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "1"
-    }
-  }
-]
-[PROVENANCE][ADD] {
-  "subject": {
-    "type": "IRI",
-    "value": "a"
-  },
-  "predicate": {
-    "type": "IRI",
-    "value": "b"
-  },
-  "object": {
-    "type": "Literal",
-    "value": "1"
-  },
-  "_id": 1,
-  "_provenance": "asserted"
-} asserted
-[REASONER][ASSERTED][CANONICAL] [
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "1"
-    },
-    "_id": 1,
-    "_provenance": "asserted"
-  }
-]
-[PROVENANCE][ADD] {
-  "subject": "a",
-  "predicate": "b",
-  "object": "\"1\"",
-  "_id": 2,
-  "_provenance": "inferred"
-} inferred
-[PROVENANCE][ADD] {
-  "subject": "a",
-  "predicate": "c",
-  "object": "\"1\"",
-  "_id": 3,
-  "_provenance": "inferred"
-} inferred
-[REASONER][INFERRED][RAW] [
-  "a b \"1\"",
-  "a c \"1\""
-]
-[REASONER][INFERRED][CANONICAL] [
-  {
-    "subject": "a",
-    "predicate": "b",
-    "object": "\"1\"",
-    "_id": 2,
-    "_provenance": "inferred"
-  },
-  {
-    "subject": "a",
-    "predicate": "c",
-    "object": "\"1\"",
-    "_id": 3,
-    "_provenance": "inferred"
-  }
-]
-[REASONER][TRIPLE][ADD][ASSERTED] {
-  "subject": {
-    "type": "IRI",
-    "value": "a"
-  },
-  "predicate": {
-    "type": "IRI",
-    "value": "b"
-  },
-  "object": {
-    "type": "Literal",
-    "value": "1"
-  },
-  "_id": 1,
-  "_provenance": "asserted"
-}
-[REASONER][TRIPLE][ADD][INFERRED] {
-  "subject": "a",
-  "predicate": "b",
-  "object": "\"1\"",
-  "_id": 2,
-  "_provenance": "inferred"
-}
-[REASONER][TRIPLE][ADD][INFERRED] {
-  "subject": "a",
-  "predicate": "c",
-  "object": "\"1\"",
-  "_id": 3,
-  "_provenance": "inferred"
-}
-[REASONER][ALL][TRIPLES][PRE-FILTER] [
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "1"
-    },
-    "_id": 1,
-    "_provenance": "asserted"
-  },
-  {
-    "subject": "a",
-    "predicate": "b",
-    "object": "\"1\"",
-    "_id": 2,
-    "_provenance": "inferred"
-  },
-  {
-    "subject": "a",
-    "predicate": "c",
-    "object": "\"1\"",
-    "_id": 3,
-    "_provenance": "inferred"
-  }
-]
-[REASONER][ALL][TRIPLES][POST-FILTER] [
-  {
-    "subject": {
-      "type": "IRI",
-      "value": "a"
-    },
-    "predicate": {
-      "type": "IRI",
-      "value": "b"
-    },
-    "object": {
-      "type": "Literal",
-      "value": "1"
-    },
-    "_id": 1,
-    "_provenance": "asserted"
-  },
-  {
-    "subject": "a",
-    "predicate": "b",
-    "object": "\"1\"",
-    "_id": 2,
-    "_provenance": "inferred"
-  },
-  {
-    "subject": "a",
-    "predicate": "c",
-    "object": "\"1\"",
-    "_id": 3,
-    "_provenance": "inferred"
-  }
-]
-[REASONER][ALL][TRIPLES][N3] [
-  "<a> <b> \"1\" .",
-  "<a> <c> \"1\" ."
-]
+File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts
+Test: LogicBuiltins log:xor returns true if values differ
+Message: Error: ENOENT: no such file or directory, open 'F:\github-dev\logs\N3LogicLogicBuiltins.test.log'
+    at Object.writeFileSync (node:fs:2368:20)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:59:6)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusHook (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:978:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:775:7)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+
+File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts
+Test: LogicBuiltins log:if returns then/else based on cond
+Message: Error: ENOENT: no such file or directory, open 'F:\github-dev\logs\N3LogicLogicBuiltins.test.log'
+    at Object.writeFileSync (node:fs:2368:20)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:59:6)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusHook (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:978:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:775:7)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+
+File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts
+Test: LogicBuiltins log:distinct returns true if values differ
+Message: Error: ENOENT: no such file or directory, open 'F:\github-dev\logs\N3LogicLogicBuiltins.test.log'
+    at Object.writeFileSync (node:fs:2368:20)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:59:6)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusHook (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:978:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:775:7)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+
+File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts
+Test: N3LogicReasoner performs basic forward chaining
+Message: Error: ENOENT: no such file or directory, open 'F:\github-dev\n3logic\logs\reasoner.test.log'
+    at Object.writeFileSync (node:fs:2368:20)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:40:5)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusHook (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:978:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:775:7)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+
+File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts
+Test: N3LogicReasoner supports custom builtins
+Message: Error: ENOENT: no such file or directory, open 'F:\github-dev\n3logic\logs\reasoner.test.log'
+    at Object.writeFileSync (node:fs:2368:20)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:40:5)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusHook (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:978:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:775:7)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+
+File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts
+Test: N3LogicReasoner supports plugins and hooks
+Message: Error: ENOENT: no such file or directory, open 'F:\github-dev\n3logic\logs\reasoner.test.log'
+    at Object.writeFileSync (node:fs:2368:20)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:40:5)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusHook (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:978:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:775:7)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
