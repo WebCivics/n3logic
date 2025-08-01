@@ -1,21 +1,3 @@
-// Named value exports for test compatibility
-export const N3Term = Types.N3Term;
-export const N3Variable = Types.N3Variable;
-export const N3Literal = Types.N3Literal;
-export const N3BlankNode = Types.N3BlankNode;
-export const N3IRI = Types.N3IRI;
-export const N3Triple = Types.N3Triple;
-export const N3Formula = Types.N3Formula;
-export const N3Quantifier = Types.N3Quantifier;
-export const N3ForAll = Types.N3ForAll;
-export const N3Exists = Types.N3Exists;
-export const N3Rule = Types.N3Rule;
-export const N3Builtin = Types.N3Builtin;
-export const N3LogicDocument = Types.N3LogicDocument;
-export const N3List = Types.N3List;
-export const N3Statement = Types.N3Statement;
-export const N3Bindings = Types.N3Bindings;
-export const N3Reasoner = Types.N3Reasoner;
 // Dummy value exports for test compatibility (with Value suffix)
 const N3TermValue = {};
 const N3VariableValue = {};
@@ -56,6 +38,24 @@ const Types = {
   N3Reasoner: N3ReasonerValue,
 };
 export default Types;
+// Named value exports for test compatibility
+export const N3Term = Types.N3Term;
+export const N3Variable = Types.N3Variable;
+export const N3Literal = Types.N3Literal;
+export const N3BlankNode = Types.N3BlankNode;
+export const N3IRI = Types.N3IRI;
+export const N3Triple = Types.N3Triple;
+export const N3Formula = Types.N3Formula;
+export const N3Quantifier = Types.N3Quantifier;
+export const N3ForAll = Types.N3ForAll;
+export const N3Exists = Types.N3Exists;
+export const N3Rule = Types.N3Rule;
+export const N3Builtin = Types.N3Builtin;
+export const N3LogicDocument = Types.N3LogicDocument;
+export const N3List = Types.N3List;
+export const N3Statement = Types.N3Statement;
+export const N3Bindings = Types.N3Bindings;
+export const N3Reasoner = Types.N3Reasoner;
 // N3LogicTypes.ts
 // Types and interfaces for N3Logic reasoning engine (npm package version)
 export type N3Term = string | N3Variable | N3Literal | N3BlankNode | N3IRI | N3Formula | N3List;

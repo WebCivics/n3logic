@@ -41,14 +41,9 @@ export const LogicBuiltins: N3Builtin[] = [
     arity: 2,
     description: 'log:or(x, y) is true if x or y is true',
     apply: (x: any, y: any) => {
-      const vx = getValue(x);
-      const vy = getValue(y);
-      const isTruthy = (v: any) => {
-        if (typeof v === 'string') return v.length > 0;
-        if (v && typeof v === 'object' && 'value' in v) return String(v.value).length > 0;
-        return Boolean(v);
-      };
-      return isTruthy(vx) || isTruthy(vy);
+      // Returns true if either argument is a literal with a non-empty string value
+      const isTruthy = (v: any) => v && v.type === 'Literal' && typeof v.value === 'string' && v.value.length > 0;
+      return isTruthy(x) || isTruthy(y);
     }
   },
   {
