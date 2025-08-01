@@ -1,5 +1,5 @@
-import { N3Builtin } from './N3LogicTypes';
-import { getValue } from './N3LogicHelpers';
+import { N3Builtin } from '../N3LogicTypes';
+import { getValue } from '../N3LogicHelpers';
 
 export const OtherBuiltins: N3Builtin[] = [
   {
@@ -12,6 +12,6 @@ export const OtherBuiltins: N3Builtin[] = [
     uri: 'http://www.w3.org/2002/07/owl#sameAs',
     arity: 2,
     description: 'owl:sameAs(x, y) is true if x and y are the same',
-    apply: (x, y) => getValue(x) === getValue(y)
+  apply: (x: any, y: any) => getValue(x) === getValue(y)
   }
 ];

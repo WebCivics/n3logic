@@ -2,12 +2,18 @@
   "scopeName": "source.n3logic",
   "name": "N3Logic",
   "patterns": [
-    { "include": "#comment" },
-    { "include": "#keyword" },
-    { "include": "#iri" },
-    { "include": "#variable" },
-    { "include": "#literal" },
-    { "include": "#punctuation" }
+  { "include": "#comment" },
+  { "include": "#directive" },
+  { "include": "#keyword" },
+  { "include": "#iri" },
+  { "include": "#prefixedName" },
+  { "include": "#blankNode" },
+  { "include": "#variable" },
+  { "include": "#literal" },
+  { "include": "#boolean" },
+  { "include": "#list" },
+  { "include": "#set" },
+  { "include": "#punctuation" }
   ],
   "repository": {
     "comment": {
@@ -15,6 +21,14 @@
         {
           "name": "comment.line.number-sign.n3logic",
           "match": "#.*$"
+        }
+      ]
+    },
+    "directive": {
+      "patterns": [
+        {
+          "name": "keyword.other.directive.n3logic",
+          "match": "(@prefix|@base)"
         }
       ]
     },
@@ -34,6 +48,22 @@
         }
       ]
     },
+    "prefixedName": {
+      "patterns": [
+        {
+          "name": "constant.other.prefixed-name.n3logic",
+          "match": "[a-zA-Z_][\\w\\-]*:[a-zA-Z_][\\w\\-]*"
+        }
+      ]
+    },
+    "blankNode": {
+      "patterns": [
+        {
+          "name": "constant.other.blank-node.n3logic",
+          "match": "_:[a-zA-Z0-9_]+"
+        }
+      ]
+    },
     "variable": {
       "patterns": [
         {
@@ -45,16 +75,62 @@
     "literal": {
       "patterns": [
         {
+          "name": "string.quoted.triple.n3logic",
+          "match": "\\\"\\\"\\\"(?:[^\\\\]|\\\\[btnfr\\\"'\\\\/]|\\\\u[0-9A-Fa-f]{4}|\\\\U[0-9A-Fa-f]{8}|\\\\.)*?\\\"\\\"\\\"(@[a-zA-Z\\-]+|\\^\\^<[^>]+>|\\^\\^[a-zA-Z_][\\\\w\\\\-]*:[a-zA-Z_][\\\\w\\\\-]*)?"
+        },
+        {
           "name": "string.quoted.double.n3logic",
-          "match": "\\\"(?:[^\\\\\\\"]|\\\\.)*\\\"(@[a-zA-Z\\-]+|\\^\\^<[^>]+>)?"
+          "match": "\\\"(?:[^\\\\\\\"]|\\\\[btnfr\\\"'\\\\/]|\\\\u[0-9A-Fa-f]{4}|\\\\U[0-9A-Fa-f]{8}|\\\\.)*\\\"(@[a-zA-Z\\-]+|\\^\\^<[^>]+>|\\^\\^[a-zA-Z_][\\\\w\\\\-]*:[a-zA-Z_][\\\\w\\\\-]*)?"
         },
         {
           "name": "string.quoted.single.n3logic",
-          "match": "'(?:[^\\\\']|\\\\.)*'(@[a-zA-Z\\-]+|\\^\\^<[^>]+>)?"
+          "match": "'(?:[^\\\\']|\\\\[btnfr\\\"'\\\\/]|\\\\u[0-9A-Fa-f]{4}|\\\\U[0-9A-Fa-f]{8}|\\\\.)*'(@[a-zA-Z\\-]+|\\^\\^<[^>]+>|\\^\\^[a-zA-Z_][\\\\w\\\\-]*:[a-zA-Z_][\\\\w\\\\-]*)?"
         },
         {
           "name": "constant.numeric.n3logic",
           "match": "-?\\b\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?\\b"
+        }
+      ]
+    },
+    "list": {
+      "patterns": [
+        {
+          "name": "meta.structure.list.n3logic",
+          "begin": "\\(",
+          "end": "\\)",
+          "patterns": [
+            { "include": "#literal" },
+            { "include": "#iri" },
+            { "include": "#prefixedName" },
+            { "include": "#blankNode" },
+            { "include": "#variable" },
+            { "include": "#punctuation" }
+          ]
+        }
+      ]
+    },
+    "set": {
+      "patterns": [
+        {
+          "name": "meta.structure.set.n3logic",
+          "begin": "\\{",
+          "end": "\\}",
+          "patterns": [
+            { "include": "#literal" },
+            { "include": "#iri" },
+            { "include": "#prefixedName" },
+            { "include": "#blankNode" },
+            { "include": "#variable" },
+            { "include": "#punctuation" }
+          ]
+        }
+      ]
+    },
+    "boolean": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.n3logic",
+          "match": "\\b(true|false)\\b"
         }
       ]
     },

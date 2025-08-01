@@ -1,110 +1,94 @@
+// Debug support
+let DEBUG = false;
+function debugLog(...args: any[]) {
+  if (DEBUG) {
+    console.debug('[N3LogicParser]', ...args);
+  }
+}
 // N3LogicParser.ts
 // Parses N3/N3Logic documents into triples, rules, and built-ins (npm package version)
 import { N3LogicDocument, N3Triple, N3Rule, N3Builtin, N3Formula, N3Quantifier, N3Term, N3Variable, N3Literal, N3BlankNode, N3IRI, N3List, N3ForAll, N3Exists } from './N3LogicTypes';
+import { tokenizeTriples } from './parser/TripleTokenizer';
+import { extractRules } from './parser/RuleExtractor';
+import { tokenizeTerms } from './parser/TermTokenizer';
+import { splitTriples } from './parser/TripleSplitter';
 
 export class N3LogicParser {
+  /**
+   * Enable or disable debug logging for this parser instance.
+   */
+  setDebug(debug: boolean) {
+    DEBUG = debug;
+    debugLog('Debug mode set to', debug);
+  }
 
   parse(n3Text: string): N3LogicDocument {
+    debugLog('Parsing input', n3Text);
     if (typeof n3Text !== 'string') {
+      debugLog('Input is not a string');
       throw new TypeError('N3LogicParser.parse: Input must be a string');
     }
     // Remove comments and normalize whitespace
     const cleaned = n3Text.replace(/#[^\n]*/g, '').replace(/\s+/g, ' ').trim();
     try {
+      const triples = this.parseTriples(cleaned);
+      const rules = this.parseRules(cleaned);
+      const builtins = this.parseBuiltins(cleaned);
+      debugLog('Parsed triples:', triples);
+      debugLog('Parsed rules:', rules);
       return {
-        triples: this.parseTriples(cleaned),
-        rules: this.parseRules(cleaned),
-        builtins: this.parseBuiltins(cleaned)
+        triples,
+        rules,
+        builtins
       };
     } catch (err) {
+      debugLog('Failed to parse input', err);
       throw new Error(`N3LogicParser.parse: Failed to parse input. ${err instanceof Error ? err.message : err}`);
     }
   }
 
   // Parse triples, supporting literals, variables, lists, blank nodes, multi-line, robustly
-  private parseTriples(n3Text: string): N3Triple[] {
+  private parseTriples(n3Text: string, allowNoDot = false): N3Triple[] {
     if (typeof n3Text !== 'string') {
       throw new TypeError('parseTriples: Input must be a string');
     }
     const triples: N3Triple[] = [];
-    // Tokenize by splitting on "." at top-level (not inside quotes, parens, or brackets)
-    let statements: string[] = [];
-    let buf = '';
-    let inQuote = false;
-    let parenDepth = 0;
-    let bracketDepth = 0;
-    for (let i = 0; i < n3Text.length; i++) {
-      const c = n3Text[i];
-      if (c === '"') inQuote = !inQuote;
-      if (!inQuote) {
-        if (c === '(') parenDepth++;
-        if (c === ')') parenDepth--;
-        if (c === '[') bracketDepth++;
-        if (c === ']') bracketDepth--;
+    // If allowNoDot, split on semicolons or newlines as well as dots
+    let statements: string[];
+    if (allowNoDot) {
+      // Remove outer braces if present
+      let text = n3Text.trim();
+      if (text.startsWith('{') && text.endsWith('}')) {
+        text = text.slice(1, -1).trim();
       }
-      if (c === '.' && !inQuote && parenDepth === 0 && bracketDepth === 0) {
-        statements.push(buf.trim());
-        buf = '';
-      } else {
-        buf += c;
-      }
+      debugLog('parseTriples: Splitting rule block:', text);
+      statements = splitTriples(text, debugLog);
+    } else {
+      statements = tokenizeTriples(n3Text);
     }
-    if (buf.trim()) statements.push(buf.trim());
     for (const stmt of statements) {
       if (!stmt) continue;
-      // Tokenize subject, predicate, object, handling quoted literals, lists, blank nodes
-      const tokens = [];
-      let buffer = '';
-      let inQ = false;
-      let pDepth = 0;
-      let bDepth = 0;
-      for (let i = 0; i < stmt.length; i++) {
-        const c = stmt[i];
-        if (c === '"') {
-          buffer += c;
-          if (!inQ) {
-            inQ = true;
-          } else {
-            // End of quoted literal
-            inQ = false;
-            // Look ahead for datatype or language
-            let j = i + 1;
-            let extra = '';
-            while (j < stmt.length && /[\^@<a-zA-Z0-9:_\-]/.test(stmt[j])) {
-              extra += stmt[j];
-              j++;
-            }
-            if (extra) {
-              buffer += extra;
-              i = j - 1;
-            }
-          }
+      debugLog('parseTriples: Tokenizing statement:', stmt);
+      const tokens = tokenizeTerms(stmt);
+      debugLog('parseTriples: Tokenized terms:', JSON.stringify(tokens));
+      for (let i = 0; i + 2 < tokens.length; i += 3) {
+        // Skip if any token is a rule/control symbol or lone parenthesis
+        const t0 = tokens[i], t1 = tokens[i + 1], t2 = tokens[i + 2];
+        debugLog('parseTriples: Triple tokens:', t0, t1, t2);
+        if ([t0, t1, t2].some(t => t === '{' || t === '}' || t === '=>' || t === '' || t === '(' || t === ')')) {
+          debugLog('parseTriples: Skipping invalid triple tokens');
           continue;
         }
-        if (!inQ) {
-          if (c === '(') pDepth++;
-          if (c === ')') pDepth--;
-          if (c === '[') bDepth++;
-          if (c === ']') bDepth--;
-        }
-        if (!inQ && pDepth === 0 && bDepth === 0 && /\s/.test(c)) {
-          if (buffer) {
-            tokens.push(buffer);
-            buffer = '';
-          }
-        } else {
-          buffer += c;
-        }
-      }
-      if (buffer) tokens.push(buffer);
-      if (tokens.length === 3) {
         try {
-          triples.push({
-            subject: this.parseTerm(tokens[0]),
-            predicate: this.parseTerm(tokens[1]),
-            object: this.parseTerm(tokens[2])
-          });
+          const triple = {
+            subject: this.parseTerm(t0),
+            predicate: this.parseTerm(t1),
+            object: this.parseTerm(t2)
+          };
+          debugLog('parseTriples: Parsed triple:', JSON.stringify(triple));
+          triples.push(triple);
         } catch (err) {
+          debugLog('parseTriples: Failed to parse triple:', stmt, err);
           throw new Error(`parseTriples: Failed to parse triple '${stmt}': ${err instanceof Error ? err.message : err}`);
         }
       }
@@ -159,30 +143,29 @@ export class N3LogicParser {
       throw new TypeError('parseRules: Input must be a string');
     }
     const rules: N3Rule[] = [];
-    // Robustly match { ... } => { ... } . blocks, including multiline and indented
-    const ruleRegex = /\{([\s\S]*?)\}\s*=>\s*\{([\s\S]*?)\}\s*\./g;
-    let match;
-    while ((match = ruleRegex.exec(n3Text)) !== null) {
+    const ruleBlocks = extractRules(n3Text);
+    for (const { antecedent, consequent } of ruleBlocks) {
       try {
-        // Normalize whitespace in rule bodies
-        const antecedentText = match[1].replace(/\s+/g, ' ').trim();
-        const consequentText = match[2].replace(/\s+/g, ' ').trim();
-        const antecedent = this.parseFormula(antecedentText);
-        const consequent = this.parseFormula(consequentText);
+        const antecedentTriples = this.parseTriples(antecedent, true);
+        const consequentTriples = this.parseTriples(consequent, true);
+        debugLog('Parsed rule antecedent triples:', JSON.stringify(antecedentTriples, null, 2));
+        debugLog('Parsed rule consequent triples:', JSON.stringify(consequentTriples, null, 2));
+        const antecedentFormula = { type: "Formula" as const, triples: antecedentTriples };
+        const consequentFormula = { type: "Formula" as const, triples: consequentTriples };
         rules.push({
           type: 'Rule',
-          antecedent,
-          consequent
+          antecedent: antecedentFormula,
+          consequent: consequentFormula
         });
       } catch (err) {
-        throw new Error(`parseRules: Failed to parse rule '${match[0]}': ${err instanceof Error ? err.message : err}`);
+        throw new Error(`parseRules: Failed to parse rule: ${err instanceof Error ? err.message : err}`);
       }
     }
     // Quantifiers: ForAll, Exists (simple support)
     const forallRegex = /@forAll\s+((?:\?[\w]+\s*)+)\./g;
+    let match;
     while ((match = forallRegex.exec(n3Text)) !== null) {
       // Not directly attached to rules, but can be used for context
-      // (Advanced: attach to formulas if needed)
     }
     const existsRegex = /@forSome\s+((?:\?[\w]+\s*)+)\./g;
     while ((match = existsRegex.exec(n3Text)) !== null) {
