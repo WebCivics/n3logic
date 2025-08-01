@@ -1,101 +1,118 @@
 
 // Matcher logic for N3LogicReasoner
 import { N3Triple, N3Term, N3Builtin } from '../N3LogicTypes';
-import { debugLog } from './debug';
+import { debugLog, debugTrace, debugWarn, debugError } from './debug';
+function assert(condition: boolean, ...msg: any[]) {
+  if (!condition) {
+    debugError('Assertion failed:', ...msg);
+    throw new Error('Assertion failed: ' + msg.map(String).join(' '));
+  }
+}
 import { termEquals } from './tripleUtils';
 
 export function matchFormula(formula: any, data: N3Triple[], matchAntecedent: any): Array<Record<string, N3Term>> {
-  debugLog('matchFormula called', { formula, data });
+  debugTrace('matchFormula called', { formula, data });
   if (!formula) {
-    debugLog('No formula provided, returning [{}]');
+  debugTrace('No formula provided, returning [{}]');
     return [{}];
   }
   if (formula.type === 'Formula') {
-    debugLog('Formula type is Formula, matching antecedent:', formula.triples);
+  debugTrace('Formula type is Formula, matching antecedent:', formula.triples);
     return matchAntecedent(formula.triples, data);
   } else if (formula.type === 'ForAll') {
-    debugLog('Formula type is ForAll, recursing into formula:', formula.formula);
+  debugTrace('Formula type is ForAll, recursing into formula:', formula.formula);
     return matchFormula(formula.formula, data, matchAntecedent);
   } else if (formula.type === 'Exists') {
-    debugLog('Formula type is Exists, recursing into formula:', formula.formula);
+  debugTrace('Formula type is Exists, recursing into formula:', formula.formula);
     return matchFormula(formula.formula, data, matchAntecedent);
   }
-  debugLog('Unknown formula type, returning [{}]');
+  debugWarn('Unknown formula type, returning [{}]', formula);
   return [{}];
 }
 
 export function matchTriple(pattern: N3Triple, triple: N3Triple, termMatch: any): Record<string, N3Term> | null {
-  debugLog('matchTriple called', { pattern, triple });
+  debugTrace('matchTriple called', { pattern, triple });
   const bindings: Record<string, N3Term> = {};
-  if (!termMatch(pattern.subject, triple.subject, bindings)) return null;
-  if (!termMatch(pattern.predicate, triple.predicate, bindings)) return null;
-  if (!termMatch(pattern.object, triple.object, bindings)) return null;
-  debugLog('matchTriple succeeded, bindings:', bindings);
+  assert(!!pattern && !!triple, 'matchTriple expects pattern and triple');
+  if (!termMatch(pattern.subject, triple.subject, bindings)) {
+    debugTrace('matchTriple: subject did not match', pattern.subject, triple.subject);
+    return null;
+  }
+  if (!termMatch(pattern.predicate, triple.predicate, bindings)) {
+    debugTrace('matchTriple: predicate did not match', pattern.predicate, triple.predicate);
+    return null;
+  }
+  if (!termMatch(pattern.object, triple.object, bindings)) {
+    debugTrace('matchTriple: object did not match', pattern.object, triple.object);
+    return null;
+  }
+  debugTrace('matchTriple succeeded, bindings:', bindings);
   return bindings;
 }
 
 export function termMatch(pattern: N3Term, value: N3Term, bindings: Record<string, N3Term>): boolean {
-  debugLog('termMatch called', { pattern, value, bindings });
-  if (typeof pattern === 'object' && 'type' in pattern && pattern.type === 'Variable') {
+  debugTrace('termMatch called', { pattern, value, bindings });
+  if (typeof pattern === 'object' && pattern && 'type' in pattern && pattern.type === 'Variable') {
     const varName = pattern.value;
-    debugLog('Pattern is variable:', varName);
+    debugTrace('Pattern is variable:', varName);
     if (varName in bindings) {
-      debugLog('Variable already bound:', varName, 'Checking equality with value:', value);
+      debugTrace('Variable already bound:', varName, 'Checking equality with value:', value);
       return termEquals(bindings[varName], value);
     } else {
-      debugLog('Binding variable:', varName, 'to value:', value);
+      debugTrace('Binding variable:', varName, 'to value:', value);
       bindings[varName] = value;
       return true;
     }
   } else {
-    debugLog('Pattern is not variable, checking term equality');
+    debugTrace('Pattern is not variable, checking term equality');
     return termEquals(pattern, value);
   }
 }
 
 export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins: N3Builtin[]): Array<Record<string, N3Term>> {
-  debugLog('matchAntecedent: patterns:', JSON.stringify(patterns, null, 2));
-  debugLog('matchAntecedent: data:', JSON.stringify(data, null, 2));
-  debugLog('matchAntecedent: builtins:', JSON.stringify(builtins, null, 2));
-  debugLog('matchAntecedent: builtin URIs:', Array.isArray(builtins) ? builtins.map(b => b.uri) : builtins);
-  debugLog('matchAntecedent called', { patterns, data });
+  debugTrace('matchAntecedent: patterns:', JSON.stringify(patterns, null, 2));
+  debugTrace('matchAntecedent: data:', JSON.stringify(data, null, 2));
+  debugTrace('matchAntecedent: builtins:', JSON.stringify(builtins, null, 2));
+  debugTrace('matchAntecedent: builtin URIs:', Array.isArray(builtins) ? builtins.map(b => b.uri) : builtins);
+  debugTrace('matchAntecedent called', { patterns, data });
   if (patterns.length === 0) {
-    debugLog('No patterns left, returning [{}]');
+    debugTrace('No patterns left, returning [{}]');
     return [{}];
   }
   const [first, ...rest] = patterns;
   const results: Array<Record<string, N3Term>> = [];
-  debugLog('Registered builtins at matchAntecedent:', builtins);
+  debugTrace('Registered builtins at matchAntecedent:', builtins);
   let builtin = undefined;
-  if (builtins && typeof first.predicate === 'object' && 'value' in first.predicate) {
+  if (builtins && typeof first.predicate === 'object' && first.predicate && 'value' in first.predicate) {
     const predValue = first.predicate.value;
-    debugLog('Checking for builtin with predicate value:', predValue);
+    debugTrace('Checking for builtin with predicate value:', predValue);
     builtin = builtins.find(b => b.uri === predValue);
     if (builtin) {
-      debugLog('Matched builtin for predicate:', predValue, builtin);
+      debugTrace('Matched builtin for predicate:', predValue, builtin);
     } else {
-      debugLog('No builtin matched for predicate:', predValue);
+      debugTrace('No builtin matched for predicate:', predValue);
     }
   }
   if (builtin) {
-    debugLog('Matched builtin triple:', first, 'Builtin:', builtin);
+    debugTrace('Matched builtin triple:', first, 'Builtin:', builtin);
     const restBindingsList = matchAntecedent(rest, data, builtins);
     debugLog('Rest bindings list for builtin:', restBindingsList);
     for (const [restIdx, restBindings] of restBindingsList.entries()) {
-  debugLog('matchAntecedent: restBindings:', JSON.stringify(restBindings, null, 2));
+      debugLog('matchAntecedent: restBindings:', JSON.stringify(restBindings, null, 2));
       debugLog(`Rest bindings #${restIdx}:`, restBindings);
-      // Use current binding for variable if present, else all possible values
+      // For builtins, always try all possible values for unbound variables (fix: do not skip if not bound)
       let subjectVals: N3Term[] = [];
       let objectVals: N3Term[] = [];
-      // Only use already-bound values for variables in builtin triples
       if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable') {
         if (restBindings.hasOwnProperty(first.subject.value)) {
           subjectVals = [restBindings[first.subject.value]];
           debugLog('Subject is variable, using bound value:', subjectVals);
         } else {
-          // If not bound, skip this binding (do not try all possible values)
-          debugLog('Subject variable', first.subject.value, 'not bound, skipping');
-          continue;
+          // Try all possible values for this variable from all current bindings in restBindings
+          subjectVals = Object.values(restBindings);
+          // If no bindings, try all data subjects as fallback
+          if (subjectVals.length === 0) subjectVals = data.map(t => t.subject);
+          debugLog('Subject variable', first.subject.value, 'not bound, trying all possible values:', subjectVals);
         }
       } else {
         subjectVals = [first.subject];
@@ -105,9 +122,11 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
           objectVals = [restBindings[first.object.value]];
           debugLog('Object is variable, using bound value:', objectVals);
         } else {
-          // If not bound, skip this binding (do not try all possible values)
-          debugLog('Object variable', first.object.value, 'not bound, skipping');
-          continue;
+          // Try all possible values for this variable from all current bindings in restBindings
+          objectVals = Object.values(restBindings);
+          // If no bindings, try all data objects as fallback
+          if (objectVals.length === 0) objectVals = data.map(t => t.object);
+          debugLog('Object variable', first.object.value, 'not bound, trying all possible values:', objectVals);
         }
       } else {
         objectVals = [first.object];

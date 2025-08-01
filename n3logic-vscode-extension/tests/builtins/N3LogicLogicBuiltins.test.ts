@@ -1,6 +1,30 @@
 import { LogicBuiltins } from '../../n3logic/builtins/N3LogicLogicBuiltins';
 import { N3Term } from '../../n3logic/N3LogicTypes';
 
+const fs = require('fs');
+const path = require('path');
+const logFile = path.join(__dirname, '../../logs/N3LogicLogicBuiltins.test.log');
+let originalLog: (...args: any[]) => void;
+let originalDebug: (...args: any[]) => void;
+
+function logToFile(...args: any[]) {
+  const msg = args.map(a => (typeof a === 'string' ? a : JSON.stringify(a, null, 2))).join(' ');
+  fs.appendFileSync(logFile, msg + '\n');
+  if (originalLog) originalLog.apply(console, args);
+}
+
+beforeAll(() => {
+  originalLog = console.log;
+  originalDebug = console.debug;
+  fs.writeFileSync(logFile, '');
+  console.log = logToFile;
+  console.debug = logToFile;
+});
+afterAll(() => {
+  if (originalLog) console.log = originalLog;
+  if (originalDebug) console.debug = originalDebug;
+});
+
 describe('LogicBuiltins', () => {
   // Helper for string literal
   const lit = (v: any) => ({ type: 'Literal', value: typeof v === 'boolean' ? (v ? 'true' : 'false') : String(v) } as const);
@@ -9,15 +33,29 @@ describe('LogicBuiltins', () => {
 
   it('log:not returns true if argument is false', () => {
     const fn = LogicBuiltins.find(b => b.uri.includes('not'));
-    expect(fn?.apply(lit(''))).toBe(true);
-    expect(fn?.apply(lit(false))).toBe(true);
-    expect(fn?.apply(lit('x'))).toBe(false);
+    const cases = [
+      { input: lit(''), expected: true },
+      { input: lit(false), expected: true },
+      { input: lit('x'), expected: false },
+    ];
+    cases.forEach(({ input, expected }, idx) => {
+      const result = fn?.apply(input);
+      console.log(`[TEST log:not case #${idx}] input=`, input, 'result=', result, 'expected=', expected);
+      expect(result).toBe(expected);
+    });
   });
 
   it('log:equalTo returns true if values are equal', () => {
     const fn = LogicBuiltins.find(b => b.uri.includes('equalTo'));
-    expect(fn?.apply(lit('a'), lit('a'))).toBe(true);
-    expect(fn?.apply(lit('a'), lit('b'))).toBe(false);
+    const cases = [
+      { a: lit('a'), b: lit('a'), expected: true },
+      { a: lit('a'), b: lit('b'), expected: false },
+    ];
+    cases.forEach(({ a, b, expected }, idx) => {
+      const result = fn?.apply(a, b);
+      console.log(`[TEST log:equalTo case #${idx}] a=`, a, 'b=', b, 'result=', result, 'expected=', expected);
+      expect(result).toBe(expected);
+    });
   });
 
   it('log:or returns true if either is true (string and boolean cases)', () => {
@@ -47,6 +85,34 @@ describe('LogicBuiltins', () => {
       console.log(`[TEST log:or bool case #${idx}] a=`, a, 'b=', b, 'result=', result, 'expected=', expected);
       expect(result).toBe(expected);
     });
+    // Edge cases
+    const edgeCases = [
+      { a: lit(''), b: lit(''), expected: false },
+      { a: lit('true'), b: lit(''), expected: true },
+      { a: lit(''), b: lit('true'), expected: true },
+      { a: lit('false'), b: lit('false'), expected: false },
+      { a: lit('false'), b: lit('true'), expected: true },
+      { a: lit('x'), b: lit(''), expected: true },
+      { a: lit(''), b: lit('x'), expected: true },
+      { a: lit('x'), b: lit('y'), expected: true },
+      { a: lit('false'), b: lit('x'), expected: true },
+      { a: lit('x'), b: lit('false'), expected: true },
+    ];
+    edgeCases.forEach(({ a, b, expected }, idx) => {
+      const result = fn?.apply(a, b);
+      console.log(`[TEST log:or edge case #${idx}] a=`, a, 'b=', b, 'result=', result, 'expected=', expected);
+      expect(result).toBe(expected);
+    });
+    // Randomized
+    for (let i = 0; i < 5; i++) {
+      const randVal = () => Math.random() > 0.5 ? lit('true') : lit('');
+      const a = randVal();
+      const b = randVal();
+      const expected = a.value === 'true' || b.value === 'true';
+      const result = fn?.apply(a, b);
+      console.log(`[TEST log:or random case #${i}] a=`, a, 'b=', b, 'result=', result, 'expected=', expected);
+      expect(result).toBe(expected);
+    }
   });
 
   it('log:and returns true if both are true', () => {

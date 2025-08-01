@@ -28,16 +28,16 @@ export function extractRules(n3Text: string): Array<{ antecedent: string, conseq
     rulesText = preprocessed.replace(/^@forAll[^\n.]*\s*\./m, '').trim();
   }
 
-  // Use a regex to match { ... } => { ... } . blocks
-  const ruleRegex = /(^|\n)[ \t]*\{([\s\S]*?)\}[ \t]*=>[ \t]*\{([\s\S]*?)\}[ \t]*\./gm;
+  // Use a regex to match { ... } => { ... } . blocks anywhere in the string
+  const ruleRegex = /\{([\s\S]*?)\}[ \t]*=>[ \t]*\{([\s\S]*?)\}[ \t]*\./gm;
   const rules: Array<{ antecedent: string, consequent: string, quantifiers?: string[] }> = [];
   let match: RegExpExecArray | null;
   while ((match = ruleRegex.exec(rulesText)) !== null) {
     if (typeof (global as any).debugLog === 'function') {
       (global as any).debugLog('[RuleExtractor] Matched rule block:', match[0]);
     }
-    const antecedent = match[2].trim();
-    const consequent = match[3].trim();
+  const antecedent = match[1].trim();
+  const consequent = match[2].trim();
     if (typeof (global as any).debugLog === 'function') {
       (global as any).debugLog('[RuleExtractor] Extracted antecedent:', antecedent);
       (global as any).debugLog('[RuleExtractor] Extracted consequent:', consequent);

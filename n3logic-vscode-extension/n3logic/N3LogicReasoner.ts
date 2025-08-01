@@ -149,8 +149,11 @@ export class N3LogicReasoner {
       let iteration = 0;
       while (changed) {
         iteration++;
-        debugLog(`Reasoning iteration ${iteration} start. changed=${changed}`);
+        debugLog(`\n=== Reasoning iteration ${iteration} START ===`);
+        debugLog(`Current triple store at start of iteration ${iteration}:`, JSON.stringify(working, null, 2));
         changed = false;
+        const rulesFired: number[] = [];
+        const newTriplesThisIter: string[] = [];
         for (const [ruleIdx, rule] of this.document.rules.entries()) {
           debugLog(`Evaluating rule #${ruleIdx}:`, rule);
           let bindingsList: Array<Record<string, N3Term>> = [];
@@ -161,6 +164,7 @@ export class N3LogicReasoner {
             debugLog('Failed to match rule antecedent', err, 'Rule:', rule);
             throw new Error(`N3LogicReasoner.reason: Failed to match rule antecedent: ${err instanceof Error ? err.message : err}`);
           }
+          let ruleFired = false;
           for (const [bindIdx, bindings] of bindingsList.entries()) {
             debugLog(`Bindings #${bindIdx} before evaluateBuiltins:`, bindings, 'Rule:', rule);
             const builtinsResult = evaluateBuiltins(
@@ -192,14 +196,22 @@ export class N3LogicReasoner {
                 inferred.add(key);
                 working.push(instantiated);
                 changed = true;
+                ruleFired = true;
+                newTriplesThisIter.push(key);
                 this.runHook('afterRuleApplied', rule, instantiated, bindings);
               } else {
                 debugLog('Triple already present, skipping:', instantiated, 'Key:', key);
               }
             }
           }
+          if (ruleFired) {
+            rulesFired.push(ruleIdx);
+          }
         }
-        debugLog(`Reasoning iteration ${iteration} end. changed=${changed}`);
+        debugLog(`New triples inferred in iteration ${iteration}:`, newTriplesThisIter);
+        debugLog(`Rules fired in iteration ${iteration}:`, rulesFired);
+        debugLog(`Current triple store at end of iteration ${iteration}:`, JSON.stringify(working, null, 2));
+        debugLog(`=== Reasoning iteration ${iteration} END. changed=${changed} ===\n`);
       }
       this.runHook('afterReason', working);
       debugLog('Reasoning complete. Inferred triples:', Array.from(inferred));
