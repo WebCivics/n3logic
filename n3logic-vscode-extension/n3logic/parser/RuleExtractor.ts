@@ -5,22 +5,32 @@ import { N3Rule } from '../N3LogicTypes';
 export function extractRules(n3Text: string): Array<{ antecedent: string, consequent: string }> {
   // Normalize line endings and whitespace for robust matching
   let preprocessed = n3Text.replace(/\r\n?/g, '\n');
-  // Put every rule block on its own line to help regex matching
-  preprocessed = preprocessed.replace(/\}\s*=>\s*\{/g, '\n} => {\n');
-  preprocessed = preprocessed.replace(/\.(\s*)\{/g, '.\n{');
-  // Allow for arbitrary whitespace, comments, and multiline rules
-  // This regex matches { ... } => { ... } . blocks, including those with custom builtins or IRIs
+  if (typeof (global as any).debugLog === 'function') {
+    (global as any).debugLog('[RuleExtractor] Raw input:', n3Text);
+    (global as any).debugLog('[RuleExtractor] Preprocessed input:', preprocessed);
+  }
+  // Remove comments for easier parsing
+  preprocessed = preprocessed.replace(/#[^\n]*/g, '');
+  // Use a regex to match { ... } => { ... } . blocks, tolerant of whitespace/newlines
   const ruleRegex = /\{([\s\S]*?)\}\s*=>\s*\{([\s\S]*?)\}\s*\./g;
-  let match;
   const rules: Array<{ antecedent: string, consequent: string }> = [];
+  let match;
   while ((match = ruleRegex.exec(preprocessed)) !== null) {
-    // Remove trailing dot from inside the block if present, and trim whitespace
+    if (typeof (global as any).debugLog === 'function') {
+      (global as any).debugLog('[RuleExtractor] Matched rule block:', match[0]);
+    }
     const antecedent = match[1].replace(/\s*\.$/, '').trim();
     const consequent = match[2].replace(/\s*\.$/, '').trim();
-    // Only add non-empty rules
+    if (typeof (global as any).debugLog === 'function') {
+      (global as any).debugLog('[RuleExtractor] Extracted antecedent:', antecedent);
+      (global as any).debugLog('[RuleExtractor] Extracted consequent:', consequent);
+    }
     if (antecedent && consequent) {
       rules.push({ antecedent, consequent });
     }
+  }
+  if (typeof (global as any).debugLog === 'function') {
+    (global as any).debugLog('[RuleExtractor] Final extracted rules:', JSON.stringify(rules, null, 2));
   }
   return rules;
 }

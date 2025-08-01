@@ -65,8 +65,8 @@ describe('N3LogicReasoner', () => {
 
   it('supports custom builtins', () => {
     const reasoner = new N3LogicReasoner();
-  reasoner.setDebug(true);
-  reasoner.registerBuiltin({
+    reasoner.setDebug(true);
+    reasoner.registerBuiltin({
       uri: 'http://example.org/custom#isFoo',
       arity: 1,
       description: 'Returns true if the subject is the literal "foo"',
@@ -84,8 +84,20 @@ describe('N3LogicReasoner', () => {
       <a> <b> "bar" .
       { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } .
     `;
-  reasoner.loadOntology(n3, 'n3');
-  const result: N3ReasonerResult = reasoner.reason();
+
+    // Parse the ontology and log the parsed rules and triples for inspection
+    const parser = new (require('./N3LogicParser').N3LogicParser)();
+    parser.setDebug(true);
+    const parsed = parser.parse(n3);
+    // Log parsed triples and rules to the test log
+    console.log('[TEST] Parsed triples:', JSON.stringify(parsed.triples, null, 2));
+    console.log('[TEST] Parsed rules:', JSON.stringify(parsed.rules, null, 2));
+
+    reasoner.loadOntology(n3, 'n3');
+    const result: N3ReasonerResult = reasoner.reason();
+
+    // Log result triples for inspection
+    console.log('[TEST] Result triples:', JSON.stringify(result.triples, null, 2));
 
     // Expect three triples: two original facts, one inference.
     expect(result.triples).toHaveLength(3);

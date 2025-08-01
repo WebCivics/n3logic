@@ -54,6 +54,9 @@ export function termMatch(pattern: N3Term, value: N3Term, bindings: Record<strin
 }
 
 export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins: N3Builtin[]): Array<Record<string, N3Term>> {
+  debugLog('matchAntecedent: patterns:', JSON.stringify(patterns, null, 2));
+  debugLog('matchAntecedent: data:', JSON.stringify(data, null, 2));
+  debugLog('matchAntecedent: builtins:', JSON.stringify(builtins, null, 2));
   debugLog('matchAntecedent called', { patterns, data });
   if (patterns.length === 0) {
     debugLog('No patterns left, returning [{}]');
@@ -78,23 +81,32 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
     const restBindingsList = matchAntecedent(rest, data, builtins);
     debugLog('Rest bindings list for builtin:', restBindingsList);
     for (const [restIdx, restBindings] of restBindingsList.entries()) {
+  debugLog('matchAntecedent: restBindings:', JSON.stringify(restBindings, null, 2));
       debugLog(`Rest bindings #${restIdx}:`, restBindings);
+      // Use current binding for variable if present, else all possible values
       let subjectVals: N3Term[] = [];
       let objectVals: N3Term[] = [];
-      if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable') {
-        subjectVals = Array.from(new Set(data.map(t => t.subject)));
-        debugLog('Subject is variable, possible values:', subjectVals);
+      if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable' && restBindings.hasOwnProperty(first.subject.value)) {
+        subjectVals = [restBindings[first.subject.value]];
+        debugLog('Subject is variable, using bound value:', subjectVals);
+      } else if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable') {
+        subjectVals = Array.from(new Set(data.map(t => t.subject).concat(data.map(t => t.object))));
+        debugLog('Subject is variable, possible values (subjects+objects):', subjectVals);
       } else {
         subjectVals = [first.subject];
       }
-      if (typeof first.object === 'object' && 'type' in first.object && first.object.type === 'Variable') {
-        objectVals = Array.from(new Set(data.map(t => t.object)));
-        debugLog('Object is variable, possible values:', objectVals);
+      if (typeof first.object === 'object' && 'type' in first.object && first.object.type === 'Variable' && restBindings.hasOwnProperty(first.object.value)) {
+        objectVals = [restBindings[first.object.value]];
+        debugLog('Object is variable, using bound value:', objectVals);
+      } else if (typeof first.object === 'object' && 'type' in first.object && first.object.type === 'Variable') {
+        objectVals = Array.from(new Set(data.map(t => t.object).concat(data.map(t => t.subject))));
+        debugLog('Object is variable, possible values (objects+subjects):', objectVals);
       } else {
         objectVals = [first.object];
       }
       if (builtin.arity === 1) {
-        for (const [sIdx, sVal] of subjectVals.entries()) {
+        for (const sVal of subjectVals) {
+          debugLog('matchAntecedent: Trying builtin (arity 1) with sVal:', JSON.stringify(sVal), 'restBindings:', JSON.stringify(restBindings));
           let mergedBindings = { ...restBindings };
           if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable') {
             mergedBindings[first.subject.value] = sVal;
@@ -111,8 +123,9 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
           }
         }
       } else {
-        for (const [sIdx, sVal] of subjectVals.entries()) {
-          for (const [oIdx, oVal] of objectVals.entries()) {
+        for (const sVal of subjectVals) {
+          for (const oVal of objectVals) {
+            debugLog('matchAntecedent: Trying builtin (arity 2) with sVal:', JSON.stringify(sVal), 'oVal:', JSON.stringify(oVal), 'restBindings:', JSON.stringify(restBindings));
             let mergedBindings = { ...restBindings };
             if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable') {
               mergedBindings[first.subject.value] = sVal;
@@ -164,6 +177,7 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
     }
   }
   debugLog('matchAntecedent returning results:', results);
+  debugLog('matchAntecedent: final results:', JSON.stringify(results, null, 2));
   return results;
 }
 

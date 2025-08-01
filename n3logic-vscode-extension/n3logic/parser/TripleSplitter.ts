@@ -9,7 +9,7 @@
  */
 export function splitTriples(text: string, debugLog?: (...args: any[]) => void): string[] {
   const statements: string[] = [];
-  let buf = '', inQuote = false, quoteChar = '', parenDepth = 0, bracketDepth = 0, escape = false;
+  let buf = '', inQuote = false, quoteChar = '', parenDepth = 0, bracketDepth = 0, iriDepth = 0, escape = false;
   for (let i = 0; i < text.length; i++) {
     const c = text[i];
     if (escape) { buf += c; escape = false; continue; }
@@ -20,15 +20,18 @@ export function splitTriples(text: string, debugLog?: (...args: any[]) => void):
       continue;
     }
     if (c === '"' || c === "'") { inQuote = true; quoteChar = c; buf += c; continue; }
+    if (c === '<') iriDepth++;
+    if (c === '>') iriDepth = Math.max(0, iriDepth - 1);
     if (c === '(') parenDepth++;
     if (c === ')') parenDepth--;
     if (c === '[') bracketDepth++;
     if (c === ']') bracketDepth--;
-    // Split on dot+space, dot, semicolon, or newline at top level
-    if ((c === '.' && text[i+1] === ' ' && parenDepth === 0 && bracketDepth === 0 && !inQuote) ||
-        (c === '.' && parenDepth === 0 && bracketDepth === 0 && !inQuote) ||
-        (c === ';' && parenDepth === 0 && bracketDepth === 0 && !inQuote) ||
-        (c === '\n' && parenDepth === 0 && bracketDepth === 0 && !inQuote)) {
+    // Split on dot+space, dot, semicolon, or newline at top level, not inside IRI, quotes, parens, or brackets
+    if (iriDepth === 0 && !inQuote && parenDepth === 0 && bracketDepth === 0 &&
+        ((c === '.' && text[i+1] === ' ') ||
+         c === '.' ||
+         c === ';' ||
+         c === '\n')) {
       if (buf.trim()) {
         if (debugLog) debugLog('splitTriples: Found triple statement:', buf.trim());
         statements.push(buf.trim());

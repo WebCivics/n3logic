@@ -24,6 +24,7 @@ export class N3LogicParser {
 
   parse(n3Text: string): N3LogicDocument {
     debugLog('Parsing input', n3Text);
+  debugLog('N3LogicParser: Raw input:', n3Text);
     if (typeof n3Text !== 'string') {
       debugLog('Input is not a string');
       throw new TypeError('N3LogicParser.parse: Input must be a string');
@@ -32,10 +33,11 @@ export class N3LogicParser {
     const cleaned = n3Text.replace(/#[^\n]*/g, '').replace(/\s+/g, ' ').trim();
     try {
       const triples = this.parseTriples(cleaned);
+      debugLog('N3LogicParser: Parsed triples:', JSON.stringify(triples, null, 2));
       const rules = this.parseRules(cleaned);
+      debugLog('N3LogicParser: Parsed rules:', JSON.stringify(rules, null, 2));
       const builtins = this.parseBuiltins(cleaned);
-      debugLog('Parsed triples:', triples);
-      debugLog('Parsed rules:', rules);
+      debugLog('N3LogicParser: Parsed builtins:', JSON.stringify(builtins, null, 2));
       return {
         triples,
         rules,
@@ -63,6 +65,7 @@ export class N3LogicParser {
       }
       debugLog('parseTriples: Splitting rule block:', text);
       statements = splitTriples(text, debugLog);
+      debugLog('parseTriples: splitTriples returned:', JSON.stringify(statements));
     } else {
       statements = tokenizeTriples(n3Text);
     }
@@ -93,6 +96,7 @@ export class N3LogicParser {
         }
       }
     }
+    debugLog('parseTriples: Final parsed triples:', JSON.stringify(triples));
     return triples;
   }
 

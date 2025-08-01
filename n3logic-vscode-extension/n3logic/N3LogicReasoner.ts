@@ -58,6 +58,13 @@ export class N3LogicReasoner {
     try {
       const parser = new N3LogicParser();
       this.document = parser.parse(data);
+      debugLog('N3LogicReasoner: Parsed rules after parsing:', JSON.stringify(this.document.rules, null, 2));
+      if (this.document.rules) {
+        for (const [i, rule] of this.document.rules.entries()) {
+          debugLog(`N3LogicReasoner: Rule #${i} antecedent triples:`, JSON.stringify(rule.antecedent.triples, null, 2));
+          debugLog(`N3LogicReasoner: Rule #${i} consequent triples:`, JSON.stringify(rule.consequent.triples, null, 2));
+        }
+      }
       this.document.builtins = [
         ...TypeBuiltins,
         ...OtherBuiltins,
@@ -79,6 +86,8 @@ export class N3LogicReasoner {
    * Register a custom builtin (or array of builtins).
    */
   registerBuiltin(builtin: N3Builtin | N3Builtin[]): void {
+  debugLog('Reasoner: All triples at start:', JSON.stringify(this.document.triples, null, 2));
+  debugLog('Reasoner: All rules at start:', JSON.stringify(this.document.rules, null, 2));
     if (Array.isArray(builtin)) {
       this.customBuiltins.push(...builtin);
     } else {
@@ -107,6 +116,7 @@ export class N3LogicReasoner {
   this.hookManager.runHook(hookName, ...args);
   }
 
+
   /**
    * Run the reasoning process (forward chaining).
    * Hooks: beforeReason, afterReason, afterRuleApplied
@@ -114,6 +124,7 @@ export class N3LogicReasoner {
   reason(): N3ReasonerResult {
     // Always merge custom builtins into document.builtins before reasoning
   // Always merge custom builtins into document.builtins before reasoning
+
   this.document.builtins = mergeBuiltins(this.customBuiltins);
   debugLog('Merged builtins for reasoning:', this.document.builtins);
     debugLog('Starting reasoning', { triples: this.document.triples, rules: this.document.rules });
