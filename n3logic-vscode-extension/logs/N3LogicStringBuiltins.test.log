@@ -1,0 +1,34 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicStringBuiltins.test.ts
+Status: PASS
+
+Test: StringBuiltins string:concatenation returns concatenated string
+Status: passed
+
+
+Test: StringBuiltins string:contains returns true if substring present
+Status: passed
+
+
+Test: StringBuiltins string:startsWith and endsWith
+Status: passed
+
+
+Test: StringBuiltins string:substring returns substring
+Status: passed
+
+
+Test: StringBuiltins string:replace replaces substring
+Status: passed
+
+
+Test: StringBuiltins string:matches returns true if regex matches
+Status: passed
+
+
+Test: StringBuiltins string:length returns string length
+Status: passed
+
+
+Test: StringBuiltins string:toLowerCase, toUpperCase, trim
+Status: passed
+

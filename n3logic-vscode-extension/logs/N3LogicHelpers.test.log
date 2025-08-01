@@ -1,0 +1,18 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\N3LogicHelpers.test.ts
+Status: PASS
+
+Test: getValue returns value for literal
+Status: passed
+
+
+Test: getValue returns value for IRI
+Status: passed
+
+
+Test: getValue returns elements for list
+Status: passed
+
+
+Test: getValue returns primitive for string
+Status: passed
+

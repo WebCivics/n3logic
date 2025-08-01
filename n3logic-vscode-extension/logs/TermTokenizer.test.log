@@ -1,0 +1,22 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\parser\TermTokenizer.test.ts
+Status: PASS
+
+Test: tokenizeTerms tokenizes a simple triple
+Status: passed
+
+
+Test: tokenizeTerms handles quoted strings
+Status: passed
+
+
+Test: tokenizeTerms handles lists
+Status: passed
+
+
+Test: tokenizeTerms handles blank nodes
+Status: passed
+
+
+Test: tokenizeTerms handles nested lists and quotes
+Status: passed
+

@@ -1,0 +1,18 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicTimeBuiltins.test.ts
+Status: PASS
+
+Test: TimeBuiltins time:now returns true if argument matches current ISO string
+Status: passed
+
+
+Test: TimeBuiltins time:before and after
+Status: passed
+
+
+Test: TimeBuiltins time:duration returns true if duration matches
+Status: passed
+
+
+Test: TimeBuiltins time:hour, minute, second, year, month, day
+Status: passed
+

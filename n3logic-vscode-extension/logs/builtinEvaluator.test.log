@@ -1,0 +1,22 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner\builtinEvaluator.test.ts
+Status: PASS
+
+Test: evaluateBuiltins returns true if no builtins are registered
+Status: passed
+
+
+Test: evaluateBuiltins returns true if builtin returns true
+Status: passed
+
+
+Test: evaluateBuiltins returns false if builtin returns false
+Status: passed
+
+
+Test: evaluateBuiltins calls builtin with correct arguments (arity 1)
+Status: passed
+
+
+Test: evaluateBuiltins calls builtin with correct arguments (arity 2)
+Status: passed
+

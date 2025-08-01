@@ -1,0 +1,6 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner\builtinsManager.test.ts
+Status: PASS
+
+Test: mergeBuiltins merges custom builtins with TypeBuiltins and OtherBuiltins
+Status: passed
+

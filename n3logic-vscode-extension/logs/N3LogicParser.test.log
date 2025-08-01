@@ -1,0 +1,14 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\N3LogicParser.test.ts
+Status: PASS
+
+Test: N3LogicParser parses triples
+Status: passed
+
+
+Test: N3LogicParser parses rules
+Status: passed
+
+
+Test: N3LogicParser throws on invalid input
+Status: passed
+

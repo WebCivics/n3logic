@@ -1,0 +1,10 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicOtherBuiltins.test.ts
+Status: PASS
+
+Test: OtherBuiltins rdf:type always returns true
+Status: passed
+
+
+Test: OtherBuiltins owl:sameAs returns true if values are equal
+Status: passed
+

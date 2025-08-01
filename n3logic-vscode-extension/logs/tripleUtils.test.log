@@ -1,0 +1,30 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner\tripleUtils.test.ts
+Status: PASS
+
+Test: tripleToString converts triple to string
+Status: passed
+
+
+Test: stringToTriple converts string to triple
+Status: passed
+
+
+Test: termToString handles string
+Status: passed
+
+
+Test: termToString handles literal
+Status: passed
+
+
+Test: termToString handles object with value
+Status: passed
+
+
+Test: termEquals compares primitives
+Status: passed
+
+
+Test: termEquals compares objects
+Status: passed
+

@@ -1,0 +1,10 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicTypeBuiltins.test.ts
+Status: PASS
+
+Test: TypeBuiltins type:isLiteral, isIRI, isBlank
+Status: passed
+
+
+Test: TypeBuiltins type:toString, toNumber, toBoolean
+Status: passed
+

@@ -1,0 +1,10 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner\debug.test.ts
+Status: PASS
+
+Test: debugLog and setDebug should not log when DEBUG is false
+Status: passed
+
+
+Test: debugLog and setDebug should log when DEBUG is true
+Status: passed
+

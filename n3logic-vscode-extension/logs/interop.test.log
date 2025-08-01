@@ -1,0 +1,10 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\interop.test.ts
+Status: PASS
+
+Test: RDF Interop should provide stubs for Turtle/JSON-LD import/export
+Status: passed
+
+
+Test: RDF Interop should provide stubs for N3.js compatibility
+Status: passed
+

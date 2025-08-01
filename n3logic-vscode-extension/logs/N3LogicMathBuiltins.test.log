@@ -1,0 +1,22 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicMathBuiltins.test.ts
+Status: PASS
+
+Test: MathBuiltins math:greaterThan and lessThan
+Status: passed
+
+
+Test: MathBuiltins math:equalTo and notEqualTo
+Status: passed
+
+
+Test: MathBuiltins math:sum, difference, product, quotient
+Status: passed
+
+
+Test: MathBuiltins math:abs, power, modulo, floor, ceil, round, negation
+Status: passed
+
+
+Test: MathBuiltins math:integer, decimal, isFinite, isNaN
+Status: passed
+

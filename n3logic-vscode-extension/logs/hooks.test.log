@@ -1,0 +1,14 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner\hooks.test.ts
+Status: PASS
+
+Test: HookManager registers and runs hooks
+Status: passed
+
+
+Test: HookManager does not fail if no hooks registered
+Status: passed
+
+
+Test: HookManager ignores errors in hooks
+Status: passed
+

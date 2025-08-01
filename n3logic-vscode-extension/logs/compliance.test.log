@@ -1,0 +1,10 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\compliance.test.ts
+Status: PASS
+
+Test: N3/N3Logic Syntax Compliance parses IRIs, literals, variables, blank nodes, lists
+Status: passed
+
+
+Test: N3/N3Logic Syntax Compliance parses rules with nested formulas and quantifiers
+Status: passed
+

@@ -1,0 +1,34 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicListBuiltins.test.ts
+Status: PASS
+
+Test: ListBuiltins list:length returns true for correct length
+Status: passed
+
+
+Test: ListBuiltins list:contains returns true if element present
+Status: passed
+
+
+Test: ListBuiltins list:first returns true for first element
+Status: passed
+
+
+Test: ListBuiltins list:rest returns the rest of the list
+Status: passed
+
+
+Test: ListBuiltins list:append returns a new list with element appended
+Status: passed
+
+
+Test: ListBuiltins list:remove returns a new list with element removed
+Status: passed
+
+
+Test: ListBuiltins list:reverse returns a new list with elements reversed
+Status: passed
+
+
+Test: ListBuiltins returns false for invalid list input
+Status: passed
+

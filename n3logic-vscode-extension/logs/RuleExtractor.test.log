@@ -1,0 +1,18 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\parser\RuleExtractor.test.ts
+Status: PASS
+
+Test: RuleExtractor extracts a single rule from N3 text
+Status: passed
+
+
+Test: RuleExtractor extracts multiple rules from N3 text
+Status: passed
+
+
+Test: RuleExtractor ignores comments and whitespace
+Status: passed
+
+
+Test: RuleExtractor returns empty array if no rules present
+Status: passed
+

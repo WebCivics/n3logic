@@ -1,0 +1,18 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\parser\TripleSplitter.test.ts
+Status: PASS
+
+Test: splitTriples splits simple triples
+Status: passed
+
+
+Test: splitTriples handles quoted literals
+Status: passed
+
+
+Test: splitTriples handles lists and blank nodes
+Status: passed
+
+
+Test: splitTriples handles semicolons and newlines
+Status: passed
+
