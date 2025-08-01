@@ -9,8 +9,21 @@ import { N3Term } from '../n3logic/N3LogicTypes';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+let __filename: string;
+let __dirname: string;
+try {
+	// Only works in ESM
+	// eslint-disable-next-line no-eval
+	const metaUrl = eval('import.meta.url');
+	__filename = fileURLToPath(metaUrl);
+	__dirname = path.dirname(__filename);
+} catch {
+	// Fallback for CJS
+	// @ts-ignore
+	__filename = typeof __filename !== 'undefined' ? __filename : '';
+	// @ts-ignore
+	__dirname = typeof __dirname !== 'undefined' ? __dirname : '';
+}
 const logFile = path.join(__dirname, '../logs/reasoner.test.log');
 let originalLog: (...args: any[]) => void;
 let originalDebug: (...args: any[]) => void;
