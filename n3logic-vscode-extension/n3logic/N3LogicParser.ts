@@ -24,19 +24,22 @@ export class N3LogicParser {
 
   parse(n3Text: string): N3LogicDocument {
     debugLog('Parsing input', n3Text);
-  debugLog('N3LogicParser: Raw input:', n3Text);
+    debugLog('N3LogicParser: Raw input:', n3Text);
     if (typeof n3Text !== 'string') {
       debugLog('Input is not a string');
       throw new TypeError('N3LogicParser.parse: Input must be a string');
     }
-    // Remove comments and normalize whitespace
-    const cleaned = n3Text.replace(/#[^\n]*/g, '').replace(/\s+/g, ' ').trim();
+    // Remove comments only (preserve newlines for rule extraction)
+    const commentStripped = n3Text.replace(/#[^\n]*/g, '');
+    // For triples, normalize whitespace (old behavior)
+    const cleaned = commentStripped.replace(/\s+/g, ' ').trim();
     try {
       const triples = this.parseTriples(cleaned);
       debugLog('N3LogicParser: Parsed triples:', JSON.stringify(triples, null, 2));
-      const rules = this.parseRules(cleaned);
+      // For rules and builtins, use comment-stripped but newline-preserved text
+      const rules = this.parseRules(commentStripped);
       debugLog('N3LogicParser: Parsed rules:', JSON.stringify(rules, null, 2));
-      const builtins = this.parseBuiltins(cleaned);
+      const builtins = this.parseBuiltins(commentStripped);
       debugLog('N3LogicParser: Parsed builtins:', JSON.stringify(builtins, null, 2));
       return {
         triples,

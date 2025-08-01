@@ -57,6 +57,7 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
   debugLog('matchAntecedent: patterns:', JSON.stringify(patterns, null, 2));
   debugLog('matchAntecedent: data:', JSON.stringify(data, null, 2));
   debugLog('matchAntecedent: builtins:', JSON.stringify(builtins, null, 2));
+  debugLog('matchAntecedent: builtin URIs:', Array.isArray(builtins) ? builtins.map(b => b.uri) : builtins);
   debugLog('matchAntecedent called', { patterns, data });
   if (patterns.length === 0) {
     debugLog('No patterns left, returning [{}]');
@@ -86,21 +87,28 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
       // Use current binding for variable if present, else all possible values
       let subjectVals: N3Term[] = [];
       let objectVals: N3Term[] = [];
-      if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable' && restBindings.hasOwnProperty(first.subject.value)) {
-        subjectVals = [restBindings[first.subject.value]];
-        debugLog('Subject is variable, using bound value:', subjectVals);
-      } else if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable') {
-        subjectVals = Array.from(new Set(data.map(t => t.subject).concat(data.map(t => t.object))));
-        debugLog('Subject is variable, possible values (subjects+objects):', subjectVals);
+      // Only use already-bound values for variables in builtin triples
+      if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable') {
+        if (restBindings.hasOwnProperty(first.subject.value)) {
+          subjectVals = [restBindings[first.subject.value]];
+          debugLog('Subject is variable, using bound value:', subjectVals);
+        } else {
+          // If not bound, skip this binding (do not try all possible values)
+          debugLog('Subject variable', first.subject.value, 'not bound, skipping');
+          continue;
+        }
       } else {
         subjectVals = [first.subject];
       }
-      if (typeof first.object === 'object' && 'type' in first.object && first.object.type === 'Variable' && restBindings.hasOwnProperty(first.object.value)) {
-        objectVals = [restBindings[first.object.value]];
-        debugLog('Object is variable, using bound value:', objectVals);
-      } else if (typeof first.object === 'object' && 'type' in first.object && first.object.type === 'Variable') {
-        objectVals = Array.from(new Set(data.map(t => t.object).concat(data.map(t => t.subject))));
-        debugLog('Object is variable, possible values (objects+subjects):', objectVals);
+      if (typeof first.object === 'object' && 'type' in first.object && first.object.type === 'Variable') {
+        if (restBindings.hasOwnProperty(first.object.value)) {
+          objectVals = [restBindings[first.object.value]];
+          debugLog('Object is variable, using bound value:', objectVals);
+        } else {
+          // If not bound, skip this binding (do not try all possible values)
+          debugLog('Object variable', first.object.value, 'not bound, skipping');
+          continue;
+        }
       } else {
         objectVals = [first.object];
       }

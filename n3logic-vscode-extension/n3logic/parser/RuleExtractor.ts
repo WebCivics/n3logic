@@ -3,14 +3,17 @@
 import { N3Rule } from '../N3LogicTypes';
 
 export function extractRules(n3Text: string): Array<{ antecedent: string, consequent: string }> {
-  // Normalize line endings and whitespace for robust matching
+  // Normalize line endings
   let preprocessed = n3Text.replace(/\r\n?/g, '\n');
+  // Remove comments
+  preprocessed = preprocessed.replace(/#[^\n]*/g, '');
+  // Trim each line to remove leading/trailing whitespace and indentation
+  preprocessed = preprocessed.split('\n').map(line => line.trim()).join('\n');
+  preprocessed = preprocessed.trim();
   if (typeof (global as any).debugLog === 'function') {
     (global as any).debugLog('[RuleExtractor] Raw input:', n3Text);
     (global as any).debugLog('[RuleExtractor] Preprocessed input:', preprocessed);
   }
-  // Remove comments for easier parsing
-  preprocessed = preprocessed.replace(/#[^\n]*/g, '');
   // Use a regex to match { ... } => { ... } . blocks, tolerant of whitespace/newlines
   const ruleRegex = /\{([\s\S]*?)\}\s*=>\s*\{([\s\S]*?)\}\s*\./g;
   const rules: Array<{ antecedent: string, consequent: string }> = [];

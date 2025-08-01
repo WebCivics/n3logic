@@ -86,13 +86,20 @@ export class N3LogicReasoner {
    * Register a custom builtin (or array of builtins).
    */
   registerBuiltin(builtin: N3Builtin | N3Builtin[]): void {
-  debugLog('Reasoner: All triples at start:', JSON.stringify(this.document.triples, null, 2));
-  debugLog('Reasoner: All rules at start:', JSON.stringify(this.document.rules, null, 2));
+    debugLog('Reasoner: All triples at start:', JSON.stringify(this.document.triples, null, 2));
+    debugLog('Reasoner: All rules at start:', JSON.stringify(this.document.rules, null, 2));
     if (Array.isArray(builtin)) {
       this.customBuiltins.push(...builtin);
     } else {
       this.customBuiltins.push(builtin);
     }
+    // Always update document.builtins so custom builtins are available immediately
+    // Merge core builtins and custom builtins
+    this.document.builtins = [
+      ...TypeBuiltins,
+      ...OtherBuiltins,
+      ...this.customBuiltins
+    ];
   }
 
   /**
