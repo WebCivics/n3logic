@@ -52,6 +52,9 @@ export const LogicBuiltins: N3Builtin[] = [
     arity: 2,
     description: 'log:equalTo(x, y) is true if x === y',
   apply: (x: any, y: any) => {
+  // Mutation detection: deep clone arguments at entry
+  const origX = JSON.parse(JSON.stringify(x));
+  const origY = JSON.parse(JSON.stringify(y));
     debugTrace('[log:equalTo] input:', x, y, 'getValue:', getValue(x), getValue(y));
     const result = getValue(x) === getValue(y);
     debugTrace('[log:equalTo] output:', result);
@@ -63,32 +66,53 @@ export const LogicBuiltins: N3Builtin[] = [
     arity: 2,
     description: 'log:or(x, y) is true if x or y is true',
     apply: (x: any, y: any) => {
-      debugTrace('[log:or] input:', x, y, 'getValue(x):', getValue(x), 'getValue(y):', getValue(y), 'typeof x:', typeof x, 'typeof y:', typeof y);
+  // Mutation detection: deep clone arguments at entry
+  const origX = JSON.parse(JSON.stringify(x));
+  const origY = JSON.parse(JSON.stringify(y));
+  debugTrace('[log:or] input:', x, y, 'getValue(x):', getValue(x), 'getValue(y):', getValue(y), 'typeof x:', typeof x, 'typeof y:', typeof y);
       function isTruthy(v: any): boolean {
         const val = getValue(v);
         debugTrace('[log:or][isTruthy] called with:', v, 'getValue:', val, 'typeof:', typeof val);
-        // Treat RDF boolean literals strictly
-        if (typeof val === 'string') {
-          if (val === 'true') return true;
-          if (val === 'false') return false;
-          // Any other non-empty string is truthy
-          return val.length > 0;
+        if (val === undefined || val === null) {
+          debugTrace('isTruthy result', { result: false, reason: 'undefined or null' });
+          return false;
         }
         if (typeof val === 'boolean') {
+          debugTrace('isTruthy result', { result: val, reason: 'boolean primitive' });
           return val;
         }
-        if (typeof val === 'number') {
-          return val !== 0;
+        if (typeof val === 'string') {
+          const result = val.length > 0;
+          debugTrace('isTruthy result', { result, reason: 'string primitive', value: val });
+          return result;
         }
-        // Fallback: treat as falsy only if null/undefined/empty
-        return !!val;
+        if (typeof val === 'number') {
+          const result = val !== 0;
+          debugTrace('isTruthy result', { result, reason: 'number primitive', value: val });
+          return result;
+        }
+        debugTrace('isTruthy result', { result: false, reason: 'fallback', value: val });
+        return false;
       }
       const truthyX = isTruthy(x);
       const truthyY = isTruthy(y);
       debugTrace('[log:or] isTruthy(x):', truthyX, 'isTruthy(y):', truthyY, 'x:', x, 'y:', y);
-      const result = truthyX || truthyY;
-      debugTrace('[log:or] output:', result);
-      return result;
+      // Mutation detection: compare before return
+      const mutatedX = JSON.stringify(x) !== JSON.stringify(origX);
+      const mutatedY = JSON.stringify(y) !== JSON.stringify(origY);
+      if (mutatedX || mutatedY) {
+        debugTrace('[log:or][MUTATION DETECTED]', {
+          mutatedX, mutatedY,
+          origX, xNow: x,
+          origY, yNow: y
+        });
+      }
+      if (truthyX === true || truthyY === true) {
+        debugTrace('[log:or] output: true (explicit)');
+        return true;
+      }
+      debugTrace('[log:or] output: false (explicit)');
+      return false;
     }
   },
   {

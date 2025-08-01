@@ -66,10 +66,23 @@ describe('LogicBuiltins', () => {
       { a: lit('x'), b: lit(''), expected: true },
       { a: lit(''), b: lit(''), expected: false },
     ];
+    const { getValue } = require('../../n3logic/N3LogicHelpers');
     cases.forEach(({ a, b, expected }, idx) => {
       const result = fn?.apply(a, b);
-      // eslint-disable-next-line no-console
-      console.log(`[TEST log:or string case #${idx}] a=`, a, 'b=', b, 'result=', result, 'expected=', expected);
+      // Print detailed debug info for both arguments
+      console.log(`[TEST log:or string case #${idx}] a=`, a, 'b=', b, 'result=', result, 'expected=', expected,
+        'typeof a:', typeof a, 'typeof b:', typeof b,
+        'a.value:', a && a.value, 'b.value:', b && b.value,
+        'getValue(a):', getValue(a), 'getValue(b):', getValue(b),
+        'a === b:', a === b
+      );
+      // Extra: print JSON representations
+      console.log(`[TEST log:or string case #${idx}][JSON]`, {
+        a: JSON.stringify(a), b: JSON.stringify(b),
+        'getValue(a)': JSON.stringify(getValue(a)),
+        'getValue(b)': JSON.stringify(getValue(b)),
+        expected, result
+      });
       expect(result).toBe(expected);
     });
     // Boolean RDF literal cases
@@ -101,6 +114,13 @@ describe('LogicBuiltins', () => {
     edgeCases.forEach(({ a, b, expected }, idx) => {
       const result = fn?.apply(a, b);
       console.log(`[TEST log:or edge case #${idx}] a=`, a, 'b=', b, 'result=', result, 'expected=', expected);
+      // Extra: print JSON representations
+      console.log(`[TEST log:or edge case #${idx}][JSON]`, {
+        a: JSON.stringify(a), b: JSON.stringify(b),
+        'getValue(a)': JSON.stringify(getValue(a)),
+        'getValue(b)': JSON.stringify(getValue(b)),
+        expected, result
+      });
       expect(result).toBe(expected);
     });
     // Randomized

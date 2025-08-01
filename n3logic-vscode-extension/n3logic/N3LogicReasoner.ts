@@ -68,6 +68,7 @@ export class N3LogicReasoner {
         }
       }
       this.document.builtins = [
+        ...LogicBuiltins,
         ...TypeBuiltins,
         ...OtherBuiltins,
         ...this.customBuiltins
@@ -99,6 +100,7 @@ export class N3LogicReasoner {
     // Always update document.builtins so custom builtins are available immediately
     // Merge core builtins and custom builtins
     this.document.builtins = [
+      ...LogicBuiltins,
       ...TypeBuiltins,
       ...OtherBuiltins,
       ...this.customBuiltins
@@ -139,7 +141,12 @@ export class N3LogicReasoner {
     // Always merge custom builtins into document.builtins before reasoning
   // Always merge custom builtins into document.builtins before reasoning
 
-  this.document.builtins = mergeBuiltins(this.customBuiltins);
+  this.document.builtins = mergeBuiltins([
+    ...LogicBuiltins,
+    ...TypeBuiltins,
+    ...OtherBuiltins,
+    ...this.customBuiltins
+  ]);
   debugLog('Merged builtins for reasoning:', this.document.builtins);
     debugLog('Starting reasoning', { triples: this.document.triples, rules: this.document.rules });
     try {
