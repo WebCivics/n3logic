@@ -70,6 +70,7 @@ export function termMatch(pattern: N3Term, value: N3Term, bindings: Record<strin
 }
 
 export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins: N3Builtin[]): Array<Record<string, N3Term>> {
+  debugLog('[MATCHER][DEBUG] matchAntecedent called with patterns:', JSON.stringify(patterns, null, 2), 'data:', JSON.stringify(data, null, 2), 'builtins:', builtins ? builtins.map(b => b.uri) : builtins);
   debugTrace('matchAntecedent: patterns:', JSON.stringify(patterns, null, 2));
   debugTrace('matchAntecedent: data:', JSON.stringify(data, null, 2));
   debugTrace('matchAntecedent: builtins:', JSON.stringify(builtins, null, 2));
@@ -79,107 +80,152 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
     debugTrace('No patterns left, returning [{}]');
     return [{}];
   }
-  const [first, ...rest] = patterns;
-  const results: Array<Record<string, N3Term>> = [];
-  debugTrace('Registered builtins at matchAntecedent:', builtins);
-  let builtin = undefined;
-  if (builtins && typeof first.predicate === 'object' && first.predicate && 'value' in first.predicate) {
-    const predValue = first.predicate.value;
-    debugTrace('[BUILTIN MATCH] Checking for builtin with predicate value:', predValue, 'Available builtins:', builtins.map(b => b.uri));
-    builtin = builtins.find(b => b.uri === predValue);
+  // New logic: try all permutations of builtin triple position in the antecedent
+  if (patterns.length === 0) {
+    debugTrace('No patterns left, returning [{}]');
+    return [{}];
+  }
+  let results: Array<Record<string, N3Term>> = [];
+  // Try each triple as the builtin, recursively match the rest
+  for (let i = 0; i < patterns.length; i++) {
+  const triple = patterns[i];
+  debugLog('[MATCHER][DEBUG] Checking pattern triple #', i, ':', JSON.stringify(triple));
+    let builtin = undefined;
+    if (builtins && typeof triple.predicate === 'object' && triple.predicate && 'value' in triple.predicate) {
+  debugLog('[MATCHER][DEBUG] Predicate type:', triple.predicate.type, 'Predicate value:', triple.predicate.value);
+      const predValue = triple.predicate.value;
+      debugLog('[BUILTIN MATCH][TRACE] Checking triple for builtin match:', JSON.stringify(triple), 'Predicate URI:', predValue);
+      debugLog('[BUILTIN MATCH][TRACE] Registered builtins:', builtins.map(b => b.uri));
+      builtin = builtins.find(b => b.uri === predValue);
+      if (builtin) {
+  debugLog('[MATCHER][DEBUG] Builtin found for triple:', JSON.stringify(triple), 'Builtin URI:', builtin.uri);
+        debugLog('[BUILTIN MATCH][TRACE] Found builtin for predicate:', predValue, builtin);
+      } else {
+        debugLog('[BUILTIN MATCH][TRACE] No builtin found for predicate:', predValue);
+      }
+    }
     if (builtin) {
-      debugTrace('[BUILTIN MATCH] Matched builtin for predicate:', predValue, builtin);
-    } else {
-      debugTrace('[BUILTIN MATCH] No builtin matched for predicate:', predValue, 'Pattern:', first, 'Builtins:', builtins);
+      // Recursively match the rest of the patterns (excluding this one)
+      const rest = patterns.slice(0, i).concat(patterns.slice(i + 1));
+      const restBindingsList = matchAntecedent(rest, data, builtins);
+      debugLog('Rest bindings list for builtin:', restBindingsList);
+      for (const [restIdx, restBindings] of restBindingsList.entries()) {
+        debugLog('matchAntecedent: restBindings:', JSON.stringify(restBindings, null, 2));
+        debugLog(`Rest bindings #${restIdx}:`, restBindings);
+        // For builtins, always try all possible values for unbound variables (fix: do not skip if not bound)
+        let subjectVals: N3Term[] = [];
+        let objectVals: N3Term[] = [];
+        if (typeof triple.subject === 'object' && 'type' in triple.subject && triple.subject.type === 'Variable') {
+          if (restBindings.hasOwnProperty(triple.subject.value)) {
+            subjectVals = [restBindings[triple.subject.value]];
+            debugLog('Subject is variable, using bound value:', subjectVals);
+          } else {
+            subjectVals = Object.values(restBindings);
+            if (subjectVals.length === 0) subjectVals = data.map(t => t.subject);
+            debugLog('Subject variable', triple.subject.value, 'not bound, trying all possible values:', subjectVals);
+          }
+        } else {
+          subjectVals = [triple.subject];
+        }
+        if (typeof triple.object === 'object' && 'type' in triple.object && triple.object.type === 'Variable') {
+          if (restBindings.hasOwnProperty(triple.object.value)) {
+            objectVals = [restBindings[triple.object.value]];
+            debugLog('Object is variable, using bound value:', objectVals);
+          } else {
+            objectVals = Object.values(restBindings);
+            if (objectVals.length === 0) objectVals = data.map(t => t.object);
+            debugLog('Object variable', triple.object.value, 'not bound, trying all possible values:', objectVals);
+          }
+        } else {
+          objectVals = [triple.object];
+        }
+        if (builtin.arity === 1) {
+          debugLog('[MATCHER][DEBUG] Trying builtin (arity 1) with subjectVals:', JSON.stringify(subjectVals), 'objectVals:', JSON.stringify(objectVals), 'restBindings:', JSON.stringify(restBindings));
+          for (const sVal of subjectVals) {
+            if (typeof triple.subject === 'object' && 'type' in triple.subject && triple.subject.type === 'Variable') {
+              debugLog('[MATCHER][DEBUG] Binding subject variable', triple.subject.value, 'to', JSON.stringify(sVal));
+            }
+            debugLog('[BUILTIN ARGS][TRACE] Trying builtin (arity 1) with sVal:', JSON.stringify(sVal), 'restBindings:', JSON.stringify(restBindings), 'triple:', JSON.stringify(triple));
+            let mergedBindings = { ...restBindings };
+            if (typeof triple.subject === 'object' && 'type' in triple.subject && triple.subject.type === 'Variable') {
+              debugLog('[BUILTIN ARGS][TRACE] Binding variable', triple.subject.value, 'to', sVal);
+              mergedBindings[triple.subject.value] = sVal;
+            }
+            let args: N3Term[] = [sVal];
+            debugLog('[MATCHER][DEBUG] Builtin (arity 1) args:', JSON.stringify(args));
+            debugLog('[BUILTIN ARGS][TRACE] Applying builtin (arity 1):', builtin.uri, 'args:', JSON.stringify(args), 'mergedBindings:', JSON.stringify(mergedBindings), 'triple:', JSON.stringify(triple));
+            try {
+            debugLog('[MATCHER][DEBUG] Invoking builtin.apply (arity 1) with args:', JSON.stringify(args));
+              const result = builtin.apply(...args);
+              debugLog('[BUILTIN ARGS][TRACE] Builtin result:', result, 'for args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
+              if (result === true) {
+                debugLog('[BUILTIN ARGS][TRACE] Builtin returned true, pushing bindings:', JSON.stringify(mergedBindings));
+                results.push({ ...mergedBindings });
+              } else {
+                debugLog('[BUILTIN ARGS][TRACE] Builtin returned false, skipping bindings:', JSON.stringify(mergedBindings));
+              }
+            } catch (e) {
+            debugLog('[MATCHER][ERROR] Exception in builtin (arity 1):', e, 'args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
+          debugLog('[MATCHER][DEBUG] Trying builtin (arity 2) with subjectVals:', JSON.stringify(subjectVals), 'objectVals:', JSON.stringify(objectVals), 'restBindings:', JSON.stringify(restBindings));
+          for (const sVal of subjectVals) {
+            for (const oVal of objectVals) {
+              if (typeof triple.subject === 'object' && 'type' in triple.subject && triple.subject.type === 'Variable') {
+                debugLog('[MATCHER][DEBUG] Binding subject variable', triple.subject.value, 'to', JSON.stringify(sVal));
+              }
+              if (typeof triple.object === 'object' && 'type' in triple.object && triple.object.type === 'Variable') {
+                debugLog('[MATCHER][DEBUG] Binding object variable', triple.object.value, 'to', JSON.stringify(oVal));
+              }
+              debugLog('[BUILTIN ARGS][ERROR] Exception in builtin (arity 1):', e, 'args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
+            }
+          }
+        } else {
+          for (const sVal of subjectVals) {
+            for (const oVal of objectVals) {
+              debugLog('[BUILTIN ARGS][TRACE] Trying builtin (arity 2) with sVal:', JSON.stringify(sVal), 'oVal:', JSON.stringify(oVal), 'restBindings:', JSON.stringify(restBindings), 'triple:', JSON.stringify(triple));
+              let mergedBindings = { ...restBindings };
+              if (typeof triple.subject === 'object' && 'type' in triple.subject && triple.subject.type === 'Variable') {
+                debugLog('[BUILTIN ARGS][TRACE] Binding subject variable', triple.subject.value, 'to', sVal);
+                mergedBindings[triple.subject.value] = sVal;
+              }
+              if (typeof triple.object === 'object' && 'type' in triple.object && triple.object.type === 'Variable') {
+                debugLog('[BUILTIN ARGS][TRACE] Binding object variable', triple.object.value, 'to', oVal);
+                mergedBindings[triple.object.value] = oVal;
+              }
+              let args: N3Term[] = [sVal, oVal];
+              debugLog('[MATCHER][DEBUG] Builtin (arity 2) args:', JSON.stringify(args));
+              debugLog('[MATCHER][DEBUG] Invoking builtin.apply (arity 2) with args:', JSON.stringify(args));
+              debugLog('[MATCHER][ERROR] Exception in builtin (arity 2):', e, 'args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
+              debugLog('[BUILTIN ARGS][TRACE] Applying builtin (arity 2):', builtin.uri, 'args:', JSON.stringify(args), 'mergedBindings:', JSON.stringify(mergedBindings), 'triple:', JSON.stringify(triple));
+              try {
+                const result = builtin.apply(...args);
+                debugLog('[BUILTIN ARGS][TRACE] Builtin result:', result, 'for args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
+                if (result === true) {
+                  debugLog('[BUILTIN ARGS][TRACE] Builtin returned true, pushing bindings:', JSON.stringify(mergedBindings));
+                  results.push({ ...mergedBindings });
+                } else {
+                  debugLog('[BUILTIN ARGS][TRACE] Builtin returned false, skipping bindings:', JSON.stringify(mergedBindings));
+                }
+              } catch (e) {
+                debugLog('[BUILTIN ARGS][ERROR] Exception in builtin (arity 2):', e, 'args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
+              }
+            }
+          }
+        }
+      }
     }
   }
-  if (builtin) {
-    debugTrace('Matched builtin triple:', first, 'Builtin:', builtin);
-    const restBindingsList = matchAntecedent(rest, data, builtins);
-    debugLog('Rest bindings list for builtin:', restBindingsList);
-    for (const [restIdx, restBindings] of restBindingsList.entries()) {
-      debugLog('matchAntecedent: restBindings:', JSON.stringify(restBindings, null, 2));
-      debugLog(`Rest bindings #${restIdx}:`, restBindings);
-      // For builtins, always try all possible values for unbound variables (fix: do not skip if not bound)
-      let subjectVals: N3Term[] = [];
-      let objectVals: N3Term[] = [];
-      if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable') {
-        if (restBindings.hasOwnProperty(first.subject.value)) {
-          subjectVals = [restBindings[first.subject.value]];
-          debugLog('Subject is variable, using bound value:', subjectVals);
-        } else {
-          // Try all possible values for this variable from all current bindings in restBindings
-          subjectVals = Object.values(restBindings);
-          // If no bindings, try all data subjects as fallback
-          if (subjectVals.length === 0) subjectVals = data.map(t => t.subject);
-          debugLog('Subject variable', first.subject.value, 'not bound, trying all possible values:', subjectVals);
-        }
-      } else {
-        subjectVals = [first.subject];
-      }
-      if (typeof first.object === 'object' && 'type' in first.object && first.object.type === 'Variable') {
-        if (restBindings.hasOwnProperty(first.object.value)) {
-          objectVals = [restBindings[first.object.value]];
-          debugLog('Object is variable, using bound value:', objectVals);
-        } else {
-          // Try all possible values for this variable from all current bindings in restBindings
-          objectVals = Object.values(restBindings);
-          // If no bindings, try all data objects as fallback
-          if (objectVals.length === 0) objectVals = data.map(t => t.object);
-          debugLog('Object variable', first.object.value, 'not bound, trying all possible values:', objectVals);
-        }
-      } else {
-        objectVals = [first.object];
-      }
-      if (builtin.arity === 1) {
-        for (const sVal of subjectVals) {
-          debugLog('[BUILTIN ARGS] matchAntecedent: Trying builtin (arity 1) with sVal:', JSON.stringify(sVal), 'restBindings:', JSON.stringify(restBindings), 'first:', first);
-          let mergedBindings = { ...restBindings };
-          if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable') {
-            mergedBindings[first.subject.value] = sVal;
-          }
-          let args: N3Term[] = [sVal];
-          debugLog('[BUILTIN ARGS] Applying builtin (arity 1):', builtin.uri, 'args:', args, 'mergedBindings:', mergedBindings, 'first:', first);
-          const result = builtin.apply(...args);
-          debugLog('[BUILTIN ARGS] Builtin result:', result, 'for args:', args, 'bindings:', mergedBindings);
-          if (result === true) {
-            debugLog('[BUILTIN ARGS] Builtin returned true, pushing bindings:', mergedBindings);
-            results.push({ ...mergedBindings });
-          } else {
-            debugLog('[BUILTIN ARGS] Builtin returned false, skipping bindings:', mergedBindings);
-          }
-        }
-      } else {
-        for (const sVal of subjectVals) {
-          for (const oVal of objectVals) {
-            debugLog('[BUILTIN ARGS] matchAntecedent: Trying builtin (arity 2) with sVal:', JSON.stringify(sVal), 'oVal:', JSON.stringify(oVal), 'restBindings:', JSON.stringify(restBindings), 'first:', first);
-            let mergedBindings = { ...restBindings };
-            if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable') {
-              mergedBindings[first.subject.value] = sVal;
-            }
-            if (typeof first.object === 'object' && 'type' in first.object && first.object.type === 'Variable') {
-              mergedBindings[first.object.value] = oVal;
-            }
-            let args: N3Term[] = [sVal, oVal];
-            debugLog('[BUILTIN ARGS] Applying builtin (arity 2):', builtin.uri, 'args:', args, 'mergedBindings:', mergedBindings, 'first:', first);
-            const result = builtin.apply(...args);
-            debugLog('[BUILTIN ARGS] Builtin result:', result, 'for args:', args, 'bindings:', mergedBindings);
-            if (result === true) {
-              debugLog('[BUILTIN ARGS] Builtin returned true, pushing bindings:', mergedBindings);
-              results.push({ ...mergedBindings });
-            } else {
-              debugLog('[BUILTIN ARGS] Builtin returned false, skipping bindings:', mergedBindings);
-            }
-          }
-        }
-      }
-    }
-  } else {
-    debugLog('No builtin matched, matching against data triples');
+  // If no builtin matched, try matching the first triple against data
+  if (results.length === 0) {
+  debugLog('[MATCHER][DEBUG] No builtin matched for any triple, falling back to data triple matching. Patterns:', JSON.stringify(patterns));
+    const [first, ...rest] = patterns;
     for (const [tripleIdx, triple] of data.entries()) {
+  debugLog('[MATCHER][DEBUG] Data triple #', tripleIdx, ':', JSON.stringify(triple), 'Pattern:', JSON.stringify(first));
       debugLog(`Matching triple #${tripleIdx}:`, triple, 'against pattern:', first);
       const bindings = matchTriple(first, triple, termMatch);
+  debugLog('[MATCHER][DEBUG] matchTriple result:', JSON.stringify(bindings));
       if (bindings) {
+  debugLog('[MATCHER][DEBUG] Triple matched. Bindings:', JSON.stringify(bindings));
+          debugLog('[MATCHER][DEBUG] Checking compatibility of bindings:', JSON.stringify(bindings), 'with restBindings:', JSON.stringify(restBindings));
         debugLog('Triple matched, bindings:', bindings);
         const restBindingsList = matchAntecedent(rest, data, builtins);
         for (const [restIdx, restBindings] of restBindingsList.entries()) {
@@ -192,6 +238,9 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
             }
           }
           if (compatible) {
+            debugLog('[MATCHER][DEBUG] Bindings compatible, merging:', JSON.stringify({ ...restBindings, ...bindings }));
+            debugLog('[MATCHER][DEBUG] Bindings not compatible, skipping.');
+  debugLog('[MATCHER][DEBUG] Triple did not match pattern:', JSON.stringify(triple), 'Pattern:', JSON.stringify(first));
             debugLog('Bindings compatible, pushing merged bindings:', { ...restBindings, ...bindings });
             results.push({ ...restBindings, ...bindings });
           } else {
@@ -204,7 +253,9 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
     }
   }
   debugLog('matchAntecedent returning results:', results);
+  debugLog('[MATCHER][DEBUG] matchAntecedent returning results:', JSON.stringify(results));
   debugLog('matchAntecedent: final results:', JSON.stringify(results, null, 2));
+  debugLog('[MATCHER][DEBUG] matchAntecedent: final results:', JSON.stringify(results, null, 2));
   return results;
 }
 

@@ -21,36 +21,92 @@ export function extractRules(n3Text: string): Array<{ antecedent: string, conseq
 
   // Extract quantifier line if present (e.g., @forAll ?x .)
   let quantifiers: string[] | undefined = undefined;
-  // Improved regex: only match @forAll at the start of a line, followed by variables, ending with a dot
   const quantLineMatch = preprocessed.match(/^@forAll\s+([^\n.]*)\s*\./m);
   let rulesText = preprocessed;
   if (quantLineMatch) {
     quantifiers = quantLineMatch[1].trim().split(/\s+/).filter(Boolean);
-    // Remove quantifier line from rules text
     rulesText = preprocessed.replace(/^@forAll[^\n.]*\s*\./m, '').trim();
   }
 
-  // Use a regex to match { ... } => { ... } . blocks anywhere in the string, robust to single-line and multi-line, with or without spaces
-  const ruleRegex = /\{\s*([\s\S]*?)\s*\}[ \t]*=>[ \t]*\{\s*([\s\S]*?)\s*\}[ \t]*\./gm;
+  // Balanced-brace, non-regex rule extraction
   const rules: Array<{ antecedent: string, consequent: string, quantifiers?: string[] }> = [];
-  let match: RegExpExecArray | null;
-  while ((match = ruleRegex.exec(rulesText)) !== null) {
-    if (typeof (global as any).debugLog === 'function') {
-      (global as any).debugLog('[RuleExtractor] Matched rule block:', match[0]);
-    }
-  const antecedent = match[1].trim();
-  const consequent = match[2].trim();
-    if (typeof (global as any).debugLog === 'function') {
-      (global as any).debugLog('[RuleExtractor] Extracted antecedent:', antecedent);
-      (global as any).debugLog('[RuleExtractor] Extracted consequent:', consequent);
-    }
-    if (antecedent && consequent) {
-      // Attach quantifiers only to the first rule (if present)
-      if (quantifiers && rules.length === 0) {
-        rules.push({ antecedent, consequent, quantifiers });
-      } else {
-        rules.push({ antecedent, consequent });
+  let i = 0;
+  while (i < rulesText.length) {
+    // Find first '{'
+    if (rulesText[i] === '{') {
+      let startAnte = i + 1;
+      let depth = 1;
+      let j = startAnte;
+      while (j < rulesText.length && depth > 0) {
+        if (rulesText[j] === '{') depth++;
+        else if (rulesText[j] === '}') depth--;
+        j++;
       }
+      if (depth !== 0) {
+        if (typeof (global as any).debugLog === 'function') {
+          (global as any).debugLog('[RuleExtractor][DEBUG] Unbalanced braces in antecedent');
+        }
+        break;
+      }
+      const antecedent = rulesText.slice(startAnte, j - 1).trim();
+      // Look for '=>' after closing '}'
+      let k = j;
+      while (k < rulesText.length && /\s/.test(rulesText[k])) k++;
+      if (rulesText.slice(k, k + 2) !== '=>') {
+        i = j;
+        continue;
+      }
+      k += 2;
+      // Find next '{' for consequent
+      while (k < rulesText.length && /\s/.test(rulesText[k])) k++;
+      if (rulesText[k] !== '{') {
+        i = k;
+        continue;
+      }
+      let startCons = k + 1;
+      depth = 1;
+      let l = startCons;
+      while (l < rulesText.length && depth > 0) {
+        if (rulesText[l] === '{') depth++;
+        else if (rulesText[l] === '}') depth--;
+        l++;
+      }
+      if (depth !== 0) {
+        if (typeof (global as any).debugLog === 'function') {
+          (global as any).debugLog('[RuleExtractor][DEBUG] Unbalanced braces in consequent');
+        }
+        break;
+      }
+      const consequent = rulesText.slice(startCons, l - 1).trim();
+      // Look for trailing dot
+      let m = l;
+      while (m < rulesText.length && /\s/.test(rulesText[m])) m++;
+      if (rulesText[m] !== '.') {
+        i = m;
+        continue;
+      }
+      // Debug output for each rule
+      if (typeof (global as any).debugLog === 'function') {
+        (global as any).debugLog('[RuleExtractor][DEBUG] Extracted antecedent:', antecedent);
+        (global as any).debugLog('[RuleExtractor][DEBUG] Extracted consequent:', consequent);
+      }
+      // Split on dot for triples
+      const antecedentSplit = antecedent.split(/\s*\.\s*/).map(s => s.trim()).filter(Boolean).join(' . ');
+      const consequentSplit = consequent.split(/\s*\.\s*/).map(s => s.trim()).filter(Boolean).join(' . ');
+      if (typeof (global as any).debugLog === 'function') {
+        (global as any).debugLog('[RuleExtractor][DEBUG] antecedentSplit:', antecedentSplit);
+        (global as any).debugLog('[RuleExtractor][DEBUG] consequentSplit:', consequentSplit);
+      }
+      if (antecedentSplit && consequentSplit) {
+        if (quantifiers && rules.length === 0) {
+          rules.push({ antecedent: antecedentSplit, consequent: consequentSplit, quantifiers });
+        } else {
+          rules.push({ antecedent: antecedentSplit, consequent: consequentSplit });
+        }
+      }
+      i = m + 1;
+    } else {
+      i++;
     }
   }
   if (typeof (global as any).debugLog === 'function') {

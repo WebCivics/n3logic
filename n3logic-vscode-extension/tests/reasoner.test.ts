@@ -69,11 +69,23 @@ describe('N3LogicReasoner', () => {
 	       });
 			   // Use a single-line rule to ensure parser extracts the rule
 			   const n3 = `<a> <b> "foo" . <a> <b> "bar" . { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } .`;
-	       const parser = new (require('../n3logic/N3LogicParser').N3LogicParser)();
-	       parser.setDebug(true);
-	       const parsed = parser.parse(n3);
-	       console.log('[TEST] Parsed triples:', JSON.stringify(parsed.triples, null, 2));
-	       console.log('[TEST] Parsed rules:', JSON.stringify(parsed.rules, null, 2));
+									 const parser = new (require('../n3logic/N3LogicParser').N3LogicParser)();
+									 parser.setDebug(true);
+									 const parsed = parser.parse(n3);
+									 // Print the full parsed.rules object to the console for debug
+									 // eslint-disable-next-line no-console
+									 console.log('[DEBUG] Full parsed.rules:', JSON.stringify(parsed.rules, null, 2));
+									 if (parsed.rules && parsed.rules.length > 0) {
+										 const antecedentTriples = parsed.rules[0].antecedent.triples;
+										 // Print to console before any assertions
+										 // eslint-disable-next-line no-console
+										 console.log('[DEBUG] Rule antecedent triples:', JSON.stringify(antecedentTriples, null, 2));
+										 antecedentTriples.forEach((triple: any, idx: any) => {
+											 // eslint-disable-next-line no-console
+											 console.log(`[DEBUG] Antecedent triple #${idx} predicate:`, triple.predicate);
+										 });
+									 }
+						 // ...existing code...
 	       reasoner.loadOntology(n3, 'n3');
 	       const result: N3ReasonerResult = reasoner.reason();
 	       // Debug: print all inferred triples

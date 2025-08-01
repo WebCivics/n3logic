@@ -2,8 +2,10 @@
 import { debugTrace } from './reasoner/debug';
 let DEBUG = false;
 function debugLog(...args: any[]) {
-  if (DEBUG) {
-    debugTrace && debugTrace('[N3LogicParser]', ...args);
+  // Always print debug output for test diagnosis
+  debugTrace && debugTrace('[N3LogicParser]', ...args);
+  if (typeof console !== 'undefined' && typeof console.log === 'function') {
+    console.log('[N3LogicParser]', ...args);
   }
 }
 // N3LogicParser.ts
@@ -162,8 +164,14 @@ export class N3LogicParser {
     const ruleBlocks = extractRules(n3Text);
     for (const { antecedent, consequent } of ruleBlocks) {
       try {
-        debugLog('parseRules: antecedent string:', JSON.stringify(antecedent));
-        debugLog('parseRules: consequent string:', JSON.stringify(consequent));
+        // Always print antecedent and its split for debug
+        if (typeof console !== 'undefined' && typeof console.log === 'function') {
+          console.log('[parseRules][DEBUG] antecedent string:', JSON.stringify(antecedent));
+        }
+        const splitAntecedent = antecedent.split(/\s*\.\s*/).map(s => s.trim()).filter(Boolean);
+        if (typeof console !== 'undefined' && typeof console.log === 'function') {
+          console.log('[parseRules][DEBUG] splitAntecedent statements:', JSON.stringify(splitAntecedent));
+        }
         const antecedentTriples = this.parseTriples(antecedent, true);
         const consequentTriples = this.parseTriples(consequent, true);
         debugLog('Parsed rule antecedent triples:', JSON.stringify(antecedentTriples, null, 2));

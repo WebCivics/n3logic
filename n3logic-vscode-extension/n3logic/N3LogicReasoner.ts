@@ -35,6 +35,7 @@ export class N3LogicReasoner {
     setDebug(debug);
   }
   private document: N3LogicDocument = { triples: [], rules: [], builtins: [] };
+  
   private raw: string = '';
   private customBuiltins: N3Builtin[] = [];
   private plugins: Array<(reasoner: N3LogicReasoner) => void> = [];
@@ -137,6 +138,7 @@ export class N3LogicReasoner {
    * Hooks: beforeReason, afterReason, afterRuleApplied
    */
   reason(): N3ReasonerResult {
+  debugLog('[REASONER] Starting reason() method. Current builtins:', (this.document.builtins || []).map(b => b.uri));
     debugTrace && debugTrace('[N3LogicReasoner] reason() called');
     // Always merge custom builtins into document.builtins before reasoning
   // Always merge custom builtins into document.builtins before reasoning
