@@ -21,7 +21,7 @@ describe('N3LogicReasoner', () => {
 
   it('supports custom builtins', () => {
     const reasoner = new N3LogicReasoner();
-  reasoner.registerBuiltin({
+    reasoner.registerBuiltin({
       uri: 'http://example.org/custom#alwaysTrue',
       arity: 1,
       description: 'Always returns true',
@@ -34,17 +34,18 @@ describe('N3LogicReasoner', () => {
       <a> <b> "foo" .
       { <a> <b> ?x . ?x <http://example.org/custom#alwaysTrue> ?x } => { <a> <c> ?x } .
     `;
-  reasoner.loadOntology(n3, 'n3');
-  // Print loaded triples for debug
-  // @ts-ignore
-  console.log('[DEBUG test] loaded triples:', JSON.stringify(reasoner.document.triples, null, 2));
+    reasoner.loadOntology(n3, 'n3');
+    // Print loaded triples for debug
+    // @ts-ignore
+    console.log('[DEBUG test] loaded triples:', JSON.stringify(reasoner.document.triples, null, 2));
     const result: N3ReasonerResult = reasoner.reason();
     for (const triple of result.triples) {
       if (triple.predicate && typeof triple.predicate === 'object' && 'value' in triple.predicate && triple.predicate.value === 'c') {
         console.log('DEBUG PRODUCED TRIPLE:', triple, 'object type:', triple.object && typeof triple.object === 'object' && 'type' in triple.object ? triple.object.type : typeof triple.object);
       }
     }
-    expect(result.triples.some((t) => t.predicate && typeof t.predicate === 'object' && 'value' in t.predicate && t.predicate.value === 'c')).toBe(true);
+    // Expect the inferred triple to have object.value === 'foo' and type === 'Literal'
+    expect(result.triples.some((t) => t.predicate && typeof t.predicate === 'object' && 'value' in t.predicate && t.predicate.value === 'c' && t.object && typeof t.object === 'object' && 'value' in t.object && t.object.value === 'foo' && t.object.type === 'Literal')).toBe(true);
   });
 
   it('supports plugins and hooks', () => {

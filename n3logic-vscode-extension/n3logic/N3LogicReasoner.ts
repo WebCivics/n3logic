@@ -190,8 +190,13 @@ this.document.builtins = [
       if (typeof term === 'object' && 'type' in term && term.type === 'Variable') {
         const varName = term.value;
         if (bindings[varName] !== undefined) {
-          console.log('[DEBUG instantiateTriple] substituting variable', varName, 'with', bindings[varName]);
-          return bindings[varName];
+          const binding = bindings[varName];
+          console.log('[DEBUG instantiateTriple] substituting variable', varName, 'with', binding);
+          if (binding && typeof binding === 'object') {
+            return { ...binding };
+          } else {
+            return binding;
+          }
         } else {
           console.warn('[DEBUG instantiateTriple] unbound variable in consequent:', varName);
         }
