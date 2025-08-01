@@ -1,4 +1,4 @@
-import { debugLog, setDebug } from './reasoner/debug';
+import { debugLog, setDebug, debugTrace } from './reasoner/debug';
 import { tripleToString, stringToTriple, termToString, termEquals } from './reasoner/tripleUtils';
 import { matchFormula, matchTriple, termMatch, matchAntecedent, instantiateTriple } from './reasoner/matcher';
 import { HookManager } from './reasoner/hooks';
@@ -31,6 +31,7 @@ export class N3LogicReasoner {
    * Enable or disable debug logging for this reasoner instance.
    */
   setDebug(debug: boolean) {
+    debugTrace && debugTrace('[N3LogicReasoner] setDebug called:', debug);
     setDebug(debug);
   }
   private document: N3LogicDocument = { triples: [], rules: [], builtins: [] };
@@ -44,6 +45,7 @@ export class N3LogicReasoner {
    * Builtins include core, modular, and user-registered builtins.
    */
   loadOntology(data: string, format: string): void {
+    debugTrace && debugTrace('[N3LogicReasoner] loadOntology called:', { format, data });
     debugLog('Loading ontology', { format, data });
     if (typeof data !== 'string') {
       throw new TypeError('N3LogicReasoner.loadOntology: data must be a string');
@@ -86,6 +88,7 @@ export class N3LogicReasoner {
    * Register a custom builtin (or array of builtins).
    */
   registerBuiltin(builtin: N3Builtin | N3Builtin[]): void {
+    debugTrace && debugTrace('[N3LogicReasoner] registerBuiltin called:', builtin);
     debugLog('Reasoner: All triples at start:', JSON.stringify(this.document.triples, null, 2));
     debugLog('Reasoner: All rules at start:', JSON.stringify(this.document.rules, null, 2));
     if (Array.isArray(builtin)) {
@@ -106,6 +109,7 @@ export class N3LogicReasoner {
    * Register a plugin (function that receives the reasoner instance).
    */
   use(plugin: (reasoner: N3LogicReasoner) => void): void {
+    debugTrace && debugTrace('[N3LogicReasoner] use(plugin) called');
     this.plugins.push(plugin);
   }
 
@@ -113,14 +117,16 @@ export class N3LogicReasoner {
    * Register a hook callback for a named event.
    */
   on(hookName: string, callback: (...args: any[]) => void): void {
-  this.hookManager.on(hookName, callback);
+    debugTrace && debugTrace('[N3LogicReasoner] on(hookName) called:', hookName);
+    this.hookManager.on(hookName, callback);
   }
 
   /**
    * Run all callbacks for a named hook.
    */
   private runHook(hookName: string, ...args: any[]): void {
-  this.hookManager.runHook(hookName, ...args);
+    debugTrace && debugTrace('[N3LogicReasoner] runHook called:', hookName, args);
+    this.hookManager.runHook(hookName, ...args);
   }
 
 
@@ -129,6 +135,7 @@ export class N3LogicReasoner {
    * Hooks: beforeReason, afterReason, afterRuleApplied
    */
   reason(): N3ReasonerResult {
+    debugTrace && debugTrace('[N3LogicReasoner] reason() called');
     // Always merge custom builtins into document.builtins before reasoning
   // Always merge custom builtins into document.builtins before reasoning
 

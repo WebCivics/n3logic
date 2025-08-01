@@ -1,8 +1,9 @@
 // Debug support
+import { debugTrace } from './reasoner/debug';
 let DEBUG = false;
 function debugLog(...args: any[]) {
   if (DEBUG) {
-    console.debug('[N3LogicParser]', ...args);
+    debugTrace && debugTrace('[N3LogicParser]', ...args);
   }
 }
 // N3LogicParser.ts
@@ -17,10 +18,12 @@ import { splitTriples } from './parser/TripleSplitter';
 export class N3LogicParser {
   setDebug(debug: boolean) {
     DEBUG = debug;
+    debugTrace && debugTrace('[N3LogicParser] setDebug called:', debug);
     debugLog('Debug mode set to', debug);
   }
 
   parse(n3Text: string): N3LogicDocument {
+    debugTrace && debugTrace('[N3LogicParser] parse called:', n3Text);
     debugLog('Parsing input', n3Text);
     if (typeof n3Text !== 'string') {
       debugLog('Input is not a string');
@@ -51,6 +54,7 @@ export class N3LogicParser {
 
   // Parse triples, supporting literals, variables, lists, blank nodes, multi-line, robustly
   private parseTriples(n3Text: string, allowNoDot = false): N3Triple[] {
+    debugTrace && debugTrace('[N3LogicParser] parseTriples called:', n3Text, allowNoDot);
     if (typeof n3Text !== 'string') {
       throw new TypeError('parseTriples: Input must be a string');
     }
@@ -108,6 +112,7 @@ export class N3LogicParser {
 
   // Parse a term: IRI, literal, variable, blank node, list
   private parseTerm(token: string): N3Term {
+    debugTrace && debugTrace('[N3LogicParser] parseTerm called:', token);
     if (typeof token !== 'string') {
       throw new TypeError('parseTerm: Token must be a string');
     }
@@ -149,6 +154,7 @@ export class N3LogicParser {
 
   // Parse rules, supporting nested formulas and quantifiers
   private parseRules(n3Text: string): N3Rule[] {
+    debugTrace && debugTrace('[N3LogicParser] parseRules called:', n3Text);
     if (typeof n3Text !== 'string') {
       throw new TypeError('parseRules: Input must be a string');
     }
@@ -178,6 +184,7 @@ export class N3LogicParser {
 
   // Parse builtins (stub, can be extended)
   private parseBuiltins(n3Text: string): N3Builtin[] {
+    debugTrace && debugTrace('[N3LogicParser] parseBuiltins called:', n3Text);
     // Example: extract known builtins by URI
     const builtins: N3Builtin[] = [];
     const builtinUris = [

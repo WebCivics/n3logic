@@ -1,3 +1,4 @@
+import { debugTrace } from './reasoner/debug';
 // Dummy value exports for test compatibility (with Value suffix)
 const N3TermValue = {};
 const N3VariableValue = {};
@@ -59,6 +60,7 @@ export const N3Reasoner = Types.N3Reasoner;
 // N3LogicTypes.ts
 // Types and interfaces for N3Logic reasoning engine (npm package version)
 export type N3Term = string | N3Variable | N3Literal | N3BlankNode | N3IRI | N3Formula | N3List;
+debugTrace && debugTrace('[N3LogicTypes] Loaded types.');
 // List support for N3 Logic
 export interface N3List {
   type: 'List';

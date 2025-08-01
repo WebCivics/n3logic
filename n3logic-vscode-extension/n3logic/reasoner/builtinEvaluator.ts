@@ -1,6 +1,6 @@
 // Builtin evaluation logic for N3LogicReasoner
 import { N3Triple, N3Term, N3Builtin } from '../N3LogicTypes';
-import { debugLog } from './debug';
+import { debugLog, debugTrace } from './debug';
 
 export function evaluateBuiltins(
   triples: N3Triple[],
@@ -9,6 +9,7 @@ export function evaluateBuiltins(
   matchAntecedent: (patterns: N3Triple[], data: N3Triple[], builtins: N3Builtin[]) => Array<Record<string, N3Term>>,
   instantiateTriple: (triple: N3Triple, bindings: Record<string, N3Term>) => N3Triple
 ): boolean {
+  debugTrace && debugTrace('[builtinEvaluator] evaluateBuiltins called:', { triples, bindings, builtins: document.builtins });
   debugLog('evaluateBuiltins: triples:', JSON.stringify(triples, null, 2));
   debugLog('evaluateBuiltins: bindings:', JSON.stringify(bindings, null, 2));
   debugLog('evaluateBuiltins called', { triples, bindings, builtins: document.builtins });

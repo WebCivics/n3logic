@@ -4,7 +4,9 @@
  * @param n3Text The N3/N3Logic text to parse.
  * @returns Array of rule objects with antecedent, consequent, and optional quantifiers.
  */
+import { debugTrace } from '../reasoner/debug';
 export function extractRules(n3Text: string): Array<{ antecedent: string, consequent: string, quantifiers?: string[] }> {
+  debugTrace && debugTrace('[RuleExtractor] extractRules called:', n3Text);
   // Normalize line endings
   let preprocessed = n3Text.replace(/\r\n?/g, '\n');
   // Remove comments

@@ -85,12 +85,12 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
   let builtin = undefined;
   if (builtins && typeof first.predicate === 'object' && first.predicate && 'value' in first.predicate) {
     const predValue = first.predicate.value;
-    debugTrace('Checking for builtin with predicate value:', predValue);
+    debugTrace('[BUILTIN MATCH] Checking for builtin with predicate value:', predValue, 'Available builtins:', builtins.map(b => b.uri));
     builtin = builtins.find(b => b.uri === predValue);
     if (builtin) {
-      debugTrace('Matched builtin for predicate:', predValue, builtin);
+      debugTrace('[BUILTIN MATCH] Matched builtin for predicate:', predValue, builtin);
     } else {
-      debugTrace('No builtin matched for predicate:', predValue);
+      debugTrace('[BUILTIN MATCH] No builtin matched for predicate:', predValue, 'Pattern:', first, 'Builtins:', builtins);
     }
   }
   if (builtin) {
@@ -133,26 +133,26 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
       }
       if (builtin.arity === 1) {
         for (const sVal of subjectVals) {
-          debugLog('matchAntecedent: Trying builtin (arity 1) with sVal:', JSON.stringify(sVal), 'restBindings:', JSON.stringify(restBindings));
+          debugLog('[BUILTIN ARGS] matchAntecedent: Trying builtin (arity 1) with sVal:', JSON.stringify(sVal), 'restBindings:', JSON.stringify(restBindings), 'first:', first);
           let mergedBindings = { ...restBindings };
           if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable') {
             mergedBindings[first.subject.value] = sVal;
           }
           let args: N3Term[] = [sVal];
-          debugLog('Applying builtin (arity 1):', builtin.uri, 'args:', args, 'mergedBindings:', mergedBindings);
+          debugLog('[BUILTIN ARGS] Applying builtin (arity 1):', builtin.uri, 'args:', args, 'mergedBindings:', mergedBindings, 'first:', first);
           const result = builtin.apply(...args);
-          debugLog('Builtin result:', result, 'for args:', args, 'bindings:', mergedBindings);
+          debugLog('[BUILTIN ARGS] Builtin result:', result, 'for args:', args, 'bindings:', mergedBindings);
           if (result === true) {
-            debugLog('Builtin returned true, pushing bindings:', mergedBindings);
+            debugLog('[BUILTIN ARGS] Builtin returned true, pushing bindings:', mergedBindings);
             results.push({ ...mergedBindings });
           } else {
-            debugLog('Builtin returned false, skipping bindings:', mergedBindings);
+            debugLog('[BUILTIN ARGS] Builtin returned false, skipping bindings:', mergedBindings);
           }
         }
       } else {
         for (const sVal of subjectVals) {
           for (const oVal of objectVals) {
-            debugLog('matchAntecedent: Trying builtin (arity 2) with sVal:', JSON.stringify(sVal), 'oVal:', JSON.stringify(oVal), 'restBindings:', JSON.stringify(restBindings));
+            debugLog('[BUILTIN ARGS] matchAntecedent: Trying builtin (arity 2) with sVal:', JSON.stringify(sVal), 'oVal:', JSON.stringify(oVal), 'restBindings:', JSON.stringify(restBindings), 'first:', first);
             let mergedBindings = { ...restBindings };
             if (typeof first.subject === 'object' && 'type' in first.subject && first.subject.type === 'Variable') {
               mergedBindings[first.subject.value] = sVal;
@@ -161,14 +161,14 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
               mergedBindings[first.object.value] = oVal;
             }
             let args: N3Term[] = [sVal, oVal];
-            debugLog('Applying builtin (arity 2):', builtin.uri, 'args:', args, 'mergedBindings:', mergedBindings);
+            debugLog('[BUILTIN ARGS] Applying builtin (arity 2):', builtin.uri, 'args:', args, 'mergedBindings:', mergedBindings, 'first:', first);
             const result = builtin.apply(...args);
-            debugLog('Builtin result:', result, 'for args:', args, 'bindings:', mergedBindings);
+            debugLog('[BUILTIN ARGS] Builtin result:', result, 'for args:', args, 'bindings:', mergedBindings);
             if (result === true) {
-              debugLog('Builtin returned true, pushing bindings:', mergedBindings);
+              debugLog('[BUILTIN ARGS] Builtin returned true, pushing bindings:', mergedBindings);
               results.push({ ...mergedBindings });
             } else {
-              debugLog('Builtin returned false, skipping bindings:', mergedBindings);
+              debugLog('[BUILTIN ARGS] Builtin returned false, skipping bindings:', mergedBindings);
             }
           }
         }

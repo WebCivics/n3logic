@@ -63,23 +63,31 @@ export const LogicBuiltins: N3Builtin[] = [
     arity: 2,
     description: 'log:or(x, y) is true if x or y is true',
     apply: (x: any, y: any) => {
-      debugTrace('[log:or] input:', x, y, 'getValue:', getValue(x), getValue(y));
-      // Fix: True if either is a non-empty string (not 'false'), or boolean true, symmetric for all cases.
+      debugTrace('[log:or] input:', x, y, 'getValue(x):', getValue(x), 'getValue(y):', getValue(y), 'typeof x:', typeof x, 'typeof y:', typeof y);
       function isTruthy(v: any): boolean {
         const val = getValue(v);
-        // If boolean, use boolean logic
-        if (typeof val === 'boolean') {
-          return val === true;
+        debugTrace('[log:or][isTruthy] called with:', v, 'getValue:', val, 'typeof:', typeof val);
+        // Treat RDF boolean literals strictly
+        if (typeof val === 'string') {
+          if (val === 'true') return true;
+          if (val === 'false') return false;
+          // Any other non-empty string is truthy
+          return val.length > 0;
         }
-        // Otherwise, treat as string
-        const strVal = String(val);
-        // Non-empty string except 'false' is truthy
-        return strVal !== '' && strVal !== 'false';
+        if (typeof val === 'boolean') {
+          return val;
+        }
+        if (typeof val === 'number') {
+          return val !== 0;
+        }
+        // Fallback: treat as falsy only if null/undefined/empty
+        return !!val;
       }
       const truthyX = isTruthy(x);
       const truthyY = isTruthy(y);
+      debugTrace('[log:or] isTruthy(x):', truthyX, 'isTruthy(y):', truthyY, 'x:', x, 'y:', y);
       const result = truthyX || truthyY;
-      debugTrace('[log:or] output:', result, 'isTruthy(x):', truthyX, 'isTruthy(y):', truthyY, 'x:', x, 'y:', y);
+      debugTrace('[log:or] output:', result);
       return result;
     }
   },
