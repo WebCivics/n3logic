@@ -1,0 +1,63 @@
+{
+  "name": "n3logic-syntax-highlighting",
+  "displayName": "N3Logic Syntax Highlighting",
+  "description": "Syntax highlighting for N3 Logic files (.n3, .n3logic, .n3l)",
+  "version": "0.0.1",
+  "publisher": "webcivics",
+  "engines": {
+    "vscode": ">=1.50.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "n3logic",
+        "aliases": [
+          "N3Logic",
+          "n3logic"
+        ],
+        "extensions": [
+          ".n3",
+          ".n3logic",
+          ".n3l"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "n3logic",
+        "scopeName": "source.n3logic",
+        "path": "./syntaxes/n3logic.tmLanguage.json"
+      }
+    ]
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist/esm",
+    "dist/cjs"
+  ],
+  "scripts": {
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build": "npm run build:esm && npm run build:cjs"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/mocha": "^10.0.10",
+    "glob": "^11.0.3",
+    "jest": "^30.0.5",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3"
+  }
+}

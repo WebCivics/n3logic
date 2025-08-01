@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/esm",
+    "module": "ES2020",
+    "declaration": true,
+    "declarationDir": "./dist/esm/types"
+  },
+  "include": ["n3logic/**/*.ts"],
+  "exclude": ["../n3logic/**/*.test.ts"]
+}

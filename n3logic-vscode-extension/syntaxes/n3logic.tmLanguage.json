@@ -1,0 +1,70 @@
+{
+  "scopeName": "source.n3logic",
+  "name": "N3Logic",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#keyword" },
+    { "include": "#iri" },
+    { "include": "#variable" },
+    { "include": "#literal" },
+    { "include": "#punctuation" }
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.n3logic",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "name": "keyword.control.n3logic",
+          "match": "(@forAll|@forSome|=>|<=)"
+        }
+      ]
+    },
+    "iri": {
+      "patterns": [
+        {
+          "name": "constant.language.iri.n3logic",
+          "match": "<[^>]+>"
+        }
+      ]
+    },
+    "variable": {
+      "patterns": [
+        {
+          "name": "variable.other.n3logic",
+          "match": "\\?[a-zA-Z_][a-zA-Z0-9_]*"
+        }
+      ]
+    },
+    "literal": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.n3logic",
+          "match": "\\\"(?:[^\\\\\\\"]|\\\\.)*\\\"(@[a-zA-Z\\-]+|\\^\\^<[^>]+>)?"
+        },
+        {
+          "name": "string.quoted.single.n3logic",
+          "match": "'(?:[^\\\\']|\\\\.)*'(@[a-zA-Z\\-]+|\\^\\^<[^>]+>)?"
+        },
+        {
+          "name": "constant.numeric.n3logic",
+          "match": "-?\\b\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?\\b"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.terminator.n3logic",
+          "match": "[.{}()\\[\\];,]"
+        }
+      ]
+    }
+  }
+}
