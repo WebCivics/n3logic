@@ -39,7 +39,7 @@ export const LogicBuiltins: N3Builtin[] = [
       const result = isRDFFalse(x) || v === '' || v === false;
       debugTrace('[log:not] output:', result);
       return result;
-    }
+    },
   },
   {
     uri: 'http://www.w3.org/2000/10/swap/log#implies',
@@ -48,7 +48,7 @@ export const LogicBuiltins: N3Builtin[] = [
   apply: (_x: any, _y: any) => {
     debugTrace('[log:implies] input:', _x, _y);
     return true;
-  }
+  },
   },
   {
     uri: 'http://www.w3.org/2000/10/swap/log#equalTo',
@@ -62,31 +62,55 @@ export const LogicBuiltins: N3Builtin[] = [
     const result = getValue(x) === getValue(y);
     debugTrace('[log:equalTo] output:', result);
     return result;
-  }
+  },
   },
   {
     uri: 'http://www.w3.org/2000/10/swap/log#or',
     arity: 2,
     description: 'log:or(x, y) is true if x or y is true',
     apply: (x: any, y: any) => {
-      debugTrace('[log:or][FIXED] input:', x, y, 'getValue(x):', getValue(x), 'getValue(y):', getValue(y));
+      debugTrace('[log:or][APPLY][UNMISTAKABLE] log:or builtin apply function INVOKED! Args:', { x, y, typeofX: typeof x, typeofY: typeof y, getValueX: getValue(x), getValueY: getValue(y) });
+      debugTrace('[log:or][TOP-ENTRY] called with:', { x, y, typeofX: typeof x, typeofY: typeof y, getValueX: getValue(x), getValueY: getValue(y) });
       // Treat any non-empty, non-'false' literal as true (string or boolean)
       const isTruthy = (v: any) => {
-        if (isRDFTrue(v)) return true;
-        if (isRDFFalse(v)) return false;
+        debugTrace('[log:or][isTruthy][ENTRY] arg:', v, 'typeof:', typeof v, 'getValue:', getValue(v));
         const val = getValue(v);
-        return val !== '' && val !== 'false' && val !== false && val != null;
+        let result: boolean;
+        if (isRDFTrue(v)) {
+          debugTrace('[log:or][isTruthy] Detected RDF true for', v);
+          result = true;
+        } else if (isRDFFalse(v)) {
+          debugTrace('[log:or][isTruthy] Detected RDF false for', v);
+          result = false;
+        } else if (typeof val === 'string') {
+          // Non-empty string is true
+          result = val.length > 0;
+          debugTrace('[log:or][isTruthy] String check for', v, 'getValue:', val, 'result:', result);
+        } else {
+          // Fallback: treat all non-false, non-null, non-undefined as true
+          result = val !== false && val !== null && val !== undefined;
+          debugTrace('[log:or][isTruthy] Fallback check for', v, 'getValue:', val, 'result:', result);
+        }
+        debugTrace('[log:or][isTruthy][EXIT] arg:', v, 'type:', typeof v, 'getValue:', val, 'result:', result);
+        return result;
       };
+      debugTrace('[log:or][PRE-EVAL] about to call isTruthy for x and y');
       const xTrue = isTruthy(x);
       const yTrue = isTruthy(y);
-      debugTrace('[log:or][FIXED] isTruthy(x):', xTrue, 'isTruthy(y):', yTrue);
+      debugTrace('[log:or][EVAL] isTruthy(x):', xTrue, 'isTruthy(y):', yTrue, 'x:', x, 'y:', y);
+      let result;
       if (xTrue || yTrue) {
-        debugTrace('[log:or][FIXED] output: true');
-        return true;
+        result = true;
+        debugTrace('[log:or][RESULT] At least one operand is true. Returning true.', { x, y, xTrue, yTrue });
+        debugTrace('[log:or][EXIT] result:', result);
+        return result;
+      } else {
+        result = false;
+        debugWarn('[log:or][RESULT] Both operands are falsey. Returning false.', { x, y, xTrue, yTrue, getValueX: getValue(x), getValueY: getValue(y) });
+        debugTrace('[log:or][EXIT] result:', result);
+        return result;
       }
-      debugTrace('[log:or][FIXED] output: false');
-      return false;
-    }
+    },
   },
   {
     uri: 'http://www.w3.org/2000/10/swap/log#and',
@@ -97,7 +121,7 @@ export const LogicBuiltins: N3Builtin[] = [
     const result = Boolean(getValue(x)) && Boolean(getValue(y));
     debugTrace('[log:and] output:', result);
     return result;
-  }
+  },
   },
   {
     uri: 'http://www.w3.org/2000/10/swap/log#xor',
@@ -108,7 +132,7 @@ export const LogicBuiltins: N3Builtin[] = [
     const result = Boolean(getValue(x)) !== Boolean(getValue(y));
     debugTrace('[log:xor] output:', result);
     return result;
-  }
+  },
   },
   {
     uri: 'http://www.w3.org/2000/10/swap/log#if',
@@ -120,7 +144,7 @@ export const LogicBuiltins: N3Builtin[] = [
       const result = v && v !== 'false' ? thenVal : elseVal;
       debugTrace('[log:if] output:', result);
       return result;
-    }
+    },
   },
   {
     uri: 'http://www.w3.org/2000/10/swap/log#distinct',
@@ -131,6 +155,6 @@ export const LogicBuiltins: N3Builtin[] = [
     const result = getValue(x) !== getValue(y);
     debugTrace('[log:distinct] output:', result);
     return result;
-  }
-  }
+  },
+  },
 ];

@@ -4,7 +4,7 @@ module.exports = {
   testEnvironment: 'node',
   testMatch: ['**/tests/**/*.test.ts'],
   transform: {
-    '^.+\\.ts$': ['ts-jest', { useESM: true }]
+    '^.+\\.ts$': ['ts-jest', { useESM: true }],
   },
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
   roots: ['<rootDir>/tests'],
@@ -12,7 +12,7 @@ module.exports = {
   globals: {
     'ts-jest': {
       tsconfig: 'tsconfig.esm.json',
-      useESM: true
-    }
-  }
+      useESM: true,
+    },
+  },
 };

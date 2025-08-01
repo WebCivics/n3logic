@@ -4,13 +4,13 @@ module.exports = {
   testEnvironment: 'node',
   testMatch: ['**/tests/**/*.test.ts'],
   transform: {
-    '^.+\\.ts$': 'ts-jest'
+    '^.+\\.ts$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
   roots: ['<rootDir>/tests'],
   globals: {
     'ts-jest': {
-      tsconfig: 'tsconfig.cjs.json'
-    }
-  }
+      tsconfig: 'tsconfig.cjs.json',
+    },
+  },
 };

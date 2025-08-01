@@ -13,7 +13,7 @@ export const ListBuiltins: N3Builtin[] = [
       const len = list.elements.length;
       const nVal = Number(getValue(n));
       return len === nVal;
-    }
+    },
   },
   {
     uri: 'http://www.w3.org/2000/10/swap/list#contains',
@@ -23,8 +23,8 @@ export const ListBuiltins: N3Builtin[] = [
       if (!list || typeof list !== 'object' || list.type !== 'List' || !Array.isArray(list.elements)) {
         return false;
       }
-      return list.elements.some(e => getValue(e) === getValue(x));
-    }
+      return list.elements.some((e) => getValue(e) === getValue(x));
+    },
   },
   {
     uri: 'http://www.w3.org/2000/10/swap/list#first',
@@ -35,7 +35,7 @@ export const ListBuiltins: N3Builtin[] = [
         return false;
       }
       return list.elements.length > 0 && getValue(list.elements[0]) === getValue(x);
-    }
+    },
   },
   {
     uri: 'http://www.w3.org/2000/10/swap/list#rest',
@@ -46,7 +46,7 @@ export const ListBuiltins: N3Builtin[] = [
         return false;
       }
       return { type: 'List', elements: list.elements.slice(1) };
-    }
+    },
   },
   {
     uri: 'http://www.w3.org/2000/10/swap/list#append',
@@ -57,7 +57,7 @@ export const ListBuiltins: N3Builtin[] = [
         return false;
       }
       return { type: 'List', elements: [...list.elements, x] };
-    }
+    },
   },
   {
     uri: 'http://www.w3.org/2000/10/swap/list#remove',
@@ -67,8 +67,8 @@ export const ListBuiltins: N3Builtin[] = [
       if (!list || typeof list !== 'object' || list.type !== 'List' || !Array.isArray(list.elements)) {
         return false;
       }
-      return { type: 'List', elements: list.elements.filter(e => getValue(e) !== getValue(x)) };
-    }
+      return { type: 'List', elements: list.elements.filter((e) => getValue(e) !== getValue(x)) };
+    },
   },
   {
     uri: 'http://www.w3.org/2000/10/swap/list#reverse',
@@ -79,6 +79,6 @@ export const ListBuiltins: N3Builtin[] = [
         return false;
       }
       return { type: 'List', elements: [...list.elements].reverse() };
-    }
-  }
+    },
+  },
 ];

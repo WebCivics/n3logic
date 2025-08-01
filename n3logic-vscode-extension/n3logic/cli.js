@@ -2,12 +2,13 @@
 // n3logic/cli.js
 // Simple CLI for parsing, reasoning, and validating N3 Logic files
 
-const { N3LogicParser } = require('./N3LogicParser');
-const { N3LogicReasoner } = require('./N3LogicReasoner');
-const fs = require('fs');
+
+import { N3LogicParser } from './N3LogicParser.js';
+import { N3LogicReasoner } from './N3LogicReasoner.js';
+import fs from 'fs';
 
 function printHelp() {
-  console.log(`N3Logic CLI\n\nUsage:\n  n3logic parse <file>\n  n3logic reason <file>\n`);
+  console.log('N3Logic CLI\n\nUsage:\n  n3logic parse <file>\n  n3logic reason <file>\n');
 }
 
 async function main() {
@@ -28,4 +29,4 @@ async function main() {
   }
 }
 
-if (require.main === module) main();
+if (import.meta.url === `file://${process.argv[1]}`) main();

@@ -6,6 +6,16 @@
     "declaration": true,
     "declarationDir": "./dist/cjs/types"
   },
-  "include": ["n3logic/**/*.ts"],
-  "exclude": ["../n3logic/**/*.test.ts"]
+  "include": [
+    "n3logic/cjs/**/*.ts",
+    "n3logic/**/*.ts"
+  ],
+  "exclude": [
+    "../n3logic/**/*.test.ts",
+    "n3logic/esm",
+    "n3logic/reasoner/debug.esm.ts",
+    "n3logic/N3LogicReasoner.esm.ts",
+    "n3logic/**/*.esm.ts",
+    "n3logic/N3LogicReasoner.ts"
+  ]
 }

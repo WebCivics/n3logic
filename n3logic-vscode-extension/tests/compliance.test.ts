@@ -17,7 +17,7 @@ describe('N3/N3Logic Syntax Compliance', () => {
   });
 
   it('parses rules with nested formulas and quantifiers', () => {
-    const n3 = `@forAll ?x . { <a> <b> ?x } => { <c> <d> ?x } .`;
+    const n3 = '@forAll ?x . { <a> <b> ?x } => { <c> <d> ?x } .';
     const doc = parser.parse(n3);
     expect(doc.rules.length).toBe(1);
     // quantifiers may be undefined or an array

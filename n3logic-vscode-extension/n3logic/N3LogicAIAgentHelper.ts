@@ -37,7 +37,7 @@ export class N3LogicAIAgentHelper {
       uri: 'http://example.org/custom#alwaysTrue',
       arity: 1,
       description: 'Always returns true',
-      apply: () => true
+      apply: () => true,
     });
   }
 

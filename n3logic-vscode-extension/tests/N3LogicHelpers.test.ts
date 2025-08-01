@@ -11,7 +11,7 @@ describe('getValue', () => {
     const elements = [
       { type: 'Literal', value: '1' } as const,
       { type: 'Literal', value: '2' } as const,
-      { type: 'Literal', value: '3' } as const
+      { type: 'Literal', value: '3' } as const,
     ];
     expect(getValue({ type: 'List', elements })).toEqual(elements);
   });

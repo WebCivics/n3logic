@@ -1,4 +1,6 @@
-import { describe, it, expect, jest } from '@jest/globals';
+import { jest } from '@jest/globals';
+// Use global jest object
+// Jest globals are available automatically in ESM mode
 import { HookManager } from '../../n3logic/reasoner/hooks';
 
 describe('HookManager', () => {

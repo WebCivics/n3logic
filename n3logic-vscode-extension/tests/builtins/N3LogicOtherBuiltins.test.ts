@@ -6,12 +6,12 @@ describe('OtherBuiltins', () => {
   const iri = (v: string) => ({ type: 'IRI', value: v } as const);
 
   it('rdf:type always returns true', () => {
-    const fn = OtherBuiltins.find(b => b.uri.includes('rdf-syntax-ns#type'));
+    const fn = OtherBuiltins.find((b) => b.uri.includes('rdf-syntax-ns#type'));
     expect(fn?.apply(lit('a'), lit('b'))).toBe(true);
   });
 
   it('owl:sameAs returns true if values are equal', () => {
-    const fn = OtherBuiltins.find(b => b.uri.includes('owl#sameAs'));
+    const fn = OtherBuiltins.find((b) => b.uri.includes('owl#sameAs'));
     expect(fn?.apply(lit('x'), lit('x'))).toBe(true);
     expect(fn?.apply(lit('x'), lit('y'))).toBe(false);
   });

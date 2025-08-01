@@ -12,7 +12,7 @@ export function extractRules(n3Text: string): Array<{ antecedent: string, conseq
   // Remove comments
   preprocessed = preprocessed.replace(/#[^\n]*/g, '');
   // Remove trailing whitespace (preserve indentation for regex)
-  preprocessed = preprocessed.split('\n').map(line => line.replace(/[ \t]+$/, '')).join('\n');
+  preprocessed = preprocessed.split('\n').map((line) => line.replace(/[ \t]+$/, '')).join('\n');
   preprocessed = preprocessed.trim();
   if (typeof (global as any).debugLog === 'function') {
     (global as any).debugLog('[RuleExtractor] Raw input:', n3Text);
@@ -34,7 +34,7 @@ export function extractRules(n3Text: string): Array<{ antecedent: string, conseq
   while (i < rulesText.length) {
     // Find first '{'
     if (rulesText[i] === '{') {
-      let startAnte = i + 1;
+      const startAnte = i + 1;
       let depth = 1;
       let j = startAnte;
       while (j < rulesText.length && depth > 0) {
@@ -63,7 +63,7 @@ export function extractRules(n3Text: string): Array<{ antecedent: string, conseq
         i = k;
         continue;
       }
-      let startCons = k + 1;
+      const startCons = k + 1;
       depth = 1;
       let l = startCons;
       while (l < rulesText.length && depth > 0) {
@@ -91,8 +91,8 @@ export function extractRules(n3Text: string): Array<{ antecedent: string, conseq
         (global as any).debugLog('[RuleExtractor][DEBUG] Extracted consequent:', consequent);
       }
       // Split on dot for triples
-      const antecedentSplit = antecedent.split(/\s*\.\s*/).map(s => s.trim()).filter(Boolean).join(' . ');
-      const consequentSplit = consequent.split(/\s*\.\s*/).map(s => s.trim()).filter(Boolean).join(' . ');
+      const antecedentSplit = antecedent.split(/\s*\.\s*/).map((s) => s.trim()).filter(Boolean).join(' . ');
+      const consequentSplit = consequent.split(/\s*\.\s*/).map((s) => s.trim()).filter(Boolean).join(' . ');
       if (typeof (global as any).debugLog === 'function') {
         (global as any).debugLog('[RuleExtractor][DEBUG] antecedentSplit:', antecedentSplit);
         (global as any).debugLog('[RuleExtractor][DEBUG] consequentSplit:', consequentSplit);

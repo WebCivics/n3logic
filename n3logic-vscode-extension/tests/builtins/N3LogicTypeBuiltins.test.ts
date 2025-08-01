@@ -7,9 +7,9 @@ describe('TypeBuiltins', () => {
   const blank = (v: string) => ({ type: 'BlankNode', value: v } as const);
 
   it('type:isLiteral, isIRI, isBlank', () => {
-    const isLiteral = TypeBuiltins.find(b => b.uri.includes('isLiteral'));
-    const isIRI = TypeBuiltins.find(b => b.uri.includes('isIRI'));
-    const isBlank = TypeBuiltins.find(b => b.uri.includes('isBlank'));
+    const isLiteral = TypeBuiltins.find((b) => b.uri.includes('isLiteral'));
+    const isIRI = TypeBuiltins.find((b) => b.uri.includes('isIRI'));
+    const isBlank = TypeBuiltins.find((b) => b.uri.includes('isBlank'));
     expect(isLiteral?.apply(lit('x'))).toBe(true);
     expect(isIRI?.apply(iri('foo'))).toBe(true);
     expect(isBlank?.apply(blank('b1'))).toBe(true);
@@ -19,9 +19,9 @@ describe('TypeBuiltins', () => {
   });
 
   it('type:toString, toNumber, toBoolean', () => {
-    const toString = TypeBuiltins.find(b => b.uri.includes('toString'));
-    const toNumber = TypeBuiltins.find(b => b.uri.includes('toNumber'));
-    const toBoolean = TypeBuiltins.find(b => b.uri.includes('toBoolean'));
+    const toString = TypeBuiltins.find((b) => b.uri.includes('toString'));
+    const toNumber = TypeBuiltins.find((b) => b.uri.includes('toNumber'));
+    const toBoolean = TypeBuiltins.find((b) => b.uri.includes('toBoolean'));
     expect(toString?.apply(lit(123))).toEqual(lit('123'));
     expect(toNumber?.apply(lit('42'))).toEqual(lit(42));
     expect(toBoolean?.apply(lit(''))).toEqual(lit(false));

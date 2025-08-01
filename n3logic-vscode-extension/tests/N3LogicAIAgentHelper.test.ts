@@ -1,6 +1,12 @@
-import { describe, it, expect, jest } from '@jest/globals';
+import { jest } from '@jest/globals';
+// Jest globals are available automatically in ESM mode
 /* eslint-env jest */
 import { N3LogicAIAgentHelper } from '../n3logic/N3LogicAIAgentHelper';
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 describe('N3LogicAIAgentHelper', () => {
   it('returns capabilities summary', () => {

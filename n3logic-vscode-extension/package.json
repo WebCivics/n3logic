@@ -14,6 +14,10 @@
     "languages": [
       {
         "id": "n3logic",
+        "./n3logic/N3LogicReasoner": {
+          "import": "./n3logic/N3LogicReasoner.esm.ts",
+          "require": "./n3logic/N3LogicReasoner.cjs.ts"
+        },
         "aliases": [
           "N3Logic",
           "n3logic"
@@ -41,6 +45,10 @@
     ".": {
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
+    },
+    "./n3logic/reasoner/debug": {
+      "import": "./n3logic/reasoner/debug.esm.ts",
+      "require": "./n3logic/reasoner/debug.cjs.ts"
     }
   },
   "files": [
@@ -48,8 +56,9 @@
     "dist/cjs"
   ],
   "scripts": {
-    "build:esm": "tsc -p tsconfig.esm.json",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "clean": "rimraf ./dist",
+    "build:esm": "npm run clean && tsc -p tsconfig.esm.json",
+    "build:cjs": "npm run clean && tsc -p tsconfig.cjs.json",
     "build": "npm run build:esm && npm run build:cjs",
     "test": "npm run test:cjs",
     "test:cjs": "jest --config jest.config.cjs.js --reporters=default --reporters=./jest.log-reporter.js",
@@ -59,11 +68,15 @@
     "description": "Run tests in both CommonJS and ESM modes. Use 'npm run test:cjs' for CommonJS, 'npm run test:esm' for ESM. Default 'npm test' runs CommonJS."
   },
   "devDependencies": {
+    "@eslint/js": "^9.32.0",
     "@types/jest": "^30.0.0",
     "@types/mocha": "^10.0.10",
+    "eslint": "^9.32.0",
     "glob": "^11.0.3",
     "jest": "^30.0.5",
+    "rimraf": "^6.0.1",
     "ts-jest": "^29.4.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0"
   }
 }

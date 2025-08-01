@@ -7,7 +7,7 @@ export function evaluateBuiltins(
   bindings: Record<string, N3Term>,
   document: any,
   matchAntecedent: (patterns: N3Triple[], data: N3Triple[], builtins: N3Builtin[]) => Array<Record<string, N3Term>>,
-  instantiateTriple: (triple: N3Triple, bindings: Record<string, N3Term>) => N3Triple
+  instantiateTriple: (triple: N3Triple, bindings: Record<string, N3Term>) => N3Triple,
 ): boolean {
   debugTrace && debugTrace('[builtinEvaluator] evaluateBuiltins called:', { triples, bindings, builtins: document.builtins });
   debugLog('evaluateBuiltins: triples:', JSON.stringify(triples, null, 2));
@@ -21,7 +21,8 @@ export function evaluateBuiltins(
     debugLog('evaluateBuiltins: checking triple:', JSON.stringify(triple, null, 2));
     if (typeof triple.predicate === 'object' && 'value' in triple.predicate) {
       const predValue = triple.predicate.value;
-      const builtin = document.builtins.find((b: N3Builtin) => b.uri === predValue);
+  const builtin = document.builtins.find((b: N3Builtin) => b.uri === predValue);
+  debugTrace('[builtinEvaluator][UNMISTAKABLE] Checking builtin for predicate:', predValue, 'Found:', !!builtin, 'Function:', builtin && builtin.apply, 'Typeof:', builtin && typeof builtin.apply);
       if (builtin) {
         debugLog('evaluateBuiltins: Found builtin in antecedent:', builtin.uri);
         // Get argument(s) from bindings or triple
@@ -43,7 +44,8 @@ export function evaluateBuiltins(
           }
           args = [arg1, arg2];
         }
-        debugLog('evaluateBuiltins: Calling builtin', builtin.uri, 'with args:', args);
+  debugLog('evaluateBuiltins: Calling builtin', builtin.uri, 'with args:', args, 'builtin.apply:', builtin.apply, 'typeof:', typeof builtin.apply);
+  debugTrace('[builtinEvaluator][UNMISTAKABLE] About to invoke builtin.apply:', builtin.uri, 'args:', args, 'function:', builtin.apply, 'typeof:', typeof builtin.apply);
         const result = builtin.apply(...args);
         debugLog('evaluateBuiltins: Builtin result:', result);
         if (!result) {

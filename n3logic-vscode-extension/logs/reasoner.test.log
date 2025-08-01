@@ -12,7 +12,7 @@ Failure: Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([
 Expected length: [32m3[39m
 Received length: [31m2[39m
 Received array:  [31m["<a> <b> \"foo\" .", "<a> <b> \"bar\" ."][39m
-    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:93:26)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:97:26)
     at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
     at new Promise (<anonymous>)
     at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)

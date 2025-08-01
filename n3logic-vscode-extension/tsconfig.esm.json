@@ -1,11 +1,24 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist/esm",
-    "module": "ES2020",
+  "outDir": "./dist/esm",
+  "module": "node16",
+  "moduleResolution": "node16",
     "declaration": true,
     "declarationDir": "./dist/esm/types"
   },
-  "include": ["n3logic/**/*.ts"],
-  "exclude": ["../n3logic/**/*.test.ts"]
+  "include": [
+    "n3logic/esm/**/*.mts"
+  ],
+  "exclude": [
+    "../n3logic/**/*.test.ts",
+    "n3logic/cjs/**",
+    "n3logic/reasoner/debug.cjs.ts",
+    "n3logic/N3LogicReasoner.cjs.ts",
+    "n3logic/**/*.cjs.ts",
+    "n3logic/N3LogicReasoner.ts",
+    "n3logic/reasoner/debug.esm.ts",
+    "n3logic/N3LogicReasoner.esm.ts",
+    "n3logic/esm/**/*.ts"
+  ]
 }

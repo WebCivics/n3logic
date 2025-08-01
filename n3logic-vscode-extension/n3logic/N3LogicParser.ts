@@ -46,7 +46,7 @@ export class N3LogicParser {
       return {
         triples,
         rules,
-        builtins
+        builtins,
       };
     } catch (err) {
       debugLog('Failed to parse input', err);
@@ -78,13 +78,13 @@ export class N3LogicParser {
       if (!stmt) continue;
       debugLog('parseTriples: Tokenizing statement:', stmt);
       // Use a regex that matches <...> as a single token, even with # or :
-      const tokens = (stmt.match(/<[^>]+>|"[^"]*"|\S+/g) || []).map(t => t.trim());
+      const tokens = (stmt.match(/<[^>]+>|"[^"]*"|\S+/g) || []).map((t) => t.trim());
       debugLog('parseTriples: Tokenized terms:', JSON.stringify(tokens));
       for (let i = 0; i + 2 < tokens.length; i += 3) {
         // Skip if any token is a rule/control symbol or lone parenthesis
         const t0 = tokens[i], t1 = tokens[i + 1], t2 = tokens[i + 2];
         debugLog('parseTriples: Triple tokens:', t0, t1, t2);
-        if ([t0, t1, t2].some(t => t === '{' || t === '}' || t === '=>' || t === '' || t === '(' || t === ')')) {
+        if ([t0, t1, t2].some((t) => t === '{' || t === '}' || t === '=>' || t === '' || t === '(' || t === ')')) {
           debugLog('parseTriples: Skipping invalid triple tokens');
           continue;
         }
@@ -92,7 +92,7 @@ export class N3LogicParser {
           const triple = {
             subject: this.parseTerm(t0),
             predicate: this.parseTerm(t1),
-            object: this.parseTerm(t2)
+            object: this.parseTerm(t2),
           };
           debugLog('parseTriples: Parsed triple:', JSON.stringify(triple));
           // Extra debug: log predicate type and value for custom builtin URIs
@@ -132,7 +132,7 @@ export class N3LogicParser {
           type: 'Literal',
           value: litMatch[1],
           datatype: litMatch[2],
-          language: litMatch[3]
+          language: litMatch[3],
         };
       } else {
         throw new Error(`parseTerm: Invalid literal format: '${token}'`);
@@ -147,7 +147,7 @@ export class N3LogicParser {
       // List: (a b c)
       const inner = token.slice(1, -1).trim();
       if (!inner) return { type: 'List', elements: [] };
-      const elements = inner.split(/\s+/).map(t => this.parseTerm(t));
+      const elements = inner.split(/\s+/).map((t) => this.parseTerm(t));
       return { type: 'List', elements };
     }
     // Fallback: treat as IRI (even if not <...>), to support builtins and prefixed names
@@ -168,7 +168,7 @@ export class N3LogicParser {
         if (typeof console !== 'undefined' && typeof console.log === 'function') {
           console.log('[parseRules][DEBUG] antecedent string:', JSON.stringify(antecedent));
         }
-        const splitAntecedent = antecedent.split(/\s*\.\s*/).map(s => s.trim()).filter(Boolean);
+        const splitAntecedent = antecedent.split(/\s*\.\s*/).map((s) => s.trim()).filter(Boolean);
         if (typeof console !== 'undefined' && typeof console.log === 'function') {
           console.log('[parseRules][DEBUG] splitAntecedent statements:', JSON.stringify(splitAntecedent));
         }
@@ -176,12 +176,24 @@ export class N3LogicParser {
         const consequentTriples = this.parseTriples(consequent, true);
         debugLog('Parsed rule antecedent triples:', JSON.stringify(antecedentTriples, null, 2));
         debugLog('Parsed rule consequent triples:', JSON.stringify(consequentTriples, null, 2));
-        const antecedentFormula = { type: "Formula" as const, triples: antecedentTriples };
-        const consequentFormula = { type: "Formula" as const, triples: consequentTriples };
+        // Extra: flag any triple whose predicate matches a known or custom builtin URI
+        const builtinPattern = /#|custom#|math#|string#|log#|type#|other#/;
+        antecedentTriples.forEach((triple, idx) => {
+          if (triple.predicate && typeof triple.predicate === 'object' && 'value' in triple.predicate && builtinPattern.test(triple.predicate.value)) {
+            debugLog(`[parseRules][DEBUG][BUILTIN] Antecedent triple #${idx} predicate matches builtin pattern:`, triple.predicate.value, JSON.stringify(triple));
+          }
+        });
+        consequentTriples.forEach((triple, idx) => {
+          if (triple.predicate && typeof triple.predicate === 'object' && 'value' in triple.predicate && builtinPattern.test(triple.predicate.value)) {
+            debugLog(`[parseRules][DEBUG][BUILTIN] Consequent triple #${idx} predicate matches builtin pattern:`, triple.predicate.value, JSON.stringify(triple));
+          }
+        });
+        const antecedentFormula = { type: 'Formula' as const, triples: antecedentTriples };
+        const consequentFormula = { type: 'Formula' as const, triples: consequentTriples };
         rules.push({
           type: 'Rule',
           antecedent: antecedentFormula,
-          consequent: consequentFormula
+          consequent: consequentFormula,
         });
       } catch (err) {
         throw new Error(`parseRules: Failed to parse rule: ${err instanceof Error ? err.message : err}`);
@@ -207,7 +219,7 @@ export class N3LogicParser {
           uri,
           arity: 2,
           apply: () => { throw new Error('Built-in not implemented'); },
-          description: 'Stub built-in'
+          description: 'Stub built-in',
         });
       }
     }

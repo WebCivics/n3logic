@@ -1,0 +1,1852 @@
+{
+  "description": "A library defining spreadsheet functions for a conceptual N3Logic implementation. Comprehensively expanded with biomedical, clinical, and ontology logic functions.",
+  "version": "1.7",
+  "functionLibrary": [
+    {
+      "name": "IF",
+      "category": "Logical",
+      "description": "Checks a single condition and returns one value if TRUE and another if FALSE.",
+      "syntax": "IF(logical_test, value_if_true, [value_if_false])",
+      "parameters": [
+        { "name": "logical_test", "type": "boolean", "required": true, "description": "The condition to evaluate." },
+        { "name": "value_if_true", "type": "any", "required": true, "description": "The value to return if the test is TRUE." },
+        { "name": "value_if_false", "type": "any", "required": false, "description": "The value to return if the test is FALSE." }
+      ],
+      "returnType": "any",
+      "logic_implementation": { "type": "conditional", "if": "params.logical_test", "then": "params.value_if_true", "else": "params.value_if_false" }
+    },
+    {
+      "name": "AND",
+      "category": "Logical",
+      "description": "Returns TRUE if all provided arguments are logically true.",
+      "syntax": "AND(logical_expression1, [logical_expression2, ...])",
+      "parameters": [ { "name": "logical_expressions", "type": "boolean", "required": true, "repeating": true, "description": "A series of conditions to test." } ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "operator", "name": "log:and", "appliesTo": "params.logical_expressions" }
+    },
+    {
+      "name": "OR",
+      "category": "Logical",
+      "description": "Returns TRUE if any of the provided arguments are logically true.",
+      "syntax": "OR(logical_expression1, [logical_expression2, ...])",
+      "parameters": [ { "name": "logical_expressions", "type": "boolean", "required": true, "repeating": true, "description": "A series of conditions to test." } ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "operator", "name": "log:or", "appliesTo": "params.logical_expressions" }
+    },
+    {
+        "name": "NOT",
+        "category": "Logical",
+        "description": "Reverses the logical value of its argument.",
+        "syntax": "NOT(logical_expression)",
+        "parameters": [ { "name": "logical_expression", "type": "boolean", "required": true, "description": "The logical value to reverse." } ],
+        "returnType": "boolean",
+        "logic_implementation": { "type": "operator", "name": "log:not", "appliesTo": "params.logical_expression" }
+    },
+    {
+      "name": "XOR",
+      "category": "Logical",
+      "description": "Returns TRUE if an odd number of the provided arguments are logically true.",
+      "syntax": "XOR(logical_expression1, [logical_expression2, ...])",
+      "parameters": [ { "name": "logical_expressions", "type": "boolean", "required": true, "repeating": true, "description": "A series of conditions to test." } ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "procedure", "name": "exclusive_or", "description": "A procedural check for an odd number of TRUE inputs." }
+    },
+    {
+      "name": "IFS",
+      "category": "Logical",
+      "description": "Checks multiple conditions and returns a value for the first one that is TRUE.",
+      "syntax": "IFS(condition1, value1, [condition2, value2, ...])",
+      "parameters": [ { "name": "conditions_and_values", "type": "any", "required": true, "repeating": true, "description": "A series of condition/value pairs." } ],
+      "returnType": "any",
+      "logic_implementation": { "type": "multi_conditional", "description": "Evaluate condition/value pairs in order. Return value for the first true condition." }
+    },
+    {
+      "name": "SWITCH",
+      "category": "Logical",
+      "description": "Compares an expression against a list of cases and returns a corresponding result.",
+      "syntax": "SWITCH(expression, case1, value1, ..., [default])",
+      "parameters": [
+        { "name": "expression", "type": "any", "required": true, "description": "The value to switch on." },
+        { "name": "cases_and_values", "type": "any", "required": true, "repeating": true, "description": "A series of case/value pairs." },
+        { "name": "default", "type": "any", "required": false, "description": "The value to return if no cases match." }
+      ],
+      "returnType": "any",
+      "logic_implementation": { "type": "match", "description": "Find a case that matches the expression and return its corresponding value." }
+    },
+    {
+        "name": "IFERROR",
+        "category": "Logical",
+        "description": "Returns a specified value if a formula evaluates to an error; otherwise, returns the result of the formula.",
+        "syntax": "IFERROR(value, value_if_error)",
+        "parameters": [
+            { "name": "value", "type": "any", "required": true, "description": "The value or formula to check for an error." },
+            { "name": "value_if_error", "type": "any", "required": true, "description": "The value to return if an error is found." }
+        ],
+        "returnType": "any",
+        "logic_implementation": { "type": "error_handler", "error_type": "any", "description": "Checks for any error type." }
+    },
+    {
+        "name": "IFNA",
+        "category": "Logical",
+        "description": "Returns a specified value if a formula evaluates to an #N/A error.",
+        "syntax": "IFNA(value, value_if_na)",
+        "parameters": [
+            { "name": "value", "type": "any", "required": true, "description": "The value or formula to check for an #N/A error." },
+            { "name": "value_if_na", "type": "any", "required": true, "description": "The value to return if an #N/A error is found." }
+        ],
+        "returnType": "any",
+        "logic_implementation": { "type": "error_handler", "error_type": "N/A", "description": "Checks specifically for the #N/A error." }
+    },
+    {
+      "name": "ISLOGICAL",
+      "category": "Information",
+      "description": "Returns TRUE if the value is a logical value (TRUE or FALSE).",
+      "syntax": "ISLOGICAL(value)",
+      "parameters": [ { "name": "value", "type": "any", "required": true, "description": "The value to check." } ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "type_check", "expected_type": "boolean" }
+    },
+    {
+      "name": "ISEVEN",
+      "category": "Information",
+      "description": "Returns TRUE if the provided number is even.",
+      "syntax": "ISEVEN(value)",
+      "parameters": [ { "name": "value", "type": "number", "required": true, "description": "The number to check." } ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "procedure", "name": "check_even" }
+    },
+    {
+      "name": "ISODD",
+      "category": "Information",
+      "description": "Returns TRUE if the provided number is odd.",
+      "syntax": "ISODD(value)",
+      "parameters": [ { "name": "value", "type": "number", "required": true, "description": "The number to check." } ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "procedure", "name": "check_odd" }
+    },
+    {
+      "name": "ISFORMULA",
+      "category": "Information",
+      "description": "Returns TRUE if the referenced cell contains a formula.",
+      "syntax": "ISFORMULA(cell_reference)",
+      "parameters": [ { "name": "cell_reference", "type": "reference", "required": true, "description": "The cell to check." } ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "metadata_check", "property": "has_formula" }
+    },
+    {
+      "name": "SUM",
+      "category": "Math",
+      "description": "Calculates the sum of a series of numbers or a range.",
+      "syntax": "SUM(value1, [value2, ...])",
+      "parameters": [ { "name": "values", "type": ["number", "range"], "required": true, "repeating": true, "description": "The numbers or range to add." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "aggregation", "operator": "math:sum", "on": "params.values" }
+    },
+    {
+      "name": "SUMIF",
+      "category": "Math",
+      "description": "Returns a conditional sum across a range.",
+      "syntax": "SUMIF(range, criterion, [sum_range])",
+      "parameters": [
+        { "name": "range", "type": "range", "required": true, "description": "The range to which the criterion is applied." },
+        { "name": "criterion", "type": "any", "required": true, "description": "The condition to meet." },
+        { "name": "sum_range", "type": "range", "required": false, "description": "The range to sum if different from the criterion range." }
+       ],
+      "returnType": "number",
+      "logic_implementation": { "type": "conditional_aggregation", "operator": "sum" }
+    },
+    {
+      "name": "SUMIFS",
+      "category": "Math",
+      "description": "Returns the sum of a range depending on multiple criteria.",
+      "syntax": "SUMIFS(sum_range, criteria_range1, criterion1, [criteria_range2, criterion2, ...])",
+      "parameters": [
+        { "name": "sum_range", "type": "range", "required": true, "description": "The range to be summed." },
+        { "name": "criteria_pairs", "type": "any", "required": true, "repeating": true, "description": "Pairs of ranges and their criteria." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "conditional_aggregation", "operator": "sum", "multiple_conditions": true }
+    },
+    {
+      "name": "SUMPRODUCT",
+      "category": "Math",
+      "description": "Multiplies corresponding components in the given arrays, and returns the sum of those products.",
+      "syntax": "SUMPRODUCT(array1, [array2, ...])",
+      "parameters": [ { "name": "arrays", "type": "range", "required": true, "repeating": true, "description": "Two or more arrays of the same dimensions." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "vector_operation", "name": "sum_of_products" }
+    },
+    {
+      "name": "AVERAGE",
+      "category": "Math",
+      "description": "Calculates the numerical average value in a dataset.",
+      "syntax": "AVERAGE(value1, [value2, ...])",
+      "parameters": [ { "name": "values", "type": ["number", "range"], "required": true, "repeating": true, "description": "The numbers or range to average." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "aggregation", "operator": "math:avg", "on": "params.values" }
+    },
+    {
+      "name": "COUNT",
+      "category": "Math",
+      "description": "Counts the number of cells that contain numbers.",
+      "syntax": "COUNT(value1, [value2, ...])",
+      "parameters": [ { "name": "values", "type": "any", "required": true, "repeating": true, "description": "The items or range to count." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "aggregation", "operator": "math:count", "on": "params.values" }
+    },
+    {
+      "name": "COUNTIF",
+      "category": "Math",
+      "description": "Returns a conditional count across a range.",
+      "syntax": "COUNTIF(range, criterion)",
+      "parameters": [
+        { "name": "range", "type": "range", "required": true, "description": "The range to which the criterion is applied." },
+        { "name": "criterion", "type": "any", "required": true, "description": "The condition to meet." }
+      ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "conditional_aggregation", "operator": "count" }
+    },
+    {
+      "name": "COUNTIFS",
+      "category": "Math",
+      "description": "Returns the count of a range depending on multiple criteria.",
+      "syntax": "COUNTIFS(criteria_range1, criterion1, [criteria_range2, criterion2, ...])",
+      "parameters": [
+        { "name": "criteria_pairs", "type": "any", "required": true, "repeating": true, "description": "Pairs of ranges and their criteria." }
+      ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "conditional_aggregation", "operator": "count", "multiple_conditions": true }
+    },
+    {
+      "name": "COUNTUNIQUE",
+      "category": "Math",
+      "description": "Counts the number of unique values in a list of specified values and ranges.",
+      "syntax": "COUNTUNIQUE(value1, [value2, ...])",
+      "parameters": [ { "name": "values", "type": "any", "required": true, "repeating": true, "description": "The values or ranges to consider." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "aggregation", "operator": "count_unique" }
+    },
+    {
+      "name": "MAX",
+      "category": "Math",
+      "description": "Returns the largest value in a numeric dataset.",
+      "syntax": "MAX(value1, [value2, ...])",
+      "parameters": [ { "name": "values", "type": ["number", "range"], "required": true, "repeating": true, "description": "The numbers or range to find the maximum of." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "aggregation", "operator": "math:max", "on": "params.values" }
+    },
+    {
+      "name": "MIN",
+      "category": "Math",
+      "description": "Returns the smallest value in a numeric dataset.",
+      "syntax": "MIN(value1, [value2, ...])",
+      "parameters": [ { "name": "values", "type": ["number", "range"], "required": true, "repeating": true, "description": "The numbers or range to find the minimum of." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "aggregation", "operator": "math:min", "on": "params.values" }
+    },
+    {
+      "name": "ROUND",
+      "category": "Math",
+      "description": "Rounds a number to a specified number of decimal places.",
+      "syntax": "ROUND(value, places)",
+      "parameters": [
+        { "name": "value", "type": "number", "required": true, "description": "The number to round." },
+        { "name": "places", "type": "integer", "required": true, "description": "The number of decimal places to round to." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "procedure", "name": "rounding", "description": "A procedural implementation of rounding logic." }
+    },
+    {
+      "name": "ABS",
+      "category": "Math",
+      "description": "Returns the absolute value of a number.",
+      "syntax": "ABS(value)",
+      "parameters": [ { "name": "value", "type": "number", "required": true, "description": "The number to find the absolute value of." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "operator", "name": "math:abs" }
+    },
+    {
+      "name": "POWER",
+      "category": "Math",
+      "description": "Returns a number raised to a power.",
+      "syntax": "POWER(base, exponent)",
+      "parameters": [
+        { "name": "base", "type": "number", "required": true, "description": "The base number." },
+        { "name": "exponent", "type": "number", "required": true, "description": "The exponent." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "operator", "name": "math:pow" }
+    },
+    {
+      "name": "SQRT",
+      "category": "Math",
+      "description": "Returns the positive square root of a positive number.",
+      "syntax": "SQRT(value)",
+      "parameters": [ { "name": "value", "type": "number", "required": true, "description": "The number to find the square root of." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "operator", "name": "math:sqrt" }
+    },
+    {
+      "name": "PRODUCT",
+      "category": "Math",
+      "description": "Returns the result of multiplying a series of numbers together.",
+      "syntax": "PRODUCT(factor1, [factor2, ...])",
+      "parameters": [ { "name": "factors", "type": "number", "required": true, "repeating": true, "description": "The numbers to multiply." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "aggregation", "operator": "math:product" }
+    },
+    {
+      "name": "QUOTIENT",
+      "category": "Math",
+      "description": "Returns one number divided by another, without the remainder.",
+      "syntax": "QUOTIENT(numerator, denominator)",
+      "parameters": [
+        { "name": "numerator", "type": "number", "required": true, "description": "The number to be divided." },
+        { "name": "denominator", "type": "number", "required": true, "description": "The number to divide by." }
+      ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "procedure", "name": "integer_division" }
+    },
+    {
+      "name": "RAND",
+      "category": "Math",
+      "description": "Returns a random number between 0 inclusive and 1 exclusive.",
+      "syntax": "RAND()",
+      "parameters": [],
+      "returnType": "number",
+      "logic_implementation": { "type": "external_call", "service": "random_number_generator" }
+    },
+    {
+      "name": "RANDBETWEEN",
+      "category": "Math",
+      "description": "Returns a random integer between two values, inclusive.",
+      "syntax": "RANDBETWEEN(low, high)",
+      "parameters": [
+        { "name": "low", "type": "integer", "required": true, "description": "The low end of the random range." },
+        { "name": "high", "type": "integer", "required": true, "description": "The high end of the random range." }
+      ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "external_call", "service": "random_number_generator" }
+    },
+    {
+      "name": "VLOOKUP",
+      "category": "Lookup",
+      "description": "Searches for a key in the first column of a range and returns the value in the same row from a specified column.",
+      "syntax": "VLOOKUP(search_key, range, index, [is_sorted])",
+      "parameters": [
+        { "name": "search_key", "type": "any", "required": true, "description": "The value to search for." },
+        { "name": "range", "type": "range", "required": true, "description": "The range to search within." },
+        { "name": "index", "type": "integer", "required": true, "description": "The column number of the value to return (1-based)." },
+        { "name": "is_sorted", "type": "boolean", "required": false, "description": "Specifies if the first column is sorted for approximate matching." }
+      ],
+      "returnType": "any",
+      "logic_implementation": { "type": "procedure", "name": "vertical_lookup", "description": "A procedural search algorithm." }
+    },
+    {
+      "name": "HLOOKUP",
+      "category": "Lookup",
+      "description": "Searches for a key in the first row of a range and returns the value in the same column from a specified row.",
+      "syntax": "HLOOKUP(search_key, range, index, [is_sorted])",
+      "parameters": [
+        { "name": "search_key", "type": "any", "required": true, "description": "The value to search for." },
+        { "name": "range", "type": "range", "required": true, "description": "The range to search within." },
+        { "name": "index", "type": "integer", "required": true, "description": "The row number of the value to return (1-based)." },
+        { "name": "is_sorted", "type": "boolean", "required": false, "description": "Specifies if the first row is sorted for approximate matching." }
+      ],
+      "returnType": "any",
+      "logic_implementation": { "type": "procedure", "name": "horizontal_lookup", "description": "A procedural search algorithm." }
+    },
+    {
+      "name": "XLOOKUP",
+      "category": "Lookup",
+      "description": "Searches a range for a match and returns the corresponding item from a second range. A modern replacement for VLOOKUP/HLOOKUP.",
+      "syntax": "XLOOKUP(search_key, lookup_range, result_range, [if_not_found], [match_mode], [search_mode])",
+      "parameters": [
+        { "name": "search_key", "type": "any", "required": true, "description": "The value to search for." },
+        { "name": "lookup_range", "type": "range", "required": true, "description": "The range to search in." },
+        { "name": "result_range", "type": "range", "required": true, "description": "The range from which to return a result." },
+        { "name": "if_not_found", "type": "any", "required": false, "description": "Value to return if no match is found." },
+        { "name": "match_mode", "type": "integer", "required": false, "description": "0: exact match (default); -1: exact or next smaller; 1: exact or next larger; 2: wildcard match." },
+        { "name": "search_mode", "type": "integer", "required": false, "description": "1: search first-to-last (default); -1: search last-to-first; 2: binary search (sorted); -2: binary search (sorted descending)." }
+      ],
+      "returnType": "any",
+      "logic_implementation": { "type": "procedure", "name": "extended_lookup" }
+    },
+    {
+      "name": "INDEX",
+      "category": "Lookup",
+      "description": "Returns the content of a cell, specified by row and column offset.",
+      "syntax": "INDEX(range, [row], [column])",
+      "parameters": [
+        { "name": "range", "type": "range", "required": true, "description": "The range of cells." },
+        { "name": "row", "type": "integer", "required": false, "description": "The row offset from the top of the range (1-based)." },
+        { "name": "column", "type": "integer", "required": false, "description": "The column offset from the left of the range (1-based)." }
+      ],
+      "returnType": "any",
+      "logic_implementation": { "type": "selection", "source": "params.range", "where": "row and column coordinates" }
+    },
+    {
+      "name": "MATCH",
+      "category": "Lookup",
+      "description": "Returns the relative position of an item in a range that matches a specified value.",
+      "syntax": "MATCH(search_key, range, [search_type])",
+      "parameters": [
+        { "name": "search_key", "type": "any", "required": true, "description": "The value to search for." },
+        { "name": "range", "type": "range", "required": true, "description": "The one-dimensional range to be searched." },
+        { "name": "search_type", "type": "integer", "required": false, "description": "The method of matching: 1 (less than), 0 (exact), or -1 (greater than)." }
+      ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "procedure", "name": "position_search", "description": "A procedural search for an item's position." }
+    },
+    {
+      "name": "CHOOSE",
+      "category": "Lookup",
+      "description": "Returns an element from a list of choices based on an index.",
+      "syntax": "CHOOSE(index, choice1, [choice2, ...])",
+      "parameters": [
+        { "name": "index", "type": "integer", "required": true, "description": "Which choice to return (1-based)." },
+        { "name": "choices", "type": "any", "required": true, "repeating": true, "description": "The list of choices." }
+      ],
+      "returnType": "any",
+      "logic_implementation": { "type": "selection", "source": "params.choices", "where": "params.index" }
+    },
+    {
+      "name": "INDIRECT",
+      "category": "Lookup",
+      "description": "Returns a cell reference specified by a string.",
+      "syntax": "INDIRECT(cell_reference_as_string)",
+      "parameters": [ { "name": "cell_reference_as_string", "type": "string", "required": true, "description": "A string representing a cell reference (e.g., 'A1')." } ],
+      "returnType": "reference",
+      "logic_implementation": { "type": "reference_resolution", "name": "string_to_reference" }
+    },
+    {
+      "name": "OFFSET",
+      "category": "Lookup",
+      "description": "Returns a range reference shifted a specified number of rows and columns from an initial cell reference.",
+      "syntax": "OFFSET(cell_reference, offset_rows, offset_cols, [height], [width])",
+      "parameters": [
+        { "name": "cell_reference", "type": "reference", "required": true, "description": "The starting reference." },
+        { "name": "offset_rows", "type": "integer", "required": true, "description": "The number of rows to shift." },
+        { "name": "offset_cols", "type": "integer", "required": true, "description": "The number of columns to shift." },
+        { "name": "height", "type": "integer", "required": false, "description": "The height in rows of the returned range." },
+        { "name": "width", "type": "integer", "required": false, "description": "The width in columns of the returned range." }
+      ],
+      "returnType": "range",
+      "logic_implementation": { "type": "reference_manipulation", "name": "shift_reference" }
+    },
+    {
+      "name": "ROW",
+      "category": "Lookup",
+      "description": "Returns the row number of a specified cell.",
+      "syntax": "ROW([cell_reference])",
+      "parameters": [ { "name": "cell_reference", "type": "reference", "required": false, "description": "The cell to get the row number of." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "metadata_check", "property": "row_number" }
+    },
+    {
+      "name": "COLUMN",
+      "category": "Lookup",
+      "description": "Returns the column number of a specified cell.",
+      "syntax": "COLUMN([cell_reference])",
+      "parameters": [ { "name": "cell_reference", "type": "reference", "required": false, "description": "The cell to get the column number of." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "metadata_check", "property": "column_number" }
+    },
+    {
+      "name": "ROWS",
+      "category": "Lookup",
+      "description": "Returns the number of rows in a specified array or range.",
+      "syntax": "ROWS(range)",
+      "parameters": [ { "name": "range", "type": "range", "required": true, "description": "The range to count the rows of." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "metadata_check", "property": "row_count" }
+    },
+    {
+      "name": "COLUMNS",
+      "category": "Lookup",
+      "description": "Returns the number of columns in a specified array or range.",
+      "syntax": "COLUMNS(range)",
+      "parameters": [ { "name": "range", "type": "range", "required": true, "description": "The range to count the columns of." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "metadata_check", "property": "column_count" }
+    },
+    {
+      "name": "ADDRESS",
+      "category": "Lookup",
+      "description": "Creates a cell reference as a string from specified row and column numbers.",
+      "syntax": "ADDRESS(row, column, [absolute_relative_mode], [use_a1_notation], [sheet])",
+      "parameters": [
+        { "name": "row", "type": "integer", "required": true, "description": "The row number." },
+        { "name": "column", "type": "integer", "required": true, "description": "The column number." }
+      ],
+      "returnType": "string",
+      "logic_implementation": { "type": "reference_constructor", "name": "coordinates_to_string" }
+    },
+    {
+      "name": "FILTER",
+      "category": "Lookup",
+      "description": "Filters a range based on a set of conditions.",
+      "syntax": "FILTER(range, condition1, [condition2, ...])",
+      "parameters": [
+        { "name": "range", "type": "range", "required": true, "description": "The range to filter." },
+        { "name": "conditions", "type": "boolean[]", "required": true, "repeating": true, "description": "Arrays of booleans, where TRUE indicates a row/column to keep." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "selection", "source": "params.range", "where": "params.conditions" }
+    },
+    {
+      "name": "CONCAT",
+      "category": "Text",
+      "description": "Appends strings to one another.",
+      "syntax": "CONCAT(value1, [value2, ...])",
+      "parameters": [ { "name": "values", "type": "string", "required": true, "repeating": true, "description": "The strings to concatenate." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "operator", "name": "str:concat", "appliesTo": "params.values" }
+    },
+    {
+      "name": "TEXTJOIN",
+      "category": "Text",
+      "description": "Combines the text from multiple strings and/or arrays, with a specifiable delimiter separating them.",
+      "syntax": "TEXTJOIN(delimiter, ignore_empty, text1, [text2, ...])",
+      "parameters": [
+        { "name": "delimiter", "type": "string", "required": true, "description": "The character(s) to place between each text item." },
+        { "name": "ignore_empty", "type": "boolean", "required": true, "description": "Whether to ignore empty cells." },
+        { "name": "texts", "type": "any", "required": true, "repeating": true, "description": "The text items or ranges to join." }
+      ],
+      "returnType": "string",
+      "logic_implementation": { "type": "procedure", "name": "join_with_delimiter" }
+    },
+    {
+      "name": "LEFT",
+      "category": "Text",
+      "description": "Returns a substring from the beginning of a specified string.",
+      "syntax": "LEFT(string, [number_of_characters])",
+      "parameters": [
+        { "name": "string", "type": "string", "required": true, "description": "The string to extract from." },
+        { "name": "number_of_characters", "type": "integer", "required": false, "description": "The number of characters to extract." }
+      ],
+      "returnType": "string",
+      "logic_implementation": { "type": "procedure", "name": "substring_from_start" }
+    },
+    {
+      "name": "RIGHT",
+      "category": "Text",
+      "description": "Returns a substring from the end of a specified string.",
+      "syntax": "RIGHT(string, [number_of_characters])",
+      "parameters": [
+        { "name": "string", "type": "string", "required": true, "description": "The string to extract from." },
+        { "name": "number_of_characters", "type": "integer", "required": false, "description": "The number of characters to extract." }
+      ],
+      "returnType": "string",
+      "logic_implementation": { "type": "procedure", "name": "substring_from_end" }
+    },
+    {
+      "name": "LEN",
+      "category": "Text",
+      "description": "Returns the length of a string.",
+      "syntax": "LEN(text)",
+      "parameters": [ { "name": "text", "type": "string", "required": true, "description": "The string whose length will be returned." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "operator", "name": "str:length", "appliesTo": "params.text" }
+    },
+    {
+      "name": "FIND",
+      "category": "Text",
+      "description": "Returns the starting position of a string within another string (case-sensitive).",
+      "syntax": "FIND(search_for, text_to_search, [starting_at])",
+      "parameters": [
+        { "name": "search_for", "type": "string", "required": true, "description": "The string to find." },
+        { "name": "text_to_search", "type": "string", "required": true, "description": "The text to search within." }
+      ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "procedure", "name": "find_substring_position", "case_sensitive": true }
+    },
+    {
+      "name": "SEARCH",
+      "category": "Text",
+      "description": "Returns the starting position of a string within another string (case-insensitive).",
+      "syntax": "SEARCH(search_for, text_to_search, [starting_at])",
+      "parameters": [
+        { "name": "search_for", "type": "string", "required": true, "description": "The string to find." },
+        { "name": "text_to_search", "type": "string", "required": true, "description": "The text to search within." }
+      ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "procedure", "name": "find_substring_position", "case_sensitive": false }
+    },
+    {
+      "name": "REPLACE",
+      "category": "Text",
+      "description": "Replaces part of a text string with a different text string.",
+      "syntax": "REPLACE(old_text, start_num, num_chars, new_text)",
+      "parameters": [
+        { "name": "old_text", "type": "string", "required": true, "description": "The original text." },
+        { "name": "start_num", "type": "integer", "required": true, "description": "The starting position for replacement." },
+        { "name": "num_chars", "type": "integer", "required": true, "description": "The number of characters to replace." },
+        { "name": "new_text", "type": "string", "required": true, "description": "The new text to insert." }
+      ],
+      "returnType": "string",
+      "logic_implementation": { "type": "procedure", "name": "replace_by_position" }
+    },
+    {
+      "name": "SUBSTITUTE",
+      "category": "Text",
+      "description": "Replaces existing text with new text in a string.",
+      "syntax": "SUBSTITUTE(text_to_search, search_for, replace_with, [occurrence_number])",
+      "parameters": [
+        { "name": "text_to_search", "type": "string", "required": true, "description": "The text to search within." },
+        { "name": "search_for", "type": "string", "required": true, "description": "The string to be replaced." },
+        { "name": "replace_with", "type": "string", "required": true, "description": "The string to replace with." }
+      ],
+      "returnType": "string",
+      "logic_implementation": { "type": "procedure", "name": "replace_by_content" }
+    },
+    {
+      "name": "TRIM",
+      "category": "Text",
+      "description": "Removes leading and trailing spaces in a string.",
+      "syntax": "TRIM(text)",
+      "parameters": [ { "name": "text", "type": "string", "required": true, "description": "The string to trim." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "procedure", "name": "trim_whitespace" }
+    },
+    {
+      "name": "CLEAN",
+      "category": "Text",
+      "description": "Removes non-printable characters from text.",
+      "syntax": "CLEAN(text)",
+      "parameters": [ { "name": "text", "type": "string", "required": true, "description": "The string to clean." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "procedure", "name": "remove_non_printable_chars" }
+    },
+    {
+      "name": "UPPER",
+      "category": "Text",
+      "description": "Converts a string to all uppercase letters.",
+      "syntax": "UPPER(text)",
+      "parameters": [ { "name": "text", "type": "string", "required": true, "description": "The string to convert." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "procedure", "name": "to_uppercase" }
+    },
+    {
+      "name": "LOWER",
+      "category": "Text",
+      "description": "Converts a string to all lowercase letters.",
+      "syntax": "LOWER(text)",
+      "parameters": [ { "name": "text", "type": "string", "required": true, "description": "The string to convert." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "procedure", "name": "to_lowercase" }
+    },
+    {
+      "name": "EXACT",
+      "category": "Text",
+      "description": "Checks whether two strings are identical (case-sensitive).",
+      "syntax": "EXACT(string1, string2)",
+      "parameters": [
+        { "name": "string1", "type": "string", "required": true, "description": "The first string." },
+        { "name": "string2", "type": "string", "required": true, "description": "The second string." }
+      ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "operator", "name": "str:equal", "case_sensitive": true }
+    },
+    {
+      "name": "REPT",
+      "category": "Text",
+      "description": "Repeats text a given number of times.",
+      "syntax": "REPT(text_to_repeat, number_of_repetitions)",
+      "parameters": [
+        { "name": "text_to_repeat", "type": "string", "required": true, "description": "The text to repeat." },
+        { "name": "number_of_repetitions", "type": "integer", "required": true, "description": "The number of times to repeat it." }
+      ],
+      "returnType": "string",
+      "logic_implementation": { "type": "procedure", "name": "repeat_string" }
+    },
+    {
+      "name": "SPLIT",
+      "category": "Text",
+      "description": "Divides text around a specified character or string, and puts each fragment into a separate cell in the row.",
+      "syntax": "SPLIT(text, delimiter)",
+      "parameters": [
+        { "name": "text", "type": "string", "required": true, "description": "The text to divide." },
+        { "name": "delimiter", "type": "string", "required": true, "description": "The character(s) to divide the text by." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "procedure", "name": "split_string" }
+    },
+    {
+      "name": "VALUE",
+      "category": "Text",
+      "description": "Converts a string that appears in a recognized format (e.g. a date, time, or number) into a number.",
+      "syntax": "VALUE(text)",
+      "parameters": [ { "name": "text", "type": "string", "required": true, "description": "The string to convert." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "type_conversion", "to": "number" }
+    },
+    {
+      "name": "TEXT",
+      "category": "Text",
+      "description": "Converts a number into text according to a specified format.",
+      "syntax": "TEXT(number, format)",
+      "parameters": [
+        { "name": "number", "type": "number", "required": true, "description": "The number to format." },
+        { "name": "format", "type": "string", "required": true, "description": "The format pattern to apply." }
+      ],
+      "returnType": "string",
+      "logic_implementation": { "type": "type_conversion", "to": "string_with_format" }
+    },
+    {
+      "name": "TODAY",
+      "category": "Date & Time",
+      "description": "Returns the current date as a date value.",
+      "syntax": "TODAY()",
+      "parameters": [],
+      "returnType": "date",
+      "logic_implementation": { "type": "external_call", "service": "system_clock", "method": "current_date" }
+    },
+    {
+      "name": "NOW",
+      "category": "Date & Time",
+      "description": "Returns the current date and time as a date value.",
+      "syntax": "NOW()",
+      "parameters": [],
+      "returnType": "datetime",
+      "logic_implementation": { "type": "external_call", "service": "system_clock", "method": "current_datetime" }
+    },
+    {
+      "name": "DATE",
+      "category": "Date & Time",
+      "description": "Converts a provided year, month, and day into a date.",
+      "syntax": "DATE(year, month, day)",
+      "parameters": [
+        { "name": "year", "type": "integer", "required": true, "description": "The year component." },
+        { "name": "month", "type": "integer", "required": true, "description": "The month component." },
+        { "name": "day", "type": "integer", "required": true, "description": "The day component." }
+      ],
+      "returnType": "date",
+      "logic_implementation": { "type": "procedure", "name": "construct_date" }
+    },
+    {
+      "name": "TIME",
+      "category": "Date & Time",
+      "description": "Converts a provided hour, minute, and second into a time.",
+      "syntax": "TIME(hour, minute, second)",
+      "parameters": [
+        { "name": "hour", "type": "integer", "required": true, "description": "The hour component." },
+        { "name": "minute", "type": "integer", "required": true, "description": "The minute component." },
+        { "name": "second", "type": "integer", "required": true, "description": "The second component." }
+      ],
+      "returnType": "time",
+      "logic_implementation": { "type": "procedure", "name": "construct_time" }
+    },
+    {
+      "name": "YEAR",
+      "category": "Date & Time",
+      "description": "Returns the year specified by a given date.",
+      "syntax": "YEAR(date)",
+      "parameters": [ { "name": "date", "type": "date", "required": true, "description": "The date from which to get the year." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "property_extraction", "property": "year", "from": "params.date" }
+    },
+    {
+      "name": "MONTH",
+      "category": "Date & Time",
+      "description": "Returns the month of the year specified by a given date.",
+      "syntax": "MONTH(date)",
+      "parameters": [ { "name": "date", "type": "date", "required": true, "description": "The date from which to get the month." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "property_extraction", "property": "month", "from": "params.date" }
+    },
+    {
+      "name": "DAY",
+      "category": "Date & Time",
+      "description": "Returns the day of the month specified by a given date.",
+      "syntax": "DAY(date)",
+      "parameters": [ { "name": "date", "type": "date", "required": true, "description": "The date from which to get the day." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "property_extraction", "property": "day", "from": "params.date" }
+    },
+    {
+      "name": "HOUR",
+      "category": "Date & Time",
+      "description": "Returns the hour component of a specific time.",
+      "syntax": "HOUR(time)",
+      "parameters": [ { "name": "time", "type": "datetime", "required": true, "description": "The time to get the hour from." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "property_extraction", "property": "hour" }
+    },
+    {
+      "name": "MINUTE",
+      "category": "Date & Time",
+      "description": "Returns the minute component of a specific time.",
+      "syntax": "MINUTE(time)",
+      "parameters": [ { "name": "time", "type": "datetime", "required": true, "description": "The time to get the minute from." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "property_extraction", "property": "minute" }
+    },
+    {
+      "name": "SECOND",
+      "category": "Date & Time",
+      "description": "Returns the second component of a specific time.",
+      "syntax": "SECOND(time)",
+      "parameters": [ { "name": "time", "type": "datetime", "required": true, "description": "The time to get the second from." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "property_extraction", "property": "second" }
+    },
+    {
+      "name": "WEEKDAY",
+      "category": "Date & Time",
+      "description": "Returns a number representing the day of the week of a provided date.",
+      "syntax": "WEEKDAY(date, [type])",
+      "parameters": [ { "name": "date", "type": "date", "required": true, "description": "The date." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "property_extraction", "property": "day_of_week" }
+    },
+    {
+      "name": "WEEKNUM",
+      "category": "Date & Time",
+      "description": "Returns a number representing the week of the year where the provided date falls.",
+      "syntax": "WEEKNUM(date, [type])",
+      "parameters": [ { "name": "date", "type": "date", "required": true, "description": "The date." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "property_extraction", "property": "week_of_year" }
+    },
+    {
+      "name": "DATEDIF",
+      "category": "Date & Time",
+      "description": "Calculates the number of days, months, or years between two dates.",
+      "syntax": "DATEDIF(start_date, end_date, unit)",
+      "parameters": [
+        { "name": "start_date", "type": "date", "required": true, "description": "The start date." },
+        { "name": "end_date", "type": "date", "required": true, "description": "The end date." },
+        { "name": "unit", "type": "string", "required": true, "description": "The unit of time ('Y', 'M', 'D', 'MD', 'YM', 'YD')." }
+      ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "procedure", "name": "date_difference" }
+    },
+    {
+      "name": "EDATE",
+      "category": "Date & Time",
+      "description": "Returns a date a specified number of months before or after another date.",
+      "syntax": "EDATE(start_date, months)",
+      "parameters": [
+        { "name": "start_date", "type": "date", "required": true, "description": "The start date." },
+        { "name": "months", "type": "integer", "required": true, "description": "The number of months to add or subtract." }
+      ],
+      "returnType": "date",
+      "logic_implementation": { "type": "procedure", "name": "add_months_to_date" }
+    },
+    {
+      "name": "EOMONTH",
+      "category": "Date & Time",
+      "description": "Returns the last day of the month that falls a specified number of months before or after another date.",
+      "syntax": "EOMONTH(start_date, months)",
+      "parameters": [
+        { "name": "start_date", "type": "date", "required": true, "description": "The start date." },
+        { "name": "months", "type": "integer", "required": true, "description": "The number of months to add or subtract." }
+      ],
+      "returnType": "date",
+      "logic_implementation": { "type": "procedure", "name": "end_of_month" }
+    },
+    {
+      "name": "NETWORKDAYS",
+      "category": "Date & Time",
+      "description": "Returns the number of net working days between two provided days.",
+      "syntax": "NETWORKDAYS(start_date, end_date, [holidays])",
+      "parameters": [
+        { "name": "start_date", "type": "date", "required": true, "description": "The start date." },
+        { "name": "end_date", "type": "date", "required": true, "description": "The end date." },
+        { "name": "holidays", "type": "range", "required": false, "description": "A range of holiday dates to exclude." }
+      ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "procedure", "name": "calculate_workdays" }
+    },
+    {
+      "name": "WORKDAY",
+      "category": "Date & Time",
+      "description": "Calculates the end date after a specified number of working days.",
+      "syntax": "WORKDAY(start_date, num_days, [holidays])",
+      "parameters": [
+        { "name": "start_date", "type": "date", "required": true, "description": "The start date." },
+        { "name": "num_days", "type": "integer", "required": true, "description": "The number of workdays to add." },
+        { "name": "holidays", "type": "range", "required": false, "description": "A range of holiday dates to exclude." }
+      ],
+      "returnType": "date",
+      "logic_implementation": { "type": "procedure", "name": "add_workdays" }
+    },
+    {
+      "name": "STDEV.S",
+      "category": "Statistical",
+      "description": "Calculates the standard deviation based on a sample.",
+      "syntax": "STDEV.S(value1, [value2, ...])",
+      "parameters": [ { "name": "values", "type": "number", "required": true, "repeating": true, "description": "The sample data." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "aggregation", "operator": "stat:stdev_sample" }
+    },
+    {
+      "name": "STDEV.P",
+      "category": "Statistical",
+      "description": "Calculates the standard deviation based on an entire population.",
+      "syntax": "STDEV.P(value1, [value2, ...])",
+      "parameters": [ { "name": "values", "type": "number", "required": true, "repeating": true, "description": "The population data." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "aggregation", "operator": "stat:stdev_population" }
+    },
+    {
+      "name": "VAR.S",
+      "category": "Statistical",
+      "description": "Calculates the variance based on a sample.",
+      "syntax": "VAR.S(value1, [value2, ...])",
+      "parameters": [ { "name": "values", "type": "number", "required": true, "repeating": true, "description": "The sample data." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "aggregation", "operator": "stat:var_sample" }
+    },
+    {
+      "name": "VAR.P",
+      "category": "Statistical",
+      "description": "Calculates variance based on an entire population.",
+      "syntax": "VAR.P(value1, [value2, ...])",
+      "parameters": [ { "name": "values", "type": "number", "required": true, "repeating": true, "description": "The population data." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "aggregation", "operator": "stat:var_population" }
+    },
+    {
+      "name": "MEDIAN",
+      "category": "Statistical",
+      "description": "Returns the median value in a numeric dataset.",
+      "syntax": "MEDIAN(value1, [value2, ...])",
+      "parameters": [ { "name": "values", "type": "number", "required": true, "repeating": true, "description": "The dataset." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "aggregation", "operator": "stat:median" }
+    },
+    {
+      "name": "MODE",
+      "category": "Statistical",
+      "description": "Returns the most commonly occurring value in a dataset.",
+      "syntax": "MODE(value1, [value2, ...])",
+      "parameters": [ { "name": "values", "type": "number", "required": true, "repeating": true, "description": "The dataset." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "aggregation", "operator": "stat:mode" }
+    },
+    {
+      "name": "QUARTILE",
+      "category": "Statistical",
+      "description": "Returns the value at a specified quartile of a dataset.",
+      "syntax": "QUARTILE(data, quartile_number)",
+      "parameters": [
+        { "name": "data", "type": "range", "required": true, "description": "The dataset." },
+        { "name": "quartile_number", "type": "integer", "required": true, "description": "Which quartile to return (0-4)." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "aggregation", "operator": "stat:quartile" }
+    },
+    {
+      "name": "PERCENTILE",
+      "category": "Statistical",
+      "description": "Returns the value at a given percentile of a dataset.",
+      "syntax": "PERCENTILE(data, percentile)",
+      "parameters": [
+        { "name": "data", "type": "range", "required": true, "description": "The dataset." },
+        { "name": "percentile", "type": "number", "required": true, "description": "The percentile (0 to 1)." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "aggregation", "operator": "stat:percentile" }
+    },
+    {
+      "name": "CORREL",
+      "category": "Statistical",
+      "description": "Calculates the correlation coefficient between two datasets.",
+      "syntax": "CORREL(data_y, data_x)",
+      "parameters": [
+        { "name": "data_y", "type": "range", "required": true, "description": "The range of dependent data." },
+        { "name": "data_x", "type": "range", "required": true, "description": "The range of independent data." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "procedure", "name": "correlation_coefficient" }
+    },
+    {
+      "name": "FORECAST",
+      "category": "Statistical",
+      "description": "Calculates, or predicts, a future value along a linear trend by using existing values.",
+      "syntax": "FORECAST(x, data_y, data_x)",
+      "parameters": [
+        { "name": "x", "type": "number", "required": true, "description": "The data point for which to predict a value." },
+        { "name": "data_y", "type": "range", "required": true, "description": "The range of dependent data." },
+        { "name": "data_x", "type": "range", "required": true, "description": "The range of independent data." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "procedure", "name": "linear_forecast" }
+    },
+    {
+      "name": "SLOPE",
+      "category": "Statistical",
+      "description": "Calculates the slope of the line resulting from linear regression of a dataset.",
+      "syntax": "SLOPE(data_y, data_x)",
+      "parameters": [
+        { "name": "data_y", "type": "range", "required": true, "description": "The range of dependent data." },
+        { "name": "data_x", "type": "range", "required": true, "description": "The range of independent data." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "procedure", "name": "linear_regression_slope" }
+    },
+    {
+      "name": "INTERCEPT",
+      "category": "Statistical",
+      "description": "Calculates the y-intercept of the line from a linear regression.",
+      "syntax": "INTERCEPT(data_y, data_x)",
+      "parameters": [
+        { "name": "data_y", "type": "range", "required": true, "description": "The range of dependent data." },
+        { "name": "data_x", "type": "range", "required": true, "description": "The range of independent data." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "procedure", "name": "linear_regression_intercept" }
+    },
+    {
+      "name": "PMT",
+      "category": "Financial",
+      "description": "Calculates the periodic payment for an annuity investment based on constant-amount periodic payments and a constant interest rate.",
+      "syntax": "PMT(rate, number_of_periods, present_value, [future_value], [end_or_beginning])",
+      "parameters": [
+        { "name": "rate", "type": "number", "required": true, "description": "The interest rate per period." },
+        { "name": "number_of_periods", "type": "integer", "required": true, "description": "The total number of payment periods." },
+        { "name": "present_value", "type": "number", "required": true, "description": "The present value of the annuity." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "financial_calculation", "name": "calculate_payment" }
+    },
+    {
+      "name": "PV",
+      "category": "Financial",
+      "description": "Calculates the present value of an investment.",
+      "syntax": "PV(rate, number_of_periods, payment_amount, [future_value], [end_or_beginning])",
+      "parameters": [
+        { "name": "rate", "type": "number", "required": true, "description": "The interest rate per period." },
+        { "name": "number_of_periods", "type": "integer", "required": true, "description": "The total number of payment periods." },
+        { "name": "payment_amount", "type": "number", "required": true, "description": "The payment made each period." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "financial_calculation", "name": "calculate_present_value" }
+    },
+    {
+      "name": "FV",
+      "category": "Financial",
+      "description": "Calculates the future value of an investment.",
+      "syntax": "FV(rate, number_of_periods, payment_amount, [present_value], [end_or_beginning])",
+      "parameters": [
+        { "name": "rate", "type": "number", "required": true, "description": "The interest rate per period." },
+        { "name": "number_of_periods", "type": "integer", "required": true, "description": "The total number of payment periods." },
+        { "name": "payment_amount", "type": "number", "required": true, "description": "The payment made each period." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "financial_calculation", "name": "calculate_future_value" }
+    },
+    {
+      "name": "NPER",
+      "category": "Financial",
+      "description": "Calculates the number of payment periods for an investment.",
+      "syntax": "NPER(rate, payment_amount, present_value, [future_value], [end_or_beginning])",
+      "parameters": [
+        { "name": "rate", "type": "number", "required": true, "description": "The interest rate per period." },
+        { "name": "payment_amount", "type": "number", "required": true, "description": "The payment made each period." },
+        { "name": "present_value", "type": "number", "required": true, "description": "The present value of the annuity." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "financial_calculation", "name": "calculate_num_periods" }
+    },
+    {
+      "name": "RATE",
+      "category": "Financial",
+      "description": "Calculates the interest rate per period of an annuity.",
+      "syntax": "RATE(number_of_periods, payment_amount, present_value, [future_value], [end_or_beginning], [guess])",
+      "parameters": [
+        { "name": "number_of_periods", "type": "integer", "required": true, "description": "The total number of payment periods." },
+        { "name": "payment_amount", "type": "number", "required": true, "description": "The payment made each period." },
+        { "name": "present_value", "type": "number", "required": true, "description": "The present value of the annuity." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "solver", "name": "solve_interest_rate" }
+    },
+    {
+      "name": "NPV",
+      "category": "Financial",
+      "description": "Calculates the net present value of an investment based on a series of periodic cash flows and a discount rate.",
+      "syntax": "NPV(discount_rate, cashflow1, [cashflow2, ...])",
+      "parameters": [
+        { "name": "discount_rate", "type": "number", "required": true, "description": "The rate of discount over the length of one period." },
+        { "name": "cashflows", "type": "number", "required": true, "repeating": true, "description": "A series of future cash flows." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "financial_calculation", "name": "calculate_net_present_value" }
+    },
+    {
+      "name": "IRR",
+      "category": "Financial",
+      "description": "Calculates the internal rate of return on an investment for a series of periodic cash flows.",
+      "syntax": "IRR(cashflow_amounts, [guess])",
+      "parameters": [
+        { "name": "cashflow_amounts", "type": "range", "required": true, "description": "An array or range containing the income or payments associated with the investment." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "solver", "name": "solve_internal_rate_of_return" }
+    },
+    {
+      "name": "CONVERT",
+      "category": "Engineering",
+      "description": "Converts a number from one measurement system to another.",
+      "syntax": "CONVERT(value, start_unit, end_unit)",
+      "parameters": [
+        { "name": "value", "type": "number", "required": true, "description": "The value to convert." },
+        { "name": "start_unit", "type": "string", "required": true, "description": "The starting unit." },
+        { "name": "end_unit", "type": "string", "required": true, "description": "The ending unit." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "procedure", "name": "unit_conversion" }
+    },
+    {
+      "name": "DEC2BIN",
+      "category": "Engineering",
+      "description": "Converts a decimal number to binary.",
+      "syntax": "DEC2BIN(decimal_number)",
+      "parameters": [ { "name": "decimal_number", "type": "integer", "required": true, "description": "The decimal number to convert." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "procedure", "name": "decimal_to_binary" }
+    },
+    {
+      "name": "BIN2DEC",
+      "category": "Engineering",
+      "description": "Converts a binary number to decimal.",
+      "syntax": "BIN2DEC(binary_number)",
+      "parameters": [ { "name": "binary_number", "type": "string", "required": true, "description": "The binary number to convert." } ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "procedure", "name": "binary_to_decimal" }
+    },
+    {
+      "name": "DELTA",
+      "category": "Engineering",
+      "description": "Tests whether two values are equal. Returns 1 if they are, 0 otherwise.",
+      "syntax": "DELTA(number1, [number2])",
+      "parameters": [
+        { "name": "number1", "type": "number", "required": true, "description": "The first number." },
+        { "name": "number2", "type": "number", "required": false, "description": "The second number (defaults to 0)." }
+      ],
+      "returnType": "integer",
+      "logic_implementation": { "type": "operator", "name": "check_equality" }
+    },
+    {
+      "name": "IMPORTDATA",
+      "category": "Web",
+      "description": "Imports data from a given url in .csv or .tsv format.",
+      "syntax": "IMPORTDATA(url)",
+      "parameters": [ { "name": "url", "type": "string", "required": true, "description": "The URL of the data file." } ],
+      "returnType": "array",
+      "logic_implementation": { "type": "external_call", "service": "web_importer", "format": "csv/tsv" }
+    },
+    {
+      "name": "IMPORTHTML",
+      "category": "Web",
+      "description": "Imports data from a table or list within an HTML page.",
+      "syntax": "IMPORTHTML(url, query, index)",
+      "parameters": [
+        { "name": "url", "type": "string", "required": true, "description": "The URL of the HTML page." },
+        { "name": "query", "type": "string", "required": true, "description": "The type of structure to import ('table' or 'list')." },
+        { "name": "index", "type": "integer", "required": true, "description": "The index of the table or list on the page." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "external_call", "service": "web_importer", "format": "html" }
+    },
+    {
+      "name": "IMPORTXML",
+      "category": "Web",
+      "description": "Imports data from any of various structured data types including XML, HTML, CSV, TSV, and RSS and ATOM XML feeds.",
+      "syntax": "IMPORTXML(url, xpath_query)",
+      "parameters": [
+        { "name": "url", "type": "string", "required": true, "description": "The URL of the page to examine." },
+        { "name": "xpath_query", "type": "string", "required": true, "description": "The XPath query to run on the structured data." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "external_call", "service": "web_importer", "format": "xml" }
+    },
+    {
+      "name": "IMPORTRANGE",
+      "category": "Web",
+      "description": "Imports a range of cells from a specified spreadsheet.",
+      "syntax": "IMPORTRANGE(spreadsheet_url, range_string)",
+      "parameters": [
+        { "name": "spreadsheet_url", "type": "string", "required": true, "description": "The URL of the spreadsheet." },
+        { "name": "range_string", "type": "string", "required": true, "description": "A string specifying the range to import." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "external_call", "service": "spreadsheet_importer" }
+    },
+    {
+      "name": "ENCODEURL",
+      "category": "Web",
+      "description": "Encodes a string of text for use in a URL.",
+      "syntax": "ENCODEURL(text)",
+      "parameters": [ { "name": "text", "type": "string", "required": true, "description": "The text to encode." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "procedure", "name": "url_encode" }
+    },
+    {
+      "name": "REGEXMATCH",
+      "category": "Parser",
+      "description": "Whether a piece of text matches a regular expression.",
+      "syntax": "REGEXMATCH(text, regular_expression)",
+      "parameters": [
+        { "name": "text", "type": "string", "required": true, "description": "The text to test against." },
+        { "name": "regular_expression", "type": "string", "required": true, "description": "The regular expression." }
+      ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "regex_operation", "name": "match" }
+    },
+    {
+      "name": "REGEXEXTRACT",
+      "category": "Parser",
+      "description": "Extracts matching substrings according to a regular expression.",
+      "syntax": "REGEXEXTRACT(text, regular_expression)",
+      "parameters": [
+        { "name": "text", "type": "string", "required": true, "description": "The text to extract from." },
+        { "name": "regular_expression", "type": "string", "required": true, "description": "The regular expression with a capturing group." }
+      ],
+      "returnType": "string",
+      "logic_implementation": { "type": "regex_operation", "name": "extract" }
+    },
+    {
+      "name": "REGEXREPLACE",
+      "category": "Parser",
+      "description": "Replaces part of a text string with a different text string using regular expressions.",
+      "syntax": "REGEXREPLACE(text, regular_expression, replacement)",
+      "parameters": [
+        { "name": "text", "type": "string", "required": true, "description": "The text to perform replacement on." },
+        { "name": "regular_expression", "type": "string", "required": true, "description": "The regular expression to match." },
+        { "name": "replacement", "type": "string", "required": true, "description": "The text to replace the matched substring with." }
+      ],
+      "returnType": "string",
+      "logic_implementation": { "type": "regex_operation", "name": "replace" }
+    },
+    {
+      "name": "MAP",
+      "category": "Advanced Logic & Array",
+      "description": "Applies a lambda function to each item in a range, returning a new array of results.",
+      "syntax": "MAP(range, lambda_function)",
+      "parameters": [
+        { "name": "range", "type": "range", "required": true, "description": "The array or range to iterate over." },
+        { "name": "lambda_function", "type": "string", "required": true, "description": "A string representing the function to apply, e.g., 'x -> x * 2'." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "higher_order_function", "name": "map", "description": "Applies a function to each element of a list." }
+    },
+    {
+      "name": "REDUCE",
+      "category": "Advanced Logic & Array",
+      "description": "Reduces a range to a single value by applying a function cumulatively.",
+      "syntax": "REDUCE(range, lambda_function, [initial_value])",
+      "parameters": [
+        { "name": "range", "type": "range", "required": true, "description": "The array or range to iterate over." },
+        { "name": "lambda_function", "type": "string", "required": true, "description": "A string representing the accumulator function, e.g., '(acc, val) -> acc + val'." },
+        { "name": "initial_value", "type": "any", "required": false, "description": "The starting value for the accumulator." }
+      ],
+      "returnType": "any",
+      "logic_implementation": { "type": "higher_order_function", "name": "reduce", "description": "Applies a function against an accumulator and each element in the array to reduce it to a single value." }
+    },
+    {
+      "name": "MEMBER",
+      "category": "Advanced Logic & Array",
+      "description": "Returns TRUE if an item is found within a specified range.",
+      "syntax": "MEMBER(item, range)",
+      "parameters": [
+        { "name": "item", "type": "any", "required": true, "description": "The value to search for." },
+        { "name": "range", "type": "range", "required": true, "description": "The range to search within." }
+      ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "set_operation", "name": "membership_check", "description": "Checks for the existence of an element in a set." }
+    },
+    {
+      "name": "FINDALL",
+      "category": "Advanced Logic & Array",
+      "description": "Finds all rows matching a condition and returns a result based on a template. (Prolog's findall/3).",
+      "syntax": "FINDALL(template_range, source_range, condition_formula)",
+      "parameters": [
+        { "name": "template_range", "type": "range", "required": true, "description": "A range defining the structure of the output rows." },
+        { "name": "source_range", "type": "range", "required": true, "description": "The data source to query." },
+        { "name": "condition_formula", "type": "string", "required": true, "description": "A logical formula string to filter the source range." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "declarative_query", "name": "findall", "description": "A goal-driven query that collects all successful solutions." }
+    },
+    {
+      "name": "PATH",
+      "category": "Advanced Logic & Array",
+      "description": "Determines if a path exists between two nodes in a graph defined by an edge list.",
+      "syntax": "PATH(start_node, end_node, edge_range, [allow_cycles])",
+      "parameters": [
+        { "name": "start_node", "type": "any", "required": true, "description": "The starting node." },
+        { "name": "end_node", "type": "any", "required": true, "description": "The ending node." },
+        { "name": "edge_range", "type": "range", "required": true, "description": "A two-column range representing the 'from' and 'to' edges of the graph." },
+        { "name": "allow_cycles", "type": "boolean", "required": false, "description": "Whether the path-finding should handle cycles." }
+      ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "recursive_query", "name": "graph_traversal", "description": "A recursive search for a path in a graph." }
+    },
+    {
+      "name": "SOLVE_QUADRATIC",
+      "category": "Algebra",
+      "description": "Solves a quadratic equation ax^2 + bx + c = 0. Not a native function, but represents a multi-step process.",
+      "syntax": "SOLVE_QUADRATIC(a, b, c)",
+      "parameters": [
+        { "name": "a", "type": "number", "required": true, "description": "The 'a' coefficient." },
+        { "name": "b", "type": "number", "required": true, "description": "The 'b' coefficient." },
+        { "name": "c", "type": "number", "required": true, "description": "The 'c' coefficient." }
+      ],
+      "returnType": "array",
+      "logic_implementation": {
+        "type": "workflow",
+        "description": "A defined sequence of calculations to find the roots.",
+        "steps": [
+          { "name": "discriminant", "formula": "b^2 - 4*a*c" },
+          { "name": "root1", "formula": "IF(discriminant >= 0, (-b + SQRT(discriminant)) / (2*a), 'NaN')" },
+          { "name": "root2", "formula": "IF(discriminant >= 0, (-b - SQRT(discriminant)) / (2*a), 'NaN')" }
+        ]
+      }
+    },
+    {
+      "name": "GOAL_SEEK",
+      "category": "Algebra",
+      "description": "Finds an input value that results in a desired formula output. Represents a solver tool.",
+      "syntax": "GOAL_SEEK(formula_cell, target_value, changing_cell)",
+      "parameters": [
+        { "name": "formula_cell", "type": "reference", "required": true, "description": "The cell containing the formula." },
+        { "name": "target_value", "type": "any", "required": true, "description": "The desired result of the formula." },
+        { "name": "changing_cell", "type": "reference", "required": true, "description": "The input cell to modify to reach the goal." }
+      ],
+      "returnType": "any",
+      "logic_implementation": { "type": "solver", "name": "iterative_solver", "description": "An iterative process to find an input for a target output." }
+    },
+    {
+      "name": "SOLVE_SYSTEM",
+      "category": "Algebra",
+      "description": "Solves a system of linear equations.",
+      "syntax": "SOLVE_SYSTEM(equations_range, variables_range)",
+      "parameters": [
+        { "name": "equations_range", "type": "range", "required": true, "description": "A range representing the matrix of coefficients and constants." },
+        { "name": "variables_range", "type": "range", "required": true, "description": "A range defining the variables to be solved for." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "solver", "name": "linear_system_solver", "description": "Solves a system of linear equations, e.g., using Gaussian elimination." }
+    },
+    {
+      "name": "POLYNOMIAL_ROOTS",
+      "category": "Algebra",
+      "description": "Finds the roots of a polynomial with given coefficients.",
+      "syntax": "POLYNOMIAL_ROOTS(coefficients_range)",
+      "parameters": [
+        { "name": "coefficients_range", "type": "range", "required": true, "description": "A 1D range of polynomial coefficients, from the highest degree to the constant term." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "solver", "name": "polynomial_root_finder", "description": "Finds all real and complex roots of a polynomial." }
+    },
+    {
+      "name": "EXPAND",
+      "category": "Algebra",
+      "description": "Expands a factored algebraic expression.",
+      "syntax": "EXPAND(expression_string)",
+      "parameters": [ { "name": "expression_string", "type": "string", "required": true, "description": "A string containing a valid algebraic expression, e.g., '(x+1)*(x-2)'." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "symbolic_manipulation", "name": "expand_expression" }
+    },
+    {
+      "name": "FACTOR",
+      "category": "Algebra",
+      "description": "Factors an algebraic expression.",
+      "syntax": "FACTOR(expression_string)",
+      "parameters": [ { "name": "expression_string", "type": "string", "required": true, "description": "A string containing a valid algebraic expression, e.g., 'x^2-1'." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "symbolic_manipulation", "name": "factor_expression" }
+    },
+    {
+      "name": "SIMPLIFY",
+      "category": "Algebra",
+      "description": "Simplifies an algebraic expression by combining like terms.",
+      "syntax": "SIMPLIFY(expression_string)",
+      "parameters": [ { "name": "expression_string", "type": "string", "required": true, "description": "A string containing a valid algebraic expression, e.g., '2x+y-x'." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "symbolic_manipulation", "name": "simplify_expression" }
+    },
+    {
+      "name": "DERIVATIVE",
+      "category": "Algebra",
+      "description": "Calculates the symbolic derivative of an expression.",
+      "syntax": "DERIVATIVE(expression_string, variable)",
+      "parameters": [
+        { "name": "expression_string", "type": "string", "required": true, "description": "The expression to differentiate." },
+        { "name": "variable", "type": "string", "required": true, "description": "The variable to differentiate with respect to." }
+      ],
+      "returnType": "string",
+      "logic_implementation": { "type": "symbolic_manipulation", "name": "symbolic_derivative" }
+    },
+    {
+      "name": "INTEGRATE",
+      "category": "Algebra",
+      "description": "Calculates the definite integral of a function.",
+      "syntax": "INTEGRATE(expression_string, variable, lower_bound, upper_bound)",
+      "parameters": [
+        { "name": "expression_string", "type": "string", "required": true, "description": "The expression to integrate." },
+        { "name": "variable", "type": "string", "required": true, "description": "The variable of integration." },
+        { "name": "lower_bound", "type": "number", "required": true, "description": "The lower limit of integration." },
+        { "name": "upper_bound", "type": "number", "required": true, "description": "The upper limit of integration." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "numerical_method", "name": "numerical_integration", "description": "Uses a numerical method like Simpson's rule to find the definite integral." }
+    },
+    {
+      "name": "DET",
+      "category": "Algebra",
+      "description": "Calculates the determinant of a square matrix.",
+      "syntax": "DET(matrix_range)",
+      "parameters": [ { "name": "matrix_range", "type": "range", "required": true, "description": "A square range of cells representing the matrix." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "matrix_operation", "name": "determinant" }
+    },
+    {
+      "name": "INV",
+      "category": "Algebra",
+      "description": "Calculates the inverse of a square matrix.",
+      "syntax": "INV(matrix_range)",
+      "parameters": [ { "name": "matrix_range", "type": "range", "required": true, "description": "A square range of cells representing the invertible matrix." } ],
+      "returnType": "array",
+      "logic_implementation": { "type": "matrix_operation", "name": "inverse" }
+    },
+    {
+      "name": "TRANSPOSE",
+      "category": "Algebra",
+      "description": "Transposes the rows and columns of an array or range.",
+      "syntax": "TRANSPOSE(range)",
+      "parameters": [ { "name": "range", "type": "range", "required": true, "description": "The array or range to transpose." } ],
+      "returnType": "array",
+      "logic_implementation": { "type": "matrix_operation", "name": "transpose" }
+    },
+    {
+      "name": "EIG",
+      "category": "Algebra",
+      "description": "Calculates the eigenvalues and eigenvectors of a square matrix.",
+      "syntax": "EIG(matrix_range)",
+      "parameters": [ { "name": "matrix_range", "type": "range", "required": true, "description": "A square range of cells representing the matrix." } ],
+      "returnType": "array",
+      "logic_implementation": { "type": "linear_algebra_decomposition", "name": "eigen_decomposition", "description": "Returns an array where the first row/column is eigenvalues and subsequent are eigenvectors." }
+    },
+    {
+      "name": "POINT",
+      "category": "Spatial Logic",
+      "description": "Creates a geometric point object from coordinates.",
+      "syntax": "POINT(x, y, [z])",
+      "parameters": [
+        { "name": "x", "type": "number", "required": true, "description": "The x-coordinate." },
+        { "name": "y", "type": "number", "required": true, "description": "The y-coordinate." },
+        { "name": "z", "type": "number", "required": false, "description": "The optional z-coordinate." }
+      ],
+      "returnType": "geometry",
+      "logic_implementation": { "type": "geometric_constructor", "name": "create_point" }
+    },
+    {
+      "name": "DISTANCE",
+      "category": "Spatial Logic",
+      "description": "Calculates the shortest distance between two geometric objects.",
+      "syntax": "DISTANCE(geom1, geom2)",
+      "parameters": [
+        { "name": "geom1", "type": "geometry", "required": true, "description": "The first geometry object." },
+        { "name": "geom2", "type": "geometry", "required": true, "description": "The second geometry object." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "geometric_operation", "name": "calculate_distance" }
+    },
+    {
+      "name": "AREA",
+      "category": "Spatial Logic",
+      "description": "Calculates the area of a polygon.",
+      "syntax": "AREA(polygon)",
+      "parameters": [ { "name": "polygon", "type": "geometry", "required": true, "description": "A polygon geometry object." } ],
+      "returnType": "number",
+      "logic_implementation": { "type": "geometric_operation", "name": "calculate_area" }
+    },
+    {
+      "name": "INTERSECTS",
+      "category": "Spatial Logic",
+      "description": "Returns TRUE if two geometries intersect.",
+      "syntax": "INTERSECTS(geom1, geom2)",
+      "parameters": [
+        { "name": "geom1", "type": "geometry", "required": true, "description": "The first geometry object." },
+        { "name": "geom2", "type": "geometry", "required": true, "description": "The second geometry object." }
+      ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "spatial_relation", "name": "intersects" }
+    },
+    {
+      "name": "CONTAINS",
+      "category": "Spatial Logic",
+      "description": "Returns TRUE if the first geometry contains the second.",
+      "syntax": "CONTAINS(geom1, geom2)",
+      "parameters": [
+        { "name": "geom1", "type": "geometry", "required": true, "description": "The containing geometry." },
+        { "name": "geom2", "type": "geometry", "required": true, "description": "The contained geometry." }
+      ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "spatial_relation", "name": "contains" }
+    },
+    {
+      "name": "BUFFER",
+      "category": "Spatial Logic",
+      "description": "Creates a buffer zone around a geometry.",
+      "syntax": "BUFFER(geom, distance)",
+      "parameters": [
+        { "name": "geom", "type": "geometry", "required": true, "description": "The geometry to buffer." },
+        { "name": "distance", "type": "number", "required": true, "description": "The buffer distance." }
+      ],
+      "returnType": "geometry",
+      "logic_implementation": { "type": "geometric_operation", "name": "create_buffer" }
+    },
+    {
+      "name": "INTERVAL",
+      "category": "Temporal Logic",
+      "description": "Creates a time interval object.",
+      "syntax": "INTERVAL(start_time, end_time)",
+      "parameters": [
+        { "name": "start_time", "type": "datetime", "required": true, "description": "The start time of the interval." },
+        { "name": "end_time", "type": "datetime", "required": true, "description": "The end time of the interval." }
+      ],
+      "returnType": "interval",
+      "logic_implementation": { "type": "temporal_constructor", "name": "create_interval" }
+    },
+    {
+      "name": "OVERLAPS",
+      "category": "Temporal Logic",
+      "description": "Returns TRUE if two time intervals overlap.",
+      "syntax": "OVERLAPS(interval1, interval2)",
+      "parameters": [
+        { "name": "interval1", "type": "interval", "required": true, "description": "The first interval." },
+        { "name": "interval2", "type": "interval", "required": true, "description": "The second interval." }
+      ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "temporal_relation", "name": "overlaps" }
+    },
+    {
+      "name": "DURING",
+      "category": "Temporal Logic",
+      "description": "Returns TRUE if a time point is during a time interval.",
+      "syntax": "DURING(time_point, interval)",
+      "parameters": [
+        { "name": "time_point", "type": "datetime", "required": true, "description": "The point in time to check." },
+        { "name": "interval", "type": "interval", "required": true, "description": "The interval to check against." }
+      ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "temporal_relation", "name": "during" }
+    },
+    {
+      "name": "DOT_PRODUCT",
+      "category": "Vector & High-Dimensionality",
+      "description": "Calculates the dot product of two vectors.",
+      "syntax": "DOT_PRODUCT(vector1, vector2)",
+      "parameters": [
+        { "name": "vector1", "type": "range", "required": true, "description": "The first vector (as a 1D range)." },
+        { "name": "vector2", "type": "range", "required": true, "description": "The second vector (as a 1D range)." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "vector_operation", "name": "dot_product" }
+    },
+    {
+      "name": "COSINE_SIMILARITY",
+      "category": "Vector & High-Dimensionality",
+      "description": "Calculates the cosine similarity between two vectors.",
+      "syntax": "COSINE_SIMILARITY(vector1, vector2)",
+      "parameters": [
+        { "name": "vector1", "type": "range", "required": true, "description": "The first vector." },
+        { "name": "vector2", "type": "range", "required": true, "description": "The second vector." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "vector_operation", "name": "cosine_similarity", "description": "Measures the cosine of the angle between two vectors." }
+    },
+    {
+      "name": "KMEANS",
+      "category": "Vector & High-Dimensionality",
+      "description": "Partitions data into k clusters using the k-means algorithm.",
+      "syntax": "KMEANS(data_range, k)",
+      "parameters": [
+        { "name": "data_range", "type": "range", "required": true, "description": "The dataset to cluster, with data points in rows." },
+        { "name": "k", "type": "integer", "required": true, "description": "The number of clusters to form." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "ml_algorithm", "name": "kmeans_clustering", "description": "Returns an array of cluster assignments for each data point." }
+    },
+    {
+      "name": "PCA",
+      "category": "Vector & High-Dimensionality",
+      "description": "Performs Principal Component Analysis to reduce dimensionality.",
+      "syntax": "PCA(data_range, num_components)",
+      "parameters": [
+        { "name": "data_range", "type": "range", "required": true, "description": "The high-dimensional dataset." },
+        { "name": "num_components", "type": "integer", "required": true, "description": "The number of principal components to return." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "ml_algorithm", "name": "principal_component_analysis", "description": "Reduces the dimensionality of the data." }
+    },
+    {
+      "name": "LOAD_IMAGE",
+      "category": "Multimedia Logic",
+      "description": "Loads an image from a URL into a processable object.",
+      "syntax": "LOAD_IMAGE(url)",
+      "parameters": [ { "name": "url", "type": "string", "required": true, "description": "The URL of the image file." } ],
+      "returnType": "media_object",
+      "logic_implementation": { "type": "media_constructor", "name": "load_image" }
+    },
+    {
+      "name": "DETECT_OBJECTS",
+      "category": "Multimedia Logic",
+      "description": "Detects objects of a specific class within an image.",
+      "syntax": "DETECT_OBJECTS(image, object_class)",
+      "parameters": [
+        { "name": "image", "type": "media_object", "required": true, "description": "The image object to analyze." },
+        { "name": "object_class", "type": "string", "required": true, "description": "The class of object to detect (e.g., 'car', 'face')." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "computer_vision_operation", "name": "object_detection", "description": "Returns an array of bounding box objects for each detected instance." }
+    },
+    {
+      "name": "OCR",
+      "category": "Multimedia Logic",
+      "description": "Performs Optical Character Recognition to extract text from an image.",
+      "syntax": "OCR(image)",
+      "parameters": [ { "name": "image", "type": "media_object", "required": true, "description": "The image object to analyze." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "computer_vision_operation", "name": "optical_character_recognition" }
+    },
+    {
+      "name": "FRAGMENT",
+      "category": "Multimedia Logic",
+      "description": "Creates a media fragment (sub-clip) from a video or audio source.",
+      "syntax": "FRAGMENT(media_object, start_time, end_time)",
+      "parameters": [
+        { "name": "media_object", "type": "media_object", "required": true, "description": "The video or audio object to fragment." },
+        { "name": "start_time", "type": "string", "required": true, "description": "The start time of the fragment (e.g., '0m10s')." },
+        { "name": "end_time", "type": "string", "required": true, "description": "The end time of the fragment (e.g., '0m15s')." }
+      ],
+      "returnType": "media_object",
+      "logic_implementation": { "type": "media_operation", "name": "create_fragment" }
+    },
+    {
+      "name": "TRANSCRIBE",
+      "category": "Multimedia Logic",
+      "description": "Transcribes speech from an audio or video file into text.",
+      "syntax": "TRANSCRIBE(media_object)",
+      "parameters": [ { "name": "media_object", "type": "media_object", "required": true, "description": "The audio or video object to transcribe." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "audio_processing_operation", "name": "speech_to_text" }
+    },
+    {
+      "name": "MATCH_FEATURE",
+      "category": "Multimedia Logic",
+      "description": "Compares two media objects based on a specific feature to find their similarity.",
+      "syntax": "MATCH_FEATURE(media1, media2, feature_type)",
+      "parameters": [
+        { "name": "media1", "type": "media_object", "required": true, "description": "The first media object." },
+        { "name": "media2", "type": "media_object", "required": true, "description": "The second media object." },
+        { "name": "feature_type", "type": "string", "required": true, "description": "The feature to compare (e.g., 'color_histogram', 'audio_fingerprint')." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "feature_matching", "name": "compare_features", "description": "Returns a similarity score between 0 and 1." }
+    },
+    {
+      "name": "TRANSCRIBE_DNA",
+      "category": "Bioinformatics & Genomics",
+      "description": "Converts a DNA sequence into its corresponding RNA sequence.",
+      "syntax": "TRANSCRIBE_DNA(dna_sequence)",
+      "parameters": [ { "name": "dna_sequence", "type": "string", "required": true, "description": "A string representing a DNA sequence (e.g., 'ATGC')." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "bioinformatics_operation", "name": "transcribe_dna_to_rna" }
+    },
+    {
+      "name": "TRANSLATE_RNA",
+      "category": "Bioinformatics & Genomics",
+      "description": "Translates an RNA sequence into a protein (amino acid) sequence.",
+      "syntax": "TRANSLATE_RNA(rna_sequence)",
+      "parameters": [ { "name": "rna_sequence", "type": "string", "required": true, "description": "A string representing an RNA sequence (e.g., 'AUGC')." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "bioinformatics_operation", "name": "translate_rna_to_protein" }
+    },
+    {
+      "name": "ALIGN_SEQUENCE",
+      "category": "Bioinformatics & Genomics",
+      "description": "Performs a pairwise alignment of two biological sequences and returns a similarity score.",
+      "syntax": "ALIGN_SEQUENCE(sequence1, sequence2, [method])",
+      "parameters": [
+        { "name": "sequence1", "type": "string", "required": true, "description": "The first sequence." },
+        { "name": "sequence2", "type": "string", "required": true, "description": "The second sequence." },
+        { "name": "method", "type": "string", "required": false, "description": "The alignment algorithm (e.g., 'Needleman-Wunsch', 'Smith-Waterman')." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "bioinformatics_operation", "name": "sequence_alignment" }
+    },
+    {
+      "name": "FIND_MOTIF",
+      "category": "Bioinformatics & Genomics",
+      "description": "Finds all occurrences of a short sequence motif within a larger sequence.",
+      "syntax": "FIND_MOTIF(sequence, motif)",
+      "parameters": [
+        { "name": "sequence", "type": "string", "required": true, "description": "The larger DNA or protein sequence to search in." },
+        { "name": "motif", "type": "string", "required": true, "description": "The short sequence pattern to find." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "bioinformatics_operation", "name": "find_sequence_motif", "description": "Returns an array of starting positions of the motif." }
+    },
+    {
+      "name": "GET_GENE_ONTOLOGY",
+      "category": "Bioinformatics & Genomics",
+      "description": "Retrieves Gene Ontology (GO) terms associated with a given gene identifier.",
+      "syntax": "GET_GENE_ONTOLOGY(gene_id)",
+      "parameters": [ { "name": "gene_id", "type": "string", "required": true, "description": "A standard gene identifier (e.g., from NCBI or Ensembl)." } ],
+      "returnType": "array",
+      "logic_implementation": { "type": "external_call", "service": "gene_ontology_db", "method": "query_by_gene" }
+    },
+    {
+      "name": "IS_VALID_ICD10",
+      "category": "Clinical Data & Ontology Logic",
+      "description": "Checks if a string is a valid ICD-10 code.",
+      "syntax": "IS_VALID_ICD10(code_string)",
+      "parameters": [ { "name": "code_string", "type": "string", "required": true, "description": "The ICD-10 code to validate." } ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "ontology_query", "ontology": "ICD-10", "query_type": "validate_code" }
+    },
+    {
+      "name": "GET_ICD10_PARENT",
+      "category": "Clinical Data & Ontology Logic",
+      "description": "Retrieves the parent code of a given ICD-10 code from the hierarchy.",
+      "syntax": "GET_ICD10_PARENT(code_string)",
+      "parameters": [ { "name": "code_string", "type": "string", "required": true, "description": "The ICD-10 code." } ],
+      "returnType": "string",
+      "logic_implementation": { "type": "ontology_query", "ontology": "ICD-10", "query_type": "get_parent" }
+    },
+    {
+      "name": "IS_DESCENDANT_OF",
+      "category": "Clinical Data & Ontology Logic",
+      "description": "Checks if a code is a descendant of another code in a specified medical ontology.",
+      "syntax": "IS_DESCENDANT_OF(child_code, parent_code, ontology_name)",
+      "parameters": [
+        { "name": "child_code", "type": "string", "required": true, "description": "The potential descendant code." },
+        { "name": "parent_code", "type": "string", "required": true, "description": "The potential ancestor code." },
+        { "name": "ontology_name", "type": "string", "required": true, "description": "The name of the ontology (e.g., 'ICD-10', 'SNOMED-CT')." }
+      ],
+      "returnType": "boolean",
+      "logic_implementation": { "type": "ontology_query", "query_type": "check_descendant" }
+    },
+    {
+      "name": "GET_ONTOLOGY_RELATIONSHIPS",
+      "category": "Clinical Data & Ontology Logic",
+      "description": "Retrieves all relationships (e.g., 'is_a', 'part_of') for a given code in an ontology.",
+      "syntax": "GET_ONTOLOGY_RELATIONSHIPS(code, ontology_name)",
+      "parameters": [
+        { "name": "code", "type": "string", "required": true, "description": "The code to query." },
+        { "name": "ontology_name", "type": "string", "required": true, "description": "The name of the ontology." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "ontology_query", "query_type": "get_relationships", "description": "Returns an array of relationship-object pairs." }
+    },
+    {
+      "name": "CHECK_LAB_RANGE",
+      "category": "Clinical Data & Ontology Logic",
+      "description": "Checks if a lab value is within, above, or below the standard reference range.",
+      "syntax": "CHECK_LAB_RANGE(lab_value, test_name, [patient_context])",
+      "parameters": [
+        { "name": "lab_value", "type": "number", "required": true, "description": "The patient's lab result." },
+        { "name": "test_name", "type": "string", "required": true, "description": "The name of the lab test (e.g., 'Hemoglobin A1c')." },
+        { "name": "patient_context", "type": "object", "required": false, "description": "An object with patient demographics like age and sex for context-specific ranges." }
+      ],
+      "returnType": "string",
+      "logic_implementation": { "type": "clinical_decision_support", "name": "check_lab_value", "description": "Returns 'Normal', 'High', or 'Low'." }
+    },
+    {
+      "name": "CHECK_DRUG_INTERACTION",
+      "category": "Pharmacology & Drug Interaction",
+      "description": "Checks for known interactions between two drugs.",
+      "syntax": "CHECK_DRUG_INTERACTION(drug1_id, drug2_id)",
+      "parameters": [
+        { "name": "drug1_id", "type": "string", "required": true, "description": "The identifier for the first drug (e.g., RxNorm CUI)." },
+        { "name": "drug2_id", "type": "string", "required": true, "description": "The identifier for the second drug." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "external_call", "service": "drug_interaction_db", "method": "check_interaction", "description": "Returns an array of interaction descriptions." }
+    },
+    {
+      "name": "CALCULATE_DOSAGE",
+      "category": "Pharmacology & Drug Interaction",
+      "description": "Calculates a drug dosage based on patient weight and standard guidelines.",
+      "syntax": "CALCULATE_DOSAGE(patient_weight_kg, drug_id)",
+      "parameters": [
+        { "name": "patient_weight_kg", "type": "number", "required": true, "description": "Patient's weight in kilograms." },
+        { "name": "drug_id", "type": "string", "required": true, "description": "The identifier for the drug." }
+      ],
+      "returnType": "string",
+      "logic_implementation": { "type": "clinical_decision_support", "name": "calculate_drug_dosage" }
+    },
+    {
+      "name": "DOSE_RESPONSE",
+      "category": "Pharmacology & Drug Interaction",
+      "description": "Calculates the EC50 from dose-response data.",
+      "syntax": "DOSE_RESPONSE(concentration_range, response_range)",
+      "parameters": [
+        { "name": "concentration_range", "type": "range", "required": true, "description": "The range of drug concentrations." },
+        { "name": "response_range", "type": "range", "required": true, "description": "The corresponding range of responses." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "solver", "name": "fit_dose_response_curve", "description": "Returns the half-maximal effective concentration (EC50)." }
+    },
+    {
+      "name": "ODDS_RATIO",
+      "category": "Biostatistics & Epidemiology",
+      "description": "Calculates the odds ratio from a 2x2 contingency table.",
+      "syntax": "ODDS_RATIO(group1_positive, group1_negative, group2_positive, group2_negative)",
+      "parameters": [
+        { "name": "group1_positive", "type": "integer", "required": true, "description": "Cases exposed." },
+        { "name": "group1_negative", "type": "integer", "required": true, "description": "Controls exposed." },
+        { "name": "group2_positive", "type": "integer", "required": true, "description": "Cases not exposed." },
+        { "name": "group2_negative", "type": "integer", "required": true, "description": "Controls not exposed." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "statistical_calculation", "name": "calculate_odds_ratio" }
+    },
+    {
+      "name": "RELATIVE_RISK",
+      "category": "Biostatistics & Epidemiology",
+      "description": "Calculates the relative risk (risk ratio) from study data.",
+      "syntax": "RELATIVE_RISK(group1_positive, group1_total, group2_positive, group2_total)",
+      "parameters": [
+        { "name": "group1_positive", "type": "integer", "required": true, "description": "Exposed group with outcome." },
+        { "name": "group1_total", "type": "integer", "required": true, "description": "Total exposed group." },
+        { "name": "group2_positive", "type": "integer", "required": true, "description": "Unexposed group with outcome." },
+        { "name": "group2_total", "type": "integer", "required": true, "description": "Total unexposed group." }
+      ],
+      "returnType": "number",
+      "logic_implementation": { "type": "statistical_calculation", "name": "calculate_relative_risk" }
+    },
+    {
+      "name": "SURVIVAL_ANALYSIS",
+      "category": "Biostatistics & Epidemiology",
+      "description": "Performs a Kaplan-Meier survival analysis.",
+      "syntax": "SURVIVAL_ANALYSIS(time_data, event_data)",
+      "parameters": [
+        { "name": "time_data", "type": "range", "required": true, "description": "A range of survival times." },
+        { "name": "event_data", "type": "range", "required": true, "description": "A range indicating if the event (e.g., death) occurred (1) or was censored (0)." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "statistical_calculation", "name": "kaplan_meier_analysis", "description": "Returns an array with time points and corresponding survival probabilities." }
+    },
+    {
+      "name": "QUERY",
+      "category": "Google",
+      "description": "Runs a Google Visualization API Query across data.",
+      "syntax": "QUERY(data, query_string, [headers])",
+       "parameters": [
+        { "name": "data", "type": "range", "required": true, "description": "The range of cells to query." },
+        { "name": "query_string", "type": "string", "required": true, "description": "The query to run, written in Google Visualization API Query Language." },
+        { "name": "headers", "type": "integer", "required": false, "description": "The number of header rows at the top of the data." }
+      ],
+      "returnType": "array",
+      "logic_implementation": { "type": "external_call", "service": "GoogleVisualizationAPI", "method": "query" }
+    }
+  ]
+}

@@ -1,28 +1,25 @@
-import { describe, it, expect, jest } from '@jest/globals';
+import { jest } from '@jest/globals';
+// Use global jest object
+// Jest globals are available automatically in ESM mode
 import { evaluateBuiltins } from '../../n3logic/reasoner/builtinEvaluator';
+import { N3Term, N3Triple, N3Builtin } from '../../n3logic/N3LogicTypes';
 
 describe('evaluateBuiltins', () => {
   const dummyBuiltin = {
     uri: 'http://example.org/builtin#alwaysTrue',
     arity: 1,
-    apply: () => true
+    apply: () => true,
   };
   const dummyTriple = {
   subject: { type: 'Literal', value: 'foo' } as const,
   predicate: { type: 'IRI', value: 'http://example.org/builtin#alwaysTrue' } as const,
-  object: { type: 'Literal', value: 'bar' } as const
+  object: { type: 'Literal', value: 'bar' } as const,
   };
   const bindings = {};
   const document = { builtins: [dummyBuiltin] };
-  const matchAntecedent = jest.fn<(
-    patterns: any[],
-    data: any[],
-    builtins: any[]
-  ) => Record<string, any>[]>();
-  const instantiateTriple = jest.fn<(
-    triple: any,
-    bindings: Record<string, any>
-  ) => any>();
+  // Use a plain jest.fn() and type-assert to the correct function signature for evaluateBuiltins
+  const matchAntecedent = jest.fn() as unknown as (patterns: N3Triple[], data: N3Triple[], builtins: N3Builtin[]) => Array<Record<string, N3Term>>;
+  const instantiateTriple = jest.fn() as unknown as (triple: N3Triple, bindings: Record<string, N3Term>) => N3Triple;
 
   it('returns true if no builtins are registered', () => {
     const doc = { builtins: undefined };
@@ -30,8 +27,8 @@ describe('evaluateBuiltins', () => {
       {
         subject: { type: 'Literal', value: 'foo' } as const,
         predicate: { type: 'IRI', value: 'http://example.org/builtin#alwaysTrue' } as const,
-        object: { type: 'Literal', value: 'bar' } as const
-      }
+        object: { type: 'Literal', value: 'bar' } as const,
+      },
     ], bindings, doc, matchAntecedent, instantiateTriple)).toBe(true);
   });
 
@@ -40,8 +37,8 @@ describe('evaluateBuiltins', () => {
       {
         subject: { type: 'Literal', value: 'foo' } as const,
         predicate: { type: 'IRI', value: 'http://example.org/builtin#alwaysTrue' } as const,
-        object: { type: 'Literal', value: 'bar' } as const
-      }
+        object: { type: 'Literal', value: 'bar' } as const,
+      },
     ], bindings, document, matchAntecedent, instantiateTriple)).toBe(true);
   });
 
@@ -52,8 +49,8 @@ describe('evaluateBuiltins', () => {
       {
         subject: { type: 'Literal', value: 'foo' } as const,
         predicate: { type: 'IRI', value: 'http://example.org/builtin#alwaysTrue' } as const,
-        object: { type: 'Literal', value: 'bar' } as const
-      }
+        object: { type: 'Literal', value: 'bar' } as const,
+      },
     ], bindings, doc, matchAntecedent, instantiateTriple)).toBe(false);
   });
 
@@ -64,7 +61,7 @@ describe('evaluateBuiltins', () => {
     const triple = {
       subject: { type: 'Literal', value: 'foo' } as const,
       predicate: { type: 'IRI', value: 'http://example.org/builtin#alwaysTrue' } as const,
-      object: { type: 'Literal', value: 'bar' } as const
+      object: { type: 'Literal', value: 'bar' } as const,
     };
     evaluateBuiltins([triple], bindings, doc, matchAntecedent, instantiateTriple);
   expect(spy).toHaveBeenCalled();
@@ -77,7 +74,7 @@ describe('evaluateBuiltins', () => {
     const triple = {
       subject: { type: 'Literal', value: 'foo' } as const,
       predicate: { type: 'IRI', value: 'http://example.org/builtin#alwaysTrue' } as const,
-      object: { type: 'Literal', value: 'bar' } as const
+      object: { type: 'Literal', value: 'bar' } as const,
     };
     evaluateBuiltins([triple], bindings, doc, matchAntecedent, instantiateTriple);
   expect(spy).toHaveBeenCalled();

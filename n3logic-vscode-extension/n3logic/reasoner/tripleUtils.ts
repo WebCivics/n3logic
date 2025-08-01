@@ -15,6 +15,13 @@ function assert(condition: boolean, ...msg: any[]) {
 export function tripleToString(triple: N3Triple): string {
   debugTrace('tripleToString input:', triple);
   assert(triple && typeof triple === 'object', 'tripleToString expects object triple', triple);
+  // Extra debug: flag if predicate is a custom builtin URI
+  if (triple.predicate && typeof triple.predicate === 'object' && 'value' in triple.predicate && typeof triple.predicate.value === 'string') {
+    const val = triple.predicate.value;
+    if (/custom#|math#|string#|log#|type#|other#/.test(val)) {
+      debugTrace('[tripleToString][DEBUG][BUILTIN] Predicate matches builtin pattern:', val, triple);
+    }
+  }
   const str = `${termToString(triple.subject)} ${termToString(triple.predicate)} ${termToString(triple.object)}`;
   debugTrace('tripleToString output:', str);
   return str;

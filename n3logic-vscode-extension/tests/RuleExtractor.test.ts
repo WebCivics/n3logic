@@ -31,7 +31,7 @@ describe('RuleExtractor', () => {
   });
 
   it('returns empty array if no rules present', () => {
-    const n3 = `<a> <b> "foo" .`;
+    const n3 = '<a> <b> "foo" .';
     const rules = extractRules(n3);
     expect(rules).toHaveLength(0);
   });
