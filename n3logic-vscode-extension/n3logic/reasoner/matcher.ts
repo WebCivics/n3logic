@@ -287,13 +287,13 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
   }
   // If no builtin matched, try matching the first triple against data
   if (results.length === 0) {
-  debugLog('[MATCHER][DEBUG] No builtin matched for any triple, falling back to data triple matching. Patterns:', JSON.stringify(patterns));
+    debugLog('[MATCHER][DEBUG] No builtin matched for any triple, falling back to data triple matching. Patterns:', JSON.stringify(patterns));
     const [first, ...rest] = patterns;
     for (const [tripleIdx, triple] of data.entries()) {
-  debugLog('[MATCHER][DEBUG] Data triple #', tripleIdx, ':', JSON.stringify(triple), 'Pattern:', JSON.stringify(first));
+      debugLog('[MATCHER][DEBUG] Data triple #', tripleIdx, ':', JSON.stringify(triple), 'Pattern:', JSON.stringify(first));
       debugLog(`Matching triple #${tripleIdx}:`, triple, 'against pattern:', first);
       const bindings = matchTriple(first, triple, termMatch);
-  debugLog('[MATCHER][DEBUG] matchTriple result:', JSON.stringify(bindings));
+      debugLog('[MATCHER][DEBUG] matchTriple result:', JSON.stringify(bindings));
       if (bindings) {
         debugLog('[MATCHER][DEBUG] Triple matched. Bindings:', JSON.stringify(bindings));
         const restBindingsList = matchAntecedent(rest, data, builtins);
@@ -326,6 +326,7 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
   debugLog('matchAntecedent: final results:', JSON.stringify(results, null, 2));
   debugLog('[MATCHER][DEBUG] matchAntecedent: final results:', JSON.stringify(results, null, 2));
   return results;
+}
 }
 
 export function instantiateTriple(triple: N3Triple, bindings: Record<string, N3Term>): N3Triple {
