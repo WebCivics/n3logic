@@ -1,0 +1,752 @@
+[REASONER][START] Asserted triples: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[PROVENANCE][ADD] {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+} asserted
+[REASONER][ASSERTED][CANONICAL] [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  }
+]
+[PROVENANCE][ADD] {
+  "subject": "a",
+  "predicate": "b",
+  "object": "\"1\"",
+  "_id": 2,
+  "_provenance": "inferred"
+} inferred
+[PROVENANCE][ADD] {
+  "subject": "a",
+  "predicate": "c",
+  "object": "\"1\"",
+  "_id": 3,
+  "_provenance": "inferred"
+} inferred
+[REASONER][INFERRED][RAW] [
+  "a b \"1\"",
+  "a c \"1\""
+]
+[REASONER][INFERRED][CANONICAL] [
+  {
+    "subject": "a",
+    "predicate": "b",
+    "object": "\"1\"",
+    "_id": 2,
+    "_provenance": "inferred"
+  },
+  {
+    "subject": "a",
+    "predicate": "c",
+    "object": "\"1\"",
+    "_id": 3,
+    "_provenance": "inferred"
+  }
+]
+[REASONER][TRIPLE][ADD][ASSERTED] {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+}
+[REASONER][TRIPLE][ADD][INFERRED] {
+  "subject": "a",
+  "predicate": "b",
+  "object": "\"1\"",
+  "_id": 2,
+  "_provenance": "inferred"
+}
+[REASONER][TRIPLE][ADD][INFERRED] {
+  "subject": "a",
+  "predicate": "c",
+  "object": "\"1\"",
+  "_id": 3,
+  "_provenance": "inferred"
+}
+[REASONER][ALL][TRIPLES][PRE-FILTER] [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": "a",
+    "predicate": "b",
+    "object": "\"1\"",
+    "_id": 2,
+    "_provenance": "inferred"
+  },
+  {
+    "subject": "a",
+    "predicate": "c",
+    "object": "\"1\"",
+    "_id": 3,
+    "_provenance": "inferred"
+  }
+]
+[N3LogicReasoner][DEBUG][FILTER][N3] Filtering malformed N3 string triple: <a> <b> <"1"> . Error: 
+    at filterValidTriples (F:\github-dev\n3logic\n3logic-vscode-extension\n3logic\N3LogicReasoner.ts:39:114)
+    at N3LogicReasoner.reason (F:\github-dev\n3logic\n3logic-vscode-extension\n3logic\N3LogicReasoner.ts:369:31)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:42:51)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1009:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:949:3)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:839:13)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:829:11)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+[FILTER][N3] <a> <b> <"1"> . {
+  "stack": "Error: \n    at filterValidTriples (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\n3logic\\N3LogicReasoner.ts:40:52)\n    at N3LogicReasoner.reason (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\n3logic\\N3LogicReasoner.ts:369:31)\n    at Object.<anonymous> (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\tests\\reasoner.test.ts:42:51)\n    at Promise.finally.completed (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1559:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1499:10)\n    at _callCircusTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1009:40)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at _runTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:949:3)\n    at _runTestsForDescribeBlock (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:839:13)\n    at _runTestsForDescribeBlock (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:829:11)\n    at run (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:757:3)\n    at runAndTransformResultsToJestFormat (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1920:21)\n    at jestAdapter (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\runner.js:101:19)\n    at runTestInternal (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:275:16)\n    at runTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:343:7)\n    at Object.worker (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:497:12)"
+}
+[N3LogicReasoner][DEBUG][FILTER][N3] Filtering malformed N3 string triple: <a> <c> <"1"> . Error: 
+    at filterValidTriples (F:\github-dev\n3logic\n3logic-vscode-extension\n3logic\N3LogicReasoner.ts:39:114)
+    at N3LogicReasoner.reason (F:\github-dev\n3logic\n3logic-vscode-extension\n3logic\N3LogicReasoner.ts:369:31)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:42:51)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1009:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:949:3)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:839:13)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:829:11)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+[FILTER][N3] <a> <c> <"1"> . {
+  "stack": "Error: \n    at filterValidTriples (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\n3logic\\N3LogicReasoner.ts:40:52)\n    at N3LogicReasoner.reason (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\n3logic\\N3LogicReasoner.ts:369:31)\n    at Object.<anonymous> (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\tests\\reasoner.test.ts:42:51)\n    at Promise.finally.completed (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1559:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1499:10)\n    at _callCircusTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1009:40)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at _runTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:949:3)\n    at _runTestsForDescribeBlock (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:839:13)\n    at _runTestsForDescribeBlock (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:829:11)\n    at run (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:757:3)\n    at runAndTransformResultsToJestFormat (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1920:21)\n    at jestAdapter (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\runner.js:101:19)\n    at runTestInternal (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:275:16)\n    at runTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:343:7)\n    at Object.worker (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:497:12)"
+}
+[FILTER][SUMMARY] [
+  {
+    "type": "n3",
+    "triple": "<a> <b> <\"1\"> ."
+  },
+  {
+    "type": "n3",
+    "triple": "<a> <c> <\"1\"> ."
+  }
+]
+[REASONER][ALL][TRIPLES][POST-FILTER] [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  }
+]
+[REASONER][ALL][TRIPLES][N3] [
+  "<a> <b> \"1\" ."
+]
+[REASONER][START] Asserted triples: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    }
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "bar"
+    }
+  }
+]
+[PROVENANCE][ADD] {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "foo"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+} asserted
+[PROVENANCE][ADD] {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "bar"
+  },
+  "_id": 2,
+  "_provenance": "asserted"
+} asserted
+[REASONER][ASSERTED][CANONICAL] [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "bar"
+    },
+    "_id": 2,
+    "_provenance": "asserted"
+  }
+]
+[PROVENANCE][ADD] {
+  "subject": "a",
+  "predicate": "b",
+  "object": "\"foo\"",
+  "_id": 3,
+  "_provenance": "inferred"
+} inferred
+[PROVENANCE][ADD] {
+  "subject": "a",
+  "predicate": "b",
+  "object": "\"bar\"",
+  "_id": 4,
+  "_provenance": "inferred"
+} inferred
+[REASONER][INFERRED][RAW] [
+  "a b \"foo\"",
+  "a b \"bar\""
+]
+[REASONER][INFERRED][CANONICAL] [
+  {
+    "subject": "a",
+    "predicate": "b",
+    "object": "\"foo\"",
+    "_id": 3,
+    "_provenance": "inferred"
+  },
+  {
+    "subject": "a",
+    "predicate": "b",
+    "object": "\"bar\"",
+    "_id": 4,
+    "_provenance": "inferred"
+  }
+]
+[REASONER][TRIPLE][ADD][ASSERTED] {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "foo"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+}
+[REASONER][TRIPLE][ADD][ASSERTED] {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "bar"
+  },
+  "_id": 2,
+  "_provenance": "asserted"
+}
+[REASONER][TRIPLE][ADD][INFERRED] {
+  "subject": "a",
+  "predicate": "b",
+  "object": "\"foo\"",
+  "_id": 3,
+  "_provenance": "inferred"
+}
+[REASONER][TRIPLE][ADD][INFERRED] {
+  "subject": "a",
+  "predicate": "b",
+  "object": "\"bar\"",
+  "_id": 4,
+  "_provenance": "inferred"
+}
+[REASONER][ALL][TRIPLES][PRE-FILTER] [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "bar"
+    },
+    "_id": 2,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": "a",
+    "predicate": "b",
+    "object": "\"foo\"",
+    "_id": 3,
+    "_provenance": "inferred"
+  },
+  {
+    "subject": "a",
+    "predicate": "b",
+    "object": "\"bar\"",
+    "_id": 4,
+    "_provenance": "inferred"
+  }
+]
+[N3LogicReasoner][DEBUG][FILTER][N3] Filtering malformed N3 string triple: <a> <b> <"foo"> . Error: 
+    at filterValidTriples (F:\github-dev\n3logic\n3logic-vscode-extension\n3logic\N3LogicReasoner.ts:39:114)
+    at N3LogicReasoner.reason (F:\github-dev\n3logic\n3logic-vscode-extension\n3logic\N3LogicReasoner.ts:369:31)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:89:51)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1009:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:949:3)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:839:13)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:829:11)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+[FILTER][N3] <a> <b> <"foo"> . {
+  "stack": "Error: \n    at filterValidTriples (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\n3logic\\N3LogicReasoner.ts:40:52)\n    at N3LogicReasoner.reason (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\n3logic\\N3LogicReasoner.ts:369:31)\n    at Object.<anonymous> (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\tests\\reasoner.test.ts:89:51)\n    at Promise.finally.completed (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1559:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1499:10)\n    at _callCircusTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1009:40)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at _runTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:949:3)\n    at _runTestsForDescribeBlock (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:839:13)\n    at _runTestsForDescribeBlock (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:829:11)\n    at run (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:757:3)\n    at runAndTransformResultsToJestFormat (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1920:21)\n    at jestAdapter (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\runner.js:101:19)\n    at runTestInternal (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:275:16)\n    at runTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:343:7)\n    at Object.worker (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:497:12)"
+}
+[N3LogicReasoner][DEBUG][FILTER][N3] Filtering malformed N3 string triple: <a> <b> <"bar"> . Error: 
+    at filterValidTriples (F:\github-dev\n3logic\n3logic-vscode-extension\n3logic\N3LogicReasoner.ts:39:114)
+    at N3LogicReasoner.reason (F:\github-dev\n3logic\n3logic-vscode-extension\n3logic\N3LogicReasoner.ts:369:31)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:89:51)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1009:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:949:3)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:839:13)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:829:11)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+[FILTER][N3] <a> <b> <"bar"> . {
+  "stack": "Error: \n    at filterValidTriples (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\n3logic\\N3LogicReasoner.ts:40:52)\n    at N3LogicReasoner.reason (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\n3logic\\N3LogicReasoner.ts:369:31)\n    at Object.<anonymous> (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\tests\\reasoner.test.ts:89:51)\n    at Promise.finally.completed (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1559:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1499:10)\n    at _callCircusTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1009:40)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at _runTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:949:3)\n    at _runTestsForDescribeBlock (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:839:13)\n    at _runTestsForDescribeBlock (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:829:11)\n    at run (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:757:3)\n    at runAndTransformResultsToJestFormat (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1920:21)\n    at jestAdapter (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\runner.js:101:19)\n    at runTestInternal (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:275:16)\n    at runTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:343:7)\n    at Object.worker (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:497:12)"
+}
+[FILTER][SUMMARY] [
+  {
+    "type": "n3",
+    "triple": "<a> <b> <\"foo\"> ."
+  },
+  {
+    "type": "n3",
+    "triple": "<a> <b> <\"bar\"> ."
+  }
+]
+[REASONER][ALL][TRIPLES][POST-FILTER] [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "bar"
+    },
+    "_id": 2,
+    "_provenance": "asserted"
+  }
+]
+[REASONER][ALL][TRIPLES][N3] [
+  "<a> <b> \"foo\" .",
+  "<a> <b> \"bar\" ."
+]
+[REASONER][START] Asserted triples: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[PROVENANCE][ADD] {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+} asserted
+[REASONER][ASSERTED][CANONICAL] [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  }
+]
+[PROVENANCE][ADD] {
+  "subject": "a",
+  "predicate": "b",
+  "object": "\"1\"",
+  "_id": 2,
+  "_provenance": "inferred"
+} inferred
+[PROVENANCE][ADD] {
+  "subject": "a",
+  "predicate": "c",
+  "object": "\"1\"",
+  "_id": 3,
+  "_provenance": "inferred"
+} inferred
+[REASONER][INFERRED][RAW] [
+  "a b \"1\"",
+  "a c \"1\""
+]
+[REASONER][INFERRED][CANONICAL] [
+  {
+    "subject": "a",
+    "predicate": "b",
+    "object": "\"1\"",
+    "_id": 2,
+    "_provenance": "inferred"
+  },
+  {
+    "subject": "a",
+    "predicate": "c",
+    "object": "\"1\"",
+    "_id": 3,
+    "_provenance": "inferred"
+  }
+]
+[REASONER][TRIPLE][ADD][ASSERTED] {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+}
+[REASONER][TRIPLE][ADD][INFERRED] {
+  "subject": "a",
+  "predicate": "b",
+  "object": "\"1\"",
+  "_id": 2,
+  "_provenance": "inferred"
+}
+[REASONER][TRIPLE][ADD][INFERRED] {
+  "subject": "a",
+  "predicate": "c",
+  "object": "\"1\"",
+  "_id": 3,
+  "_provenance": "inferred"
+}
+[REASONER][ALL][TRIPLES][PRE-FILTER] [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": "a",
+    "predicate": "b",
+    "object": "\"1\"",
+    "_id": 2,
+    "_provenance": "inferred"
+  },
+  {
+    "subject": "a",
+    "predicate": "c",
+    "object": "\"1\"",
+    "_id": 3,
+    "_provenance": "inferred"
+  }
+]
+[N3LogicReasoner][DEBUG][FILTER][N3] Filtering malformed N3 string triple: <a> <b> <"1"> . Error: 
+    at filterValidTriples (F:\github-dev\n3logic\n3logic-vscode-extension\n3logic\N3LogicReasoner.ts:39:114)
+    at N3LogicReasoner.reason (F:\github-dev\n3logic\n3logic-vscode-extension\n3logic\N3LogicReasoner.ts:369:31)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:113:12)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1009:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:949:3)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:839:13)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:829:11)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+[FILTER][N3] <a> <b> <"1"> . {
+  "stack": "Error: \n    at filterValidTriples (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\n3logic\\N3LogicReasoner.ts:40:52)\n    at N3LogicReasoner.reason (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\n3logic\\N3LogicReasoner.ts:369:31)\n    at Object.<anonymous> (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\tests\\reasoner.test.ts:113:12)\n    at Promise.finally.completed (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1559:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1499:10)\n    at _callCircusTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1009:40)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at _runTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:949:3)\n    at _runTestsForDescribeBlock (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:839:13)\n    at _runTestsForDescribeBlock (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:829:11)\n    at run (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:757:3)\n    at runAndTransformResultsToJestFormat (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1920:21)\n    at jestAdapter (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\runner.js:101:19)\n    at runTestInternal (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:275:16)\n    at runTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:343:7)\n    at Object.worker (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:497:12)"
+}
+[N3LogicReasoner][DEBUG][FILTER][N3] Filtering malformed N3 string triple: <a> <c> <"1"> . Error: 
+    at filterValidTriples (F:\github-dev\n3logic\n3logic-vscode-extension\n3logic\N3LogicReasoner.ts:39:114)
+    at N3LogicReasoner.reason (F:\github-dev\n3logic\n3logic-vscode-extension\n3logic\N3LogicReasoner.ts:369:31)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:113:12)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1009:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:949:3)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:839:13)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:829:11)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+[FILTER][N3] <a> <c> <"1"> . {
+  "stack": "Error: \n    at filterValidTriples (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\n3logic\\N3LogicReasoner.ts:40:52)\n    at N3LogicReasoner.reason (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\n3logic\\N3LogicReasoner.ts:369:31)\n    at Object.<anonymous> (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\tests\\reasoner.test.ts:113:12)\n    at Promise.finally.completed (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1559:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1499:10)\n    at _callCircusTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1009:40)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at _runTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:949:3)\n    at _runTestsForDescribeBlock (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:839:13)\n    at _runTestsForDescribeBlock (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:829:11)\n    at run (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:757:3)\n    at runAndTransformResultsToJestFormat (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1920:21)\n    at jestAdapter (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-circus\\build\\runner.js:101:19)\n    at runTestInternal (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:275:16)\n    at runTest (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:343:7)\n    at Object.worker (F:\\github-dev\\n3logic\\n3logic-vscode-extension\\node_modules\\jest-runner\\build\\testWorker.js:497:12)"
+}
+[FILTER][SUMMARY] [
+  {
+    "type": "n3",
+    "triple": "<a> <b> <\"1\"> ."
+  },
+  {
+    "type": "n3",
+    "triple": "<a> <c> <\"1\"> ."
+  }
+]
+[REASONER][ALL][TRIPLES][POST-FILTER] [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  }
+]
+[REASONER][ALL][TRIPLES][N3] [
+  "<a> <b> \"1\" ."
+]

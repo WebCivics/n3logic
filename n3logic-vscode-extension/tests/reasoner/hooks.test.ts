@@ -1,3 +1,4 @@
+import { describe, it, expect, jest } from '@jest/globals';
 import { HookManager } from '../../n3logic/reasoner/hooks';
 
 describe('HookManager', () => {

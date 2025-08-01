@@ -1,3 +1,4 @@
+import { describe, it, expect, jest } from '@jest/globals';
 // ...existing code from n3logic/reasoner.test.ts...
 
 import { N3LogicReasoner, N3ReasonerResult } from '../n3logic/N3LogicReasoner';
@@ -39,17 +40,15 @@ describe('N3LogicReasoner', () => {
 	       reasoner.setDebug(true);
 	       reasoner.loadOntology(n3, 'n3');
 	       const result: N3ReasonerResult = reasoner.reason();
-	       // Debug: print all inferred triples
-	       // eslint-disable-next-line no-console
-	       console.log('[TEST reasoner] All inferred triples:', JSON.stringify(result.triples, null, 2));
-	       expect(result.triples).toHaveLength(2);
-	       // The reasoner returns triples as { subject: string, predicate: string, object: string }
-	       const inferredTriple = result.triples.find(t => t.predicate === 'c');
-	       // eslint-disable-next-line no-console
-	       console.log('[TEST reasoner] Inferred triple for predicate c:', inferredTriple);
-	       expect(inferredTriple).toBeDefined();
-			   expect(inferredTriple && inferredTriple.subject).toBe('a');
-			   expect(inferredTriple && inferredTriple.object).toBe('"1"');
+		// Debug: print all inferred triples
+		// eslint-disable-next-line no-console
+		console.log('[TEST reasoner] All inferred triples:', JSON.stringify(result.triples, null, 2));
+		expect(result.triples).toHaveLength(2);
+		// The reasoner now returns triples as N3 strings
+		const inferredTriple = result.triples.find(t => t.includes('<a> <c> "1" .'));
+		// eslint-disable-next-line no-console
+		console.log('[TEST reasoner] Inferred triple for predicate c:', inferredTriple);
+		expect(inferredTriple).toBeDefined();
        });
 
        it('supports custom builtins', () => {
@@ -91,14 +90,12 @@ describe('N3LogicReasoner', () => {
 	       // Debug: print all inferred triples
 	       // eslint-disable-next-line no-console
 	       console.log('[TEST reasoner custom builtins] All inferred triples:', JSON.stringify(result.triples, null, 2));
-	       expect(result.triples).toHaveLength(3);
-	       // The reasoner returns triples as { subject: string, predicate: string, object: string }
-	       const inferredTriple = result.triples.find(t => t.predicate === 'c');
-	       // eslint-disable-next-line no-console
-	       console.log('[TEST reasoner custom builtins] Inferred triple for predicate c:', inferredTriple);
-	       expect(inferredTriple).toBeDefined();
-			   expect(inferredTriple && inferredTriple.subject).toBe('a');
-			   expect(inferredTriple && inferredTriple.object).toBe('"foo"');
+		expect(result.triples).toHaveLength(3);
+		// The reasoner now returns triples as N3 strings
+		const inferredTriple = result.triples.find(t => t.includes('<a> <c> "foo" .'));
+		// eslint-disable-next-line no-console
+		console.log('[TEST reasoner custom builtins] Inferred triple for predicate c:', inferredTriple);
+		expect(inferredTriple).toBeDefined();
        });
 
 	it('supports plugins and hooks', () => {

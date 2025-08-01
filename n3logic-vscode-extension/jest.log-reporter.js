@@ -1,7 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
+
 class PerFileLogReporter {
+  constructor() {
+    this.failedTests = [];
+  }
+
   onTestResult(contexts, result) {
     const logsDir = path.resolve(__dirname, 'logs');
     if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir);
@@ -12,6 +17,13 @@ class PerFileLogReporter {
       `Status: ${result.numFailingTests > 0 ? 'FAIL' : 'PASS'}`,
       '',
       ...result.testResults.map(tr => {
+        if (tr.status === 'failed') {
+          this.failedTests.push({
+            file: result.testFilePath,
+            name: tr.fullName,
+            message: tr.failureMessages.join('\n')
+          });
+        }
         return [
           `Test: ${tr.fullName}`,
           `Status: ${tr.status}`,
@@ -21,6 +33,27 @@ class PerFileLogReporter {
       })
     ].join('\n');
     fs.writeFileSync(logPath, logContent, 'utf8');
+  }
+
+  onRunComplete() {
+    const logsDir = path.resolve(__dirname, 'logs');
+    if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir);
+    const summaryPath = path.join(logsDir, 'failed-tests-summary.txt');
+    if (this.failedTests.length === 0) {
+      fs.writeFileSync(summaryPath, 'All tests passed.\n', 'utf8');
+      return;
+    }
+    const summary = [
+      'FAILED TESTS SUMMARY',
+      '====================',
+      ...this.failedTests.map(f => [
+        `File: ${f.file}`,
+        `Test: ${f.name}`,
+        `Message: ${f.message}`,
+        ''
+      ].join('\n'))
+    ].join('\n');
+    fs.writeFileSync(summaryPath, summary, 'utf8');
   }
 }
 

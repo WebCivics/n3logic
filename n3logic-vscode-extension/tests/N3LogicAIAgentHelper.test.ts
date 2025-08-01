@@ -1,3 +1,4 @@
+import { describe, it, expect, jest } from '@jest/globals';
 /* eslint-env jest */
 import { N3LogicAIAgentHelper } from '../n3logic/N3LogicAIAgentHelper';
 
@@ -16,7 +17,7 @@ describe('N3LogicAIAgentHelper', () => {
   });
 
   it('examplePlugin does not throw', () => {
-    const reasoner: any = { on: jest.fn(), use: jest.fn((fn) => fn(reasoner)) };
+  const reasoner: any = { on: jest.fn(), use: jest.fn((fn: any) => fn(reasoner)) };
     expect(() => N3LogicAIAgentHelper.examplePlugin(reasoner)).not.toThrow();
   });
 

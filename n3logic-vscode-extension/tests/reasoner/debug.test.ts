@@ -1,3 +1,4 @@
+import { describe, it, expect, jest } from '@jest/globals';
 import { setDebug, debugLog } from '../../n3logic/reasoner/debug';
 
 describe('debugLog and setDebug', () => {

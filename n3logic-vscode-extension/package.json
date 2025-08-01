@@ -51,7 +51,12 @@
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build": "npm run build:esm && npm run build:cjs",
-    "test": "jest --reporters=default --reporters=./jest.log-reporter.js"
+    "test": "npm run test:cjs",
+    "test:cjs": "jest --config jest.config.cjs.js --reporters=default --reporters=./jest.log-reporter.js",
+    "test:esm": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --config jest.config.esm.js --reporters=default --reporters=./jest.log-reporter.js"
+  },
+  "jest": {
+    "description": "Run tests in both CommonJS and ESM modes. Use 'npm run test:cjs' for CommonJS, 'npm run test:esm' for ESM. Default 'npm test' runs CommonJS."
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
