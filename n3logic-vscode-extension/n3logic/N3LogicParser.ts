@@ -6,17 +6,15 @@ function debugLog(...args: any[]) {
   }
 }
 // N3LogicParser.ts
-// Parses N3/N3Logic documents into triples, rules, and built-ins (npm package version)
-import { N3LogicDocument, N3Triple, N3Rule, N3Builtin, N3Formula, N3Quantifier, N3Term, N3Variable, N3Literal, N3BlankNode, N3IRI, N3List, N3ForAll, N3Exists } from './N3LogicTypes';
+// Parses N3/N3Logic documents into triples, rules, and built-ins (robust version)
+
+import { N3LogicDocument, N3Triple, N3Rule, N3Builtin, N3Term } from './N3LogicTypes';
 import { tokenizeTriples } from './parser/TripleTokenizer';
 import { extractRules } from './parser/RuleExtractor';
 import { tokenizeTerms } from './parser/TermTokenizer';
 import { splitTriples } from './parser/TripleSplitter';
 
 export class N3LogicParser {
-  /**
-   * Enable or disable debug logging for this parser instance.
-   */
   setDebug(debug: boolean) {
     DEBUG = debug;
     debugLog('Debug mode set to', debug);
@@ -24,7 +22,6 @@ export class N3LogicParser {
 
   parse(n3Text: string): N3LogicDocument {
     debugLog('Parsing input', n3Text);
-    debugLog('N3LogicParser: Raw input:', n3Text);
     if (typeof n3Text !== 'string') {
       debugLog('Input is not a string');
       throw new TypeError('N3LogicParser.parse: Input must be a string');
@@ -58,11 +55,10 @@ export class N3LogicParser {
       throw new TypeError('parseTriples: Input must be a string');
     }
     const triples: N3Triple[] = [];
-    // If allowNoDot, split on semicolons or newlines as well as dots
+    // Always use splitTriples for rule blocks (allowNoDot=true), to robustly split on dot, semicolon, or newline
     let statements: string[];
+    let text = n3Text.trim();
     if (allowNoDot) {
-      // Remove outer braces if present
-      let text = n3Text.trim();
       if (text.startsWith('{') && text.endsWith('}')) {
         text = text.slice(1, -1).trim();
       }
@@ -70,12 +66,13 @@ export class N3LogicParser {
       statements = splitTriples(text, debugLog);
       debugLog('parseTriples: splitTriples returned:', JSON.stringify(statements));
     } else {
-      statements = tokenizeTriples(n3Text);
+      statements = tokenizeTriples(text);
     }
     for (const stmt of statements) {
       if (!stmt) continue;
       debugLog('parseTriples: Tokenizing statement:', stmt);
-      const tokens = tokenizeTerms(stmt);
+      // Use a regex that matches <...> as a single token, even with # or :
+      const tokens = (stmt.match(/<[^>]+>|"[^"]*"|\S+/g) || []).map(t => t.trim());
       debugLog('parseTriples: Tokenized terms:', JSON.stringify(tokens));
       for (let i = 0; i + 2 < tokens.length; i += 3) {
         // Skip if any token is a rule/control symbol or lone parenthesis
@@ -92,6 +89,12 @@ export class N3LogicParser {
             object: this.parseTerm(t2)
           };
           debugLog('parseTriples: Parsed triple:', JSON.stringify(triple));
+          // Extra debug: log predicate type and value for custom builtin URIs
+          if (triple.predicate && typeof triple.predicate === 'object' && 'value' in triple.predicate) {
+            debugLog('parseTriples: Predicate type:', triple.predicate.type, 'Predicate value:', triple.predicate.value);
+          } else if (triple.predicate && typeof triple.predicate === 'object') {
+            debugLog('parseTriples: Predicate type:', triple.predicate.type, 'Predicate:', JSON.stringify(triple.predicate));
+          }
           triples.push(triple);
         } catch (err) {
           debugLog('parseTriples: Failed to parse triple:', stmt, err);
@@ -113,7 +116,7 @@ export class N3LogicParser {
       throw new Error('parseTerm: Empty token');
     }
     if (token.startsWith('<') && token.endsWith('>')) {
-      return { type: 'IRI', value: token.slice(1, -1) } as N3IRI;
+      return { type: 'IRI', value: token.slice(1, -1) };
     } else if (token.startsWith('"')) {
       // Literal with optional datatype or language
       const litMatch = token.match(/^"([^"]*)"(?:\^\^<([^>]+)>|@([a-zA-Z\-]+))?/);
@@ -123,25 +126,25 @@ export class N3LogicParser {
           value: litMatch[1],
           datatype: litMatch[2],
           language: litMatch[3]
-        } as N3Literal;
+        };
       } else {
         throw new Error(`parseTerm: Invalid literal format: '${token}'`);
       }
     } else if (token.startsWith('?')) {
       if (token.length < 2) throw new Error('parseTerm: Variable name missing after ?');
-      return { type: 'Variable', value: token.slice(1) } as N3Variable;
+      return { type: 'Variable', value: token.slice(1) };
     } else if (token.startsWith('_:')) {
       if (token.length < 3) throw new Error('parseTerm: Blank node id missing after _:');
-      return { type: 'BlankNode', value: token.slice(2) } as N3BlankNode;
+      return { type: 'BlankNode', value: token.slice(2) };
     } else if (token.startsWith('(') && token.endsWith(')')) {
       // List: (a b c)
       const inner = token.slice(1, -1).trim();
-      if (!inner) return { type: 'List', elements: [] } as N3List;
+      if (!inner) return { type: 'List', elements: [] };
       const elements = inner.split(/\s+/).map(t => this.parseTerm(t));
-      return { type: 'List', elements } as N3List;
+      return { type: 'List', elements };
     }
-  // Fallback: treat as IRI (even if not <...>), to support builtins and prefixed names
-  return { type: 'IRI', value: token } as N3IRI;
+    // Fallback: treat as IRI (even if not <...>), to support builtins and prefixed names
+    return { type: 'IRI', value: token };
   }
 
   // Parse rules, supporting nested formulas and quantifiers
@@ -153,6 +156,8 @@ export class N3LogicParser {
     const ruleBlocks = extractRules(n3Text);
     for (const { antecedent, consequent } of ruleBlocks) {
       try {
+        debugLog('parseRules: antecedent string:', JSON.stringify(antecedent));
+        debugLog('parseRules: consequent string:', JSON.stringify(consequent));
         const antecedentTriples = this.parseTriples(antecedent, true);
         const consequentTriples = this.parseTriples(consequent, true);
         debugLog('Parsed rule antecedent triples:', JSON.stringify(antecedentTriples, null, 2));
@@ -168,49 +173,12 @@ export class N3LogicParser {
         throw new Error(`parseRules: Failed to parse rule: ${err instanceof Error ? err.message : err}`);
       }
     }
-    // Quantifiers: ForAll, Exists (simple support)
-    const forallRegex = /@forAll\s+((?:\?[\w]+\s*)+)\./g;
-    let match;
-    while ((match = forallRegex.exec(n3Text)) !== null) {
-      // Not directly attached to rules, but can be used for context
-    }
-    const existsRegex = /@forSome\s+((?:\?[\w]+\s*)+)\./g;
-    while ((match = existsRegex.exec(n3Text)) !== null) {
-      // Not directly attached to rules, but can be used for context
-    }
     return rules;
   }
 
-  // Parse a formula (set of triples, possibly with quantifiers)
-  private parseFormula(text: string): N3Formula {
-    if (typeof text !== 'string') {
-      throw new TypeError('parseFormula: Input must be a string');
-    }
-    // Support for nested formulas and quantifiers is basic here
-    let triples: N3Triple[] = [];
-    try {
-      triples = this.parseTriples(text);
-    } catch (err) {
-      throw new Error(`parseFormula: Failed to parse triples in formula: ${err instanceof Error ? err.message : err}`);
-    }
-    // Quantifier detection (simple)
-    const quantifiers: N3Quantifier[] = [];
-    const forallRegex = /@forAll\s+((?:\?[\w]+\s*)+)\./g;
-    let match;
-    while ((match = forallRegex.exec(text)) !== null) {
-      const vars = match[1].trim().split(/\s+/).map(v => ({ type: 'Variable', value: v.replace(/^\?/, '') } as N3Variable));
-      quantifiers.push({ type: 'ForAll', variables: vars, formula: { type: 'Formula', triples } } as N3ForAll);
-    }
-    const existsRegex = /@forSome\s+((?:\?[\w]+\s*)+)\./g;
-    while ((match = existsRegex.exec(text)) !== null) {
-      const vars = match[1].trim().split(/\s+/).map(v => ({ type: 'Variable', value: v.replace(/^\?/, '') } as N3Variable));
-      quantifiers.push({ type: 'Exists', variables: vars, formula: { type: 'Formula', triples } } as N3Exists);
-    }
-    return { type: 'Formula', triples, quantifiers: quantifiers.length ? quantifiers : undefined };
-  }
-
-  // Parse builtins (as before)
+  // Parse builtins (stub, can be extended)
   private parseBuiltins(n3Text: string): N3Builtin[] {
+    // Example: extract known builtins by URI
     const builtins: N3Builtin[] = [];
     const builtinUris = [
       'http://www.w3.org/2000/10/swap/math#greaterThan',

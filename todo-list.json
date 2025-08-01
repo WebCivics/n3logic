@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "task": "Ensure full N3/N3Logic syntax compliance (including edge cases)",
+    "details": "Compliance test suite scaffolded in n3logic/compliance.test.ts",
+    "done": true
+  },
+  {
+    "id": 2,
+    "task": "Support import/export to/from other RDF formats (Turtle, JSON-LD, etc.)",
+    "details": "Interop test suite scaffolded in n3logic/interop.test.ts",
+    "done": true
+  },
+  {
+    "id": 3,
+    "task": "Ensure compatibility with popular RDF/Linked Data libraries (e.g., N3.js)",
+    "details": "Interop test suite scaffolded in n3logic/interop.test.ts",
+    "done": true
+  },
+  {
+    "id": 4,
+    "task": "Provide CLI for parsing, reasoning, and validating N3 Logic files",
+    "details": "CLI scaffolded in n3logic/cli.js",
+    "done": true
+  },
+  {
+    "id": 5,
+    "task": "Consider a VS Code extension or syntax highlighting for N3 Logic",
+    "details": "Extension not yet scaffolded. Awaiting workspace setup.",
+    "done": false
+  },
+  {
+    "id": 6,
+    "task": "Improve error messages for parsing, reasoning, and builtin failures",
+    "details": "Add meaningful error messages and error handling throughout the codebase.",
+    "done": false
+  },
+  {
+    "id": 7,
+    "task": "Add type checks and validation for user input",
+    "details": "Validate all user input and function arguments for type safety.",
+    "done": false
+  },
+  {
+    "id": 8,
+    "task": "Allow users to register custom builtins easily",
+    "details": "Expose an API for registering custom builtins.",
+    "done": false
+  },
+  {
+    "id": 9,
+    "task": "Consider plugin system or hooks for parser/reasoner extension",
+    "details": "Design a plugin/hook system for extensibility.",
+    "done": false
+  },
+  {
+    "id": 10,
+    "task": "Optimize reasoning for large datasets (indexing, efficient matching)",
+    "details": "Profile and optimize reasoning algorithms for performance.",
+    "done": false
+  },
+  {
+    "id": 11,
+    "task": "Add async/streaming support for big data",
+    "details": "Support async APIs and streaming for large datasets.",
+    "done": false
+  },
+  {
+    "id": 12,
+    "task": "Add extensive unit and integration tests for parser, reasoner, and builtins",
+    "details": "Increase test coverage and add integration tests.",
+    "done": false
+  },
+  {
+    "id": 13,
+    "task": "Test edge cases and error conditions",
+    "details": "Add tests for edge cases and error handling.",
+    "done": false
+  },
+  {
+    "id": 14,
+    "task": "Ensure type definitions are complete and accurate",
+    "details": "Review and improve all TypeScript type definitions.",
+    "done": false
+  },
+  {
+    "id": 15,
+    "task": "Support both ESM and CommonJS",
+    "details": "Ensure the package can be used in both module systems.",
+    "done": false
+  },
+  {
+    "id": 16,
+    "task": "Write clear API documentation for all classes, types, and builtins",
+    "details": "Document all public APIs and builtins.",
+    "done": false
+  },
+  {
+    "id": 17,
+    "task": "Add usage guides and real-world N3 Logic examples",
+    "details": "Provide guides and example files for users.",
+    "done": false
+  },
+  {
+    "id": 18,
+    "task": "List all supported builtins and their signatures",
+    "details": "Generate a reference list of all builtins.",
+    "done": false
+  },
+  {
+    "id": 19,
+    "task": "Add example projects for common use-cases (e.g., policy reasoning, data validation)",
+    "details": "Create example projects and templates.",
+    "done": false
+  },
+  {
+    "id": 20,
+    "task": "Provide templates for new rules/builtins",
+    "details": "Add code templates for extending rules and builtins.",
+    "done": false
+  },
+  {
+    "id": 21,
+    "task": "Write contribution guidelines and code of conduct",
+    "details": "Add CONTRIBUTING.md and CODE_OF_CONDUCT.md.",
+    "done": false
+  },
+  {
+    "id": 22,
+    "task": "Add issue templates and a roadmap",
+    "details": "Create GitHub issue templates and a project roadmap.",
+    "done": false
+  }
+]

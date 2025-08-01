@@ -51,7 +51,7 @@
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build": "npm run build:esm && npm run build:cjs",
-    "test": "jest"
+    "test": "jest --reporters=default --reporters=./jest.log-reporter.js"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",

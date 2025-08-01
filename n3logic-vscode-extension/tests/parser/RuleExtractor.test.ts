@@ -1,5 +1,5 @@
-// n3logic/parser/RuleExtractor.test.ts
-import { extractRules } from './RuleExtractor';
+// tests/parser/RuleExtractor.test.ts
+import { extractRules } from '../../n3logic/parser/RuleExtractor';
 
 describe('RuleExtractor', () => {
   it('extracts a single rule from N3 text', () => {
