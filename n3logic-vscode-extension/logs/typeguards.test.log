@@ -1,0 +1,10 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner\matcher\typeguards.test.ts
+Status: PASS
+
+Test: matcher/typeguards isN3Variable detects variable terms
+Status: passed
+
+
+Test: matcher/typeguards isN3IRI detects IRI terms
+Status: passed
+

@@ -1,0 +1,30 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner\matcher\builtins.test.ts
+Status: PASS
+
+Test: matcher/builtins findBuiltinForPredicate finds a builtin by URI
+Status: passed
+
+
+Test: matcher/builtins findBuiltinForPredicate returns undefined for missing URI
+Status: passed
+
+
+Test: matcher/builtins findBuiltinForPredicate returns undefined if builtins is not an array
+Status: passed
+
+
+Test: matcher/builtins findBuiltinForPredicate returns undefined if predicateUri is falsy
+Status: passed
+
+
+Test: matcher/builtins invokeBuiltin calls builtin.apply and returns true if result is true
+Status: passed
+
+
+Test: matcher/builtins invokeBuiltin returns false if builtin.apply returns false
+Status: passed
+
+
+Test: matcher/builtins invokeBuiltin returns false and logs error if builtin.apply throws
+Status: passed
+

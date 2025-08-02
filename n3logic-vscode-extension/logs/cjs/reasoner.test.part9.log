@@ -1,0 +1,27 @@
+[N3LogicReasoner][TRACE] tripleToString input: {
+  "subject": "<a>",
+  "predicate": "<c>",
+  "object": "\"1\"",
+  "_id": 3,
+  "_provenance": "inferred"
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString called: {
+  "subject": "<a>",
+  "predicate": "<c>",
+  "object": "\"1\"",
+  "_id": 3,
+  "_provenance": "inferred"
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString called: {
+  "subject": "<a>",
+  "predicate": "<c>",
+  "object": "\"1\"",
+  "_id": 3,
+  "_provenance": "inferred"
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString: result <a> <c> "1" .
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString: result <a> <c> "1" .
+[N3LogicReasoner][TRACE] tripleToString output: <a> <c> "1" .
+[N3LogicReasoner][TRACE] tripleToString output: <a> <c> "1" .
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] reason: finished, returning result
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] reason: finished, returning result

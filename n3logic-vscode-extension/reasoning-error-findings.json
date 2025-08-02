@@ -1,17 +1,18 @@
 [
   {
+    "test": "N3LogicReasoner performs basic forward chaining",
+    "status": "failed",
+    "error": "Expected result to be defined, but received undefined.\nStack: at tests/reasoner.test.ts:88:32"
+  },
+  {
     "test": "N3LogicReasoner supports custom builtins",
     "status": "failed",
-    "error": "Expected inferred triple for custom builtin, but received undefined. This suggests the custom builtin was not invoked or matched during reasoning."
+    "error": "Expected result to be defined, but received undefined.\nStack: at tests/reasoner.test.ts:118:30"
   },
   {
     "test": "N3LogicReasoner diagnostic: reasoner should infer triple for 'foo' only",
     "status": "failed",
-    "error": "Expected inferred triple for 'foo', but received undefined. Indicates the custom builtin was not invoked or matched."
-  },
-  {
-    "test": "N3LogicReasoner performs basic forward chaining",
-    "status": "passed"
+    "error": "Expected result to be defined, but received undefined.\nStack: at tests/reasoner.test.ts:149:25"
   },
   {
     "test": "N3LogicReasoner diagnostic: logic builtins isRDFTrue/isRDFFalse",
@@ -19,6 +20,35 @@
   },
   {
     "test": "N3LogicReasoner supports plugins and hooks",
+    "status": "passed"
+  },
+  {
+    "test": "LogicBuiltins log:or returns true if either is true (string and boolean cases)",
+    "status": "failed",
+    "error": "Expected: true, Received: false.\nStack: at tests/builtins/N3LogicLogicBuiltins.test.ts:143:22"
+  },
+  {
+    "test": "LogicBuiltins log:not returns true if argument is false",
+    "status": "passed"
+  },
+  {
+    "test": "LogicBuiltins log:equalTo returns true if values are equal",
+    "status": "passed"
+  },
+  {
+    "test": "LogicBuiltins log:and returns true if both are true",
+    "status": "passed"
+  },
+  {
+    "test": "LogicBuiltins log:xor returns true if values differ",
+    "status": "passed"
+  },
+  {
+    "test": "LogicBuiltins log:if returns then/else based on cond",
+    "status": "passed"
+  },
+  {
+    "test": "LogicBuiltins log:distinct returns true if values differ",
     "status": "passed"
   }
 ]

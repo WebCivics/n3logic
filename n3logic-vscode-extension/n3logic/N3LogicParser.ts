@@ -125,8 +125,39 @@ export class N3LogicParser {
           const consequentStmts = splitRuleBlock(consequentBlock);
           debugLog('[N3LogicParser][RULE][PATCH] antecedentStmts:', antecedentStmts, 'consequentStmts:', consequentStmts);
           // Parse each triple in the antecedent and consequent
-          const antecedentTriples = antecedentStmts.flatMap(stmt => this.parseTriples(stmt, true, prefixMap));
-          const consequentTriples = consequentStmts.flatMap(stmt => this.parseTriples(stmt, true, prefixMap));
+          // Support log:call and function-style builtins as well as standard triples
+          const parseRuleLine = (stmt: string) => {
+            // log:call style: log:call(<builtin>, <arg1>, <arg2>, ...)
+            const logCallMatch = stmt.match(/^log:call\s*\(([^)]+)\)\s*$/);
+            if (logCallMatch) {
+              // Parse as a triple: [call] [builtin] [args as list]
+              const args = logCallMatch[1].split(',').map(s => s.trim());
+              return [{
+                subject: { type: "IRI" as const, value: "log:call" },
+                predicate: { type: "IRI" as const, value: args[0] },
+                object: args.length > 2
+                  ? { type: "List" as const, elements: args.slice(1).map(v => ({ type: "Literal" as const, value: v })) }
+                  : { type: "Literal" as const, value: args[1] || "" }
+              }];
+            }
+            // function-style: <builtin>(<arg1>, <arg2>, ...)
+            const fnMatch = stmt.match(/^<([^>]+)>\s*\(([^)]*)\)\s*$/);
+            if (fnMatch) {
+              const fnIRI = fnMatch[1];
+              const args = fnMatch[2].split(',').map(s => s.trim()).filter(Boolean);
+              return [{
+                subject: { type: "IRI" as const, value: fnIRI },
+                predicate: { type: "IRI" as const, value: "call" },
+                object: args.length > 1
+                  ? { type: "List" as const, elements: args.map(v => ({ type: "Literal" as const, value: v })) }
+                  : { type: "Literal" as const, value: args[0] || "" }
+              }];
+            }
+            // fallback: standard triple parsing
+            return this.parseTriples(stmt, true, prefixMap);
+          };
+          const antecedentTriples = antecedentStmts.flatMap(parseRuleLine);
+          const consequentTriples = consequentStmts.flatMap(parseRuleLine);
           // EXTRA DEBUG: Log all antecedent and consequent triples and their predicates
           debugLog('[N3LogicParser][RULE][DEBUG] Parsed antecedent triples:', JSON.stringify(antecedentTriples, null, 2));
           antecedentTriples.forEach((triple, idx) => {

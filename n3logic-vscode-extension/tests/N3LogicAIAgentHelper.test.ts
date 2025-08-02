@@ -3,23 +3,7 @@ import { jest } from '@jest/globals';
 /* eslint-env jest */
 import { N3LogicAIAgentHelper } from '../n3logic/N3LogicAIAgentHelper';
 
-import path from 'path';
-import { fileURLToPath } from 'url';
-let __filename: string;
-// ...existing code...
-try {
-  // Only works in ESM
-  // eslint-disable-next-line no-eval
-  const metaUrl = eval('import.meta.url');
-  __filename = fileURLToPath(metaUrl);
-// ...existing code...
-} catch {
-  // Fallback for CJS
-  // @ts-ignore
-  __filename = typeof __filename !== 'undefined' ? __filename : '';
-  // @ts-ignore
-// ...existing code...
-}
+// Remove all __filename logic; not needed for these tests and causes redeclaration issues.
 
 describe('N3LogicAIAgentHelper', () => {
   it('returns capabilities summary', () => {

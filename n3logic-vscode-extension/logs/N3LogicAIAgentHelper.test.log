@@ -1,2 +1,18 @@
 Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\N3LogicAIAgentHelper.test.ts
 Status: PASS
+
+Test: N3LogicAIAgentHelper returns capabilities summary
+Status: passed
+
+
+Test: N3LogicAIAgentHelper exampleRegisterBuiltin does not throw
+Status: passed
+
+
+Test: N3LogicAIAgentHelper examplePlugin does not throw
+Status: passed
+
+
+Test: N3LogicAIAgentHelper exampleHook does not throw
+Status: passed
+

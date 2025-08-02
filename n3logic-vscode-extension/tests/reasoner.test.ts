@@ -45,21 +45,48 @@ if (typeof __filename !== 'undefined' && typeof __dirname !== 'undefined') {
 const logDir = (typeof __filename !== 'undefined' && typeof __dirname !== 'undefined')
 	? path.resolve(localDirname, '../logs/cjs')
 	: path.resolve(localDirname, '../logs/esm');
-const logFile = path.join(logDir, 'reasoner.test.log');
+const LOG_SIZE_LIMIT = 100 * 1024; // 100 KB per file
+function getLogFileBase() {
+	return path.join(logDir, 'reasoner.test.log');
+}
+function getLogFileCurrent() {
+	// Find the latest log file (with suffix if split)
+	const base = getLogFileBase();
+	let idx = 0;
+	let file = base;
+	while (fs.existsSync(file) && fs.statSync(file).size > LOG_SIZE_LIMIT) {
+		idx++;
+		file = base.replace(/\.log$/, `.part${idx}.log`);
+	}
+	return file;
+}
+let logFile = getLogFileBase();
 let originalLog: (...args: any[]) => void;
 let originalDebug: (...args: any[]) => void;
 
 function logToFile(...args: any[]) {
+	let file = getLogFileCurrent();
 	const msg = args.map((a) => (typeof a === 'string' ? a : JSON.stringify(a, null, 2))).join(' ');
-	fs.appendFileSync(logFile, msg + '\n');
-		if (originalLog) originalLog.apply(console, args);
+	fs.appendFileSync(file, msg + '\n');
+	logFile = file;
+	if (originalLog) originalLog.apply(console, args);
 }
 
 beforeAll(() => {
 	// Ensure log directory exists
-	fs.mkdirSync(path.dirname(logFile), { recursive: true });
+	fs.mkdirSync(path.dirname(getLogFileBase()), { recursive: true });
 	originalLog = console.log;
 	originalDebug = console.debug;
+	// Remove all old split logs
+	const base = getLogFileBase();
+	let idx = 0;
+	let file = base;
+	while (fs.existsSync(file)) {
+		fs.unlinkSync(file);
+		idx++;
+		file = base.replace(/\.log$/, `.part${idx}.log`);
+	}
+	logFile = getLogFileBase();
 	fs.writeFileSync(logFile, '');
 	console.log = logToFile;
 	console.debug = logToFile;
@@ -113,9 +140,12 @@ describe('N3LogicReasoner', () => {
 				   console.log('[DEBUG] Builtins at reasoning time:', JSON.stringify((reasoner as any).document.builtins.map((b: any) => b.uri), null, 2));
 			   }
 			   // Find the expected triple as N3 string
-			   const inferredTriple = result.triples.find((t) => typeof t === 'string' && t.includes('<a> <c> "foo" .'));
-			   console.log('[DEBUG] inferredTriple:', JSON.stringify(inferredTriple, null, 2));
-			   expect(inferredTriple).toBeDefined();
+				 const inferredTriple = result.triples.find((t) => typeof t === 'string' && t.includes('<a> <c> "foo" .'));
+				 console.log('[DEBUG] inferredTriple:', JSON.stringify(inferredTriple, null, 2));
+				 if (!inferredTriple) {
+					 console.error('[FAIL] All result.triples:', JSON.stringify(result.triples, null, 2));
+				 }
+				 expect(inferredTriple).toBeDefined();
 			   // Optionally, check the total number of triples (2 asserted + 1 inferred)
 			   expect(result.triples.length).toBe(3);
        });
@@ -146,8 +176,11 @@ describe('N3LogicReasoner', () => {
 			   // Should only infer <a> <c> "foo"
 			   const fooTriple = result.triples.find((t: any) => typeof t === 'string' && t.includes('<a> <c> "foo" .'));
 			   const barTriple = result.triples.find((t: any) => typeof t === 'string' && t.includes('<a> <c> "bar" .'));
-			   expect(fooTriple).toBeDefined();
-			   expect(barTriple).toBeUndefined();
+				 if (!fooTriple) {
+					 console.error('[FAIL] All result.triples:', JSON.stringify(result.triples, null, 2));
+				 }
+				 expect(fooTriple).toBeDefined();
+				 expect(barTriple).toBeUndefined();
        });
 
 	it('diagnostic: logic builtins isRDFTrue/isRDFFalse', () => {

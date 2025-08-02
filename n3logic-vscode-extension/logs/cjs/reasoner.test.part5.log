@@ -1,0 +1,3247 @@
+[N3LogicParser] [TRACE][splitTriples] char[15] = '?', buf=' ', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[16] = 'x', buf=' ?', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[16] = 'x', buf=' ?', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[16] = 'x', buf=' ?', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[17] = ' ', buf=' ?x', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[17] = ' ', buf=' ?x', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[17] = ' ', buf=' ?x', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[18] = '<', buf=' ?x ', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[18] = '<', buf=' ?x ', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[18] = '<', buf=' ?x ', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[19] = 'h', buf=' ?x <', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[19] = 'h', buf=' ?x <', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[19] = 'h', buf=' ?x <', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[20] = 't', buf=' ?x <h', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[20] = 't', buf=' ?x <h', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[20] = 't', buf=' ?x <h', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[21] = 't', buf=' ?x <ht', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[21] = 't', buf=' ?x <ht', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[21] = 't', buf=' ?x <ht', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[22] = 'p', buf=' ?x <htt', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[22] = 'p', buf=' ?x <htt', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[22] = 'p', buf=' ?x <htt', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[23] = ':', buf=' ?x <http', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[23] = ':', buf=' ?x <http', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[23] = ':', buf=' ?x <http', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[24] = '/', buf=' ?x <http:', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[24] = '/', buf=' ?x <http:', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[24] = '/', buf=' ?x <http:', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[25] = '/', buf=' ?x <http:/', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[25] = '/', buf=' ?x <http:/', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[25] = '/', buf=' ?x <http:/', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[26] = 'e', buf=' ?x <http://', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[26] = 'e', buf=' ?x <http://', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[26] = 'e', buf=' ?x <http://', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[27] = 'x', buf=' ?x <http://e', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[27] = 'x', buf=' ?x <http://e', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[27] = 'x', buf=' ?x <http://e', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[28] = 'a', buf=' ?x <http://ex', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[28] = 'a', buf=' ?x <http://ex', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[28] = 'a', buf=' ?x <http://ex', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[29] = 'm', buf=' ?x <http://exa', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[29] = 'm', buf=' ?x <http://exa', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[29] = 'm', buf=' ?x <http://exa', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[30] = 'p', buf=' ?x <http://exam', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[30] = 'p', buf=' ?x <http://exam', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[30] = 'p', buf=' ?x <http://exam', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[31] = 'l', buf=' ?x <http://examp', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[31] = 'l', buf=' ?x <http://examp', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[31] = 'l', buf=' ?x <http://examp', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[32] = 'e', buf=' ?x <http://exampl', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[32] = 'e', buf=' ?x <http://exampl', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[32] = 'e', buf=' ?x <http://exampl', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[33] = '.', buf=' ?x <http://example', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[33] = '.', buf=' ?x <http://example', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[33] = '.', buf=' ?x <http://example', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[34] = 'o', buf=' ?x <http://example.', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[34] = 'o', buf=' ?x <http://example.', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[34] = 'o', buf=' ?x <http://example.', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[35] = 'r', buf=' ?x <http://example.o', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[35] = 'r', buf=' ?x <http://example.o', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[35] = 'r', buf=' ?x <http://example.o', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[36] = 'g', buf=' ?x <http://example.or', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[36] = 'g', buf=' ?x <http://example.or', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[36] = 'g', buf=' ?x <http://example.or', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[37] = '/', buf=' ?x <http://example.org', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[37] = '/', buf=' ?x <http://example.org', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[37] = '/', buf=' ?x <http://example.org', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[38] = 'c', buf=' ?x <http://example.org/', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[38] = 'c', buf=' ?x <http://example.org/', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[38] = 'c', buf=' ?x <http://example.org/', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[39] = 'u', buf=' ?x <http://example.org/c', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[39] = 'u', buf=' ?x <http://example.org/c', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[39] = 'u', buf=' ?x <http://example.org/c', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[40] = 's', buf=' ?x <http://example.org/cu', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[40] = 's', buf=' ?x <http://example.org/cu', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[40] = 's', buf=' ?x <http://example.org/cu', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[41] = 't', buf=' ?x <http://example.org/cus', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[41] = 't', buf=' ?x <http://example.org/cus', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[41] = 't', buf=' ?x <http://example.org/cus', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[42] = 'o', buf=' ?x <http://example.org/cust', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[42] = 'o', buf=' ?x <http://example.org/cust', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[42] = 'o', buf=' ?x <http://example.org/cust', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[43] = 'm', buf=' ?x <http://example.org/custo', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[43] = 'm', buf=' ?x <http://example.org/custo', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[43] = 'm', buf=' ?x <http://example.org/custo', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] Found final triple statement: "?x <http://example.org/custom"
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] Found final triple statement: "?x <http://example.org/custom"
+[N3LogicParser] [TRACE][splitTriples] Found final triple statement: "?x <http://example.org/custom"
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] output statements: ["{ <a> <b> ?x","?x <http://example.org/custom"]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] output statements: ["{ <a> <b> ?x","?x <http://example.org/custom"]
+[N3LogicParser] [TRACE][splitTriples] output statements: ["{ <a> <b> ?x","?x <http://example.org/custom"]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] split statements: ["{ <a> <b> ?x","?x <http://example.org/custom"]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] split statements: ["{ <a> <b> ?x","?x <http://example.org/custom"]
+[N3LogicParser] [TRACE][parseTriples] split statements: ["{ <a> <b> ?x","?x <http://example.org/custom"]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] parsing statement: "{ <a> <b> ?x"
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] parsing statement: "{ <a> <b> ?x"
+[N3LogicParser] [TRACE][parseTriples] parsing statement: "{ <a> <b> ?x"
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Tokenized terms: ["{","<a>","<b>","?x"]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Tokenized terms: ["{","<a>","<b>","?x"]
+[N3LogicParser] [TRACE][parseTriples] Tokenized terms: ["{","<a>","<b>","?x"]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] WARNING: tokens.length not multiple of 3: 4 [
+  "{",
+  "<a>",
+  "<b>",
+  "?x"
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] WARNING: tokens.length not multiple of 3: 4 [
+  "{",
+  "<a>",
+  "<b>",
+  "?x"
+]
+[N3LogicParser] [TRACE][parseTriples] WARNING: tokens.length not multiple of 3: 4 [
+  "{",
+  "<a>",
+  "<b>",
+  "?x"
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples][WARNING] Problematic statement: { <a> <b> ?x Tokens: [
+  "{",
+  "<a>",
+  "<b>",
+  "?x"
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples][WARNING] Problematic statement: { <a> <b> ?x Tokens: [
+  "{",
+  "<a>",
+  "<b>",
+  "?x"
+]
+[N3LogicParser] [TRACE][parseTriples][WARNING] Problematic statement: { <a> <b> ?x Tokens: [
+  "{",
+  "<a>",
+  "<b>",
+  "?x"
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Triple tokens: { <a> <b>
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Triple tokens: { <a> <b>
+[N3LogicParser] [TRACE][parseTriples] Triple tokens: { <a> <b>
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Skipping invalid triple tokens: { <a> <b>
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Skipping invalid triple tokens: { <a> <b>
+[N3LogicParser] [TRACE][parseTriples] Skipping invalid triple tokens: { <a> <b>
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] parsing statement: "?x <http://example.org/custom"
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] parsing statement: "?x <http://example.org/custom"
+[N3LogicParser] [TRACE][parseTriples] parsing statement: "?x <http://example.org/custom"
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Tokenized terms: ["?x","<http://example.org/custom"]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Tokenized terms: ["?x","<http://example.org/custom"]
+[N3LogicParser] [TRACE][parseTriples] Tokenized terms: ["?x","<http://example.org/custom"]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] WARNING: tokens.length not multiple of 3: 2 [
+  "?x",
+  "<http://example.org/custom"
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] WARNING: tokens.length not multiple of 3: 2 [
+  "?x",
+  "<http://example.org/custom"
+]
+[N3LogicParser] [TRACE][parseTriples] WARNING: tokens.length not multiple of 3: 2 [
+  "?x",
+  "<http://example.org/custom"
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples][WARNING] Problematic statement: ?x <http://example.org/custom Tokens: [
+  "?x",
+  "<http://example.org/custom"
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples][WARNING] Problematic statement: ?x <http://example.org/custom Tokens: [
+  "?x",
+  "<http://example.org/custom"
+]
+[N3LogicParser] [TRACE][parseTriples][WARNING] Problematic statement: ?x <http://example.org/custom Tokens: [
+  "?x",
+  "<http://example.org/custom"
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] input string: { <a> <b> ?x . ?x <http://example.org/custom
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] input string: { <a> <b> ?x . ?x <http://example.org/custom
+[N3LogicParser] [TRACE][parseTriples] input string: { <a> <b> ?x . ?x <http://example.org/custom
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] output triples: []
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] output triples: []
+[N3LogicParser] [TRACE][parseTriples] output triples: []
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples][FINAL TRIPLES] []
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples][FINAL TRIPLES] []
+[N3LogicParser] [TRACE][parseTriples][FINAL TRIPLES] []
+[N3LogicReasoner][TRACE] [N3LogicParser] N3LogicParser: Parsed triples: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    }
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "bar"
+    }
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] N3LogicParser: Parsed triples: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    }
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "bar"
+    }
+  }
+]
+[N3LogicParser] N3LogicParser: Parsed triples: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    }
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "bar"
+    }
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] N3LogicParser: Parsed rules: []
+[N3LogicReasoner][TRACE] [N3LogicParser] N3LogicParser: Parsed rules: []
+[N3LogicParser] N3LogicParser: Parsed rules: []
+[N3LogicReasoner][TRACE] [N3LogicParser] parseBuiltins called: <a> <b> "foo" . <a> <b> "bar" . { <a> <b> ?x . ?x <http://example.org/custom
+[N3LogicReasoner][TRACE] [N3LogicParser] parseBuiltins called: <a> <b> "foo" . <a> <b> "bar" . { <a> <b> ?x . ?x <http://example.org/custom
+[N3LogicReasoner][TRACE] [N3LogicParser] N3LogicParser: Parsed builtins: []
+[N3LogicReasoner][TRACE] [N3LogicParser] N3LogicParser: Parsed builtins: []
+[N3LogicParser] N3LogicParser: Parsed builtins: []
+[N3LogicReasoner][TRACE] [N3LogicParser][TRACE] Parsing loop complete, triples: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    }
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "bar"
+    }
+  }
+] rules: []
+[N3LogicReasoner][TRACE] [N3LogicParser][TRACE] Parsing loop complete, triples: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    }
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "bar"
+    }
+  }
+] rules: []
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] loadOntology: parsedDoc {
+  "triples": [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "foo"
+      }
+    },
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "bar"
+      }
+    }
+  ],
+  "rules": [],
+  "builtins": []
+}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] loadOntology: parsedDoc {
+  "triples": [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "foo"
+      }
+    },
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "bar"
+      }
+    }
+  ],
+  "rules": [],
+  "builtins": []
+}
+[N3LogicReasoner][DEBUG] N3LogicReasoner: Parsed rules after parsing: []
+[N3LogicReasoner][DEBUG] N3LogicReasoner: Parsed rules after parsing: []
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][LOGGING] Parsed triples after parsing: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    }
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "bar"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][LOGGING] Parsed triples after parsing: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    }
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "bar"
+    }
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] loadOntology: merging builtins [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] loadOntology: merging builtins [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+]
+[N3LogicReasoner][TRACE] [builtinsManager] mergeBuiltins called: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+] Resulting merged builtins: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "typeofApply": "function"
+  }
+]
+[N3LogicReasoner][TRACE] [builtinsManager] mergeBuiltins called: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+] Resulting merged builtins: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "typeofApply": "function"
+  }
+]
+[N3LogicReasoner][TRACE] [builtinsManager] mergeBuiltins called: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+] Resulting merged builtins: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "typeofApply": "function"
+  }
+]
+[N3LogicReasoner][TRACE] [builtinsManager] mergeBuiltins called: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+] Resulting merged builtins: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "typeofApply": "function"
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] loadOntology: document.builtins after merge [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "arity": 1,
+    "description": "log:not(x) is true if x is false"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "arity": 2,
+    "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "arity": 2,
+    "description": "log:equalTo(x, y) is true if x === y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "arity": 2,
+    "description": "log:or(x, y) is true if x or y is true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "arity": 2,
+    "description": "log:and(x, y) is true if both x and y are true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "arity": 2,
+    "description": "log:xor(x, y) is true if x and y differ"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "arity": 3,
+    "description": "log:if(cond, then, else) returns then if cond is true, else else"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "arity": 2,
+    "description": "log:distinct(x, y) is true if x != y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "arity": 1,
+    "description": "type:isLiteral(x) is true if x is a literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "arity": 1,
+    "description": "type:isIRI(x) is true if x is an IRI"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "arity": 1,
+    "description": "type:isBlank(x) is true if x is a blank node"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "arity": 1,
+    "description": "type:toString(x) returns x as string"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "arity": 1,
+    "description": "type:toNumber(x) returns x as number literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "arity": 1,
+    "description": "type:toBoolean(x) returns x as boolean literal"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "arity": 2,
+    "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "arity": 2,
+    "description": "owl:sameAs(x, y) is true if x and y are the same"
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] loadOntology: document.builtins after merge [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "arity": 1,
+    "description": "log:not(x) is true if x is false"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "arity": 2,
+    "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "arity": 2,
+    "description": "log:equalTo(x, y) is true if x === y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "arity": 2,
+    "description": "log:or(x, y) is true if x or y is true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "arity": 2,
+    "description": "log:and(x, y) is true if both x and y are true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "arity": 2,
+    "description": "log:xor(x, y) is true if x and y differ"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "arity": 3,
+    "description": "log:if(cond, then, else) returns then if cond is true, else else"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "arity": 2,
+    "description": "log:distinct(x, y) is true if x != y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "arity": 1,
+    "description": "type:isLiteral(x) is true if x is a literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "arity": 1,
+    "description": "type:isIRI(x) is true if x is an IRI"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "arity": 1,
+    "description": "type:isBlank(x) is true if x is a blank node"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "arity": 1,
+    "description": "type:toString(x) returns x as string"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "arity": 1,
+    "description": "type:toNumber(x) returns x as number literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "arity": 1,
+    "description": "type:toBoolean(x) returns x as boolean literal"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "arity": 2,
+    "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "arity": 2,
+    "description": "owl:sameAs(x, y) is true if x and y are the same"
+  }
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] document.builtins after loadOntology: [
+  "http://example.org/custom#isFoo",
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] document.builtins after loadOntology: [
+  "http://example.org/custom#isFoo",
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][LOGGING] document.builtins after loadOntology: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "arity": 1,
+    "description": "log:not(x) is true if x is false"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "arity": 2,
+    "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "arity": 2,
+    "description": "log:equalTo(x, y) is true if x === y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "arity": 2,
+    "description": "log:or(x, y) is true if x or y is true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "arity": 2,
+    "description": "log:and(x, y) is true if both x and y are true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "arity": 2,
+    "description": "log:xor(x, y) is true if x and y differ"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "arity": 3,
+    "description": "log:if(cond, then, else) returns then if cond is true, else else"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "arity": 2,
+    "description": "log:distinct(x, y) is true if x != y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "arity": 1,
+    "description": "type:isLiteral(x) is true if x is a literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "arity": 1,
+    "description": "type:isIRI(x) is true if x is an IRI"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "arity": 1,
+    "description": "type:isBlank(x) is true if x is a blank node"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "arity": 1,
+    "description": "type:toString(x) returns x as string"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "arity": 1,
+    "description": "type:toNumber(x) returns x as number literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "arity": 1,
+    "description": "type:toBoolean(x) returns x as boolean literal"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "arity": 2,
+    "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "arity": 2,
+    "description": "owl:sameAs(x, y) is true if x and y are the same"
+  }
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][LOGGING] document.builtins after loadOntology: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "arity": 1,
+    "description": "log:not(x) is true if x is false"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "arity": 2,
+    "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "arity": 2,
+    "description": "log:equalTo(x, y) is true if x === y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "arity": 2,
+    "description": "log:or(x, y) is true if x or y is true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "arity": 2,
+    "description": "log:and(x, y) is true if both x and y are true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "arity": 2,
+    "description": "log:xor(x, y) is true if x and y differ"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "arity": 3,
+    "description": "log:if(cond, then, else) returns then if cond is true, else else"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "arity": 2,
+    "description": "log:distinct(x, y) is true if x != y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "arity": 1,
+    "description": "type:isLiteral(x) is true if x is a literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "arity": 1,
+    "description": "type:isIRI(x) is true if x is an IRI"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "arity": 1,
+    "description": "type:isBlank(x) is true if x is a blank node"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "arity": 1,
+    "description": "type:toString(x) returns x as string"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "arity": 1,
+    "description": "type:toNumber(x) returns x as number literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "arity": 1,
+    "description": "type:toBoolean(x) returns x as boolean literal"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "arity": 2,
+    "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "arity": 2,
+    "description": "owl:sameAs(x, y) is true if x and y are the same"
+  }
+]
+[N3LogicReasoner][DEBUG] Parsed rules: []
+[N3LogicReasoner][DEBUG] Parsed rules: []
+[N3LogicReasoner][TRACE] [N3LogicReasoner] runHook called: afterLoadOntology [
+  {
+    "triples": [
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "foo"
+        }
+      },
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "bar"
+        }
+      }
+    ],
+    "rules": [],
+    "builtins": [
+      {
+        "uri": "http://example.org/custom#isFoo",
+        "arity": 1,
+        "description": "Returns true if the subject is the literal \"foo\""
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#not",
+        "arity": 1,
+        "description": "log:not(x) is true if x is false"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#implies",
+        "arity": 2,
+        "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+        "arity": 2,
+        "description": "log:equalTo(x, y) is true if x === y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#or",
+        "arity": 2,
+        "description": "log:or(x, y) is true if x or y is true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#and",
+        "arity": 2,
+        "description": "log:and(x, y) is true if both x and y are true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#xor",
+        "arity": 2,
+        "description": "log:xor(x, y) is true if x and y differ"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#if",
+        "arity": 3,
+        "description": "log:if(cond, then, else) returns then if cond is true, else else"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+        "arity": 2,
+        "description": "log:distinct(x, y) is true if x != y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+        "arity": 1,
+        "description": "type:isLiteral(x) is true if x is a literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+        "arity": 1,
+        "description": "type:isIRI(x) is true if x is an IRI"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+        "arity": 1,
+        "description": "type:isBlank(x) is true if x is a blank node"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toString",
+        "arity": 1,
+        "description": "type:toString(x) returns x as string"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+        "arity": 1,
+        "description": "type:toNumber(x) returns x as number literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+        "arity": 1,
+        "description": "type:toBoolean(x) returns x as boolean literal"
+      },
+      {
+        "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "arity": 2,
+        "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+      },
+      {
+        "uri": "http://www.w3.org/2002/07/owl#sameAs",
+        "arity": 2,
+        "description": "owl:sameAs(x, y) is true if x and y are the same"
+      }
+    ]
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner] runHook called: afterLoadOntology [
+  {
+    "triples": [
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "foo"
+        }
+      },
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "bar"
+        }
+      }
+    ],
+    "rules": [],
+    "builtins": [
+      {
+        "uri": "http://example.org/custom#isFoo",
+        "arity": 1,
+        "description": "Returns true if the subject is the literal \"foo\""
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#not",
+        "arity": 1,
+        "description": "log:not(x) is true if x is false"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#implies",
+        "arity": 2,
+        "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+        "arity": 2,
+        "description": "log:equalTo(x, y) is true if x === y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#or",
+        "arity": 2,
+        "description": "log:or(x, y) is true if x or y is true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#and",
+        "arity": 2,
+        "description": "log:and(x, y) is true if both x and y are true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#xor",
+        "arity": 2,
+        "description": "log:xor(x, y) is true if x and y differ"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#if",
+        "arity": 3,
+        "description": "log:if(cond, then, else) returns then if cond is true, else else"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+        "arity": 2,
+        "description": "log:distinct(x, y) is true if x != y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+        "arity": 1,
+        "description": "type:isLiteral(x) is true if x is a literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+        "arity": 1,
+        "description": "type:isIRI(x) is true if x is an IRI"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+        "arity": 1,
+        "description": "type:isBlank(x) is true if x is a blank node"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toString",
+        "arity": 1,
+        "description": "type:toString(x) returns x as string"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+        "arity": 1,
+        "description": "type:toNumber(x) returns x as number literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+        "arity": 1,
+        "description": "type:toBoolean(x) returns x as boolean literal"
+      },
+      {
+        "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "arity": 2,
+        "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+      },
+      {
+        "uri": "http://www.w3.org/2002/07/owl#sameAs",
+        "arity": 2,
+        "description": "owl:sameAs(x, y) is true if x and y are the same"
+      }
+    ]
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][HOOKS] About to fire hook: afterLoadOntology args: [
+  {
+    "triples": [
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "foo"
+        }
+      },
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "bar"
+        }
+      }
+    ],
+    "rules": [],
+    "builtins": [
+      {
+        "uri": "http://example.org/custom#isFoo",
+        "arity": 1,
+        "description": "Returns true if the subject is the literal \"foo\""
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#not",
+        "arity": 1,
+        "description": "log:not(x) is true if x is false"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#implies",
+        "arity": 2,
+        "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+        "arity": 2,
+        "description": "log:equalTo(x, y) is true if x === y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#or",
+        "arity": 2,
+        "description": "log:or(x, y) is true if x or y is true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#and",
+        "arity": 2,
+        "description": "log:and(x, y) is true if both x and y are true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#xor",
+        "arity": 2,
+        "description": "log:xor(x, y) is true if x and y differ"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#if",
+        "arity": 3,
+        "description": "log:if(cond, then, else) returns then if cond is true, else else"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+        "arity": 2,
+        "description": "log:distinct(x, y) is true if x != y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+        "arity": 1,
+        "description": "type:isLiteral(x) is true if x is a literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+        "arity": 1,
+        "description": "type:isIRI(x) is true if x is an IRI"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+        "arity": 1,
+        "description": "type:isBlank(x) is true if x is a blank node"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toString",
+        "arity": 1,
+        "description": "type:toString(x) returns x as string"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+        "arity": 1,
+        "description": "type:toNumber(x) returns x as number literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+        "arity": 1,
+        "description": "type:toBoolean(x) returns x as boolean literal"
+      },
+      {
+        "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "arity": 2,
+        "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+      },
+      {
+        "uri": "http://www.w3.org/2002/07/owl#sameAs",
+        "arity": 2,
+        "description": "owl:sameAs(x, y) is true if x and y are the same"
+      }
+    ]
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][HOOKS] About to fire hook: afterLoadOntology args: [
+  {
+    "triples": [
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "foo"
+        }
+      },
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "bar"
+        }
+      }
+    ],
+    "rules": [],
+    "builtins": [
+      {
+        "uri": "http://example.org/custom#isFoo",
+        "arity": 1,
+        "description": "Returns true if the subject is the literal \"foo\""
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#not",
+        "arity": 1,
+        "description": "log:not(x) is true if x is false"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#implies",
+        "arity": 2,
+        "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+        "arity": 2,
+        "description": "log:equalTo(x, y) is true if x === y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#or",
+        "arity": 2,
+        "description": "log:or(x, y) is true if x or y is true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#and",
+        "arity": 2,
+        "description": "log:and(x, y) is true if both x and y are true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#xor",
+        "arity": 2,
+        "description": "log:xor(x, y) is true if x and y differ"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#if",
+        "arity": 3,
+        "description": "log:if(cond, then, else) returns then if cond is true, else else"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+        "arity": 2,
+        "description": "log:distinct(x, y) is true if x != y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+        "arity": 1,
+        "description": "type:isLiteral(x) is true if x is a literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+        "arity": 1,
+        "description": "type:isIRI(x) is true if x is an IRI"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+        "arity": 1,
+        "description": "type:isBlank(x) is true if x is a blank node"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toString",
+        "arity": 1,
+        "description": "type:toString(x) returns x as string"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+        "arity": 1,
+        "description": "type:toNumber(x) returns x as number literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+        "arity": 1,
+        "description": "type:toBoolean(x) returns x as boolean literal"
+      },
+      {
+        "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "arity": 2,
+        "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+      },
+      {
+        "uri": "http://www.w3.org/2002/07/owl#sameAs",
+        "arity": 2,
+        "description": "owl:sameAs(x, y) is true if x and y are the same"
+      }
+    ]
+  }
+]
+[N3LogicReasoner][TRACE] [hooks][TRACE] runHook called: {
+  "hookName": "afterLoadOntology",
+  "args": [
+    {
+      "triples": [
+        {
+          "subject": {
+            "type": "IRI",
+            "value": "a"
+          },
+          "predicate": {
+            "type": "IRI",
+            "value": "b"
+          },
+          "object": {
+            "type": "Literal",
+            "value": "foo"
+          }
+        },
+        {
+          "subject": {
+            "type": "IRI",
+            "value": "a"
+          },
+          "predicate": {
+            "type": "IRI",
+            "value": "b"
+          },
+          "object": {
+            "type": "Literal",
+            "value": "bar"
+          }
+        }
+      ],
+      "rules": [],
+      "builtins": [
+        {
+          "uri": "http://example.org/custom#isFoo",
+          "arity": 1,
+          "description": "Returns true if the subject is the literal \"foo\""
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#not",
+          "arity": 1,
+          "description": "log:not(x) is true if x is false"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#implies",
+          "arity": 2,
+          "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+          "arity": 2,
+          "description": "log:equalTo(x, y) is true if x === y"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#or",
+          "arity": 2,
+          "description": "log:or(x, y) is true if x or y is true"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#and",
+          "arity": 2,
+          "description": "log:and(x, y) is true if both x and y are true"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#xor",
+          "arity": 2,
+          "description": "log:xor(x, y) is true if x and y differ"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#if",
+          "arity": 3,
+          "description": "log:if(cond, then, else) returns then if cond is true, else else"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+          "arity": 2,
+          "description": "log:distinct(x, y) is true if x != y"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+          "arity": 1,
+          "description": "type:isLiteral(x) is true if x is a literal"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+          "arity": 1,
+          "description": "type:isIRI(x) is true if x is an IRI"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+          "arity": 1,
+          "description": "type:isBlank(x) is true if x is a blank node"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/type#toString",
+          "arity": 1,
+          "description": "type:toString(x) returns x as string"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+          "arity": 1,
+          "description": "type:toNumber(x) returns x as number literal"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+          "arity": 1,
+          "description": "type:toBoolean(x) returns x as boolean literal"
+        },
+        {
+          "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+          "arity": 2,
+          "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+        },
+        {
+          "uri": "http://www.w3.org/2002/07/owl#sameAs",
+          "arity": 2,
+          "description": "owl:sameAs(x, y) is true if x and y are the same"
+        }
+      ]
+    }
+  ]
+}
+[N3LogicReasoner][TRACE] [hooks][TRACE] runHook called: {
+  "hookName": "afterLoadOntology",
+  "args": [
+    {
+      "triples": [
+        {
+          "subject": {
+            "type": "IRI",
+            "value": "a"
+          },
+          "predicate": {
+            "type": "IRI",
+            "value": "b"
+          },
+          "object": {
+            "type": "Literal",
+            "value": "foo"
+          }
+        },
+        {
+          "subject": {
+            "type": "IRI",
+            "value": "a"
+          },
+          "predicate": {
+            "type": "IRI",
+            "value": "b"
+          },
+          "object": {
+            "type": "Literal",
+            "value": "bar"
+          }
+        }
+      ],
+      "rules": [],
+      "builtins": [
+        {
+          "uri": "http://example.org/custom#isFoo",
+          "arity": 1,
+          "description": "Returns true if the subject is the literal \"foo\""
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#not",
+          "arity": 1,
+          "description": "log:not(x) is true if x is false"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#implies",
+          "arity": 2,
+          "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+          "arity": 2,
+          "description": "log:equalTo(x, y) is true if x === y"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#or",
+          "arity": 2,
+          "description": "log:or(x, y) is true if x or y is true"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#and",
+          "arity": 2,
+          "description": "log:and(x, y) is true if both x and y are true"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#xor",
+          "arity": 2,
+          "description": "log:xor(x, y) is true if x and y differ"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#if",
+          "arity": 3,
+          "description": "log:if(cond, then, else) returns then if cond is true, else else"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+          "arity": 2,
+          "description": "log:distinct(x, y) is true if x != y"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+          "arity": 1,
+          "description": "type:isLiteral(x) is true if x is a literal"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+          "arity": 1,
+          "description": "type:isIRI(x) is true if x is an IRI"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+          "arity": 1,
+          "description": "type:isBlank(x) is true if x is a blank node"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/type#toString",
+          "arity": 1,
+          "description": "type:toString(x) returns x as string"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+          "arity": 1,
+          "description": "type:toNumber(x) returns x as number literal"
+        },
+        {
+          "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+          "arity": 1,
+          "description": "type:toBoolean(x) returns x as boolean literal"
+        },
+        {
+          "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+          "arity": 2,
+          "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+        },
+        {
+          "uri": "http://www.w3.org/2002/07/owl#sameAs",
+          "arity": 2,
+          "description": "owl:sameAs(x, y) is true if x and y are the same"
+        }
+      ]
+    }
+  ]
+}
+[N3LogicReasoner][TRACE] [hooks][TRACE] runHook: no hooks registered for afterLoadOntology
+[N3LogicReasoner][TRACE] [hooks][TRACE] runHook: no hooks registered for afterLoadOntology
+[N3LogicReasoner][TRACE] [N3LogicReasoner][HOOKS] Finished firing hook: afterLoadOntology
+[N3LogicReasoner][TRACE] [N3LogicReasoner][HOOKS] Finished firing hook: afterLoadOntology
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] loadOntology finished
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] loadOntology finished
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] reason() called
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] reason() called
+[N3LogicReasoner][DEBUG] [REASONER] Starting reason() method. Current builtins: [
+  "http://example.org/custom#isFoo",
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][DEBUG] [REASONER] Starting reason() method. Current builtins: [
+  "http://example.org/custom#isFoo",
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] reason: merging builtins [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] reason: merging builtins [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+]
+[N3LogicReasoner][TRACE] [builtinsManager] mergeBuiltins called: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+] Resulting merged builtins: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "typeofApply": "function"
+  }
+]
+[N3LogicReasoner][TRACE] [builtinsManager] mergeBuiltins called: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+] Resulting merged builtins: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "typeofApply": "function"
+  }
+]
+[N3LogicReasoner][TRACE] [builtinsManager] mergeBuiltins called: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+] Resulting merged builtins: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "typeofApply": "function"
+  }
+]
+[N3LogicReasoner][TRACE] [builtinsManager] mergeBuiltins called: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+] Resulting merged builtins: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "typeofApply": "function"
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] reason: document.builtins after merge [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "arity": 1,
+    "description": "log:not(x) is true if x is false"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "arity": 2,
+    "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "arity": 2,
+    "description": "log:equalTo(x, y) is true if x === y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "arity": 2,
+    "description": "log:or(x, y) is true if x or y is true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "arity": 2,
+    "description": "log:and(x, y) is true if both x and y are true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "arity": 2,
+    "description": "log:xor(x, y) is true if x and y differ"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "arity": 3,
+    "description": "log:if(cond, then, else) returns then if cond is true, else else"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "arity": 2,
+    "description": "log:distinct(x, y) is true if x != y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "arity": 1,
+    "description": "type:isLiteral(x) is true if x is a literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "arity": 1,
+    "description": "type:isIRI(x) is true if x is an IRI"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "arity": 1,
+    "description": "type:isBlank(x) is true if x is a blank node"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "arity": 1,
+    "description": "type:toString(x) returns x as string"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "arity": 1,
+    "description": "type:toNumber(x) returns x as number literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "arity": 1,
+    "description": "type:toBoolean(x) returns x as boolean literal"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "arity": 2,
+    "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "arity": 2,
+    "description": "owl:sameAs(x, y) is true if x and y are the same"
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] reason: document.builtins after merge [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "arity": 1,
+    "description": "log:not(x) is true if x is false"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "arity": 2,
+    "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "arity": 2,
+    "description": "log:equalTo(x, y) is true if x === y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "arity": 2,
+    "description": "log:or(x, y) is true if x or y is true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "arity": 2,
+    "description": "log:and(x, y) is true if both x and y are true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "arity": 2,
+    "description": "log:xor(x, y) is true if x and y differ"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "arity": 3,
+    "description": "log:if(cond, then, else) returns then if cond is true, else else"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "arity": 2,
+    "description": "log:distinct(x, y) is true if x != y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "arity": 1,
+    "description": "type:isLiteral(x) is true if x is a literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "arity": 1,
+    "description": "type:isIRI(x) is true if x is an IRI"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "arity": 1,
+    "description": "type:isBlank(x) is true if x is a blank node"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "arity": 1,
+    "description": "type:toString(x) returns x as string"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "arity": 1,
+    "description": "type:toNumber(x) returns x as number literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "arity": 1,
+    "description": "type:toBoolean(x) returns x as boolean literal"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "arity": 2,
+    "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "arity": 2,
+    "description": "owl:sameAs(x, y) is true if x and y are the same"
+  }
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] customBuiltins before reasoning: [
+  "http://example.org/custom#isFoo"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] customBuiltins before reasoning: [
+  "http://example.org/custom#isFoo"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] document.builtins before reasoning: [
+  "http://example.org/custom#isFoo",
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] document.builtins before reasoning: [
+  "http://example.org/custom#isFoo",
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][DEBUG] Merged builtins for reasoning: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "arity": 1,
+    "description": "log:not(x) is true if x is false"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "arity": 2,
+    "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "arity": 2,
+    "description": "log:equalTo(x, y) is true if x === y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "arity": 2,
+    "description": "log:or(x, y) is true if x or y is true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "arity": 2,
+    "description": "log:and(x, y) is true if both x and y are true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "arity": 2,
+    "description": "log:xor(x, y) is true if x and y differ"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "arity": 3,
+    "description": "log:if(cond, then, else) returns then if cond is true, else else"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "arity": 2,
+    "description": "log:distinct(x, y) is true if x != y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "arity": 1,
+    "description": "type:isLiteral(x) is true if x is a literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "arity": 1,
+    "description": "type:isIRI(x) is true if x is an IRI"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "arity": 1,
+    "description": "type:isBlank(x) is true if x is a blank node"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "arity": 1,
+    "description": "type:toString(x) returns x as string"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "arity": 1,
+    "description": "type:toNumber(x) returns x as number literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "arity": 1,
+    "description": "type:toBoolean(x) returns x as boolean literal"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "arity": 2,
+    "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "arity": 2,
+    "description": "owl:sameAs(x, y) is true if x and y are the same"
+  }
+]
+[N3LogicReasoner][DEBUG] Merged builtins for reasoning: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "arity": 1,
+    "description": "log:not(x) is true if x is false"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "arity": 2,
+    "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "arity": 2,
+    "description": "log:equalTo(x, y) is true if x === y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "arity": 2,
+    "description": "log:or(x, y) is true if x or y is true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "arity": 2,
+    "description": "log:and(x, y) is true if both x and y are true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "arity": 2,
+    "description": "log:xor(x, y) is true if x and y differ"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "arity": 3,
+    "description": "log:if(cond, then, else) returns then if cond is true, else else"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "arity": 2,
+    "description": "log:distinct(x, y) is true if x != y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "arity": 1,
+    "description": "type:isLiteral(x) is true if x is a literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "arity": 1,
+    "description": "type:isIRI(x) is true if x is an IRI"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "arity": 1,
+    "description": "type:isBlank(x) is true if x is a blank node"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "arity": 1,
+    "description": "type:toString(x) returns x as string"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "arity": 1,
+    "description": "type:toNumber(x) returns x as number literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "arity": 1,
+    "description": "type:toBoolean(x) returns x as boolean literal"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "arity": 2,
+    "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "arity": 2,
+    "description": "owl:sameAs(x, y) is true if x and y are the same"
+  }
+]
+[N3LogicReasoner][DEBUG] Starting reasoning {
+  "triples": [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "foo"
+      },
+      "_id": 1,
+      "_provenance": "asserted"
+    },
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "bar"
+      },
+      "_id": 2,
+      "_provenance": "asserted"
+    }
+  ],
+  "rules": []
+}
+[N3LogicReasoner][DEBUG] Starting reasoning {
+  "triples": [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "foo"
+      },
+      "_id": 1,
+      "_provenance": "asserted"
+    },
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "bar"
+      },
+      "_id": 2,
+      "_provenance": "asserted"
+    }
+  ],
+  "rules": []
+}
+[N3LogicReasoner][TRACE] [N3LogicReasoner] runHook called: beforeReason [
+  {
+    "triples": [
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "foo"
+        },
+        "_id": 1,
+        "_provenance": "asserted"
+      },
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "bar"
+        },
+        "_id": 2,
+        "_provenance": "asserted"
+      }
+    ],
+    "rules": [],
+    "builtins": [
+      {
+        "uri": "http://example.org/custom#isFoo",
+        "arity": 1,
+        "description": "Returns true if the subject is the literal \"foo\""
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#not",
+        "arity": 1,
+        "description": "log:not(x) is true if x is false"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#implies",
+        "arity": 2,
+        "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+        "arity": 2,
+        "description": "log:equalTo(x, y) is true if x === y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#or",
+        "arity": 2,
+        "description": "log:or(x, y) is true if x or y is true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#and",
+        "arity": 2,
+        "description": "log:and(x, y) is true if both x and y are true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#xor",
+        "arity": 2,
+        "description": "log:xor(x, y) is true if x and y differ"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#if",
+        "arity": 3,
+        "description": "log:if(cond, then, else) returns then if cond is true, else else"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+        "arity": 2,
+        "description": "log:distinct(x, y) is true if x != y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+        "arity": 1,
+        "description": "type:isLiteral(x) is true if x is a literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+        "arity": 1,
+        "description": "type:isIRI(x) is true if x is an IRI"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+        "arity": 1,
+        "description": "type:isBlank(x) is true if x is a blank node"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toString",
+        "arity": 1,
+        "description": "type:toString(x) returns x as string"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+        "arity": 1,
+        "description": "type:toNumber(x) returns x as number literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+        "arity": 1,
+        "description": "type:toBoolean(x) returns x as boolean literal"
+      },
+      {
+        "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "arity": 2,
+        "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+      },
+      {
+        "uri": "http://www.w3.org/2002/07/owl#sameAs",
+        "arity": 2,
+        "description": "owl:sameAs(x, y) is true if x and y are the same"
+      }
+    ]
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner] runHook called: beforeReason [
+  {
+    "triples": [
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "foo"
+        },
+        "_id": 1,
+        "_provenance": "asserted"
+      },
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "bar"
+        },
+        "_id": 2,
+        "_provenance": "asserted"
+      }
+    ],
+    "rules": [],
+    "builtins": [
+      {
+        "uri": "http://example.org/custom#isFoo",
+        "arity": 1,
+        "description": "Returns true if the subject is the literal \"foo\""
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#not",
+        "arity": 1,
+        "description": "log:not(x) is true if x is false"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#implies",
+        "arity": 2,
+        "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+        "arity": 2,
+        "description": "log:equalTo(x, y) is true if x === y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#or",
+        "arity": 2,
+        "description": "log:or(x, y) is true if x or y is true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#and",
+        "arity": 2,
+        "description": "log:and(x, y) is true if both x and y are true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#xor",
+        "arity": 2,
+        "description": "log:xor(x, y) is true if x and y differ"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#if",
+        "arity": 3,
+        "description": "log:if(cond, then, else) returns then if cond is true, else else"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+        "arity": 2,
+        "description": "log:distinct(x, y) is true if x != y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+        "arity": 1,
+        "description": "type:isLiteral(x) is true if x is a literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+        "arity": 1,
+        "description": "type:isIRI(x) is true if x is an IRI"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+        "arity": 1,
+        "description": "type:isBlank(x) is true if x is a blank node"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toString",
+        "arity": 1,
+        "description": "type:toString(x) returns x as string"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+        "arity": 1,
+        "description": "type:toNumber(x) returns x as number literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+        "arity": 1,
+        "description": "type:toBoolean(x) returns x as boolean literal"
+      },
+      {
+        "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "arity": 2,
+        "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+      },
+      {
+        "uri": "http://www.w3.org/2002/07/owl#sameAs",
+        "arity": 2,
+        "description": "owl:sameAs(x, y) is true if x and y are the same"
+      }
+    ]
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][HOOKS] About to fire hook: beforeReason args: [
+  {
+    "triples": [
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "foo"
+        },
+        "_id": 1,
+        "_provenance": "asserted"
+      },
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "bar"
+        },
+        "_id": 2,
+        "_provenance": "asserted"
+      }
+    ],
+    "rules": [],
+    "builtins": [
+      {
+        "uri": "http://example.org/custom#isFoo",
+        "arity": 1,
+        "description": "Returns true if the subject is the literal \"foo\""
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#not",
+        "arity": 1,
+        "description": "log:not(x) is true if x is false"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#implies",
+        "arity": 2,
+        "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+        "arity": 2,
+        "description": "log:equalTo(x, y) is true if x === y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#or",
+        "arity": 2,
+        "description": "log:or(x, y) is true if x or y is true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#and",
+        "arity": 2,
+        "description": "log:and(x, y) is true if both x and y are true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#xor",
+        "arity": 2,
+        "description": "log:xor(x, y) is true if x and y differ"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#if",
+        "arity": 3,
+        "description": "log:if(cond, then, else) returns then if cond is true, else else"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+        "arity": 2,
+        "description": "log:distinct(x, y) is true if x != y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+        "arity": 1,
+        "description": "type:isLiteral(x) is true if x is a literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+        "arity": 1,
+        "description": "type:isIRI(x) is true if x is an IRI"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+        "arity": 1,
+        "description": "type:isBlank(x) is true if x is a blank node"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toString",
+        "arity": 1,
+        "description": "type:toString(x) returns x as string"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+        "arity": 1,
+        "description": "type:toNumber(x) returns x as number literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+        "arity": 1,
+        "description": "type:toBoolean(x) returns x as boolean literal"
+      },
+      {
+        "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "arity": 2,
+        "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+      },
+      {
+        "uri": "http://www.w3.org/2002/07/owl#sameAs",
+        "arity": 2,
+        "description": "owl:sameAs(x, y) is true if x and y are the same"
+      }
+    ]
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][HOOKS] About to fire hook: beforeReason args: [
+  {
+    "triples": [
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "foo"
+        },
+        "_id": 1,
+        "_provenance": "asserted"
+      },
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "bar"
+        },
+        "_id": 2,
+        "_provenance": "asserted"
+      }
+    ],
+    "rules": [],
+    "builtins": [
+      {
+        "uri": "http://example.org/custom#isFoo",
+        "arity": 1,
+        "description": "Returns true if the subject is the literal \"foo\""
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#not",
+        "arity": 1,
+        "description": "log:not(x) is true if x is false"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#implies",
+        "arity": 2,
+        "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+        "arity": 2,
+        "description": "log:equalTo(x, y) is true if x === y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#or",
+        "arity": 2,
+        "description": "log:or(x, y) is true if x or y is true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#and",
+        "arity": 2,
+        "description": "log:and(x, y) is true if both x and y are true"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#xor",
+        "arity": 2,
+        "description": "log:xor(x, y) is true if x and y differ"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#if",
+        "arity": 3,
+        "description": "log:if(cond, then, else) returns then if cond is true, else else"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+        "arity": 2,
+        "description": "log:distinct(x, y) is true if x != y"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+        "arity": 1,
+        "description": "type:isLiteral(x) is true if x is a literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+        "arity": 1,
+        "description": "type:isIRI(x) is true if x is an IRI"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+        "arity": 1,
+        "description": "type:isBlank(x) is true if x is a blank node"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toString",
+        "arity": 1,
+        "description": "type:toString(x) returns x as string"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+        "arity": 1,
+        "description": "type:toNumber(x) returns x as number literal"
+      },
+      {
+        "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+        "arity": 1,
+        "description": "type:toBoolean(x) returns x as boolean literal"
+      },
+      {
+        "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "arity": 2,
+        "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+      },
+      {
+        "uri": "http://www.w3.org/2002/07/owl#sameAs",
+        "arity": 2,
+        "description": "owl:sameAs(x, y) is true if x and y are the same"
+      }
+    ]
+  }
+]

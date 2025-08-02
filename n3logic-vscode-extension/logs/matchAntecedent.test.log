@@ -1,0 +1,18 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner\matcher\matchAntecedent.test.ts
+Status: PASS
+
+Test: matcher/matchAntecedent returns [{}] for empty patterns
+Status: passed
+
+
+Test: matcher/matchAntecedent matches a triple in data
+Status: passed
+
+
+Test: matcher/matchAntecedent returns [] if no match
+Status: passed
+
+
+Test: matcher/matchAntecedent handles builtins
+Status: passed
+

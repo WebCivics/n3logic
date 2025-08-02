@@ -3,7 +3,7 @@ import { tripleToString, stringToTriple, termToString, termEquals } from '../../
 describe('tripleToString', () => {
   it('converts triple to string', () => {
     const triple = { subject: 'a', predicate: 'b', object: 'c' };
-    expect(tripleToString(triple)).toBe('a b c');
+    expect(tripleToString(triple)).toBe('a b c .');
   });
 });
 

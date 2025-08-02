@@ -1,0 +1,3106 @@
+[N3LogicReasoner][TRACE] [hooks][TRACE] runHook called: {
+  "hookName": "afterRuleApplied",
+  "args": [
+    {
+      "type": "Rule",
+      "antecedent": {
+        "type": "Formula",
+        "triples": [
+          {
+            "subject": {
+              "type": "IRI",
+              "value": "a"
+            },
+            "predicate": {
+              "type": "IRI",
+              "value": "b"
+            },
+            "object": {
+              "type": "Variable",
+              "value": "x"
+            }
+          }
+        ]
+      },
+      "consequent": {
+        "type": "Formula",
+        "triples": [
+          {
+            "subject": {
+              "type": "IRI",
+              "value": "a"
+            },
+            "predicate": {
+              "type": "IRI",
+              "value": "c"
+            },
+            "object": {
+              "type": "Variable",
+              "value": "x"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "c"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "1"
+      }
+    },
+    {
+      "x": {
+        "type": "Literal",
+        "value": "1"
+      }
+    }
+  ]
+}
+[N3LogicReasoner][TRACE] [hooks][TRACE] runHook: no hooks registered for afterRuleApplied
+[N3LogicReasoner][TRACE] [hooks][TRACE] runHook: no hooks registered for afterRuleApplied
+[N3LogicReasoner][TRACE] [N3LogicReasoner][HOOKS] Finished firing hook: afterRuleApplied
+[N3LogicReasoner][TRACE] [N3LogicReasoner][HOOKS] Finished firing hook: afterRuleApplied
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] New triples inferred in iteration 1: [
+  "<a> <c> \"1\" ."
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] New triples inferred in iteration 1: [
+  "<a> <c> \"1\" ."
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] New triples inferred in iteration 1: [
+  "<a> <c> \"1\" ."
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] New triples inferred in iteration 1: [
+  "<a> <c> \"1\" ."
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Rules fired in iteration 1: [
+  0
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Rules fired in iteration 1: [
+  0
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Rules fired in iteration 1: [
+  0
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Rules fired in iteration 1: [
+  0
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Current triple store at end of iteration 1: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Current triple store at end of iteration 1: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Current triple store at end of iteration 1: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Current triple store at end of iteration 1: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] === Reasoning iteration 1 END. changed=true ===
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] === Reasoning iteration 1 END. changed=true ===
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] === Reasoning iteration 1 END. changed=true ===
+
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] === Reasoning iteration 1 END. changed=true ===
+
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Reasoning iteration 2 START
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Reasoning iteration 2 START
+[N3LogicReasoner][DEBUG] 
+=== Reasoning iteration 2 START ===
+[N3LogicReasoner][DEBUG] 
+=== Reasoning iteration 2 START ===
+[N3LogicReasoner][DEBUG] Current triple store at start of iteration 2: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] Current triple store at start of iteration 2: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Evaluating rule #0
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Evaluating rule #0
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Evaluating rule #0: {"type":"Rule","antecedent":{"type":"Formula","triples":[{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Variable","value":"x"}}]},"consequent":{"type":"Formula","triples":[{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Variable","value":"x"}}]}}
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Evaluating rule #0: {"type":"Rule","antecedent":{"type":"Formula","triples":[{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Variable","value":"x"}}]},"consequent":{"type":"Formula","triples":[{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Variable","value":"x"}}]}}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Matching antecedent for rule #0
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Matching antecedent for rule #0
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Matching antecedent for rule #0: {"type":"Formula","triples":[{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Variable","value":"x"}}]}
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Matching antecedent for rule #0: {"type":"Formula","triples":[{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Variable","value":"x"}}]}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE][TRACE-1754128431170-4] matchAntecedent called: {
+  "patterns": [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Variable",
+        "value": "x"
+      }
+    }
+  ],
+  "data": [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "1"
+      },
+      "_id": 1,
+      "_provenance": "asserted"
+    },
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "c"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "1"
+      }
+    }
+  ]
+}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE][TRACE-1754128431170-4] matchAntecedent called: {
+  "patterns": [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Variable",
+        "value": "x"
+      }
+    }
+  ],
+  "data": [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "1"
+      },
+      "_id": 1,
+      "_provenance": "asserted"
+    },
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "c"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "1"
+      }
+    }
+  ]
+}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE][TRACE-1754128431170-4] Using document.builtins: [
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE][TRACE-1754128431170-4] Using document.builtins: [
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][TRACE-1754128431170-4] matchAntecedent called with: [{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Variable","value":"x"}}] [{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"1"},"_id":1,"_provenance":"asserted"},{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Literal","value":"1"}}]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][TRACE-1754128431170-4] matchAntecedent called with: [{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Variable","value":"x"}}] [{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"1"},"_id":1,"_provenance":"asserted"},{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Literal","value":"1"}}]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][TRACE-1754128431170-4] Using document.builtins: [
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][TRACE-1754128431170-4] Using document.builtins: [
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] [TRACE-1754128431170-4] matchAntecedent called with patterns: [{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Variable","value":"x"}}] data: [{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"1"},"_id":1,"_provenance":"asserted"},{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Literal","value":"1"}}]
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] [TRACE-1754128431170-4] matchAntecedent called with patterns: [{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Variable","value":"x"}}] data: [{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"1"},"_id":1,"_provenance":"asserted"},{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Literal","value":"1"}}]
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] logPatternsAndData called
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] logPatternsAndData called
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Builtins available at match time: [
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Builtins available at match time: [
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] Pattern #0: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Variable",
+    "value": "x"
+  }
+}
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] Pattern #0: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Variable",
+    "value": "x"
+  }
+}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Pattern #0: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Variable","value":"x"}}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Pattern #0: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Variable","value":"x"}}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Pattern #0 predicate: {
+  "type": "IRI",
+  "value": "b"
+}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Pattern #0 predicate: {
+  "type": "IRI",
+  "value": "b"
+}
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] Data triple #0: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+}
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] Data triple #0: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Data triple #0: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"1"},"_id":1,"_provenance":"asserted"}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Data triple #0: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"1"},"_id":1,"_provenance":"asserted"}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Data triple #0 predicate: {
+  "type": "IRI",
+  "value": "b"
+}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Data triple #0 predicate: {
+  "type": "IRI",
+  "value": "b"
+}
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] Data triple #1: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] Data triple #1: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Data triple #1: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Literal","value":"1"}}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Data triple #1: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Literal","value":"1"}}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Data triple #1 predicate: {
+  "type": "IRI",
+  "value": "c"
+}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Data triple #1 predicate: {
+  "type": "IRI",
+  "value": "c"
+}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Patterns: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Variable",
+      "value": "x"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Patterns: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Variable",
+      "value": "x"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Data: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Data: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Builtin URIs: [
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Builtin URIs: [
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] logPatternsAndData complete
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] logPatternsAndData complete
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] [TRACE-1754128431170-4] Pattern triple: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Variable","value":"x"}}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] [TRACE-1754128431170-4] Pattern triple: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Variable","value":"x"}}
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] isN3IRI called with: {
+  "type": "IRI",
+  "value": "b"
+}
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] isN3IRI called with: {
+  "type": "IRI",
+  "value": "b"
+}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] isN3IRI result: true for term: {
+  "type": "IRI",
+  "value": "b"
+}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] isN3IRI result: true for term: {
+  "type": "IRI",
+  "value": "b"
+}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] findBuiltinForPredicate called with: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] findBuiltinForPredicate called with: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#not against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#not against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#implies against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#implies against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#equalTo against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#equalTo against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#or against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#or against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#and against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#and against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#xor against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#xor against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#if against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#if against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#distinct against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/log#distinct against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/type#isLiteral against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/type#isLiteral against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/type#isIRI against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/type#isIRI against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/type#isBlank against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/type#isBlank against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/type#toString against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/type#toString against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/type#toNumber against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/type#toNumber against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/type#toBoolean against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2000/10/swap/type#toBoolean against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/1999/02/22-rdf-syntax-ns#type against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/1999/02/22-rdf-syntax-ns#type against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2002/07/owl#sameAs against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] Checking builtin candidate: http://www.w3.org/2002/07/owl#sameAs against predicateUri: b
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] [TRACE-1754128431170-4] matchTriple: matched {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Variable",
+    "value": "x"
+  }
+} {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+} {
+  "x": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] [TRACE-1754128431170-4] matchTriple: matched {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Variable",
+    "value": "x"
+  }
+} {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+} {
+  "x": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] [TRACE-1754128431170-4] No patterns left, returning [{}]
+[N3LogicReasoner][TRACE] [MATCHER][TRACE] [TRACE-1754128431170-4] No patterns left, returning [{}]
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] [TRACE-1754128431170-4] matchAntecedent returning results: [
+  {
+    "x": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] [MATCHER][DEBUG] [TRACE-1754128431170-4] matchAntecedent returning results: [
+  {
+    "x": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE][TRACE-1754128431170-4] matchAntecedent result: [
+  {
+    "x": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE][TRACE-1754128431170-4] matchAntecedent result: [
+  {
+    "x": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][TRACE-1754128431170-4] matchAntecedent result: [{"x":{"type":"Literal","value":"1"}}]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][TRACE-1754128431170-4] matchAntecedent result: [{"x":{"type":"Literal","value":"1"}}]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Bindings list from matchFormula for rule #0: [
+  {
+    "x": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Bindings list from matchFormula for rule #0: [
+  {
+    "x": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Bindings list from matchFormula for rule #0: [{"x":{"type":"Literal","value":"1"}}]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Bindings list from matchFormula for rule #0: [{"x":{"type":"Literal","value":"1"}}]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Bindings #0 before evaluateBuiltins for rule #0: {
+  "x": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Bindings #0 before evaluateBuiltins for rule #0: {
+  "x": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Bindings #0 before evaluateBuiltins for rule #0: {"x":{"type":"Literal","value":"1"}}
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Bindings #0 before evaluateBuiltins for rule #0: {"x":{"type":"Literal","value":"1"}}
+[N3LogicReasoner][TRACE] [builtinEvaluator][TRACE][TRACE-1754128431163-3] evaluateBuiltins called: {
+  "triples": [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Variable",
+        "value": "x"
+      }
+    }
+  ],
+  "bindings": {
+    "x": {
+      "type": "Literal",
+      "value": "1"
+    }
+  },
+  "builtins": [
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#not",
+      "arity": 1,
+      "description": "log:not(x) is true if x is false"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#implies",
+      "arity": 2,
+      "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+      "arity": 2,
+      "description": "log:equalTo(x, y) is true if x === y"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#or",
+      "arity": 2,
+      "description": "log:or(x, y) is true if x or y is true"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#and",
+      "arity": 2,
+      "description": "log:and(x, y) is true if both x and y are true"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#xor",
+      "arity": 2,
+      "description": "log:xor(x, y) is true if x and y differ"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#if",
+      "arity": 3,
+      "description": "log:if(cond, then, else) returns then if cond is true, else else"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+      "arity": 2,
+      "description": "log:distinct(x, y) is true if x != y"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+      "arity": 1,
+      "description": "type:isLiteral(x) is true if x is a literal"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+      "arity": 1,
+      "description": "type:isIRI(x) is true if x is an IRI"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+      "arity": 1,
+      "description": "type:isBlank(x) is true if x is a blank node"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toString",
+      "arity": 1,
+      "description": "type:toString(x) returns x as string"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+      "arity": 1,
+      "description": "type:toNumber(x) returns x as number literal"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+      "arity": 1,
+      "description": "type:toBoolean(x) returns x as boolean literal"
+    },
+    {
+      "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "arity": 2,
+      "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+    },
+    {
+      "uri": "http://www.w3.org/2002/07/owl#sameAs",
+      "arity": 2,
+      "description": "owl:sameAs(x, y) is true if x and y are the same"
+    }
+  ]
+}
+[N3LogicReasoner][TRACE] [builtinEvaluator][TRACE][TRACE-1754128431163-3] evaluateBuiltins called: {
+  "triples": [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Variable",
+        "value": "x"
+      }
+    }
+  ],
+  "bindings": {
+    "x": {
+      "type": "Literal",
+      "value": "1"
+    }
+  },
+  "builtins": [
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#not",
+      "arity": 1,
+      "description": "log:not(x) is true if x is false"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#implies",
+      "arity": 2,
+      "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+      "arity": 2,
+      "description": "log:equalTo(x, y) is true if x === y"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#or",
+      "arity": 2,
+      "description": "log:or(x, y) is true if x or y is true"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#and",
+      "arity": 2,
+      "description": "log:and(x, y) is true if both x and y are true"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#xor",
+      "arity": 2,
+      "description": "log:xor(x, y) is true if x and y differ"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#if",
+      "arity": 3,
+      "description": "log:if(cond, then, else) returns then if cond is true, else else"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+      "arity": 2,
+      "description": "log:distinct(x, y) is true if x != y"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+      "arity": 1,
+      "description": "type:isLiteral(x) is true if x is a literal"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+      "arity": 1,
+      "description": "type:isIRI(x) is true if x is an IRI"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+      "arity": 1,
+      "description": "type:isBlank(x) is true if x is a blank node"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toString",
+      "arity": 1,
+      "description": "type:toString(x) returns x as string"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+      "arity": 1,
+      "description": "type:toNumber(x) returns x as number literal"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+      "arity": 1,
+      "description": "type:toBoolean(x) returns x as boolean literal"
+    },
+    {
+      "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "arity": 2,
+      "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+    },
+    {
+      "uri": "http://www.w3.org/2002/07/owl#sameAs",
+      "arity": 2,
+      "description": "owl:sameAs(x, y) is true if x and y are the same"
+    }
+  ]
+}
+[N3LogicReasoner][DEBUG] evaluateBuiltins: triples: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Variable",
+      "value": "x"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] evaluateBuiltins: triples: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Variable",
+      "value": "x"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] evaluateBuiltins: bindings: {
+  "x": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][DEBUG] evaluateBuiltins: bindings: {
+  "x": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][DEBUG] evaluateBuiltins called {
+  "triples": [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Variable",
+        "value": "x"
+      }
+    }
+  ],
+  "bindings": {
+    "x": {
+      "type": "Literal",
+      "value": "1"
+    }
+  },
+  "builtins": [
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#not",
+      "arity": 1,
+      "description": "log:not(x) is true if x is false"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#implies",
+      "arity": 2,
+      "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+      "arity": 2,
+      "description": "log:equalTo(x, y) is true if x === y"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#or",
+      "arity": 2,
+      "description": "log:or(x, y) is true if x or y is true"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#and",
+      "arity": 2,
+      "description": "log:and(x, y) is true if both x and y are true"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#xor",
+      "arity": 2,
+      "description": "log:xor(x, y) is true if x and y differ"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#if",
+      "arity": 3,
+      "description": "log:if(cond, then, else) returns then if cond is true, else else"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+      "arity": 2,
+      "description": "log:distinct(x, y) is true if x != y"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+      "arity": 1,
+      "description": "type:isLiteral(x) is true if x is a literal"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+      "arity": 1,
+      "description": "type:isIRI(x) is true if x is an IRI"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+      "arity": 1,
+      "description": "type:isBlank(x) is true if x is a blank node"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toString",
+      "arity": 1,
+      "description": "type:toString(x) returns x as string"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+      "arity": 1,
+      "description": "type:toNumber(x) returns x as number literal"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+      "arity": 1,
+      "description": "type:toBoolean(x) returns x as boolean literal"
+    },
+    {
+      "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "arity": 2,
+      "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+    },
+    {
+      "uri": "http://www.w3.org/2002/07/owl#sameAs",
+      "arity": 2,
+      "description": "owl:sameAs(x, y) is true if x and y are the same"
+    }
+  ]
+}
+[N3LogicReasoner][DEBUG] evaluateBuiltins called {
+  "triples": [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Variable",
+        "value": "x"
+      }
+    }
+  ],
+  "bindings": {
+    "x": {
+      "type": "Literal",
+      "value": "1"
+    }
+  },
+  "builtins": [
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#not",
+      "arity": 1,
+      "description": "log:not(x) is true if x is false"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#implies",
+      "arity": 2,
+      "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+      "arity": 2,
+      "description": "log:equalTo(x, y) is true if x === y"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#or",
+      "arity": 2,
+      "description": "log:or(x, y) is true if x or y is true"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#and",
+      "arity": 2,
+      "description": "log:and(x, y) is true if both x and y are true"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#xor",
+      "arity": 2,
+      "description": "log:xor(x, y) is true if x and y differ"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#if",
+      "arity": 3,
+      "description": "log:if(cond, then, else) returns then if cond is true, else else"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+      "arity": 2,
+      "description": "log:distinct(x, y) is true if x != y"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+      "arity": 1,
+      "description": "type:isLiteral(x) is true if x is a literal"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+      "arity": 1,
+      "description": "type:isIRI(x) is true if x is an IRI"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+      "arity": 1,
+      "description": "type:isBlank(x) is true if x is a blank node"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toString",
+      "arity": 1,
+      "description": "type:toString(x) returns x as string"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+      "arity": 1,
+      "description": "type:toNumber(x) returns x as number literal"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+      "arity": 1,
+      "description": "type:toBoolean(x) returns x as boolean literal"
+    },
+    {
+      "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "arity": 2,
+      "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+    },
+    {
+      "uri": "http://www.w3.org/2002/07/owl#sameAs",
+      "arity": 2,
+      "description": "owl:sameAs(x, y) is true if x and y are the same"
+    }
+  ]
+}
+[N3LogicReasoner][DEBUG] [EVALBUILTINS][CUSTOM] Builtins full array: [
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "arity": 1,
+    "description": "log:not(x) is true if x is false"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "arity": 2,
+    "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "arity": 2,
+    "description": "log:equalTo(x, y) is true if x === y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "arity": 2,
+    "description": "log:or(x, y) is true if x or y is true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "arity": 2,
+    "description": "log:and(x, y) is true if both x and y are true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "arity": 2,
+    "description": "log:xor(x, y) is true if x and y differ"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "arity": 3,
+    "description": "log:if(cond, then, else) returns then if cond is true, else else"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "arity": 2,
+    "description": "log:distinct(x, y) is true if x != y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "arity": 1,
+    "description": "type:isLiteral(x) is true if x is a literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "arity": 1,
+    "description": "type:isIRI(x) is true if x is an IRI"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "arity": 1,
+    "description": "type:isBlank(x) is true if x is a blank node"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "arity": 1,
+    "description": "type:toString(x) returns x as string"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "arity": 1,
+    "description": "type:toNumber(x) returns x as number literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "arity": 1,
+    "description": "type:toBoolean(x) returns x as boolean literal"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "arity": 2,
+    "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "arity": 2,
+    "description": "owl:sameAs(x, y) is true if x and y are the same"
+  }
+]
+[N3LogicReasoner][DEBUG] [EVALBUILTINS][CUSTOM] Builtins full array: [
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "arity": 1,
+    "description": "log:not(x) is true if x is false"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "arity": 2,
+    "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "arity": 2,
+    "description": "log:equalTo(x, y) is true if x === y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "arity": 2,
+    "description": "log:or(x, y) is true if x or y is true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "arity": 2,
+    "description": "log:and(x, y) is true if both x and y are true"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "arity": 2,
+    "description": "log:xor(x, y) is true if x and y differ"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "arity": 3,
+    "description": "log:if(cond, then, else) returns then if cond is true, else else"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "arity": 2,
+    "description": "log:distinct(x, y) is true if x != y"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "arity": 1,
+    "description": "type:isLiteral(x) is true if x is a literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "arity": 1,
+    "description": "type:isIRI(x) is true if x is an IRI"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "arity": 1,
+    "description": "type:isBlank(x) is true if x is a blank node"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "arity": 1,
+    "description": "type:toString(x) returns x as string"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "arity": 1,
+    "description": "type:toNumber(x) returns x as number literal"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "arity": 1,
+    "description": "type:toBoolean(x) returns x as boolean literal"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "arity": 2,
+    "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "arity": 2,
+    "description": "owl:sameAs(x, y) is true if x and y are the same"
+  }
+]
+[N3LogicReasoner][DEBUG] [EVALBUILTINS][CUSTOM] Triple: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Variable",
+    "value": "x"
+  }
+}
+[N3LogicReasoner][DEBUG] [EVALBUILTINS][CUSTOM] Triple: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Variable",
+    "value": "x"
+  }
+}
+[N3LogicReasoner][TRACE] [builtinEvaluator][TRACE][TRACE-1754128431163-3] Checking triple: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Variable",
+    "value": "x"
+  }
+}
+[N3LogicReasoner][TRACE] [builtinEvaluator][TRACE][TRACE-1754128431163-3] Checking triple: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Variable",
+    "value": "x"
+  }
+}
+[N3LogicReasoner][DEBUG] evaluateBuiltins: checking triple: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Variable",
+    "value": "x"
+  }
+}
+[N3LogicReasoner][DEBUG] evaluateBuiltins: checking triple: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Variable",
+    "value": "x"
+  }
+}
+[N3LogicReasoner][TRACE] [builtinEvaluator][TRACE][TRACE-1754128431163-3] Checking builtin for predicate: b Found: false Function:  Typeof: 
+[N3LogicReasoner][TRACE] [builtinEvaluator][TRACE][TRACE-1754128431163-3] Checking builtin for predicate: b Found: false Function:  Typeof: 
+[N3LogicReasoner][DEBUG] [EVALBUILTINS][CUSTOM] Checking builtin for predicate: b Found: false
+[N3LogicReasoner][DEBUG] [EVALBUILTINS][CUSTOM] Checking builtin for predicate: b Found: false
+[N3LogicReasoner][DEBUG] [EVALBUILTINS][CUSTOM] No builtin found for predicate: b
+[N3LogicReasoner][DEBUG] [EVALBUILTINS][CUSTOM] No builtin found for predicate: b
+[N3LogicReasoner][TRACE] [builtinEvaluator][TRACE][TRACE-1754128431163-3] evaluateBuiltins returning true
+[N3LogicReasoner][TRACE] [builtinEvaluator][TRACE][TRACE-1754128431163-3] evaluateBuiltins returning true
+[N3LogicReasoner][DEBUG] evaluateBuiltins returning true
+[N3LogicReasoner][DEBUG] evaluateBuiltins returning true
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] evaluateBuiltins result for rule #0, bindings #0: true
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] evaluateBuiltins result for rule #0, bindings #0: true
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] evaluateBuiltins result for rule #0, bindings #0: true
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] evaluateBuiltins result for rule #0, bindings #0: true
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Instantiating consequent triple #0 for rule #0
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Instantiating consequent triple #0 for rule #0
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Instantiating consequent triple #0 for rule #0: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Variable","value":"x"}} with bindings: {"x":{"type":"Literal","value":"1"}}
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Instantiating consequent triple #0 for rule #0: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Variable","value":"x"}} with bindings: {"x":{"type":"Literal","value":"1"}}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE][TRACE-1754128431163-3] instantiateTriple called: {
+  "triple": {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Variable",
+      "value": "x"
+    }
+  },
+  "bindings": {
+    "x": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE][TRACE-1754128431163-3] instantiateTriple called: {
+  "triple": {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Variable",
+      "value": "x"
+    }
+  },
+  "bindings": {
+    "x": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE][TRACE-1754128431163-3] instantiateTriple result: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE][TRACE-1754128431163-3] instantiateTriple result: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Instantiated triple for rule #0, consIdx #0: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Instantiated triple for rule #0, consIdx #0: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Instantiated triple for rule #0, consIdx #0: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Literal","value":"1"}}
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Instantiated triple for rule #0, consIdx #0: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Literal","value":"1"}}
+[N3LogicReasoner][TRACE] tripleToString input: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][TRACE] tripleToString input: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString called: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString called: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString: result <a> <c> "1" .
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString: result <a> <c> "1" .
+[N3LogicReasoner][TRACE] tripleToString output: <a> <c> "1" .
+[N3LogicReasoner][TRACE] tripleToString output: <a> <c> "1" .
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Checking if triple is already inferred for rule #0, consIdx #0: <a> <c> "1" . {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Checking if triple is already inferred for rule #0, consIdx #0: <a> <c> "1" . {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+}
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Checking if triple is already inferred for rule #0, consIdx #0: <a> <c> "1" . {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Literal","value":"1"}}
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Checking if triple is already inferred for rule #0, consIdx #0: <a> <c> "1" . {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Literal","value":"1"}}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Triple already present, skipping for rule #0, consIdx #0: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+} Key: <a> <c> "1" .
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Triple already present, skipping for rule #0, consIdx #0: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "c"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  }
+} Key: <a> <c> "1" .
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Triple already present, skipping for rule #0, consIdx #0: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Literal","value":"1"}} Key: <a> <c> "1" .
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Triple already present, skipping for rule #0, consIdx #0: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"c"},"object":{"type":"Literal","value":"1"}} Key: <a> <c> "1" .
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] New triples inferred in iteration 2: []
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] New triples inferred in iteration 2: []
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] New triples inferred in iteration 2: []
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] New triples inferred in iteration 2: []
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Rules fired in iteration 2: []
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Rules fired in iteration 2: []
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Rules fired in iteration 2: []
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Rules fired in iteration 2: []
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Current triple store at end of iteration 2: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] Current triple store at end of iteration 2: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Current triple store at end of iteration 2: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Current triple store at end of iteration 2: [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    },
+    "_id": 1,
+    "_provenance": "asserted"
+  },
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "c"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "1"
+    }
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] === Reasoning iteration 2 END. changed=false ===
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] === Reasoning iteration 2 END. changed=false ===
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] === Reasoning iteration 2 END. changed=false ===
+
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] === Reasoning iteration 2 END. changed=false ===
+
+[N3LogicReasoner][TRACE] [N3LogicReasoner] runHook called: afterReason [
+  [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "1"
+      },
+      "_id": 1,
+      "_provenance": "asserted"
+    },
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "c"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "1"
+      }
+    }
+  ]
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner] runHook called: afterReason [
+  [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "1"
+      },
+      "_id": 1,
+      "_provenance": "asserted"
+    },
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "c"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "1"
+      }
+    }
+  ]
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][HOOKS] About to fire hook: afterReason args: [
+  [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "1"
+      },
+      "_id": 1,
+      "_provenance": "asserted"
+    },
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "c"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "1"
+      }
+    }
+  ]
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][HOOKS] About to fire hook: afterReason args: [
+  [
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "b"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "1"
+      },
+      "_id": 1,
+      "_provenance": "asserted"
+    },
+    {
+      "subject": {
+        "type": "IRI",
+        "value": "a"
+      },
+      "predicate": {
+        "type": "IRI",
+        "value": "c"
+      },
+      "object": {
+        "type": "Literal",
+        "value": "1"
+      }
+    }
+  ]
+]
+[N3LogicReasoner][TRACE] [hooks][TRACE] runHook called: {
+  "hookName": "afterReason",
+  "args": [
+    [
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "1"
+        },
+        "_id": 1,
+        "_provenance": "asserted"
+      },
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "c"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "1"
+        }
+      }
+    ]
+  ]
+}
+[N3LogicReasoner][TRACE] [hooks][TRACE] runHook called: {
+  "hookName": "afterReason",
+  "args": [
+    [
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "b"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "1"
+        },
+        "_id": 1,
+        "_provenance": "asserted"
+      },
+      {
+        "subject": {
+          "type": "IRI",
+          "value": "a"
+        },
+        "predicate": {
+          "type": "IRI",
+          "value": "c"
+        },
+        "object": {
+          "type": "Literal",
+          "value": "1"
+        }
+      }
+    ]
+  ]
+}
+[N3LogicReasoner][TRACE] [hooks][TRACE] runHook: no hooks registered for afterReason
+[N3LogicReasoner][TRACE] [hooks][TRACE] runHook: no hooks registered for afterReason
+[N3LogicReasoner][TRACE] [N3LogicReasoner][HOOKS] Finished firing hook: afterReason
+[N3LogicReasoner][TRACE] [N3LogicReasoner][HOOKS] Finished firing hook: afterReason
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] reason: after runHook afterReason
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] reason: after runHook afterReason
+[N3LogicReasoner][DEBUG] Reasoning complete. Inferred triples: [
+  "<a> <b> \"1\" .",
+  "<a> <c> \"1\" ."
+]
+[N3LogicReasoner][DEBUG] Reasoning complete. Inferred triples: [
+  "<a> <b> \"1\" .",
+  "<a> <c> \"1\" ."
+]
+[N3LogicReasoner][TRACE] stringToTriple input: <a> <b> "1" .
+[N3LogicReasoner][TRACE] stringToTriple input: <a> <b> "1" .
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] stringToTriple called: <a> <b> "1" .
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] stringToTriple called: <a> <b> "1" .
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] stringToTriple: result {
+  "subject": "<a>",
+  "predicate": "<b>",
+  "object": "\"1\""
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] stringToTriple: result {
+  "subject": "<a>",
+  "predicate": "<b>",
+  "object": "\"1\""
+}
+[N3LogicReasoner][TRACE] stringToTriple input: <a> <c> "1" .
+[N3LogicReasoner][TRACE] stringToTriple input: <a> <c> "1" .
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] stringToTriple called: <a> <c> "1" .
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] stringToTriple called: <a> <c> "1" .
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] stringToTriple: result {
+  "subject": "<a>",
+  "predicate": "<c>",
+  "object": "\"1\""
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] stringToTriple: result {
+  "subject": "<a>",
+  "predicate": "<c>",
+  "object": "\"1\""
+}
+[N3LogicReasoner][TRACE] tripleToString input: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+}
+[N3LogicReasoner][TRACE] tripleToString input: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString called: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString called: {
+  "subject": {
+    "type": "IRI",
+    "value": "a"
+  },
+  "predicate": {
+    "type": "IRI",
+    "value": "b"
+  },
+  "object": {
+    "type": "Literal",
+    "value": "1"
+  },
+  "_id": 1,
+  "_provenance": "asserted"
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString: result <a> <b> "1" .
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString: result <a> <b> "1" .
+[N3LogicReasoner][TRACE] tripleToString output: <a> <b> "1" .
+[N3LogicReasoner][TRACE] tripleToString output: <a> <b> "1" .
+[N3LogicReasoner][TRACE] tripleToString input: {
+  "subject": "<a>",
+  "predicate": "<b>",
+  "object": "\"1\"",
+  "_id": 2,
+  "_provenance": "inferred"
+}
+[N3LogicReasoner][TRACE] tripleToString input: {
+  "subject": "<a>",
+  "predicate": "<b>",
+  "object": "\"1\"",
+  "_id": 2,
+  "_provenance": "inferred"
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString called: {
+  "subject": "<a>",
+  "predicate": "<b>",
+  "object": "\"1\"",
+  "_id": 2,
+  "_provenance": "inferred"
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString called: {
+  "subject": "<a>",
+  "predicate": "<b>",
+  "object": "\"1\"",
+  "_id": 2,
+  "_provenance": "inferred"
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString: result <a> <b> "1" .
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString: result <a> <b> "1" .
+[N3LogicReasoner][TRACE] tripleToString output: <a> <b> "1" .
+[N3LogicReasoner][TRACE] tripleToString output: <a> <b> "1" .
+[N3LogicReasoner][TRACE] tripleToString input: {
+  "subject": "<a>",
+  "predicate": "<c>",
+  "object": "\"1\"",
+  "_id": 3,
+  "_provenance": "inferred"
+}
+[N3LogicReasoner][TRACE] tripleToString input: {
+  "subject": "<a>",
+  "predicate": "<c>",
+  "object": "\"1\"",
+  "_id": 3,
+  "_provenance": "inferred"
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString called: {
+  "subject": "<a>",
+  "predicate": "<c>",
+  "object": "\"1\"",
+  "_id": 3,
+  "_provenance": "inferred"
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString called: {
+  "subject": "<a>",
+  "predicate": "<c>",
+  "object": "\"1\"",
+  "_id": 3,
+  "_provenance": "inferred"
+}
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString: result <a> <c> "1" .
+[N3LogicReasoner][TRACE] [tripleUtils][TRACE] tripleToString: result <a> <c> "1" .
+[N3LogicReasoner][TRACE] tripleToString output: <a> <c> "1" .
+[N3LogicReasoner][TRACE] tripleToString output: <a> <c> "1" .
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] reason: finished, returning result
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] reason: finished, returning result
+[TEST reasoner] All inferred triples: [
+  "<a> <b> \"1\" .",
+  "<a> <c> \"1\" ."
+]
+[TEST reasoner] Inferred triple for predicate c: <a> <c> "1" .
+[N3LogicReasoner][TRACE] [N3LogicReasoner] setDebug called: true
+[N3LogicReasoner][TRACE] [N3LogicReasoner] setDebug called: true
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] setDebug finished: true
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] setDebug finished: true
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] registerBuiltin called: {
+  "uri": "http://example.org/custom#isFoo",
+  "arity": 1,
+  "description": "Returns true if the subject is the literal \"foo\""
+}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] registerBuiltin called: {
+  "uri": "http://example.org/custom#isFoo",
+  "arity": 1,
+  "description": "Returns true if the subject is the literal \"foo\""
+}
+[N3LogicReasoner][DEBUG] Reasoner: All triples at start: []
+[N3LogicReasoner][DEBUG] Reasoner: All triples at start: []
+[N3LogicReasoner][DEBUG] Reasoner: All rules at start: []
+[N3LogicReasoner][DEBUG] Reasoner: All rules at start: []
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Builtins before registerBuiltin: []
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] Builtins before registerBuiltin: []
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] registerBuiltin: customBuiltins after push [
+  "http://example.org/custom#isFoo"
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] registerBuiltin: customBuiltins after push [
+  "http://example.org/custom#isFoo"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][PATCHED] customBuiltins after push: [
+  "http://example.org/custom#isFoo"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][PATCHED] customBuiltins after push: [
+  "http://example.org/custom#isFoo"
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] registerBuiltin: merging builtins [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] registerBuiltin: merging builtins [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+]
+[N3LogicReasoner][TRACE] [builtinsManager] mergeBuiltins called: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+] Resulting merged builtins: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "typeofApply": "function"
+  }
+]
+[N3LogicReasoner][TRACE] [builtinsManager] mergeBuiltins called: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+] Resulting merged builtins: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "typeofApply": "function"
+  }
+]
+[N3LogicReasoner][TRACE] [builtinsManager] mergeBuiltins called: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+] Resulting merged builtins: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "typeofApply": "function"
+  }
+]
+[N3LogicReasoner][TRACE] [builtinsManager] mergeBuiltins called: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "arity": 1,
+    "description": "Returns true if the subject is the literal \"foo\""
+  }
+] Resulting merged builtins: [
+  {
+    "uri": "http://example.org/custom#isFoo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#not",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#implies",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#or",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#and",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#xor",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#if",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toString",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "typeofApply": "function"
+  },
+  {
+    "uri": "http://www.w3.org/2002/07/owl#sameAs",
+    "typeofApply": "function"
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] registerBuiltin: document.builtins after merge [
+  "http://example.org/custom#isFoo",
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] registerBuiltin: document.builtins after merge [
+  "http://example.org/custom#isFoo",
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][PATCHED] Builtins after registerBuiltin: [
+  "http://example.org/custom#isFoo",
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][PATCHED] Builtins after registerBuiltin: [
+  "http://example.org/custom#isFoo",
+  "http://www.w3.org/2000/10/swap/log#not",
+  "http://www.w3.org/2000/10/swap/log#implies",
+  "http://www.w3.org/2000/10/swap/log#equalTo",
+  "http://www.w3.org/2000/10/swap/log#or",
+  "http://www.w3.org/2000/10/swap/log#and",
+  "http://www.w3.org/2000/10/swap/log#xor",
+  "http://www.w3.org/2000/10/swap/log#if",
+  "http://www.w3.org/2000/10/swap/log#distinct",
+  "http://www.w3.org/2000/10/swap/type#isLiteral",
+  "http://www.w3.org/2000/10/swap/type#isIRI",
+  "http://www.w3.org/2000/10/swap/type#isBlank",
+  "http://www.w3.org/2000/10/swap/type#toString",
+  "http://www.w3.org/2000/10/swap/type#toNumber",
+  "http://www.w3.org/2000/10/swap/type#toBoolean",
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  "http://www.w3.org/2002/07/owl#sameAs"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][PATCHED] customBuiltins after registerBuiltin: [
+  "http://example.org/custom#isFoo"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG][PATCHED] customBuiltins after registerBuiltin: [
+  "http://example.org/custom#isFoo"
+]
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] registerBuiltin finished
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] registerBuiltin finished
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] loadOntology called: {
+  "format": "n3",
+  "data": "<a> <b> \"foo\" . <a> <b> \"bar\" . { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } ."
+}
+[N3LogicReasoner][TRACE] [N3LogicReasoner][TRACE] loadOntology called: {
+  "format": "n3",
+  "data": "<a> <b> \"foo\" . <a> <b> \"bar\" . { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } ."
+}
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] customBuiltins before loadOntology: [
+  "http://example.org/custom#isFoo"
+]
+[N3LogicReasoner][DEBUG] [N3LogicReasoner][DEBUG] customBuiltins before loadOntology: [
+  "http://example.org/custom#isFoo"
+]
+[N3LogicReasoner][DEBUG] Loading ontology {
+  "format": "n3",
+  "data": "<a> <b> \"foo\" . <a> <b> \"bar\" . { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } ."
+}
+[N3LogicReasoner][DEBUG] Loading ontology {
+  "format": "n3",
+  "data": "<a> <b> \"foo\" . <a> <b> \"bar\" . { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } ."
+}
+[N3LogicReasoner][TRACE] [N3LogicParser] parse called: <a> <b> "foo" . <a> <b> "bar" . { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } .
+[N3LogicReasoner][TRACE] [N3LogicParser] parse called: <a> <b> "foo" . <a> <b> "bar" . { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } .
+[N3LogicReasoner][TRACE] [N3LogicParser] Parsing input <a> <b> "foo" . <a> <b> "bar" . { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } .
+[N3LogicReasoner][TRACE] [N3LogicParser] Parsing input <a> <b> "foo" . <a> <b> "bar" . { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } .
+[N3LogicParser] Parsing input <a> <b> "foo" . <a> <b> "bar" . { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } .
+[N3LogicReasoner][TRACE] [N3LogicParser][TRACE] Initializing parse loop
+[N3LogicReasoner][TRACE] [N3LogicParser][TRACE] Initializing parse loop
+[N3LogicReasoner][TRACE] [N3LogicParser] [N3LogicParser][PREFIX] Extracted prefix map: {}
+[N3LogicReasoner][TRACE] [N3LogicParser] [N3LogicParser][PREFIX] Extracted prefix map: {}
+[N3LogicParser] [N3LogicParser][PREFIX] Extracted prefix map: {}
+[N3LogicReasoner][TRACE] [N3LogicParser] [N3LogicParser][SPLIT] Statements: [
+  "<a> <b> \"foo\"",
+  "<a> <b> \"bar\"",
+  "{ <a> <b> ?x . ?x <http://example.org/custom"
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] [N3LogicParser][SPLIT] Statements: [
+  "<a> <b> \"foo\"",
+  "<a> <b> \"bar\"",
+  "{ <a> <b> ?x . ?x <http://example.org/custom"
+]
+[N3LogicParser] [N3LogicParser][SPLIT] Statements: [
+  "<a> <b> \"foo\"",
+  "<a> <b> \"bar\"",
+  "{ <a> <b> ?x . ?x <http://example.org/custom"
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] parseTriples called: <a> <b> "foo" false
+[N3LogicReasoner][TRACE] [N3LogicParser] parseTriples called: <a> <b> "foo" false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] input: "<a> <b> \"foo\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] input: "<a> <b> \"foo\""
+[N3LogicParser] [TRACE][parseTriples] input: "<a> <b> \"foo\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Splitting rule block: "<a> <b> \"foo\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Splitting rule block: "<a> <b> \"foo\""
+[N3LogicParser] [TRACE][parseTriples] Splitting rule block: "<a> <b> \"foo\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] input: "<a> <b> \"foo\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] input: "<a> <b> \"foo\""
+[N3LogicParser] [TRACE][splitTriples] input: "<a> <b> \"foo\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[0] = '<', buf='', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[0] = '<', buf='', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[0] = '<', buf='', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[1] = 'a', buf='<', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[1] = 'a', buf='<', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[1] = 'a', buf='<', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[2] = '>', buf='<a', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[2] = '>', buf='<a', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[2] = '>', buf='<a', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[3] = ' ', buf='<a>', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[3] = ' ', buf='<a>', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[3] = ' ', buf='<a>', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[4] = '<', buf='<a> ', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[4] = '<', buf='<a> ', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[4] = '<', buf='<a> ', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[5] = 'b', buf='<a> <', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[5] = 'b', buf='<a> <', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[5] = 'b', buf='<a> <', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[6] = '>', buf='<a> <b', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[6] = '>', buf='<a> <b', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[6] = '>', buf='<a> <b', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[7] = ' ', buf='<a> <b>', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[7] = ' ', buf='<a> <b>', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[7] = ' ', buf='<a> <b>', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[8] = '"', buf='<a> <b> ', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[8] = '"', buf='<a> <b> ', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[8] = '"', buf='<a> <b> ', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[9] = 'f', buf='<a> <b> "', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=true
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[9] = 'f', buf='<a> <b> "', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=true
+[N3LogicParser] [TRACE][splitTriples] char[9] = 'f', buf='<a> <b> "', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=true
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[10] = 'o', buf='<a> <b> "f', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=true
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[10] = 'o', buf='<a> <b> "f', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=true
+[N3LogicParser] [TRACE][splitTriples] char[10] = 'o', buf='<a> <b> "f', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=true
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[11] = 'o', buf='<a> <b> "fo', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=true
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[11] = 'o', buf='<a> <b> "fo', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=true
+[N3LogicParser] [TRACE][splitTriples] char[11] = 'o', buf='<a> <b> "fo', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=true
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[12] = '"', buf='<a> <b> "foo', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=true
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[12] = '"', buf='<a> <b> "foo', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=true
+[N3LogicParser] [TRACE][splitTriples] char[12] = '"', buf='<a> <b> "foo', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=true
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] Found final triple statement: "<a> <b> \"foo\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] Found final triple statement: "<a> <b> \"foo\""
+[N3LogicParser] [TRACE][splitTriples] Found final triple statement: "<a> <b> \"foo\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] output statements: ["<a> <b> \"foo\""]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] output statements: ["<a> <b> \"foo\""]
+[N3LogicParser] [TRACE][splitTriples] output statements: ["<a> <b> \"foo\""]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] split statements: ["<a> <b> \"foo\""]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] split statements: ["<a> <b> \"foo\""]
+[N3LogicParser] [TRACE][parseTriples] split statements: ["<a> <b> \"foo\""]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] parsing statement: "<a> <b> \"foo\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] parsing statement: "<a> <b> \"foo\""
+[N3LogicParser] [TRACE][parseTriples] parsing statement: "<a> <b> \"foo\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Tokenized terms: ["<a>","<b>","\"foo\""]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Tokenized terms: ["<a>","<b>","\"foo\""]
+[N3LogicParser] [TRACE][parseTriples] Tokenized terms: ["<a>","<b>","\"foo\""]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Triple tokens: <a> <b> "foo"
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Triple tokens: <a> <b> "foo"
+[N3LogicParser] [TRACE][parseTriples] Triple tokens: <a> <b> "foo"
+[N3LogicReasoner][TRACE] [N3LogicParser] parseTerm called: <a>
+[N3LogicReasoner][TRACE] [N3LogicParser] parseTerm called: <a>
+[N3LogicReasoner][TRACE] [N3LogicParser] [parseTerm][RETURN IRI] <a> {"type":"IRI","value":"a"}
+[N3LogicReasoner][TRACE] [N3LogicParser] [parseTerm][RETURN IRI] <a> {"type":"IRI","value":"a"}
+[N3LogicParser] [parseTerm][RETURN IRI] <a> {"type":"IRI","value":"a"}
+[N3LogicReasoner][TRACE] [N3LogicParser] parseTerm called: <b>
+[N3LogicReasoner][TRACE] [N3LogicParser] parseTerm called: <b>
+[N3LogicReasoner][TRACE] [N3LogicParser] [parseTerm][RETURN IRI] <b> {"type":"IRI","value":"b"}
+[N3LogicReasoner][TRACE] [N3LogicParser] [parseTerm][RETURN IRI] <b> {"type":"IRI","value":"b"}
+[N3LogicParser] [parseTerm][RETURN IRI] <b> {"type":"IRI","value":"b"}
+[N3LogicReasoner][TRACE] [N3LogicParser] parseTerm called: "foo"
+[N3LogicReasoner][TRACE] [N3LogicParser] parseTerm called: "foo"
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Parsed triple: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"foo"}}
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Parsed triple: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"foo"}}
+[N3LogicParser] [TRACE][parseTriples] Parsed triple: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"foo"}}
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples][PREDICATE TYPE] IRI value: b
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples][PREDICATE TYPE] IRI value: b
+[N3LogicParser] [TRACE][parseTriples][PREDICATE TYPE] IRI value: b
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Predicate type: IRI Predicate value: b
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Predicate type: IRI Predicate value: b
+[N3LogicParser] [TRACE][parseTriples] Predicate type: IRI Predicate value: b
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples][EXPANDED TRIPLE] {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"foo"}}
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples][EXPANDED TRIPLE] {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"foo"}}
+[N3LogicParser] [TRACE][parseTriples][EXPANDED TRIPLE] {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"foo"}}
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] input string: <a> <b> "foo"
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] input string: <a> <b> "foo"
+[N3LogicParser] [TRACE][parseTriples] input string: <a> <b> "foo"
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] output triples: [{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"foo"}}]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] output triples: [{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"foo"}}]
+[N3LogicParser] [TRACE][parseTriples] output triples: [{"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"foo"}}]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples][FINAL TRIPLES] [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    }
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples][FINAL TRIPLES] [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    }
+  }
+]
+[N3LogicParser] [TRACE][parseTriples][FINAL TRIPLES] [
+  {
+    "subject": {
+      "type": "IRI",
+      "value": "a"
+    },
+    "predicate": {
+      "type": "IRI",
+      "value": "b"
+    },
+    "object": {
+      "type": "Literal",
+      "value": "foo"
+    }
+  }
+]
+[N3LogicReasoner][TRACE] [N3LogicParser] [N3LogicParser][TRIPLE][DEBUG] Parsed triple #0: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"foo"}}
+[N3LogicReasoner][TRACE] [N3LogicParser] [N3LogicParser][TRIPLE][DEBUG] Parsed triple #0: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"foo"}}
+[N3LogicParser] [N3LogicParser][TRIPLE][DEBUG] Parsed triple #0: {"subject":{"type":"IRI","value":"a"},"predicate":{"type":"IRI","value":"b"},"object":{"type":"Literal","value":"foo"}}
+[N3LogicReasoner][TRACE] [N3LogicParser] [N3LogicParser][TRIPLE][DEBUG] Triple #0 predicate: {
+  "type": "IRI",
+  "value": "b"
+}
+[N3LogicReasoner][TRACE] [N3LogicParser] [N3LogicParser][TRIPLE][DEBUG] Triple #0 predicate: {
+  "type": "IRI",
+  "value": "b"
+}
+[N3LogicParser] [N3LogicParser][TRIPLE][DEBUG] Triple #0 predicate: {
+  "type": "IRI",
+  "value": "b"
+}
+[N3LogicReasoner][TRACE] [N3LogicParser] parseTriples called: <a> <b> "bar" false
+[N3LogicReasoner][TRACE] [N3LogicParser] parseTriples called: <a> <b> "bar" false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] input: "<a> <b> \"bar\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] input: "<a> <b> \"bar\""
+[N3LogicParser] [TRACE][parseTriples] input: "<a> <b> \"bar\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Splitting rule block: "<a> <b> \"bar\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][parseTriples] Splitting rule block: "<a> <b> \"bar\""
+[N3LogicParser] [TRACE][parseTriples] Splitting rule block: "<a> <b> \"bar\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] input: "<a> <b> \"bar\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] input: "<a> <b> \"bar\""
+[N3LogicParser] [TRACE][splitTriples] input: "<a> <b> \"bar\""
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[0] = '<', buf='', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[0] = '<', buf='', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicParser] [TRACE][splitTriples] char[0] = '<', buf='', iriDepth=0, parenDepth=0, bracketDepth=0, inQuote=false
+[N3LogicReasoner][TRACE] [N3LogicParser] [TRACE][splitTriples] char[1] = 'a', buf='<', iriDepth=1, parenDepth=0, bracketDepth=0, inQuote=false

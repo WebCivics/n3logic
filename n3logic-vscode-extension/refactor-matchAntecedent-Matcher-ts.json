@@ -1,0 +1,18 @@
+{
+  "title": "Refactor matchAntecedent in matcher.ts",
+  "description": "Refactoring plan to improve clarity, maintainability, and testability of matchAntecedent.",
+  "todos": [
+    "Split matchAntecedent into smaller helper functions:",
+    "  - Logging/debugging patterns and data",
+    "  - Builtin matching logic",
+    "  - Data triple matching logic",
+    "  - Normalizing bindings",
+    "Add early returns and guard clauses for trivial cases (e.g., empty patterns)",
+    "Extract builtin lookup logic into a dedicated function (e.g., findBuiltinForPredicate)",
+    "Centralize debug logging to avoid repetition and allow easy verbosity control",
+    "Parameterize recursion helpers (like matchAntecedent itself) for easier testing/mocking",
+    "Use type guards and pattern matching to clarify intent and reduce scattered type checks",
+    "Use a clear accumulator pattern for results, possibly with a reducer",
+    "Make each logical step (builtin invocation, triple matching, binding normalization) a pure function for easier unit testing"
+  ]
+}

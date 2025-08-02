@@ -1,0 +1,10 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner\matcher\logging.test.ts
+Status: PASS
+
+Test: matcher/logging exports matcherDebug, matcherTrace, matcherWarn, matcherError, logPatternsAndData
+Status: passed
+
+
+Test: matcher/logging logPatternsAndData does not throw
+Status: passed
+

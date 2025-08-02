@@ -1,0 +1,18 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner\matcher\tripleMatch.test.ts
+Status: PASS
+
+Test: matcher/tripleMatch termEquals compares terms by value
+Status: passed
+
+
+Test: matcher/tripleMatch termMatch binds variables and matches
+Status: passed
+
+
+Test: matcher/tripleMatch matchTriple returns bindings if match
+Status: passed
+
+
+Test: matcher/tripleMatch matchTriple returns null if no match
+Status: passed
+

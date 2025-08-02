@@ -9,6 +9,7 @@ import { HookManager } from './reasoner/hooks';
 import { debugLog, debugTrace, setDebug } from './reasoner/debug';
 import { mergeBuiltins } from './reasoner/builtinsManager';
 import { matchAntecedent, instantiateTriple, matchFormula, tripleToN3 } from './reasoner/matcher';
+import { newTraceId } from './trace';
 import { N3LogicParser } from './N3LogicParser';
 import { evaluateBuiltins } from './reasoner/builtinEvaluator';
 import { stringToTriple, tripleToString } from './reasoner/tripleUtils';
@@ -61,30 +62,34 @@ export class N3LogicReasoner {
 	/**
 	 * Use the modularized matchAntecedent from matcher.ts with current builtins.
 	 */
-	matchAntecedent(patterns: N3Triple[], data: N3Triple[]): Array<Record<string, N3Term>> {
-		debugTrace('[N3LogicReasoner][TRACE] matchAntecedent called:', { patterns, data });
+	matchAntecedent(patterns: N3Triple[], data: N3Triple[], traceId: string = newTraceId()): Array<Record<string, N3Term>> {
+		debugTrace(`[N3LogicReasoner][TRACE][${traceId}] matchAntecedent called:`, { patterns, data });
 		// Always use up-to-date document.builtins for every match
 		if (!this.document.builtins || this.document.builtins.length === 0) {
 			this.document.builtins = mergeBuiltins(this.customBuiltins);
 		}
-		debugTrace('[N3LogicReasoner][TRACE] Using document.builtins:', (this.document.builtins || []).map((b) => b.uri));
-		debugLog('[N3LogicReasoner][DEBUG] matchAntecedent called with:', JSON.stringify(patterns), JSON.stringify(data));
-		debugLog('[N3LogicReasoner][DEBUG] Using document.builtins:', (this.document.builtins || []).map((b) => b.uri));
-		const result = matchAntecedent(patterns, data, this.document.builtins);
-		debugTrace('[N3LogicReasoner][TRACE] matchAntecedent result:', result);
-		debugLog('[N3LogicReasoner][DEBUG] matchAntecedent result:', JSON.stringify(result));
+		debugTrace(`[N3LogicReasoner][TRACE][${traceId}] Using document.builtins:`, (this.document.builtins || []).map((b) => b.uri));
+		debugLog(`[N3LogicReasoner][DEBUG][${traceId}] matchAntecedent called with:`, JSON.stringify(patterns), JSON.stringify(data));
+		debugLog(`[N3LogicReasoner][DEBUG][${traceId}] Using document.builtins:`, (this.document.builtins || []).map((b) => b.uri));
+		const result = matchAntecedent(patterns, data, this.document.builtins, traceId);
+		debugTrace(`[N3LogicReasoner][TRACE][${traceId}] matchAntecedent result:`, result);
+		debugLog(`[N3LogicReasoner][DEBUG][${traceId}] matchAntecedent result:`, JSON.stringify(result));
 		return result;
 	}
 
 	/**
 	 * Use the modularized instantiateTriple from matcher.ts.
 	 */
-	instantiateTriple(triple: N3Triple, bindings: Record<string, N3Term>): N3Triple {
-		debugTrace('[N3LogicReasoner][TRACE] instantiateTriple called:', { triple, bindings });
-		const result = instantiateTriple(triple, bindings);
-		debugTrace('[N3LogicReasoner][TRACE] instantiateTriple result:', result);
-		return result;
-	}
+		instantiateTriple(triple: N3Triple, bindings: Record<string, N3Term>, traceId: string = newTraceId()): N3Triple {
+			debugTrace(`[N3LogicReasoner][TRACE][${traceId}] instantiateTriple called:`, { triple, bindings });
+			const result = instantiateTriple(triple, bindings);
+			debugTrace(`[N3LogicReasoner][TRACE][${traceId}] instantiateTriple result:`, result);
+			return result;
+		}
+
+		// Example: Add traceId to evaluateBuiltins call in your reasoning loop (pseudo-code, adapt as needed)
+		// const traceId = newTraceId();
+		// evaluateBuiltins(triples, bindings, this.document, matchAntecedent, instantiateTriple, traceId);
 
 	/**
 	 * Load an ontology in N3/N3Logic format.
@@ -254,13 +259,20 @@ export class N3LogicReasoner {
 				const rulesFired: number[] = [];
 				const newTriplesThisIter: string[] = [];
 				for (const [ruleIdx, rule] of this.document.rules.entries()) {
+					const traceId = newTraceId();
 					debugTrace(`[N3LogicReasoner][TRACE] Evaluating rule #${ruleIdx}`);
 					debugLog(`[N3LogicReasoner][DEBUG] Evaluating rule #${ruleIdx}:`, JSON.stringify(rule));
 					let bindingsList: Array<Record<string, N3Term>> = [];
 					try {
 						debugTrace(`[N3LogicReasoner][TRACE] Matching antecedent for rule #${ruleIdx}`);
 						debugLog(`[N3LogicReasoner][DEBUG] Matching antecedent for rule #${ruleIdx}:`, JSON.stringify(rule.antecedent));
-						bindingsList = matchFormula(rule.antecedent, working, this.matchAntecedent.bind(this));
+											const traceId = newTraceId();
+											bindingsList = matchFormula(
+											  rule.antecedent,
+											  working,
+											  (patterns, data, builtins, _traceId) => this.matchAntecedent(patterns, data, traceId),
+											  this.document.builtins,
+											);
 						debugTrace(`[N3LogicReasoner][TRACE] Bindings list from matchFormula for rule #${ruleIdx}:`, bindingsList);
 						debugLog(`[N3LogicReasoner][DEBUG] Bindings list from matchFormula for rule #${ruleIdx}:`, JSON.stringify(bindingsList));
 					} catch (err) {
@@ -272,12 +284,14 @@ export class N3LogicReasoner {
 					for (const [bindIdx, bindings] of bindingsList.entries()) {
 						debugTrace(`[N3LogicReasoner][TRACE] Bindings #${bindIdx} before evaluateBuiltins for rule #${ruleIdx}:`, bindings);
 						debugLog(`[N3LogicReasoner][DEBUG] Bindings #${bindIdx} before evaluateBuiltins for rule #${ruleIdx}:`, JSON.stringify(bindings));
+						// Always call evaluateBuiltins for all antecedent triples, including custom builtins
 						const builtinsResult = evaluateBuiltins(
 							rule.antecedent.triples,
 							bindings,
 							{ ...this.document, builtins: mergedBuiltins },
-							this.matchAntecedent.bind(this),
-							this.instantiateTriple.bind(this),
+							(patterns, data, builtins) => this.matchAntecedent(patterns, data, traceId),
+							(triple, bindings) => this.instantiateTriple(triple, bindings, traceId),
+							traceId
 						);
 						debugTrace(`[N3LogicReasoner][TRACE] evaluateBuiltins result for rule #${ruleIdx}, bindings #${bindIdx}:`, builtinsResult);
 						debugLog(`[N3LogicReasoner][DEBUG] evaluateBuiltins result for rule #${ruleIdx}, bindings #${bindIdx}:`, builtinsResult);
@@ -291,7 +305,7 @@ export class N3LogicReasoner {
 							debugLog(`[N3LogicReasoner][DEBUG] Instantiating consequent triple #${consIdx} for rule #${ruleIdx}:`, JSON.stringify(consTriple), 'with bindings:', JSON.stringify(bindings));
 							let instantiated;
 							try {
-								instantiated = this.instantiateTriple(consTriple, bindings);
+								instantiated = this.instantiateTriple(consTriple, bindings, traceId);
 								debugTrace(`[N3LogicReasoner][TRACE] Instantiated triple for rule #${ruleIdx}, consIdx #${consIdx}:`, instantiated);
 								debugLog(`[N3LogicReasoner][DEBUG] Instantiated triple for rule #${ruleIdx}, consIdx #${consIdx}:`, JSON.stringify(instantiated));
 							} catch (err) {

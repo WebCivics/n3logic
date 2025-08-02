@@ -1,0 +1,14 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner\matcher\normalizeBindings.test.ts
+Status: PASS
+
+Test: matcher/normalizeBindings returns a copy of the bindings
+Status: passed
+
+
+Test: matcher/normalizeBindings converts quoted string to Literal
+Status: passed
+
+
+Test: matcher/normalizeBindings converts IRI with quoted string value to Literal
+Status: passed
+

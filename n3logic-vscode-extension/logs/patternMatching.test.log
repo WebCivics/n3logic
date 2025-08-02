@@ -1,0 +1,14 @@
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner\matcher\patternMatching.test.ts
+Status: PASS
+
+Test: matcher/patternMatching resolveSubjectVals returns all possible values for unbound variable
+Status: passed
+
+
+Test: matcher/patternMatching resolveObjectVals returns all possible values for unbound variable
+Status: passed
+
+
+Test: matcher/patternMatching returns bound value if variable is bound
+Status: passed
+

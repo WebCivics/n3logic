@@ -6,10 +6,11 @@ export function evaluateBuiltins(
   triples: N3Triple[],
   bindings: Record<string, N3Term>,
   document: any,
-  matchAntecedent: (patterns: N3Triple[], data: N3Triple[], builtins: N3Builtin[]) => Array<Record<string, N3Term>>,
+  matchAntecedent: (patterns: N3Triple[], data: N3Triple[], builtins: N3Builtin[], traceId?: string) => Array<Record<string, N3Term>>,
   instantiateTriple: (triple: N3Triple, bindings: Record<string, N3Term>) => N3Triple,
+  traceId?: string
 ): boolean {
-  debugTrace && debugTrace('[builtinEvaluator][TRACE] evaluateBuiltins called:', { triples, bindings, builtins: document.builtins });
+  debugTrace && debugTrace(`[builtinEvaluator][TRACE][${traceId}] evaluateBuiltins called:`, { triples, bindings, builtins: document.builtins });
   debugLog('evaluateBuiltins: triples:', JSON.stringify(triples, null, 2));
   debugLog('evaluateBuiltins: bindings:', JSON.stringify(bindings, null, 2));
   debugLog('evaluateBuiltins called', { triples, bindings, builtins: document.builtins });
@@ -24,7 +25,7 @@ export function evaluateBuiltins(
       debugLog('No builtins registered, returning true');
       return true;
     }
-    debugTrace && debugTrace('[builtinEvaluator][TRACE] Checking triple:', triple);
+  debugTrace && debugTrace(`[builtinEvaluator][TRACE][${traceId}] Checking triple:`, triple);
     debugLog('evaluateBuiltins: checking triple:', JSON.stringify(triple, null, 2));
     // Check if this triple's predicate matches any builtin
     let predValue = null;
@@ -34,13 +35,13 @@ export function evaluateBuiltins(
     if (predValue) {
       // Try to find a builtin for this predicate
       const builtin = document.builtins.find((b: N3Builtin) => b.uri === predValue);
-      debugTrace && debugTrace('[builtinEvaluator][TRACE] Checking builtin for predicate:', predValue, 'Found:', !!builtin, 'Function:', builtin && builtin.apply, 'Typeof:', builtin && typeof builtin.apply);
+  debugTrace && debugTrace(`[builtinEvaluator][TRACE][${traceId}] Checking builtin for predicate:`, predValue, 'Found:', !!builtin, 'Function:', builtin && builtin.apply, 'Typeof:', builtin && typeof builtin.apply);
       debugLog('[EVALBUILTINS][CUSTOM] Checking builtin for predicate:', predValue, 'Found:', !!builtin);
       if (typeof (global as any).debugLog === 'function') {
         (global as any).debugLog('[EVALBUILTINS][TRACE][EXTRA] Checking builtin for predicate:', predValue, 'Found:', !!builtin);
       }
       if (builtin) {
-        debugTrace && debugTrace('[builtinEvaluator][TRACE] Found builtin in antecedent:', builtin.uri);
+    debugTrace && debugTrace(`[builtinEvaluator][TRACE][${traceId}] Found builtin in antecedent:`, builtin.uri);
         debugLog('evaluateBuiltins: Found builtin in antecedent:', builtin.uri);
         if (typeof (global as any).debugLog === 'function') {
           (global as any).debugLog('[EVALBUILTINS][TRACE][EXTRA] Found builtin in antecedent:', builtin.uri);
@@ -64,7 +65,7 @@ export function evaluateBuiltins(
           }
           args = [arg1, arg2];
         }
-        debugTrace && debugTrace('[builtinEvaluator][TRACE] About to invoke builtin.apply:', builtin.uri, 'args:', args, 'function:', builtin.apply, 'typeof:', typeof builtin.apply);
+  debugTrace && debugTrace(`[builtinEvaluator][TRACE][${traceId}] About to invoke builtin.apply:`, builtin.uri, 'args:', args, 'function:', builtin.apply, 'typeof:', typeof builtin.apply);
         debugLog('evaluateBuiltins: Calling builtin', builtin.uri, 'with args:', args, 'builtin.apply:', builtin.apply, 'typeof:', typeof builtin.apply);
         debugLog('[EVALBUILTINS][CUSTOM][EXTRA] About to call builtin.apply:', builtin.uri, 'args:', JSON.stringify(args), 'bindings:', JSON.stringify(bindings));
         if (typeof (global as any).debugLog === 'function') {
@@ -72,8 +73,15 @@ export function evaluateBuiltins(
         }
         let result = false;
         try {
+          debugLog('[EVALBUILTINS][CUSTOM][TRACE] About to call builtin:', builtin.uri, 'args:', JSON.stringify(args), 'bindings:', JSON.stringify(bindings));
+          if (builtin.uri === 'http://example.org/custom#isFoo') {
+            debugLog('[EVALBUILTINS][CUSTOM][TEST] Custom isFoo builtin called with args:', JSON.stringify(args));
+          }
           result = builtin.apply(...args);
           debugLog('[EVALBUILTINS][CUSTOM][EXTRA] Builtin.apply result:', result, 'for args:', JSON.stringify(args));
+          if (builtin.uri === 'http://example.org/custom#isFoo') {
+            debugLog('[EVALBUILTINS][CUSTOM][TEST] Custom isFoo builtin result:', result, 'for args:', JSON.stringify(args));
+          }
         } catch (err) {
           debugLog('[EVALBUILTINS][ERROR] Exception in builtin.apply:', err);
           if (typeof (global as any).debugLog === 'function') {
@@ -81,20 +89,20 @@ export function evaluateBuiltins(
           }
           return false;
         }
-        debugTrace && debugTrace('[builtinEvaluator][TRACE] Builtin result:', { builtin: builtin.uri, result });
+  debugTrace && debugTrace(`[builtinEvaluator][TRACE][${traceId}] Builtin result:`, { builtin: builtin.uri, result });
         debugLog('evaluateBuiltins: Builtin result:', result);
         if (typeof (global as any).debugLog === 'function') {
           (global as any).debugLog('[EVALBUILTINS][TRACE][EXTRA] Builtin result:', result);
         }
         if (!result) {
-          debugTrace && debugTrace('[builtinEvaluator][TRACE] Builtin returned false, failing builtins check.');
+          debugTrace && debugTrace(`[builtinEvaluator][TRACE][${traceId}] Builtin returned false, failing builtins check.`);
           debugLog('evaluateBuiltins: Builtin returned false, failing builtins check.');
           if (typeof (global as any).debugLog === 'function') {
             (global as any).debugLog('[EVALBUILTINS][TRACE][EXTRA] Builtin returned false, failing builtins check.');
           }
           return false;
         } else {
-          debugTrace && debugTrace('[builtinEvaluator][TRACE] Builtin returned true, passing builtins check.');
+          debugTrace && debugTrace(`[builtinEvaluator][TRACE][${traceId}] Builtin returned true, passing builtins check.`);
           debugLog('evaluateBuiltins: Builtin returned true, passing builtins check.');
           if (typeof (global as any).debugLog === 'function') {
             (global as any).debugLog('[EVALBUILTINS][TRACE][EXTRA] Builtin returned true, passing builtins check.');
@@ -113,7 +121,7 @@ export function evaluateBuiltins(
       }
     }
   }
-  debugTrace && debugTrace('[builtinEvaluator][TRACE] evaluateBuiltins returning true');
+  debugTrace && debugTrace(`[builtinEvaluator][TRACE][${traceId}] evaluateBuiltins returning true`);
   debugLog('evaluateBuiltins returning true');
   return true;
 }
