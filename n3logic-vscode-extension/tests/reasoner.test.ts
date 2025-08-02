@@ -9,22 +9,10 @@ import { N3Term } from '../n3logic/N3LogicTypes';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-let __filename: string;
-let __dirname: string;
-try {
-	// Only works in ESM
-	// eslint-disable-next-line no-eval
-	const metaUrl = eval('import.meta.url');
-	__filename = fileURLToPath(metaUrl);
-	__dirname = path.dirname(__filename);
-} catch {
-	// Fallback for CJS
-	// @ts-ignore
-	__filename = typeof __filename !== 'undefined' ? __filename : '';
-	// @ts-ignore
-	__dirname = typeof __dirname !== 'undefined' ? __dirname : '';
-}
-const logFile = path.join(__dirname, '../logs/reasoner.test.log');
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const logFile = path.resolve(__dirname, '../logs/esm/reasoner.test.log');
 let originalLog: (...args: any[]) => void;
 let originalDebug: (...args: any[]) => void;
 
@@ -83,36 +71,17 @@ describe('N3LogicReasoner', () => {
 			       );
 		       },
 	       });
-			   // Use a single-line rule to ensure parser extracts the rule
-			   const n3 = '<a> <b> "foo" . <a> <b> "bar" . { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } .';
-									 const parser = new N3LogicParser();
-									 parser.setDebug(true);
-									 const parsed = parser.parse(n3);
-									 // Print the full parsed.rules object to the console for debug
-									  
-									 console.log('[DEBUG] Full parsed.rules:', JSON.stringify(parsed.rules, null, 2));
-									 if (parsed.rules && parsed.rules.length > 0) {
-										 const antecedentTriples = parsed.rules[0].antecedent.triples;
-										 // Print to console before any assertions
-										  
-										 console.log('[DEBUG] Rule antecedent triples:', JSON.stringify(antecedentTriples, null, 2));
-										 antecedentTriples.forEach((triple: any, idx: any) => {
-											  
-											 console.log(`[DEBUG] Antecedent triple #${idx} predicate:`, triple.predicate);
-										 });
-									 }
-						 // ...existing code...
+	       // Use a single-line rule to ensure parser extracts the rule
+	       const n3 = '<a> <b> "foo" . <a> <b> "bar" . { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } .';
 	       reasoner.loadOntology(n3, 'n3');
 	       const result: N3ReasonerResult = reasoner.reason();
 	       // Debug: print all inferred triples
-	        
 	       console.log('[TEST reasoner custom builtins] All inferred triples:', JSON.stringify(result.triples, null, 2));
-		expect(result.triples).toHaveLength(3);
-		// The reasoner now returns triples as N3 strings
-		const inferredTriple = result.triples.find((t) => t.includes('<a> <c> "foo" .'));
-		 
-		console.log('[TEST reasoner custom builtins] Inferred triple for predicate c:', inferredTriple);
-		expect(inferredTriple).toBeDefined();
+	       // Only one triple should be inferred by the rule
+	       const inferredTriple = result.triples.find((t) => t.includes('<a> <c> "foo" .'));
+	       expect(inferredTriple).toBeDefined();
+	       // Optionally, check the total number of triples (2 asserted + 1 inferred)
+	       expect(result.triples.length).toBe(3);
        });
 
 		it('supports plugins and hooks', (done: any) => {

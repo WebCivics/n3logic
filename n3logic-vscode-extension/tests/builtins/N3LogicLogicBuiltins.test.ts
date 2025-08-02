@@ -6,22 +6,10 @@ import { N3Term } from '../../n3logic/N3LogicTypes';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-let __filename: string;
-let __dirname: string;
-try {
-  // Only works in ESM
-  // eslint-disable-next-line no-eval
-  const metaUrl = eval('import.meta.url');
-  __filename = fileURLToPath(metaUrl);
-  __dirname = path.dirname(__filename);
-} catch {
-  // Fallback for CJS
-  // @ts-ignore
-  __filename = typeof __filename !== 'undefined' ? __filename : '';
-  // @ts-ignore
-  __dirname = typeof __dirname !== 'undefined' ? __dirname : '';
-}
-const logFile = path.join(__dirname, '../../logs/N3LogicLogicBuiltins.test.log');
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const logFile = path.resolve(__dirname, '../../logs/esm/N3LogicLogicBuiltins.test.log');
 let originalLog: ((...args: any[]) => void) | undefined;
 let originalDebug: ((...args: any[]) => void) | undefined;
 function logToFile(...args: any[]): void {

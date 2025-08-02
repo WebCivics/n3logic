@@ -1,0 +1,470 @@
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [log:not] input: {
+  "type": "Literal",
+  "value": ""
+} getValue: 
+[N3LogicReasoner][TRACE] [log:not] input: {
+  "type": "Literal",
+  "value": ""
+} getValue: 
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [log:not] output: true
+[N3LogicReasoner][TRACE] [log:not] output: true
+[TEST log:not case #0] input= {
+  "type": "Literal",
+  "value": ""
+} result= true expected= true
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"false"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"false"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "false" from: {"type":"Literal","value":"false"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "false" from: {"type":"Literal","value":"false"}
+[N3LogicReasoner][TRACE] [log:not] input: {
+  "type": "Literal",
+  "value": "false"
+} getValue: false
+[N3LogicReasoner][TRACE] [log:not] input: {
+  "type": "Literal",
+  "value": "false"
+} getValue: false
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"false"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"false"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "false" from: {"type":"Literal","value":"false"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "false" from: {"type":"Literal","value":"false"}
+[N3LogicReasoner][TRACE] [log:not] output: true
+[N3LogicReasoner][TRACE] [log:not] output: true
+[TEST log:not case #1] input= {
+  "type": "Literal",
+  "value": "false"
+} result= true expected= true
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [log:not] input: {
+  "type": "Literal",
+  "value": "x"
+} getValue: x
+[N3LogicReasoner][TRACE] [log:not] input: {
+  "type": "Literal",
+  "value": "x"
+} getValue: x
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [log:not] output: false
+[N3LogicReasoner][TRACE] [log:not] output: false
+[TEST log:not case #2] input= {
+  "type": "Literal",
+  "value": "x"
+} result= false expected= false
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [log:equalTo] input: {
+  "type": "Literal",
+  "value": "a"
+} {
+  "type": "Literal",
+  "value": "a"
+} getValue: a a
+[N3LogicReasoner][TRACE] [log:equalTo] input: {
+  "type": "Literal",
+  "value": "a"
+} {
+  "type": "Literal",
+  "value": "a"
+} getValue: a a
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [log:equalTo] output: true
+[N3LogicReasoner][TRACE] [log:equalTo] output: true
+[TEST log:equalTo case #0] a= {
+  "type": "Literal",
+  "value": "a"
+} b= {
+  "type": "Literal",
+  "value": "a"
+} result= true expected= true
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"b"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"b"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "b" from: {"type":"Literal","value":"b"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "b" from: {"type":"Literal","value":"b"}
+[N3LogicReasoner][TRACE] [log:equalTo] input: {
+  "type": "Literal",
+  "value": "a"
+} {
+  "type": "Literal",
+  "value": "b"
+} getValue: a b
+[N3LogicReasoner][TRACE] [log:equalTo] input: {
+  "type": "Literal",
+  "value": "a"
+} {
+  "type": "Literal",
+  "value": "b"
+} getValue: a b
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"b"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"b"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "b" from: {"type":"Literal","value":"b"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "b" from: {"type":"Literal","value":"b"}
+[N3LogicReasoner][TRACE] [log:equalTo] output: false
+[N3LogicReasoner][TRACE] [log:equalTo] output: false
+[TEST log:equalTo case #1] a= {
+  "type": "Literal",
+  "value": "a"
+} b= {
+  "type": "Literal",
+  "value": "b"
+} result= false expected= false
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [log:not] input: {
+  "type": "Literal",
+  "value": ""
+} getValue: 
+[N3LogicReasoner][TRACE] [log:not] input: {
+  "type": "Literal",
+  "value": ""
+} getValue: 
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [log:not] output: true
+[N3LogicReasoner][TRACE] [log:not] output: true
+[log:or string case #0] a= {
+  "type": "Literal",
+  "value": ""
+} b= {
+  "type": "Literal",
+  "value": "x"
+} result= true expected= true typeof a: object typeof b: object a.value:  b.value: x a === b: false
+[log:or string case #0][JSON] {
+  "a": "{\"type\":\"Literal\",\"value\":\"\"}",
+  "b": "{\"type\":\"Literal\",\"value\":\"x\"}",
+  "expected": true,
+  "result": true
+}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [log:not] input: {
+  "type": "Literal",
+  "value": "x"
+} getValue: x
+[N3LogicReasoner][TRACE] [log:not] input: {
+  "type": "Literal",
+  "value": "x"
+} getValue: x
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [log:not] output: false
+[N3LogicReasoner][TRACE] [log:not] output: false
+[log:or string case #1] a= {
+  "type": "Literal",
+  "value": "x"
+} b= {
+  "type": "Literal",
+  "value": ""
+} result= false expected= true typeof a: object typeof b: object a.value: x b.value:  a === b: false
+[log:or string case #1][JSON] {
+  "a": "{\"type\":\"Literal\",\"value\":\"x\"}",
+  "b": "{\"type\":\"Literal\",\"value\":\"\"}",
+  "expected": true,
+  "result": false
+}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"y"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"y"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "y" from: {"type":"Literal","value":"y"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "y" from: {"type":"Literal","value":"y"}
+[N3LogicReasoner][TRACE] [log:and] input: {
+  "type": "Literal",
+  "value": "x"
+} {
+  "type": "Literal",
+  "value": "y"
+} getValue: x y
+[N3LogicReasoner][TRACE] [log:and] input: {
+  "type": "Literal",
+  "value": "x"
+} {
+  "type": "Literal",
+  "value": "y"
+} getValue: x y
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"y"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"y"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "y" from: {"type":"Literal","value":"y"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "y" from: {"type":"Literal","value":"y"}
+[N3LogicReasoner][TRACE] [log:and] output: true
+[N3LogicReasoner][TRACE] [log:and] output: true
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [log:and] input: {
+  "type": "Literal",
+  "value": "x"
+} {
+  "type": "Literal",
+  "value": ""
+} getValue: x 
+[N3LogicReasoner][TRACE] [log:and] input: {
+  "type": "Literal",
+  "value": "x"
+} {
+  "type": "Literal",
+  "value": ""
+} getValue: x 
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [log:and] output: false
+[N3LogicReasoner][TRACE] [log:and] output: false
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [log:xor] input: {
+  "type": "Literal",
+  "value": "x"
+} {
+  "type": "Literal",
+  "value": ""
+} getValue: x 
+[N3LogicReasoner][TRACE] [log:xor] input: {
+  "type": "Literal",
+  "value": "x"
+} {
+  "type": "Literal",
+  "value": ""
+} getValue: x 
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":""} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "" from: {"type":"Literal","value":""}
+[N3LogicReasoner][TRACE] [log:xor] output: true
+[N3LogicReasoner][TRACE] [log:xor] output: true
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [log:xor] input: {
+  "type": "Literal",
+  "value": "x"
+} {
+  "type": "Literal",
+  "value": "x"
+} getValue: x x
+[N3LogicReasoner][TRACE] [log:xor] input: {
+  "type": "Literal",
+  "value": "x"
+} {
+  "type": "Literal",
+  "value": "x"
+} getValue: x x
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"x"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "x" from: {"type":"Literal","value":"x"}
+[N3LogicReasoner][TRACE] [log:xor] output: false
+[N3LogicReasoner][TRACE] [log:xor] output: false
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"true"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"true"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "true" from: {"type":"Literal","value":"true"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "true" from: {"type":"Literal","value":"true"}
+[N3LogicReasoner][TRACE] [log:if] input: {
+  "type": "Literal",
+  "value": "true"
+} {
+  "type": "Literal",
+  "value": "then"
+} {
+  "type": "Literal",
+  "value": "else"
+} getValue: true
+[N3LogicReasoner][TRACE] [log:if] input: {
+  "type": "Literal",
+  "value": "true"
+} {
+  "type": "Literal",
+  "value": "then"
+} {
+  "type": "Literal",
+  "value": "else"
+} getValue: true
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"true"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"true"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "true" from: {"type":"Literal","value":"true"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "true" from: {"type":"Literal","value":"true"}
+[N3LogicReasoner][TRACE] [log:if] output: {
+  "type": "Literal",
+  "value": "then"
+}
+[N3LogicReasoner][TRACE] [log:if] output: {
+  "type": "Literal",
+  "value": "then"
+}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"false"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"false"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "false" from: {"type":"Literal","value":"false"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "false" from: {"type":"Literal","value":"false"}
+[N3LogicReasoner][TRACE] [log:if] input: {
+  "type": "Literal",
+  "value": "false"
+} {
+  "type": "Literal",
+  "value": "then"
+} {
+  "type": "Literal",
+  "value": "else"
+} getValue: false
+[N3LogicReasoner][TRACE] [log:if] input: {
+  "type": "Literal",
+  "value": "false"
+} {
+  "type": "Literal",
+  "value": "then"
+} {
+  "type": "Literal",
+  "value": "else"
+} getValue: false
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"false"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"false"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "false" from: {"type":"Literal","value":"false"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "false" from: {"type":"Literal","value":"false"}
+[N3LogicReasoner][TRACE] [log:if] output: {
+  "type": "Literal",
+  "value": "else"
+}
+[N3LogicReasoner][TRACE] [log:if] output: {
+  "type": "Literal",
+  "value": "else"
+}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"b"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"b"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "b" from: {"type":"Literal","value":"b"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "b" from: {"type":"Literal","value":"b"}
+[N3LogicReasoner][TRACE] [log:distinct] input: {
+  "type": "Literal",
+  "value": "a"
+} {
+  "type": "Literal",
+  "value": "b"
+} getValue: a b
+[N3LogicReasoner][TRACE] [log:distinct] input: {
+  "type": "Literal",
+  "value": "a"
+} {
+  "type": "Literal",
+  "value": "b"
+} getValue: a b
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"b"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"b"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "b" from: {"type":"Literal","value":"b"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "b" from: {"type":"Literal","value":"b"}
+[N3LogicReasoner][TRACE] [log:distinct] output: true
+[N3LogicReasoner][TRACE] [log:distinct] output: true
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [log:distinct] input: {
+  "type": "Literal",
+  "value": "a"
+} {
+  "type": "Literal",
+  "value": "a"
+} getValue: a a
+[N3LogicReasoner][TRACE] [log:distinct] input: {
+  "type": "Literal",
+  "value": "a"
+} {
+  "type": "Literal",
+  "value": "a"
+} getValue: a a
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] input: {"type":"Literal","value":"a"} type: object
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [getValue] returning .value: "a" from: {"type":"Literal","value":"a"}
+[N3LogicReasoner][TRACE] [log:distinct] output: false
+[N3LogicReasoner][TRACE] [log:distinct] output: false
