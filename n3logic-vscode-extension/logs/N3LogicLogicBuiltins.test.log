@@ -15,9 +15,9 @@ Failure: Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32m
 
 Expected: [32mtrue[39m
 Received: [31mfalse[39m
-    at F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:113:22
+    at F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:137:22
     at Array.forEach (<anonymous>)
-    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:110:11)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:134:11)
     at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
     at new Promise (<anonymous>)
     at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)

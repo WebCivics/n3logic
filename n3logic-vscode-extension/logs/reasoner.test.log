@@ -10,7 +10,7 @@ Status: failed
 Failure: Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeDefined[2m()[22m
 
 Received: [31mundefined[39m
-    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:82:32)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:108:32)
     at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
     at new Promise (<anonymous>)
     at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
@@ -25,6 +25,40 @@ Received: [31mundefined[39m
     at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
     at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
     at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+
+Test: N3LogicReasoner diagnostic: reasoner should infer triple for "foo" only
+Status: failed
+Failure: Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeDefined[2m()[22m
+
+Received: [31mundefined[39m
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:152:25)
+    at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
+    at _callCircusTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1009:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:949:3)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:839:13)
+    at _runTestsForDescribeBlock (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:829:11)
+    at run (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:757:3)
+    at runAndTransformResultsToJestFormat (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1920:21)
+    at jestAdapter (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:275:16)
+    at runTest (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:343:7)
+    at Object.worker (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runner\build\testWorker.js:497:12)
+
+Test: N3LogicReasoner diagnostic: logic builtins isRDFTrue/isRDFFalse
+Status: failed
+Failure: Error: Cannot find module '../n3logic/builtins/N3LogicLogicBuiltins.js' from 'tests/reasoner.test.ts'
+    at Resolver._throwModNotFoundError (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-resolve\build\index.js:863:11)
+    at Resolver.resolveModuleAsync (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-resolve\build\index.js:820:10)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Resolver.getModuleIDAsync (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-resolve\build\index.js:967:26)
+    at Runtime._shouldMockModule (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runtime\build\index.js:1527:22)
+    at Runtime.resolveModule (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runtime\build\index.js:657:9)
+    at importModuleDynamically (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-runtime\build\index.js:526:30)
+    at importModuleDynamicallyWrapper (node:internal/vm/module:434:15)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:158:19)
 
 Test: N3LogicReasoner supports plugins and hooks
 Status: passed

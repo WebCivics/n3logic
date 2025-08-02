@@ -5,25 +5,47 @@ import { N3Term } from '../../n3logic/N3LogicTypes';
 
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const logFile = path.resolve(__dirname, '../../logs/esm/N3LogicLogicBuiltins.test.log');
+
+
+// ESM/CJS compatible __dirname and __filename
+let localFilename = '';
+let localDirname = '';
+if (typeof __filename !== 'undefined' && typeof __dirname !== 'undefined') {
+  // CJS
+  localFilename = __filename;
+  localDirname = __dirname;
+} else {
+  // Fallback for ESM or unknown
+  localFilename = '';
+  localDirname = process.cwd();
+}
+
+// Use logs/cjs for CJS, logs/esm for ESM
+const logDir = (typeof __filename !== 'undefined' && typeof __dirname !== 'undefined')
+  ? path.resolve(localDirname, '../../logs/cjs')
+  : path.resolve(localDirname, '../../logs/esm');
+const logFile = path.join(logDir, 'N3LogicLogicBuiltins.test.log');
 let originalLog: ((...args: any[]) => void) | undefined;
 let originalDebug: ((...args: any[]) => void) | undefined;
+
 function logToFile(...args: any[]): void {
   const msg = args.map((a) => (typeof a === 'string' ? a : JSON.stringify(a, null, 2))).join(' ');
   fs.appendFileSync(logFile, msg + '\n');
   if (originalLog) originalLog.apply(console, args);
 }
+
 function flushLog(): void {
   if (fs.fsyncSync) {
-    const fd = fs.openSync(logFile, 'r+');
-    fs.fsyncSync(fd);
-    fs.closeSync(fd);
+    try {
+      const fd = fs.openSync(logFile, 'r+');
+      fs.fsyncSync(fd);
+      fs.closeSync(fd);
+    } catch {
+      // ignore
+    }
   }
 }
+
 function debugCase(
   label: string,
   a: any,
@@ -41,20 +63,22 @@ function debugCase(
   });
   flushLog();
 }
+
 beforeAll((): void => {
+  // Ensure log directory exists
+  fs.mkdirSync(path.dirname(logFile), { recursive: true });
   originalLog = console.log;
   originalDebug = console.debug;
   fs.writeFileSync(logFile, '');
   console.log = logToFile;
   console.debug = logToFile;
 });
+
 afterAll((): void => {
   if (originalLog) console.log = originalLog;
   if (originalDebug) console.debug = originalDebug;
   // Append main debug log to per-test log for full traceability
-  // ...existing code...
-  // path and fs already imported at top
-  const logsDir = path.resolve(__dirname, '../../logs');
+  const logsDir = path.resolve(localDirname, '../../logs');
   const debugLogs = ['debug.cjs.log', 'debug.esm.log'];
   for (const dbg of debugLogs) {
     const dbgPath = path.join(logsDir, dbg);

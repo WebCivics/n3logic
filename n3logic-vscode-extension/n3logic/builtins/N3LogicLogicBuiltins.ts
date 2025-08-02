@@ -25,6 +25,7 @@ function isRDFFalse(val: any): boolean {
   }
   return val === 'false';
 }
+  export { isRDFTrue, isRDFFalse };
 
 export const LogicBuiltins: N3Builtin[] = [
   // (Removed broken duplicate log:or entry)
