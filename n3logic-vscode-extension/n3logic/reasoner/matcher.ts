@@ -166,6 +166,21 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
   debugLog('[MATCHER][DEBUG][LOGGING] Builtin URIs:', Array.isArray(builtins) ? builtins.map((b) => b.uri) : builtins);
   debugLog('[MATCHER][DEBUG] matchAntecedent called with patterns:', JSON.stringify(patterns, null, 2), 'data:', JSON.stringify(data, null, 2), 'builtins:', builtins ? builtins.map((b) => b.uri) : builtins);
   debugLog('[MATCHER][DEBUG] Builtins at match time:', builtins ? builtins.map((b) => b.uri) : builtins);
+  // Extra: log all pattern predicates and their types/values
+  patterns.forEach((triple, idx) => {
+    let predType = typeof triple.predicate === 'object' && triple.predicate !== null && 'type' in triple.predicate ? triple.predicate.type : typeof triple.predicate;
+    let predValue = typeof triple.predicate === 'object' && triple.predicate !== null && 'value' in triple.predicate ? triple.predicate.value : triple.predicate;
+    debugLog(`[MATCHER][DEBUG][PATTERN] Pattern #${idx} predicate:`, triple.predicate, 'type:', predType, 'value:', predValue);
+    if (predType === 'IRI' && typeof predValue === 'string' && predValue.startsWith('http')) {
+      debugLog(`[MATCHER][DEBUG][PATTERN][CUSTOM BUILTIN] Pattern #${idx} has custom builtin predicate:`, predValue);
+    }
+  });
+  // Log all data triple predicates
+  data.forEach((triple, idx) => {
+    let predType = typeof triple.predicate === 'object' && triple.predicate !== null && 'type' in triple.predicate ? triple.predicate.type : typeof triple.predicate;
+    let predValue = typeof triple.predicate === 'object' && triple.predicate !== null && 'value' in triple.predicate ? triple.predicate.value : triple.predicate;
+    debugLog(`[MATCHER][DEBUG][DATA] Data triple #${idx} predicate:`, triple.predicate, 'type:', predType, 'value:', predValue);
+  });
   debugTrace('matchAntecedent: patterns:', JSON.stringify(patterns, null, 2));
   debugTrace('matchAntecedent: data:', JSON.stringify(data, null, 2));
   debugTrace('matchAntecedent: builtins:', JSON.stringify(builtins, null, 2));
@@ -264,6 +279,7 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
     if (builtin) {
       debugLog('[MATCHER][TRACE][LITERAL] Builtin match found:', builtin.uri, 'Triple:', JSON.stringify(triple));
       debugLog('[MATCHER][TRACE][LITERAL] Builtin apply function:', builtin.apply && builtin.apply.toString());
+    debugLog('[MATCHER][TRACE][LITERAL][EXTRA] About to invoke builtin:', builtin.uri, 'Triple:', JSON.stringify(triple), 'Patterns:', JSON.stringify(patterns), 'Data:', JSON.stringify(data));
       if (typeof (global as any).debugLog === 'function') {
         (global as any).debugLog('[MATCHER][TRACE][EXTRA] Invoking builtin:', builtin.uri, 'with triple:', JSON.stringify(triple));
       }
@@ -295,7 +311,9 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
               if (typeof (global as any).debugLog === 'function') {
                 (global as any).debugLog('[MATCHER][TRACE][EXTRA] About to call builtin.apply (arity 1):', builtin.uri, 'args:', args, 'bindings:', mergedBindings);
               }
+              debugLog('[MATCHER][TRACE][LITERAL][EXTRA] Calling builtin.apply:', builtin.uri, 'args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
               const result = builtin.apply(...args);
+              debugLog('[MATCHER][TRACE][LITERAL][EXTRA] Builtin.apply result:', result, 'for args:', JSON.stringify(args));
               debugLog('[MATCHER][TRACE][LITERAL] Builtin result (arity 1):', result);
               debugTrace('[MATCHER][TRACE] Builtin result (arity 1):', result);
               if (typeof (global as any).debugLog === 'function') {

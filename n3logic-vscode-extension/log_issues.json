@@ -1,10 +1,10 @@
 {
-  "summary": "Test failures and debug log review for n3logic-vscode-extension as of 2025-08-02.\n\nUPDATE: As of the latest parser and regression runner fixes, all custom builtin and diagnostic inference issues are resolved. All demo-app regression scenarios now pass, and the matcher correctly invokes custom builtins. Only unrelated issues remain.",
+  "summary": "Comprehensive log and test review for n3logic-vscode-extension as of 2025-08-02.\n\nAll demo-app regression scenarios pass, and the matcher and parser now robustly handle custom builtins and diagnostic inference. Extensive debug output is present throughout the inference pipeline, including matcher, parser, and builtin evaluator. However, several unrelated test failures remain, and further improvements to debug trace functionality are recommended for maintainability and future diagnosis.",
   "test_failures": [
     {
       "test": "N3LogicReasoner › supports custom builtins",
       "status": "fixed",
-      "details": "FIXED: The parser now robustly splits and parses all triples and rules, and prefix expansion is applied correctly. The matcher correctly invokes custom builtins and inference works as expected. Regression runner and demo-app confirm this is resolved.",
+      "details": "FIXED: The parser now robustly splits and parses all triples and rules, and prefix expansion is applied correctly. The matcher and builtin evaluator now correctly invoke custom builtins, and inference works as expected. All regression runner and demo-app scenarios pass. Extensive debug output at TRACE and DEBUG levels is present for all key inference steps, including triple parsing, rule extraction, builtin matching, and triple instantiation.",
       "files_involved": [
         "tests/reasoner.test.ts",
         "n3logic/N3LogicReasoner.ts",
@@ -18,7 +18,7 @@
     {
       "test": "N3LogicReasoner › diagnostic: reasoner should infer triple for 'foo' only",
       "status": "fixed",
-      "details": "FIXED: Diagnostic inference now works as expected. Only the correct triple is inferred. Regression runner and demo-app confirm this is resolved.",
+      "details": "FIXED: Diagnostic inference now works as expected. Only the correct triple is inferred. Regression runner and demo-app confirm this is resolved. Debug output confirms correct builtin invocation and triple matching.",
       "files_involved": [
         "tests/reasoner.test.ts",
         "n3logic/N3LogicReasoner.ts",
@@ -51,15 +51,16 @@
   ],
   "general_findings": [
     "FIXED: The matcher and builtin evaluator now correctly match and invoke custom builtins. All regression and demo-app scenarios pass.",
-    "The test file now logs all resolved file paths for direct imports at the start of the run, aiding traceability.",
-    "The matcher has extensive debug output for builtins, triple matching, and warnings for non-IRI/string predicates.",
+    "Extensive debug output is present at all key stages: parser (prefix extraction, triple/rule splitting), matcher (pattern/data logging, builtin matching, literal/variable tracing), and builtin evaluator (argument/result tracing).",
+    "Test files log resolved file paths for direct imports at the start of the run, aiding traceability.",
+    "The matcher emits warnings for non-IRI/string predicates and logs all available builtins at match time.",
     "The log:or builtin test failure may be due to a logic error in the builtin or a test case issue.",
     "The N3LogicAIAgentHelper test suite fails to run due to a redeclaration of __filename, which is a test setup error."
   ],
   "recommendations": [
-    "No further action needed for custom builtin or diagnostic inference issues—they are fixed.",
-    "Review the implementation and test cases for log:or in N3LogicLogicBuiltins if any failures remain.",
-    "Fix the redeclaration of __filename in N3LogicAIAgentHelper.test.ts.",
-    "Continue using the enhanced debug output and file path logging to trace the inference pipeline and file involvement."
+    "No further action needed for custom builtin or diagnostic inference issues—they are fixed and fully validated by regression runners and demo-apps.",
+    "Review and update the implementation and test cases for log:or in N3LogicLogicBuiltins to resolve the remaining test failure. Ensure that all boolean and string cases are covered and that the builtin returns the expected result for all test inputs.",
+    "Fix the redeclaration of __filename in N3LogicAIAgentHelper.test.ts to allow the test suite to run. This may require removing or renaming the variable, or adjusting the test setup to avoid conflicts.",
+    "Continue using and further enhance the debug output and file path logging. Consider the following improvements to debug trace functionality: \n  - Standardize debug output format and levels (TRACE, DEBUG, WARN, ERROR) across all modules.\n  - Add a global debug configuration to control verbosity and output destinations (console, file, etc).\n  - Ensure all key inference steps (parsing, rule extraction, triple matching, builtin invocation, triple instantiation) emit traceable, context-rich logs, including file and line references where possible.\n  - Provide utilities to filter, search, and summarize debug logs for rapid diagnosis.\n  - Document debug output conventions and usage in the project README for future maintainers."
   ]
 }

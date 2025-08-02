@@ -1,6 +1,6 @@
 [
   {
-    "scenario": "log:or builtins",
+    "scenario": "log:or builtins (diagnostic)",
     "results": [
       {
         "case": 0,
@@ -99,7 +99,17 @@
         "pass": true
       }
     ],
-    "pass": true
+    "pass": true,
+    "debugLogPath": "log-or-diagnostic.log"
+  },
+  {
+    "scenario": "custom builtin (jest-mirror)",
+    "allTriples": [
+      "<a> <b> \"foo\" .",
+      "<a> <b> \"bar\" ."
+    ],
+    "pass": false,
+    "debugLogPath": "custom-builtin-jest-mirror.log"
   },
   {
     "scenario": "custom builtin inference",

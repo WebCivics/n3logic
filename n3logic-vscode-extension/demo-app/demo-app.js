@@ -6,9 +6,9 @@ const { N3LogicParser } = require('../dist/cjs/n3logic/N3LogicParser');
 
 const scenarios = [];
 
-// Scenario 1: log:or (logic builtins)
+// Scenario 1: log:or (logic builtins, with full debug)
 scenarios.push({
-  name: 'log:or builtins',
+  name: 'log:or builtins (diagnostic)',
   run: () => {
     const { LogicBuiltins } = require('../dist/cjs/n3logic/builtins/N3LogicLogicBuiltins');
     const getBuiltin = (name) => LogicBuiltins.find(b => b.uri === 'http://www.w3.org/2000/10/swap/log#' + name);
@@ -21,14 +21,44 @@ scenarios.push({
       { args: [{ type: 'Literal', value: 'true' }, { type: 'Literal', value: 'false' }], expected: true },
       { args: [{ type: 'Literal', value: 'false' }, { type: 'Literal', value: 'false' }], expected: false },
     ];
+    const debugLog = [];
     const results = orCases.map((c, i) => {
       let result, error;
-      try { result = logOr(...c.args); } catch (e) { error = e.message || String(e); }
+      try {
+        result = logOr(...c.args);
+        debugLog.push({ case: i, args: c.args, result });
+      } catch (e) {
+        error = e.message || String(e);
+        debugLog.push({ case: i, args: c.args, error });
+      }
       return {
         case: i, args: c.args, expected: c.expected, result, pass: result === c.expected, error
       };
     });
-    return { results, pass: results.every(r => r.pass) };
+    fs.writeFileSync(path.join(__dirname, 'log-or-diagnostic.log'), JSON.stringify(debugLog, null, 2));
+    return { results, pass: results.every(r => r.pass), debugLogPath: 'log-or-diagnostic.log' };
+  }
+});
+// Scenario 1b: Mirror failing Jest test for custom builtin (full trace)
+scenarios.push({
+  name: 'custom builtin (jest-mirror)',
+  run: () => {
+    const reasoner = new N3LogicReasoner();
+    reasoner.setDebug(true);
+    const builtin = {
+      uri: 'http://example.org/custom#isFoo',
+      arity: 1,
+      description: 'Returns true if the subject is the literal "foo"',
+      apply: (subject) => typeof subject === 'object' && subject.type === 'Literal' && subject.value === 'foo'
+    };
+    reasoner.registerBuiltin(builtin);
+    const n3 = '<a> <b> "foo" . <a> <b> "bar" . { <a> <b> ?x . ?x <http://example.org/custom#isFoo> ?x } => { <a> <c> ?x } .';
+    reasoner.loadOntology(n3, 'n3');
+    const result = reasoner.reason();
+    const inferredTriple = result.triples.find((t) => typeof t === 'string' && t.includes('<a> <c> "foo" .'));
+    const allTriples = result.triples;
+    fs.writeFileSync(path.join(__dirname, 'custom-builtin-jest-mirror.log'), JSON.stringify({ allTriples, inferredTriple }, null, 2));
+    return { inferredTriple, allTriples, pass: !!inferredTriple, debugLogPath: 'custom-builtin-jest-mirror.log' };
   }
 });
 
@@ -65,7 +95,8 @@ scenarios.push({
   }
 });
 
-// Run all scenarios and collect results
+
+// Run all scenarios and collect results, writing per-scenario logs
 const allResults = [];
 let anyFail = false;
 for (const scenario of scenarios) {
@@ -77,6 +108,10 @@ for (const scenario of scenarios) {
   }
   allResults.push({ scenario: scenario.name, ...res });
   if (!res.pass) anyFail = true;
+  // Write per-scenario debug log if present
+  if (res.debugLogPath && fs.existsSync(path.join(__dirname, res.debugLogPath))) {
+    console.log(`[DEBUG] Scenario '${scenario.name}' wrote debug log:`, res.debugLogPath);
+  }
 }
 
 const outPath = path.join(__dirname, 'demo-regression-results.json');

@@ -130,11 +130,18 @@ export class N3LogicParser {
           // EXTRA DEBUG: Log all antecedent and consequent triples and their predicates
           debugLog('[N3LogicParser][RULE][DEBUG] Parsed antecedent triples:', JSON.stringify(antecedentTriples, null, 2));
           antecedentTriples.forEach((triple, idx) => {
-            debugLog(`[N3LogicParser][RULE][DEBUG] Antecedent triple #${idx} predicate:`, triple.predicate);
+            let predType = typeof triple.predicate === 'object' && triple.predicate !== null && 'type' in triple.predicate ? triple.predicate.type : typeof triple.predicate;
+            let predValue = typeof triple.predicate === 'object' && triple.predicate !== null && 'value' in triple.predicate ? triple.predicate.value : triple.predicate;
+            debugLog(`[N3LogicParser][RULE][DEBUG] Antecedent triple #${idx} predicate:`, triple.predicate, 'type:', predType, 'value:', predValue);
+            if (predType === 'IRI' && typeof predValue === 'string' && predValue.startsWith('http')) {
+              debugLog(`[N3LogicParser][RULE][DEBUG][CUSTOM BUILTIN] Antecedent triple #${idx} has custom builtin predicate:`, predValue);
+            }
           });
           debugLog('[N3LogicParser][RULE][DEBUG] Parsed consequent triples:', JSON.stringify(consequentTriples, null, 2));
           consequentTriples.forEach((triple, idx) => {
-            debugLog(`[N3LogicParser][RULE][DEBUG] Consequent triple #${idx} predicate:`, triple.predicate);
+            let predType = typeof triple.predicate === 'object' && triple.predicate !== null && 'type' in triple.predicate ? triple.predicate.type : typeof triple.predicate;
+            let predValue = typeof triple.predicate === 'object' && triple.predicate !== null && 'value' in triple.predicate ? triple.predicate.value : triple.predicate;
+            debugLog(`[N3LogicParser][RULE][DEBUG] Consequent triple #${idx} predicate:`, triple.predicate, 'type:', predType, 'value:', predValue);
           });
           rules.push({
             type: 'Rule',
@@ -238,6 +245,7 @@ export class N3LogicParser {
             if (typeof triple.predicate.value === 'string' && triple.predicate.value.startsWith('http')) {
               if (debugLog) debugLog('[TRACE][parseTriples][CUSTOM BUILTIN PREDICATE]', triple.predicate.value, JSON.stringify(triple));
             }
+            debugLog('[TRACE][parseTriples][PREDICATE TYPE]', triple.predicate && 'type' in triple.predicate ? triple.predicate.type : typeof triple.predicate, 'value:', triple.predicate && 'value' in triple.predicate ? triple.predicate.value : triple.predicate);
           }
           // Extra debug: log predicate type and value for custom builtin URIs
           if (triple.predicate && typeof triple.predicate === 'object' && 'value' in triple.predicate) {

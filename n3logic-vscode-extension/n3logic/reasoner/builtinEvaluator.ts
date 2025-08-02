@@ -66,12 +66,14 @@ export function evaluateBuiltins(
         }
         debugTrace && debugTrace('[builtinEvaluator][TRACE] About to invoke builtin.apply:', builtin.uri, 'args:', args, 'function:', builtin.apply, 'typeof:', typeof builtin.apply);
         debugLog('evaluateBuiltins: Calling builtin', builtin.uri, 'with args:', args, 'builtin.apply:', builtin.apply, 'typeof:', typeof builtin.apply);
+        debugLog('[EVALBUILTINS][CUSTOM][EXTRA] About to call builtin.apply:', builtin.uri, 'args:', JSON.stringify(args), 'bindings:', JSON.stringify(bindings));
         if (typeof (global as any).debugLog === 'function') {
           (global as any).debugLog('[EVALBUILTINS][TRACE][EXTRA] About to call builtin.apply:', builtin.uri, 'args:', args, 'bindings:', bindings);
         }
         let result = false;
         try {
           result = builtin.apply(...args);
+          debugLog('[EVALBUILTINS][CUSTOM][EXTRA] Builtin.apply result:', result, 'for args:', JSON.stringify(args));
         } catch (err) {
           debugLog('[EVALBUILTINS][ERROR] Exception in builtin.apply:', err);
           if (typeof (global as any).debugLog === 'function') {
