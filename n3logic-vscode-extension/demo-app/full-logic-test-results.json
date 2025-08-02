@@ -1,0 +1,93 @@
+{
+  "message": "N3Logic reasoning: forward chaining with built-in, quantifier, and formula evaluation",
+  "triples": [
+    "<@prefix> <log:> <<http://www.w3.org/2000/10/swap/log> .",
+    "<[]> <log:or> <(\"\"> .",
+    "<[]> <log:or> <(\"x\"> .",
+    "<[]> <log:or> <(\"true\"> .",
+    "<[]> <log:or> <(\"false\"> ."
+  ],
+  "rules": [],
+  "builtins": [
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#not",
+      "arity": 1,
+      "description": "log:not(x) is true if x is false"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#implies",
+      "arity": 2,
+      "description": "log:implies(x, y) is true if x implies y (handled by rule engine)"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#equalTo",
+      "arity": 2,
+      "description": "log:equalTo(x, y) is true if x === y"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#or",
+      "arity": 2,
+      "description": "log:or(x, y) is true if x or y is true"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#and",
+      "arity": 2,
+      "description": "log:and(x, y) is true if both x and y are true"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#xor",
+      "arity": 2,
+      "description": "log:xor(x, y) is true if x and y differ"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#if",
+      "arity": 3,
+      "description": "log:if(cond, then, else) returns then if cond is true, else else"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/log#distinct",
+      "arity": 2,
+      "description": "log:distinct(x, y) is true if x != y"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isLiteral",
+      "arity": 1,
+      "description": "type:isLiteral(x) is true if x is a literal"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isIRI",
+      "arity": 1,
+      "description": "type:isIRI(x) is true if x is an IRI"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#isBlank",
+      "arity": 1,
+      "description": "type:isBlank(x) is true if x is a blank node"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toString",
+      "arity": 1,
+      "description": "type:toString(x) returns x as string"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toNumber",
+      "arity": 1,
+      "description": "type:toNumber(x) returns x as number literal"
+    },
+    {
+      "uri": "http://www.w3.org/2000/10/swap/type#toBoolean",
+      "arity": 1,
+      "description": "type:toBoolean(x) returns x as boolean literal"
+    },
+    {
+      "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "arity": 2,
+      "description": "rdf:type(x, y) is true if x is of type y (handled by triple matching)"
+    },
+    {
+      "uri": "http://www.w3.org/2002/07/owl#sameAs",
+      "arity": 2,
+      "description": "owl:sameAs(x, y) is true if x and y are the same"
+    }
+  ]
+}

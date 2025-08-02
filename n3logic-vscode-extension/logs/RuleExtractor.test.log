@@ -1,4 +1,4 @@
-Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\RuleExtractor.test.ts
+Test File: F:\github-dev\n3logic\n3logic-vscode-extension\tests\parser\RuleExtractor.test.ts
 Status: PASS
 
 Test: RuleExtractor extracts a single rule from N3 text

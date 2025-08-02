@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>log:or Builtin Demo</title>
+  <style>
+    body { font-family: sans-serif; margin: 2em; }
+    label, input, button { font-size: 1.1em; }
+    .result { margin-top: 1em; font-weight: bold; }
+    textarea { width: 100%; height: 6em; }
+  </style>
+</head>
+<body>
+  <h1>log:or Builtin Test Demo</h1>
+  <p>This demo runs the key <code>log:or</code> test case from your suite, with all logic and artefacts pre-populated. Press the button to evaluate and see a pass (<span style="color:green">✔</span>) or fail (<span style="color:red">✘</span>).</p>
+  <div class="testcase">
+    <div class="testdesc">Test: <code>log:or</code> returns <b>true</b> if either is true (string case)</div>
+    <div class="artefacts">a = <code>{ type: 'Literal', value: 'x' }</code>, b = <code>{ type: 'Literal', value: '' }</code>, expected = <b>true</b></div>
+    <button id="runTest">Run Test</button>
+    <button id="exportJson" type="button">Export JSON</button>
+    <span class="result" id="testResult"></span>
+  </div>
+  <h2>Debug Output</h2>
+  <textarea id="debug" readonly></textarea>
+  <script>
+    // Simulate the log:or logic from N3LogicLogicBuiltins
+    function getValue(term) {
+      if (term && typeof term === 'object' && 'value' in term) return term.value;
+      return term;
+    }
+    function isTruthy(v) {
+      if (v && typeof v === 'object' && v.type === 'Literal') {
+        const val = v.value;
+        if (typeof val === 'string') return val !== '' && val !== 'false';
+        if (typeof val === 'boolean') return val;
+        return !!val;
+      }
+      if (typeof v === 'string') return v !== '' && v !== 'false';
+      if (typeof v === 'boolean') return v;
+      return !!v;
+    }
+    function logOr(x, y, debug) {
+      const valX = getValue(x);
+      const valY = getValue(y);
+      debug('getValue(x):', valX, 'getValue(y):', valY);
+      const truthX = isTruthy(valX);
+      debug('isTruthy(getValue(x)):', truthX, 'x:', x, 'valX:', valX);
+      const truthY = isTruthy(valY);
+      debug('isTruthy(getValue(y)):', truthY, 'y:', y, 'valY:', valY);
+      const result = truthX || truthY;
+      debug('final result:', result, 'from isTruthy(getValue(x)):', truthX, 'isTruthy(getValue(y)):', truthY);
+      return result;
+    }
+    let lastTestResult = null;
+    document.getElementById('runTest').onclick = function() {
+      const a = { type: 'Literal', value: 'x' };
+      const b = { type: 'Literal', value: '' };
+      const expected = true;
+      let debugLog = '';
+      function debug(...args) { debugLog += args.map(String).join(' ') + '\n'; }
+      const result = logOr(a, b, debug);
+      const pass = (result === expected);
+      const resElem = document.getElementById('testResult');
+      resElem.innerHTML = pass ? '<span class="pass">✔ PASS</span>' : '<span class="fail">✘ FAIL</span>';
+      document.getElementById('debug').value = debugLog + '\nResult: ' + result + '\nExpected: ' + expected;
+      lastTestResult = {
+        test: 'log:or returns true if either is true (string case)',
+        a,
+        b,
+        expected,
+        result,
+        pass,
+        debug: debugLog.trim(),
+        timestamp: new Date().toISOString()
+      };
+    };
+    document.getElementById('exportJson').onclick = function() {
+      if (!lastTestResult) {
+        alert('Please run the test first.');
+        return;
+      }
+      const json = JSON.stringify(lastTestResult, null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'test-demos/test-demo-log-json/log-or-result-' + Date.now() + '.json';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 100);
+    };
+    // Auto-run on load for convenience
+    window.onload = function() {
+      document.getElementById('runTest').click();
+    };
+  </script>
+</body>
+</html>

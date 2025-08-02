@@ -55,17 +55,23 @@ export class N3LogicReasoner {
 	setDebug(debug: boolean): void {
 		debugTrace && debugTrace('[N3LogicReasoner] setDebug called:', debug);
 		setDebug(debug);
+		debugTrace('[N3LogicReasoner][TRACE] setDebug finished:', debug);
 	}
 
 	/**
 	 * Use the modularized matchAntecedent from matcher.ts with current builtins.
 	 */
 	matchAntecedent(patterns: N3Triple[], data: N3Triple[]): Array<Record<string, N3Term>> {
-		// Always merge builtins (core + custom) for every match
-		const mergedBuiltins = mergeBuiltins(this.customBuiltins);
+		debugTrace('[N3LogicReasoner][TRACE] matchAntecedent called:', { patterns, data });
+		// Always use up-to-date document.builtins for every match
+		if (!this.document.builtins || this.document.builtins.length === 0) {
+			this.document.builtins = mergeBuiltins(this.customBuiltins);
+		}
+		debugTrace('[N3LogicReasoner][TRACE] Using document.builtins:', (this.document.builtins || []).map((b) => b.uri));
 		debugLog('[N3LogicReasoner][DEBUG] matchAntecedent called with:', JSON.stringify(patterns), JSON.stringify(data));
-		debugLog('[N3LogicReasoner][DEBUG] Using mergedBuiltins:', (mergedBuiltins || []).map((b) => b.uri));
-		const result = matchAntecedent(patterns, data, mergedBuiltins);
+		debugLog('[N3LogicReasoner][DEBUG] Using document.builtins:', (this.document.builtins || []).map((b) => b.uri));
+		const result = matchAntecedent(patterns, data, this.document.builtins);
+		debugTrace('[N3LogicReasoner][TRACE] matchAntecedent result:', result);
 		debugLog('[N3LogicReasoner][DEBUG] matchAntecedent result:', JSON.stringify(result));
 		return result;
 	}
@@ -74,7 +80,10 @@ export class N3LogicReasoner {
 	 * Use the modularized instantiateTriple from matcher.ts.
 	 */
 	instantiateTriple(triple: N3Triple, bindings: Record<string, N3Term>): N3Triple {
-		return instantiateTriple(triple, bindings);
+		debugTrace('[N3LogicReasoner][TRACE] instantiateTriple called:', { triple, bindings });
+		const result = instantiateTriple(triple, bindings);
+		debugTrace('[N3LogicReasoner][TRACE] instantiateTriple result:', result);
+		return result;
 	}
 
 	/**
@@ -82,22 +91,26 @@ export class N3LogicReasoner {
 	 * Builtins include core, modular, and user-registered builtins.
 	 */
 	loadOntology(data: string, format: string): void {
+		debugTrace('[N3LogicReasoner][TRACE] loadOntology called:', { format, data });
 		debugLog('[N3LogicReasoner][DEBUG] customBuiltins before loadOntology:', (this.customBuiltins || []).map((b) => b.uri));
-		debugTrace && debugTrace('[N3LogicReasoner] loadOntology called:', { format, data });
 		debugLog('Loading ontology', { format, data });
 		if (typeof data !== 'string') {
+			debugTrace('[N3LogicReasoner][TRACE] loadOntology: data is not a string');
 			throw new TypeError('N3LogicReasoner.loadOntology: data must be a string');
 		}
 		if (typeof format !== 'string') {
+			debugTrace('[N3LogicReasoner][TRACE] loadOntology: format is not a string');
 			throw new TypeError('N3LogicReasoner.loadOntology: format must be a string');
 		}
 		if (format !== 'n3' && format !== 'n3logic') {
+			debugTrace('[N3LogicReasoner][TRACE] loadOntology: format not supported', format);
 			throw new Error('Only N3/N3Logic format supported in N3LogicReasoner');
 		}
 		this.raw = data;
 		try {
 			const parser = new N3LogicParser();
 			const parsedDoc = parser.parse(data);
+			debugTrace('[N3LogicReasoner][TRACE] loadOntology: parsedDoc', parsedDoc);
 			debugLog('N3LogicReasoner: Parsed rules after parsing:', JSON.stringify(parsedDoc.rules, null, 2));
 			debugLog('[N3LogicReasoner][DEBUG][LOGGING] Parsed triples after parsing:', JSON.stringify(parsedDoc.triples, null, 2));
 			if (parsedDoc.rules) {
@@ -110,7 +123,11 @@ export class N3LogicReasoner {
 			if (!this.customBuiltins) this.customBuiltins = [];
 			this.document = parsedDoc;
 			// Always merge in any custom builtins registered before ontology load
+			debugTrace('[N3LogicReasoner][TRACE] loadOntology: merging builtins', this.customBuiltins);
 			this.document.builtins = mergeBuiltins(this.customBuiltins);
+			// Always force document.builtins to be up-to-date
+			this.document.builtins = mergeBuiltins(this.customBuiltins);
+			debugTrace('[N3LogicReasoner][TRACE] loadOntology: document.builtins after merge', this.document.builtins);
 			debugLog('[N3LogicReasoner][DEBUG] document.builtins after loadOntology:', (this.document.builtins || []).map((b) => b.uri));
 			debugLog('[N3LogicReasoner][DEBUG][LOGGING] document.builtins after loadOntology:', JSON.stringify(this.document.builtins, null, 2));
 			debugLog('Parsed rules:', this.document.rules);
@@ -119,7 +136,9 @@ export class N3LogicReasoner {
 				plugin(this);
 			}
 			this.runHook('afterLoadOntology', this.document);
+			debugTrace('[N3LogicReasoner][TRACE] loadOntology finished');
 		} catch (err) {
+			debugTrace('[N3LogicReasoner][TRACE] loadOntology: error', err);
 			debugLog('Failed to parse ontology', err);
 			throw new Error(`N3LogicReasoner.loadOntology: Failed to parse ontology: ${err instanceof Error ? err.message : err}`);
 		}
@@ -129,7 +148,7 @@ export class N3LogicReasoner {
 	 * Register a custom builtin (or array of builtins).
 	 */
 	registerBuiltin(builtin: N3Builtin | N3Builtin[]): void {
-		debugTrace && debugTrace('[N3LogicReasoner] registerBuiltin called:', builtin);
+		debugTrace('[N3LogicReasoner][TRACE] registerBuiltin called:', builtin);
 		debugLog('Reasoner: All triples at start:', JSON.stringify(this.document.triples, null, 2));
 		debugLog('Reasoner: All rules at start:', JSON.stringify(this.document.rules, null, 2));
 		debugLog('[N3LogicReasoner][DEBUG] Builtins before registerBuiltin:', (this.document.builtins || []).map((b) => b.uri));
@@ -138,12 +157,19 @@ export class N3LogicReasoner {
 		} else {
 			this.customBuiltins.push(builtin);
 		}
+		debugTrace('[N3LogicReasoner][TRACE] registerBuiltin: customBuiltins after push', (this.customBuiltins || []).map((b) => b.uri));
+		debugLog('[N3LogicReasoner][DEBUG][PATCHED] customBuiltins after push:', (this.customBuiltins || []).map((b) => b.uri));
 		// Always update document.builtins so custom builtins are available immediately
 		if (this.document) {
+			debugTrace('[N3LogicReasoner][TRACE] registerBuiltin: merging builtins', this.customBuiltins);
 			this.document.builtins = mergeBuiltins(this.customBuiltins);
-			debugLog('[N3LogicReasoner][DEBUG] Builtins after registerBuiltin:', (this.document.builtins || []).map((b) => b.uri));
-			debugLog('[N3LogicReasoner][DEBUG] customBuiltins after registerBuiltin:', (this.customBuiltins || []).map((b) => b.uri));
+			// Always force document.builtins to be up-to-date
+			this.document.builtins = mergeBuiltins(this.customBuiltins);
+			debugTrace('[N3LogicReasoner][TRACE] registerBuiltin: document.builtins after merge', (this.document.builtins || []).map((b) => b.uri));
+			debugLog('[N3LogicReasoner][DEBUG][PATCHED] Builtins after registerBuiltin:', (this.document.builtins || []).map((b) => b.uri));
+			debugLog('[N3LogicReasoner][DEBUG][PATCHED] customBuiltins after registerBuiltin:', (this.customBuiltins || []).map((b) => b.uri));
 		}
+		debugTrace('[N3LogicReasoner][TRACE] registerBuiltin finished');
 	}
 
 	/**
@@ -182,6 +208,7 @@ export class N3LogicReasoner {
 	 * Hooks: beforeReason, afterReason, afterRuleApplied
 	 */
 	reason(): N3ReasonerResult {
+		debugTrace('[N3LogicReasoner][TRACE] reason() called');
 		// Log all asserted triples before reasoning
 		// sessionDebugLog('[REASONER][START] Asserted triples:', this.document.triples);
 		// Provenance: assign unique IDs and provenance info to all triples
@@ -189,15 +216,17 @@ export class N3LogicReasoner {
 		function addProvenance(triple: any, provenance: string) {
 			triple._id = ++tripleIdCounter;
 			triple._provenance = provenance;
-		// sessionDebugLog('[PROVENANCE][ADD]', triple, provenance);
 			return triple;
 		}
 		// Add provenance to asserted triples
 		this.document.triples = this.document.triples.map((t) => addProvenance(t, 'asserted'));
 		debugLog('[REASONER] Starting reason() method. Current builtins:', (this.document.builtins || []).map((b) => b.uri));
-		debugTrace && debugTrace('[N3LogicReasoner] reason() called');
+		debugTrace('[N3LogicReasoner][TRACE] reason: merging builtins', this.customBuiltins);
 		// Always merge custom builtins into document.builtins before reasoning
-		this.document.builtins = mergeBuiltins(this.customBuiltins);
+	this.document.builtins = mergeBuiltins(this.customBuiltins);
+	// Always force document.builtins to be up-to-date
+	this.document.builtins = mergeBuiltins(this.customBuiltins);
+		debugTrace('[N3LogicReasoner][TRACE] reason: document.builtins after merge', this.document.builtins);
 		const mergedBuiltins = this.document.builtins;
 		debugLog('[N3LogicReasoner][DEBUG] customBuiltins before reasoning:', (this.customBuiltins || []).map((b) => b.uri));
 		debugLog('[N3LogicReasoner][DEBUG] document.builtins before reasoning:', (this.document.builtins || []).map((b) => b.uri));
@@ -205,6 +234,7 @@ export class N3LogicReasoner {
 		debugLog('Starting reasoning', { triples: this.document.triples, rules: this.document.rules });
 		try {
 			this.runHook('beforeReason', this.document);
+			debugTrace('[N3LogicReasoner][TRACE] reason: after runHook beforeReason');
 			const inferred: Set<string> = new Set();
 			const working: N3Triple[] = [...this.document.triples];
 			debugLog('Initial working triples:', working);
@@ -217,24 +247,30 @@ export class N3LogicReasoner {
 			let iteration = 0;
 			while (changed) {
 				iteration++;
+				debugTrace(`[N3LogicReasoner][TRACE] Reasoning iteration ${iteration} START`);
 				debugLog(`\n=== Reasoning iteration ${iteration} START ===`);
 				debugLog(`Current triple store at start of iteration ${iteration}:`, JSON.stringify(working, null, 2));
 				changed = false;
 				const rulesFired: number[] = [];
 				const newTriplesThisIter: string[] = [];
 				for (const [ruleIdx, rule] of this.document.rules.entries()) {
+					debugTrace(`[N3LogicReasoner][TRACE] Evaluating rule #${ruleIdx}`);
 					debugLog(`[N3LogicReasoner][DEBUG] Evaluating rule #${ruleIdx}:`, JSON.stringify(rule));
 					let bindingsList: Array<Record<string, N3Term>> = [];
 					try {
+						debugTrace(`[N3LogicReasoner][TRACE] Matching antecedent for rule #${ruleIdx}`);
 						debugLog(`[N3LogicReasoner][DEBUG] Matching antecedent for rule #${ruleIdx}:`, JSON.stringify(rule.antecedent));
 						bindingsList = matchFormula(rule.antecedent, working, this.matchAntecedent.bind(this));
+						debugTrace(`[N3LogicReasoner][TRACE] Bindings list from matchFormula for rule #${ruleIdx}:`, bindingsList);
 						debugLog(`[N3LogicReasoner][DEBUG] Bindings list from matchFormula for rule #${ruleIdx}:`, JSON.stringify(bindingsList));
 					} catch (err) {
+						debugTrace('[N3LogicReasoner][TRACE] Failed to match rule antecedent', err, 'Rule:', rule);
 						debugLog('[N3LogicReasoner][DEBUG] Failed to match rule antecedent', err, 'Rule:', JSON.stringify(rule));
 						throw new Error(`N3LogicReasoner.reason: Failed to match rule antecedent: ${err instanceof Error ? err.message : err}`);
 					}
 					let ruleFired = false;
 					for (const [bindIdx, bindings] of bindingsList.entries()) {
+						debugTrace(`[N3LogicReasoner][TRACE] Bindings #${bindIdx} before evaluateBuiltins for rule #${ruleIdx}:`, bindings);
 						debugLog(`[N3LogicReasoner][DEBUG] Bindings #${bindIdx} before evaluateBuiltins for rule #${ruleIdx}:`, JSON.stringify(bindings));
 						const builtinsResult = evaluateBuiltins(
 							rule.antecedent.triples,
@@ -243,24 +279,31 @@ export class N3LogicReasoner {
 							this.matchAntecedent.bind(this),
 							this.instantiateTriple.bind(this),
 						);
+						debugTrace(`[N3LogicReasoner][TRACE] evaluateBuiltins result for rule #${ruleIdx}, bindings #${bindIdx}:`, builtinsResult);
 						debugLog(`[N3LogicReasoner][DEBUG] evaluateBuiltins result for rule #${ruleIdx}, bindings #${bindIdx}:`, builtinsResult);
 						if (!builtinsResult) {
+							debugTrace('[N3LogicReasoner][TRACE] Builtins check failed, skipping to next bindings.');
 							debugLog('[N3LogicReasoner][DEBUG] Builtins check failed, skipping to next bindings.');
 							continue;
 						}
 						for (const [consIdx, consTriple] of rule.consequent.triples.entries()) {
+							debugTrace(`[N3LogicReasoner][TRACE] Instantiating consequent triple #${consIdx} for rule #${ruleIdx}`);
 							debugLog(`[N3LogicReasoner][DEBUG] Instantiating consequent triple #${consIdx} for rule #${ruleIdx}:`, JSON.stringify(consTriple), 'with bindings:', JSON.stringify(bindings));
 							let instantiated;
 							try {
 								instantiated = this.instantiateTriple(consTriple, bindings);
+								debugTrace(`[N3LogicReasoner][TRACE] Instantiated triple for rule #${ruleIdx}, consIdx #${consIdx}:`, instantiated);
 								debugLog(`[N3LogicReasoner][DEBUG] Instantiated triple for rule #${ruleIdx}, consIdx #${consIdx}:`, JSON.stringify(instantiated));
 							} catch (err) {
+								debugTrace('[N3LogicReasoner][TRACE] Failed to instantiate triple', err, consTriple, bindings);
 								debugLog('[N3LogicReasoner][DEBUG] Failed to instantiate triple', err, 'Triple:', JSON.stringify(consTriple), 'Bindings:', JSON.stringify(bindings));
 								throw new Error(`N3LogicReasoner.reason: Failed to instantiate triple: ${err instanceof Error ? err.message : err}`);
 							}
 							const key = tripleToString(instantiated);
+							debugTrace(`[N3LogicReasoner][TRACE] Checking if triple is already inferred for rule #${ruleIdx}, consIdx #${consIdx}:`, key, instantiated);
 							debugLog(`[N3LogicReasoner][DEBUG] Checking if triple is already inferred for rule #${ruleIdx}, consIdx #${consIdx}:`, key, JSON.stringify(instantiated));
 							if (!inferred.has(key)) {
+								debugTrace(`[N3LogicReasoner][TRACE] Adding new inferred triple for rule #${ruleIdx}, consIdx #${consIdx}:`, instantiated, 'Key:', key);
 								debugLog(`[N3LogicReasoner][DEBUG] Adding new inferred triple for rule #${ruleIdx}, consIdx #${consIdx}:`, JSON.stringify(instantiated), 'Key:', key);
 								inferred.add(key);
 								working.push(instantiated);
@@ -269,6 +312,7 @@ export class N3LogicReasoner {
 								newTriplesThisIter.push(key);
 								this.runHook('afterRuleApplied', rule, instantiated, bindings);
 							} else {
+								debugTrace(`[N3LogicReasoner][TRACE] Triple already present, skipping for rule #${ruleIdx}, consIdx #${consIdx}:`, instantiated, 'Key:', key);
 								debugLog(`[N3LogicReasoner][DEBUG] Triple already present, skipping for rule #${ruleIdx}, consIdx #${consIdx}:`, JSON.stringify(instantiated), 'Key:', key);
 							}
 						}
@@ -277,12 +321,17 @@ export class N3LogicReasoner {
 						rulesFired.push(ruleIdx);
 					}
 				}
+				debugTrace(`[N3LogicReasoner][TRACE] New triples inferred in iteration ${iteration}:`, newTriplesThisIter);
 				debugLog(`[N3LogicReasoner][DEBUG] New triples inferred in iteration ${iteration}:`, newTriplesThisIter);
+				debugTrace(`[N3LogicReasoner][TRACE] Rules fired in iteration ${iteration}:`, rulesFired);
 				debugLog(`[N3LogicReasoner][DEBUG] Rules fired in iteration ${iteration}:`, rulesFired);
+				debugTrace(`[N3LogicReasoner][TRACE] Current triple store at end of iteration ${iteration}:`, working);
 				debugLog(`[N3LogicReasoner][DEBUG] Current triple store at end of iteration ${iteration}:`, JSON.stringify(working, null, 2));
+				debugTrace(`[N3LogicReasoner][TRACE] === Reasoning iteration ${iteration} END. changed=${changed} ===`);
 				debugLog(`[N3LogicReasoner][DEBUG] === Reasoning iteration ${iteration} END. changed=${changed} ===\n`);
 			}
 			this.runHook('afterReason', working);
+			debugTrace('[N3LogicReasoner][TRACE] reason: after runHook afterReason');
 			debugLog('Reasoning complete. Inferred triples:', Array.from(inferred));
 			// Only include canonical object-form triples, deduplicated by semantic value
 			function canonicalTriple(t: any): any {
@@ -293,14 +342,11 @@ export class N3LogicReasoner {
 			}
 			const assertedTriples = this.document.triples.map(canonicalTriple);
 			// Log all asserted triples after canonicalization
-			// sessionDebugLog('[REASONER][ASSERTED][CANONICAL]', assertedTriples);
 			const inferredTriples = Array.from(inferred).map((t) => {
 				const triple = stringToTriple(t);
 				addProvenance(triple, 'inferred');
 				return triple;
 			});
-			// sessionDebugLog('[REASONER][INFERRED][RAW]', Array.from(inferred));
-			// sessionDebugLog('[REASONER][INFERRED][CANONICAL]', inferredTriples);
 			// Deduplicate by subject/predicate/object value
 			const tripleKey = (t: any): string => {
 				const subj = typeof t.subject === 'object' && 'value' in t.subject ? t.subject.value : t.subject;
@@ -311,23 +357,18 @@ export class N3LogicReasoner {
 			const allTriplesMap = new Map();
 			for (const t of assertedTriples) {
 				allTriplesMap.set(tripleKey(t), t);
-			// sessionDebugLog('[REASONER][TRIPLE][ADD][ASSERTED]', t);
 			}
 			for (const t of inferredTriples) {
 				allTriplesMap.set(tripleKey(t), t);
-			// sessionDebugLog('[REASONER][TRIPLE][ADD][INFERRED]', t);
 			}
 			const allTriples = Array.from(allTriplesMap.values());
-			// sessionDebugLog('[REASONER][ALL][TRIPLES][PRE-FILTER]', allTriples);
 			// Modularized filtering with debug
-			// Filtering step placeholder (no filterValidTriples implemented)
 			const filteredTriples = allTriples; // No-op, replace with actual filtering if needed
-			// sessionDebugLog('[REASONER][ALL][TRIPLES][POST-FILTER]', filteredTriples);
 			// Convert all triples to N3 string format for output
 			let allTriplesN3 = filteredTriples.map(tripleToN3);
 			// Deduplicate by N3 string
 			allTriplesN3 = Array.from(new Set(allTriplesN3));
-			// sessionDebugLog('[REASONER][ALL][TRIPLES][N3]', allTriplesN3);
+			debugTrace('[N3LogicReasoner][TRACE] reason: finished, returning result');
 			// Always output N3 string triples, never JSON objects
 			return {
 				message: 'N3Logic reasoning: forward chaining with built-in, quantifier, and formula evaluation',
@@ -336,6 +377,7 @@ export class N3LogicReasoner {
 				builtins: this.document.builtins,
 			};
 		} catch (err) {
+			debugTrace('[N3LogicReasoner][TRACE] reason: error', err);
 			debugLog('Reasoning failed', err);
 			throw new Error(`N3LogicReasoner.reason: Reasoning failed: ${err instanceof Error ? err.message : err}`);
 		}

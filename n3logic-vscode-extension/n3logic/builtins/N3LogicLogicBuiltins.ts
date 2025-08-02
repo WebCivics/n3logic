@@ -12,20 +12,75 @@ function assert(condition: boolean, ...msg: any[]) {
 }
 
 // Helper: strict RDF boolean check
-function isRDFTrue(val: any): boolean {
+export function isRDFTrue(val: any): boolean {
   // Accepts {type: 'Literal', value: 'true'} or string 'true'
   if (val && typeof val === 'object' && val.type === 'Literal') {
     return val.value === 'true';
   }
   return val === 'true';
 }
-function isRDFFalse(val: any): boolean {
+export function isRDFFalse(val: any): boolean {
   if (val && typeof val === 'object' && val.type === 'Literal') {
     return val.value === 'false';
   }
   return val === 'false';
 }
-  export { isRDFTrue, isRDFFalse };
+
+// Export logOr as a named function for CJS/ESM compatibility
+export function logOr(x: any, y: any) {
+  // Enhanced trace debug logging for log:or (same as in LogicBuiltins)
+  debugTrace('[logOr][EXPORT] called with:', { x, y });
+  const isTruthy = (v: any) => {
+    debugTrace('[logOr][EXPORT] isTruthy input:', v, 'typeof:', typeof v);
+    if (v && typeof v === 'object' && v.type === 'Literal') {
+      const val = v.value;
+      debugTrace('[logOr][EXPORT] isTruthy RDF Literal value:', val, 'typeof:', typeof val);
+      if (typeof val === 'string') {
+        const res = val !== '' && val !== 'false';
+        debugTrace('[logOr][EXPORT] isTruthy string result:', res, 'for value:', val);
+        return res;
+      }
+      if (typeof val === 'boolean') {
+        debugTrace('[logOr][EXPORT] isTruthy boolean result:', val, 'for value:', val);
+        return val;
+      }
+      const res = !!val;
+      debugTrace('[logOr][EXPORT] isTruthy fallback result:', res, 'for value:', val);
+      return res;
+    }
+    if (typeof v === 'string') {
+      const res = v !== '' && v !== 'false';
+      debugTrace('[logOr][EXPORT] isTruthy plain string result:', res, 'for value:', v);
+      return res;
+    }
+    if (typeof v === 'boolean') {
+      debugTrace('[logOr][EXPORT] isTruthy plain boolean result:', v, 'for value:', v);
+      return v;
+    }
+    const res = !!v;
+    debugTrace('[logOr][EXPORT] isTruthy generic fallback result:', res, 'for value:', v);
+    return res;
+  };
+  const valX = getValue(x);
+  const valY = getValue(y);
+  debugTrace('[logOr][EXPORT] getValue(x):', valX, 'getValue(y):', valY, 'typeof valX:', typeof valX, 'typeof valY:', typeof valY);
+  const truthX = isTruthy(valX);
+  debugTrace('[logOr][EXPORT] isTruthy(getValue(x)):', truthX, 'x:', x, 'valX:', valX);
+  const truthY = isTruthy(valY);
+  debugTrace('[logOr][EXPORT] isTruthy(getValue(y)):', truthY, 'y:', y, 'valY:', valY);
+  const result = truthX || truthY;
+  debugTrace('[logOr][EXPORT] final result:', result, 'from isTruthy(getValue(x)):', truthX, 'isTruthy(getValue(y)):', truthY);
+  // Extra explicit log and assertion before return
+  debugTrace('[logOr][EXPORT] about to return result:', result, 'for x:', x, 'y:', y, 'valX:', valX, 'valY:', valY, 'truthX:', truthX, 'truthY:', truthY);
+  if (result !== (truthX || truthY)) {
+    debugError('[logOr][EXPORT][ERROR] result mismatch! result:', result, 'truthX:', truthX, 'truthY:', truthY);
+    throw new Error('[logOr][EXPORT] result mismatch');
+  }
+  return result;
+}
+
+// At module load, log all exports for debug
+debugTrace('[N3LogicLogicBuiltins][EXPORTS]', Object.keys(exports));
 
 export const LogicBuiltins: N3Builtin[] = [
   // (Removed broken duplicate log:or entry)
@@ -70,47 +125,55 @@ export const LogicBuiltins: N3Builtin[] = [
     arity: 2,
     description: 'log:or(x, y) is true if x or y is true',
     apply: (x: any, y: any) => {
-      debugTrace('[log:or][APPLY][UNMISTAKABLE] log:or builtin apply function INVOKED! Args:', { x, y, typeofX: typeof x, typeofY: typeof y, getValueX: getValue(x), getValueY: getValue(y) });
-      debugTrace('[log:or][TOP-ENTRY] called with:', { x, y, typeofX: typeof x, typeofY: typeof y, getValueX: getValue(x), getValueY: getValue(y) });
-      // Treat any non-empty, non-'false' literal as true (string or boolean)
+      // Enhanced trace debug logging for log:or
+      debugTrace('[log:or][TRACE] called with:', { x, y });
       const isTruthy = (v: any) => {
-        debugTrace('[log:or][isTruthy][ENTRY] arg:', v, 'typeof:', typeof v, 'getValue:', getValue(v));
-        const val = getValue(v);
-        let result: boolean;
-        if (isRDFTrue(v)) {
-          debugTrace('[log:or][isTruthy] Detected RDF true for', v);
-          result = true;
-        } else if (isRDFFalse(v)) {
-          debugTrace('[log:or][isTruthy] Detected RDF false for', v);
-          result = false;
-        } else if (typeof val === 'string') {
-          // Non-empty string is true
-          result = val.length > 0;
-          debugTrace('[log:or][isTruthy] String check for', v, 'getValue:', val, 'result:', result);
-        } else {
-          // Fallback: treat all non-false, non-null, non-undefined as true
-          result = val !== false && val !== null && val !== undefined;
-          debugTrace('[log:or][isTruthy] Fallback check for', v, 'getValue:', val, 'result:', result);
+        debugTrace('[log:or][TRACE] isTruthy input:', v, 'typeof:', typeof v);
+        if (v && typeof v === 'object' && v.type === 'Literal') {
+          const val = v.value;
+          debugTrace('[log:or][TRACE] isTruthy RDF Literal value:', val, 'typeof:', typeof val);
+          if (typeof val === 'string') {
+            const res = val !== '' && val !== 'false';
+            debugTrace('[log:or][TRACE] isTruthy string result:', res, 'for value:', val);
+            return res;
+          }
+          if (typeof val === 'boolean') {
+            debugTrace('[log:or][TRACE] isTruthy boolean result:', val, 'for value:', val);
+            return val;
+          }
+          const res = !!val;
+          debugTrace('[log:or][TRACE] isTruthy fallback result:', res, 'for value:', val);
+          return res;
         }
-        debugTrace('[log:or][isTruthy][EXIT] arg:', v, 'type:', typeof v, 'getValue:', val, 'result:', result);
-        return result;
+        if (typeof v === 'string') {
+          const res = v !== '' && v !== 'false';
+          debugTrace('[log:or][TRACE] isTruthy plain string result:', res, 'for value:', v);
+          return res;
+        }
+        if (typeof v === 'boolean') {
+          debugTrace('[log:or][TRACE] isTruthy plain boolean result:', v, 'for value:', v);
+          return v;
+        }
+        const res = !!v;
+        debugTrace('[log:or][TRACE] isTruthy generic fallback result:', res, 'for value:', v);
+        return res;
       };
-      debugTrace('[log:or][PRE-EVAL] about to call isTruthy for x and y');
-      const xTrue = isTruthy(x);
-      const yTrue = isTruthy(y);
-      debugTrace('[log:or][EVAL] isTruthy(x):', xTrue, 'isTruthy(y):', yTrue, 'x:', x, 'y:', y);
-      let result;
-      if (xTrue || yTrue) {
-        result = true;
-        debugTrace('[log:or][RESULT] At least one operand is true. Returning true.', { x, y, xTrue, yTrue });
-        debugTrace('[log:or][EXIT] result:', result);
-        return result;
-      } else {
-        result = false;
-        debugWarn('[log:or][RESULT] Both operands are falsey. Returning false.', { x, y, xTrue, yTrue, getValueX: getValue(x), getValueY: getValue(y) });
-        debugTrace('[log:or][EXIT] result:', result);
-        return result;
+      const valX = getValue(x);
+      const valY = getValue(y);
+      debugTrace('[log:or][TRACE] getValue(x):', valX, 'getValue(y):', valY, 'typeof valX:', typeof valX, 'typeof valY:', typeof valY);
+      const truthX = isTruthy(valX);
+      debugTrace('[log:or][TRACE] isTruthy(getValue(x)):', truthX, 'x:', x, 'valX:', valX);
+      const truthY = isTruthy(valY);
+      debugTrace('[log:or][TRACE] isTruthy(getValue(y)):', truthY, 'y:', y, 'valY:', valY);
+      const result = truthX || truthY;
+      debugTrace('[log:or][TRACE] final result:', result, 'from isTruthy(getValue(x)):', truthX, 'isTruthy(getValue(y)):', truthY);
+      // Extra explicit log and assertion before return
+      debugTrace('[log:or][TRACE] about to return result:', result, 'for x:', x, 'y:', y, 'valX:', valX, 'valY:', valY, 'truthX:', truthX, 'truthY:', truthY);
+      if (result !== (truthX || truthY)) {
+        debugError('[log:or][ERROR] result mismatch! result:', result, 'truthX:', truthX, 'truthY:', truthY);
+        throw new Error('[log:or] result mismatch');
       }
+      return result;
     },
   },
   {

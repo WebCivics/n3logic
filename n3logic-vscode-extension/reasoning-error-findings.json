@@ -1,0 +1,24 @@
+[
+  {
+    "test": "N3LogicReasoner supports custom builtins",
+    "status": "failed",
+    "error": "Expected inferred triple for custom builtin, but received undefined. This suggests the custom builtin was not invoked or matched during reasoning."
+  },
+  {
+    "test": "N3LogicReasoner diagnostic: reasoner should infer triple for 'foo' only",
+    "status": "failed",
+    "error": "Expected inferred triple for 'foo', but received undefined. Indicates the custom builtin was not invoked or matched."
+  },
+  {
+    "test": "N3LogicReasoner performs basic forward chaining",
+    "status": "passed"
+  },
+  {
+    "test": "N3LogicReasoner diagnostic: logic builtins isRDFTrue/isRDFFalse",
+    "status": "passed"
+  },
+  {
+    "test": "N3LogicReasoner supports plugins and hooks",
+    "status": "passed"
+  }
+]

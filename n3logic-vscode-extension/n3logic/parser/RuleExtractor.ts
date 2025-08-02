@@ -7,102 +7,99 @@
 import { debugTrace } from '../reasoner/debug';
 export function extractRules(n3Text: string): Array<{ antecedent: string, consequent: string, quantifiers?: string[] }> {
   debugTrace && debugTrace('[RuleExtractor] extractRules called:', n3Text);
-  // Normalize line endings
+  if (typeof (global as any).debugLog === 'function') {
+    (global as any).debugLog('[RuleExtractor][TRACE] Raw input:', n3Text);
+  }
+  // Normalize line endings and remove comments
   let preprocessed = n3Text.replace(/\r\n?/g, '\n');
-  // Remove comments
   preprocessed = preprocessed.replace(/#[^\n]*/g, '');
-  // Remove trailing whitespace (preserve indentation for regex)
-  preprocessed = preprocessed.split('\n').map((line) => line.replace(/[ \t]+$/, '')).join('\n');
   preprocessed = preprocessed.trim();
   if (typeof (global as any).debugLog === 'function') {
-    (global as any).debugLog('[RuleExtractor] Raw input:', n3Text);
-    (global as any).debugLog('[RuleExtractor] Preprocessed input:', preprocessed);
+    (global as any).debugLog('[RuleExtractor][TRACE] Preprocessed input:', preprocessed);
   }
 
-  // Extract quantifier line if present (e.g., @forAll ?x .)
-  let quantifiers: string[] | undefined = undefined;
-  const quantLineMatch = preprocessed.match(/^@forAll\s+([^\n.]*)\s*\./m);
-  let rulesText = preprocessed;
-  if (quantLineMatch) {
-    quantifiers = quantLineMatch[1].trim().split(/\s+/).filter(Boolean);
-    rulesText = preprocessed.replace(/^@forAll[^\n.]*\s*\./m, '').trim();
-  }
-
-  // Balanced-brace, non-regex rule extraction
+  // State machine to extract { ... } => { ... } . rule blocks robustly
   const rules: Array<{ antecedent: string, consequent: string, quantifiers?: string[] }> = [];
   let i = 0;
-  while (i < rulesText.length) {
+  while (i < preprocessed.length) {
     // Find first '{'
-    if (rulesText[i] === '{') {
-      const startAnte = i + 1;
+    if (preprocessed[i] === '{') {
+      if (typeof (global as any).debugLog === 'function') {
+        (global as any).debugLog(`[RuleExtractor][TRACE] Found '{{' at index ${i}`);
+      }
+      let anteStart = i + 1;
       let depth = 1;
-      let j = startAnte;
-      while (j < rulesText.length && depth > 0) {
-        if (rulesText[j] === '{') depth++;
-        else if (rulesText[j] === '}') depth--;
+      let j = anteStart;
+      while (j < preprocessed.length && depth > 0) {
+        if (preprocessed[j] === '{') depth++;
+        else if (preprocessed[j] === '}') depth--;
         j++;
       }
+      if (typeof (global as any).debugLog === 'function') {
+        (global as any).debugLog(`[RuleExtractor][TRACE] Antecedent block: [${anteStart}, ${j - 1}], depth=${depth}`);
+      }
       if (depth !== 0) {
         if (typeof (global as any).debugLog === 'function') {
-          (global as any).debugLog('[RuleExtractor][DEBUG] Unbalanced braces in antecedent');
+          (global as any).debugLog('[RuleExtractor][ERROR] Unbalanced braces in antecedent');
         }
-        break;
+        break; // Unbalanced braces
       }
-      const antecedent = rulesText.slice(startAnte, j - 1).trim();
+      const antecedent = preprocessed.slice(anteStart, j - 1).trim();
+      if (typeof (global as any).debugLog === 'function') {
+        (global as any).debugLog('[RuleExtractor][TRACE] Extracted antecedent:', antecedent);
+      }
       // Look for '=>' after closing '}'
       let k = j;
-      while (k < rulesText.length && /\s/.test(rulesText[k])) k++;
-      if (rulesText.slice(k, k + 2) !== '=>') {
-        i = j;
-        continue;
+      while (k < preprocessed.length && /\s/.test(preprocessed[k])) k++;
+      if (preprocessed.slice(k, k + 2) !== '=>') { 
+        if (typeof (global as any).debugLog === 'function') {
+          (global as any).debugLog(`[RuleExtractor][TRACE] No '=>' found after antecedent at index ${k}`);
+        }
+        i = j; continue; 
       }
       k += 2;
-      // Find next '{' for consequent
-      while (k < rulesText.length && /\s/.test(rulesText[k])) k++;
-      if (rulesText[k] !== '{') {
-        i = k;
-        continue;
+      while (k < preprocessed.length && /\s/.test(preprocessed[k])) k++;
+      if (preprocessed[k] !== '{') { 
+        if (typeof (global as any).debugLog === 'function') {
+          (global as any).debugLog(`[RuleExtractor][TRACE] No '{{' found after '=>' at index ${k}`);
+        }
+        i = k; continue; 
       }
-      const startCons = k + 1;
+      let consStart = k + 1;
       depth = 1;
-      let l = startCons;
-      while (l < rulesText.length && depth > 0) {
-        if (rulesText[l] === '{') depth++;
-        else if (rulesText[l] === '}') depth--;
+      let l = consStart;
+      while (l < preprocessed.length && depth > 0) {
+        if (preprocessed[l] === '{') depth++;
+        else if (preprocessed[l] === '}') depth--;
         l++;
+      }
+      if (typeof (global as any).debugLog === 'function') {
+        (global as any).debugLog(`[RuleExtractor][TRACE] Consequent block: [${consStart}, ${l - 1}], depth=${depth}`);
       }
       if (depth !== 0) {
         if (typeof (global as any).debugLog === 'function') {
-          (global as any).debugLog('[RuleExtractor][DEBUG] Unbalanced braces in consequent');
+          (global as any).debugLog('[RuleExtractor][ERROR] Unbalanced braces in consequent');
         }
-        break;
+        break; // Unbalanced braces
       }
-      const consequent = rulesText.slice(startCons, l - 1).trim();
+      const consequent = preprocessed.slice(consStart, l - 1).trim();
+      if (typeof (global as any).debugLog === 'function') {
+        (global as any).debugLog('[RuleExtractor][TRACE] Extracted consequent:', consequent);
+      }
       // Look for trailing dot
       let m = l;
-      while (m < rulesText.length && /\s/.test(rulesText[m])) m++;
-      if (rulesText[m] !== '.') {
-        i = m;
-        continue;
-      }
-      // Debug output for each rule
-      if (typeof (global as any).debugLog === 'function') {
-        (global as any).debugLog('[RuleExtractor][DEBUG] Extracted antecedent:', antecedent);
-        (global as any).debugLog('[RuleExtractor][DEBUG] Extracted consequent:', consequent);
-      }
-      // Split on dot for triples
-      const antecedentSplit = antecedent.split(/\s*\.\s*/).map((s) => s.trim()).filter(Boolean).join(' . ');
-      const consequentSplit = consequent.split(/\s*\.\s*/).map((s) => s.trim()).filter(Boolean).join(' . ');
-      if (typeof (global as any).debugLog === 'function') {
-        (global as any).debugLog('[RuleExtractor][DEBUG] antecedentSplit:', antecedentSplit);
-        (global as any).debugLog('[RuleExtractor][DEBUG] consequentSplit:', consequentSplit);
-      }
-      if (antecedentSplit && consequentSplit) {
-        if (quantifiers && rules.length === 0) {
-          rules.push({ antecedent: antecedentSplit, consequent: consequentSplit, quantifiers });
-        } else {
-          rules.push({ antecedent: antecedentSplit, consequent: consequentSplit });
+      while (m < preprocessed.length && /\s/.test(preprocessed[m])) m++;
+      if (preprocessed[m] !== '.') { 
+        if (typeof (global as any).debugLog === 'function') {
+          (global as any).debugLog(`[RuleExtractor][TRACE] No trailing dot after consequent at index ${m}`);
         }
+        i = m; continue; 
+      }
+      if (antecedent && consequent) {
+        if (typeof (global as any).debugLog === 'function') {
+          (global as any).debugLog('[RuleExtractor][TRACE] Pushing rule:', { antecedent, consequent });
+        }
+        rules.push({ antecedent, consequent });
       }
       i = m + 1;
     } else {
@@ -110,7 +107,13 @@ export function extractRules(n3Text: string): Array<{ antecedent: string, conseq
     }
   }
   if (typeof (global as any).debugLog === 'function') {
-    (global as any).debugLog('[RuleExtractor] Final extracted rules:', JSON.stringify(rules, null, 2));
+    (global as any).debugLog('[RuleExtractor] Final extracted rules (state machine):', JSON.stringify(rules, null, 2));
   }
   return rules;
+  if (typeof (global as any).debugLog === 'function') {
+    (global as any).debugLog('[RuleExtractor] Raw input:', n3Text);
+    (global as any).debugLog('[RuleExtractor] Preprocessed input:', preprocessed);
+  }
+
+  // (Old balanced-brace extraction removed; now handled by regex above)
 }

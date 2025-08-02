@@ -17,6 +17,17 @@ import { extractRules } from './parser/RuleExtractor';
 import { tokenizeTerms } from './parser/TermTokenizer';
 import { splitTriples } from './parser/TripleSplitter';
 
+// Helper: extract prefix mappings from N3 text
+function extractPrefixes(n3Text: string): Record<string, string> {
+  const prefixMap: Record<string, string> = {};
+  const prefixRegex = /@prefix\s+(\w+):\s*<([^>]+)>\s*\./g;
+  let match;
+  while ((match = prefixRegex.exec(n3Text)) !== null) {
+    prefixMap[match[1]] = match[2];
+  }
+  return prefixMap;
+}
+
 export class N3LogicParser {
   setDebug(debug: boolean) {
     DEBUG = debug;
@@ -31,84 +42,222 @@ export class N3LogicParser {
       debugLog('Input is not a string');
       throw new TypeError('N3LogicParser.parse: Input must be a string');
     }
+    debugTrace && debugTrace('[N3LogicParser][TRACE] Initializing parse loop');
     // Remove comments only (preserve newlines for rule extraction)
     const commentStripped = n3Text.replace(/#[^\n]*/g, '');
-    // For triples, normalize whitespace (old behavior)
-    const cleaned = commentStripped.replace(/\s+/g, ' ').trim();
-    try {
-      const triples = this.parseTriples(cleaned);
-      debugLog('N3LogicParser: Parsed triples:', JSON.stringify(triples, null, 2));
-      // For rules and builtins, use comment-stripped but newline-preserved text
-      const rules = this.parseRules(commentStripped);
-      debugLog('N3LogicParser: Parsed rules:', JSON.stringify(rules, null, 2));
-      const builtins = this.parseBuiltins(commentStripped);
-      debugLog('N3LogicParser: Parsed builtins:', JSON.stringify(builtins, null, 2));
-      return {
-        triples,
-        rules,
-        builtins,
-      };
-    } catch (err) {
-      debugLog('Failed to parse input', err);
-      throw new Error(`N3LogicParser.parse: Failed to parse input. ${err instanceof Error ? err.message : err}`);
+    // Extract prefix mappings from the input
+    const prefixMap = extractPrefixes(n3Text);
+    debugLog('[N3LogicParser][PREFIX] Extracted prefix map:', prefixMap);
+
+    // --- Robust triple and rule extraction ---
+    // 1. Split into statements at "." (dot) that are not inside braces or quotes
+    // 2. For each statement, determine if it's a rule (contains "=>") or a triple
+    // 3. Parse rules and triples separately, collecting all
+
+    // Helper: split at top-level dots
+    function splitStatements(input: string): string[] {
+      const stmts: string[] = [];
+      let buf = '';
+      let inQuote = false;
+      let braceDepth = 0;
+      for (let i = 0; i < input.length; i++) {
+        const c = input[i];
+        if (c === '"') inQuote = !inQuote;
+        if (!inQuote) {
+          if (c === '{') braceDepth++;
+          if (c === '}') braceDepth--;
+        }
+        if (c === '.' && !inQuote && braceDepth === 0) {
+          if (buf.trim()) stmts.push(buf.trim());
+          buf = '';
+        } else {
+          buf += c;
+        }
+      }
+      if (buf.trim()) stmts.push(buf.trim());
+      return stmts;
     }
+
+    // Remove all @prefix statements for triple/rule parsing, but keep for prefixMap
+    const lines = commentStripped.split(/\r?\n/);
+    const nonPrefixLines = lines.filter(line => !/^\s*@prefix\b/.test(line));
+    const nonPrefixText = nonPrefixLines.join(' ');
+    const statements = splitStatements(nonPrefixText);
+    debugLog('[N3LogicParser][SPLIT] Statements:', statements);
+
+    const triples: N3Triple[] = [];
+    const rules: N3Rule[] = [];
+
+    for (const stmt of statements) {
+      if (!stmt) continue;
+      if (stmt.includes('=>')) {
+        // Rule: split at =>, parse antecedent and consequent
+        const ruleMatch = stmt.match(/\{(.+?)\}\s*=>\s*\{(.+?)\}/);
+        if (ruleMatch) {
+          // PATCH: Split antecedent and consequent blocks at dots to handle multiple triples
+          const antecedentBlock = ruleMatch[1].trim();
+          const consequentBlock = ruleMatch[2].trim();
+          debugLog('[N3LogicParser][RULE] antecedent:', antecedentBlock, 'consequent:', consequentBlock);
+          // Split at dots not in quotes or braces
+          function splitRuleBlock(block: string): string[] {
+            const stmts: string[] = [];
+            let buf = '';
+            let inQuote = false;
+            let braceDepth = 0;
+            for (let i = 0; i < block.length; i++) {
+              const c = block[i];
+              if (c === '"') inQuote = !inQuote;
+              if (!inQuote) {
+                if (c === '{') braceDepth++;
+                if (c === '}') braceDepth--;
+              }
+              if (c === '.' && !inQuote && braceDepth === 0) {
+                if (buf.trim()) stmts.push(buf.trim());
+                buf = '';
+              } else {
+                buf += c;
+              }
+            }
+            if (buf.trim()) stmts.push(buf.trim());
+            return stmts;
+          }
+          const antecedentStmts = splitRuleBlock(antecedentBlock);
+          const consequentStmts = splitRuleBlock(consequentBlock);
+          debugLog('[N3LogicParser][RULE][PATCH] antecedentStmts:', antecedentStmts, 'consequentStmts:', consequentStmts);
+          // Parse each triple in the antecedent and consequent
+          const antecedentTriples = antecedentStmts.flatMap(stmt => this.parseTriples(stmt, true, prefixMap));
+          const consequentTriples = consequentStmts.flatMap(stmt => this.parseTriples(stmt, true, prefixMap));
+          // EXTRA DEBUG: Log all antecedent and consequent triples and their predicates
+          debugLog('[N3LogicParser][RULE][DEBUG] Parsed antecedent triples:', JSON.stringify(antecedentTriples, null, 2));
+          antecedentTriples.forEach((triple, idx) => {
+            debugLog(`[N3LogicParser][RULE][DEBUG] Antecedent triple #${idx} predicate:`, triple.predicate);
+          });
+          debugLog('[N3LogicParser][RULE][DEBUG] Parsed consequent triples:', JSON.stringify(consequentTriples, null, 2));
+          consequentTriples.forEach((triple, idx) => {
+            debugLog(`[N3LogicParser][RULE][DEBUG] Consequent triple #${idx} predicate:`, triple.predicate);
+          });
+          rules.push({
+            type: 'Rule',
+            antecedent: { type: 'Formula', triples: antecedentTriples },
+            consequent: { type: 'Formula', triples: consequentTriples }
+          });
+        } else {
+          debugLog('[N3LogicParser][RULE][WARN] Could not parse rule statement:', stmt);
+        }
+      } else {
+        // Triple: parse as normal
+        const tripleCandidates = this.parseTriples(stmt, false, prefixMap);
+        // EXTRA DEBUG: Log all parsed triples and their predicates
+        tripleCandidates.forEach((triple, idx) => {
+          debugLog(`[N3LogicParser][TRIPLE][DEBUG] Parsed triple #${idx}:`, JSON.stringify(triple));
+          debugLog(`[N3LogicParser][TRIPLE][DEBUG] Triple #${idx} predicate:`, triple.predicate);
+        });
+        triples.push(...tripleCandidates);
+      }
+    }
+
+    debugLog('N3LogicParser: Parsed triples:', JSON.stringify(triples, null, 2));
+    debugLog('N3LogicParser: Parsed rules:', JSON.stringify(rules, null, 2));
+    const builtins = this.parseBuiltins(commentStripped);
+    debugLog('N3LogicParser: Parsed builtins:', JSON.stringify(builtins, null, 2));
+    debugTrace && debugTrace('[N3LogicParser][TRACE] Parsing loop complete, triples:', triples, 'rules:', rules);
+    return { triples, rules, builtins };
   }
 
   // Parse triples, supporting literals, variables, lists, blank nodes, multi-line, robustly
-  private parseTriples(n3Text: string, allowNoDot = false): N3Triple[] {
+  private parseTriples(n3Text: string, allowNoDot = false, prefixMap: Record<string, string> = {}): N3Triple[] {
     debugTrace && debugTrace('[N3LogicParser] parseTriples called:', n3Text, allowNoDot);
     if (typeof n3Text !== 'string') {
       throw new TypeError('parseTriples: Input must be a string');
     }
+    if (debugLog) debugLog('[TRACE][parseTriples] input:', JSON.stringify(n3Text));
     const triples: N3Triple[] = [];
     // Always use splitTriples for rule blocks (allowNoDot=true), to robustly split on dot, semicolon, or newline
     let statements: string[];
-    let text = n3Text.trim();
-    if (allowNoDot) {
-      if (text.startsWith('{') && text.endsWith('}')) {
-        text = text.slice(1, -1).trim();
-      }
-      debugLog('parseTriples: Splitting rule block:', text);
-      statements = splitTriples(text, debugLog);
-      debugLog('parseTriples: splitTriples returned:', JSON.stringify(statements));
-    } else {
-      statements = tokenizeTriples(text);
+    let text = n3Text;
+    // For rule blocks, remove outer braces but do NOT normalize whitespace
+    if (text.startsWith('{') && text.endsWith('}')) {
+      text = text.slice(1, -1);
     }
+    if (debugLog) debugLog('[TRACE][parseTriples] Splitting rule block:', JSON.stringify(text));
+    statements = splitTriples(text, debugLog);
+    if (debugLog) debugLog('[TRACE][parseTriples] split statements:', JSON.stringify(statements));
     for (const stmt of statements) {
-      if (!stmt) continue;
-      debugLog('parseTriples: Tokenizing statement:', stmt);
-      // Use a regex that matches <...> as a single token, even with # or :
-      const tokens = (stmt.match(/<[^>]+>|"[^"]*"|\S+/g) || []).map((t) => t.trim());
-      debugLog('parseTriples: Tokenized terms:', JSON.stringify(tokens));
+      if (!stmt) {
+        if (debugLog) debugLog('[TRACE][parseTriples] Skipping empty statement');
+        continue;
+      }
+      if (debugLog) debugLog('[TRACE][parseTriples] parsing statement:', JSON.stringify(stmt));
+      // Improved regex: match <...> (full IRI), "..." (literal), or any non-whitespace sequence
+      // Handles IRIs with : and #, and does not split inside <...>
+      // PATCH: Ensure <...> is always a single token, even as predicate
+      const tokens = (stmt.match(/<[^>]+>|"(?:[^"\\]|\\.)*"|\S+/g) || []).map((t) => t.trim());
+      if (debugLog) debugLog('[TRACE][parseTriples] Tokenized terms:', JSON.stringify(tokens));
+      if (tokens.length === 0) {
+        if (debugLog) debugLog('[TRACE][parseTriples] Skipping: no tokens');
+        continue;
+      }
+      if (tokens.length % 3 !== 0) {
+        if (debugLog) debugLog('[TRACE][parseTriples] WARNING: tokens.length not multiple of 3:', tokens.length, tokens);
+        // Enhanced debug: log problematic statement and tokens
+        if (debugLog) debugLog('[TRACE][parseTriples][WARNING] Problematic statement:', stmt, 'Tokens:', tokens);
+      }
       for (let i = 0; i + 2 < tokens.length; i += 3) {
         // Skip if any token is a rule/control symbol or lone parenthesis
         const t0 = tokens[i], t1 = tokens[i + 1], t2 = tokens[i + 2];
-        debugLog('parseTriples: Triple tokens:', t0, t1, t2);
+        if (debugLog) debugLog('[TRACE][parseTriples] Triple tokens:', t0, t1, t2);
         if ([t0, t1, t2].some((t) => t === '{' || t === '}' || t === '=>' || t === '' || t === '(' || t === ')')) {
-          debugLog('parseTriples: Skipping invalid triple tokens');
+          if (debugLog) debugLog('[TRACE][parseTriples] Skipping invalid triple tokens:', t0, t1, t2);
           continue;
         }
         try {
-          const triple = {
-            subject: this.parseTerm(t0),
-            predicate: this.parseTerm(t1),
-            object: this.parseTerm(t2),
+          const expandPrefixed = (term: string) => {
+            // Expand any prefix:suffix where prefix is in prefixMap, suffix can be any non-space, non-colon sequence
+            const m = term.match(/^([a-zA-Z_][\w-]*):([^\s]+)$/);
+            if (m && prefixMap[m[1]]) {
+              const expanded = `<${prefixMap[m[1]]}${m[2]}>`;
+              if (debugLog) debugLog('[PREFIX][EXPAND] Expanding', term, 'to', expanded);
+              return expanded;
+            } else if (m && !prefixMap[m[1]]) {
+              if (debugLog) debugLog('[PREFIX][EXPAND][FAIL] No prefix mapping for', m[1], 'in', term);
+            }
+            // Also log if term looks like a prefix:suffix but is not expanded
+            if (/^[a-zA-Z_][\w-]*:[^\s]+$/.test(term) && !m) {
+              if (debugLog) debugLog('[PREFIX][EXPAND][WARN] Term looks like prefix:suffix but did not match:', term);
+            }
+            return term;
           };
-          debugLog('parseTriples: Parsed triple:', JSON.stringify(triple));
+          const triple = {
+            subject: this.parseTerm(expandPrefixed(t0)),
+            predicate: this.parseTerm(expandPrefixed(t1)),
+            object: this.parseTerm(expandPrefixed(t2)),
+          };
+          if (debugLog) debugLog('[TRACE][parseTriples] Parsed triple:', JSON.stringify(triple));
+          // Extra debug: highlight custom builtin URIs
+          if (triple.predicate && typeof triple.predicate === 'object' && 'value' in triple.predicate) {
+            if (typeof triple.predicate.value === 'string' && triple.predicate.value.startsWith('http')) {
+              if (debugLog) debugLog('[TRACE][parseTriples][CUSTOM BUILTIN PREDICATE]', triple.predicate.value, JSON.stringify(triple));
+            }
+          }
           // Extra debug: log predicate type and value for custom builtin URIs
           if (triple.predicate && typeof triple.predicate === 'object' && 'value' in triple.predicate) {
-            debugLog('parseTriples: Predicate type:', triple.predicate.type, 'Predicate value:', triple.predicate.value);
+            if (debugLog) debugLog('[TRACE][parseTriples] Predicate type:', triple.predicate.type, 'Predicate value:', triple.predicate.value);
           } else if (triple.predicate && typeof triple.predicate === 'object') {
-            debugLog('parseTriples: Predicate type:', triple.predicate.type, 'Predicate:', JSON.stringify(triple.predicate));
+            if (debugLog) debugLog('[TRACE][parseTriples] Predicate type:', triple.predicate.type, 'Predicate:', JSON.stringify(triple.predicate));
           }
+          // Log the fully expanded triple for debug
+          if (debugLog) debugLog('[TRACE][parseTriples][EXPANDED TRIPLE]', JSON.stringify(triple));
           triples.push(triple);
         } catch (err) {
-          debugLog('parseTriples: Failed to parse triple:', stmt, err);
+          if (debugLog) debugLog('[TRACE][parseTriples] Failed to parse triple:', stmt, err);
           throw new Error(`parseTriples: Failed to parse triple '${stmt}': ${err instanceof Error ? err.message : err}`);
         }
       }
     }
-    debugLog('parseTriples: Final parsed triples:', JSON.stringify(triples));
+    if (debugLog) debugLog('[TRACE][parseTriples] input string:', n3Text);
+    if (debugLog) debugLog('[TRACE][parseTriples] output triples:', JSON.stringify(triples));
+    // Log all triples at the end
+    if (debugLog) debugLog('[TRACE][parseTriples][FINAL TRIPLES]', JSON.stringify(triples, null, 2));
     return triples;
   }
 
@@ -123,7 +272,9 @@ export class N3LogicParser {
       throw new Error('parseTerm: Empty token');
     }
     if (token.startsWith('<') && token.endsWith('>')) {
-      return { type: 'IRI', value: token.slice(1, -1) };
+      const iriTerm = { type: 'IRI', value: token.slice(1, -1) } as const;
+      debugLog('[parseTerm][RETURN IRI]', token, JSON.stringify(iriTerm));
+      return iriTerm;
     } else if (token.startsWith('"')) {
       // Literal with optional datatype or language
       const litMatch = token.match(/^"([^"]*)"(?:\^\^<([^>]+)>|@([a-zA-Z\-]+))?/);
@@ -139,7 +290,9 @@ export class N3LogicParser {
       }
     } else if (token.startsWith('?')) {
       if (token.length < 2) throw new Error('parseTerm: Variable name missing after ?');
-      return { type: 'Variable', value: token.slice(1) };
+      const varTerm = { type: 'Variable', value: token.slice(1) } as const;
+      debugLog('[parseTerm][RETURN VAR]', token, JSON.stringify(varTerm));
+      return varTerm;
     } else if (token.startsWith('_:')) {
       if (token.length < 3) throw new Error('parseTerm: Blank node id missing after _:');
       return { type: 'BlankNode', value: token.slice(2) };
@@ -151,7 +304,9 @@ export class N3LogicParser {
       return { type: 'List', elements };
     }
     // Fallback: treat as IRI (even if not <...>), to support builtins and prefixed names
-    return { type: 'IRI', value: token };
+  const fallbackIri = { type: 'IRI', value: token } as const;
+  debugLog('[parseTerm][RETURN FALLBACK IRI]', token, JSON.stringify(fallbackIri));
+  return fallbackIri;
   }
 
   // Parse rules, supporting nested formulas and quantifiers
@@ -162,20 +317,27 @@ export class N3LogicParser {
     }
     const rules: N3Rule[] = [];
     const ruleBlocks = extractRules(n3Text);
+    debugLog('[parseRules][TRACE] Extracted rule blocks:', JSON.stringify(ruleBlocks, null, 2));
+    // Enhanced debug: log each rule block with index
+    ruleBlocks.forEach((block, idx) => {
+      debugLog(`[parseRules][TRACE][BLOCK ${idx}] antecedent:`, block.antecedent);
+      debugLog(`[parseRules][TRACE][BLOCK ${idx}] consequent:`, block.consequent);
+    });
+    // Extract prefix map from n3Text
+    const prefixMap = extractPrefixes(n3Text);
+    ruleBlocks.forEach((block, idx) => {
+      debugLog(`[parseRules][TRACE] Rule block #${idx}:`, JSON.stringify(block));
+    });
     for (const { antecedent, consequent } of ruleBlocks) {
       try {
         // Always print antecedent and its split for debug
-        if (typeof console !== 'undefined' && typeof console.log === 'function') {
-          console.log('[parseRules][DEBUG] antecedent string:', JSON.stringify(antecedent));
-        }
-        const splitAntecedent = antecedent.split(/\s*\.\s*/).map((s) => s.trim()).filter(Boolean);
-        if (typeof console !== 'undefined' && typeof console.log === 'function') {
-          console.log('[parseRules][DEBUG] splitAntecedent statements:', JSON.stringify(splitAntecedent));
-        }
-        const antecedentTriples = this.parseTriples(antecedent, true);
-        const consequentTriples = this.parseTriples(consequent, true);
-        debugLog('Parsed rule antecedent triples:', JSON.stringify(antecedentTriples, null, 2));
-        debugLog('Parsed rule consequent triples:', JSON.stringify(consequentTriples, null, 2));
+        debugLog('[parseRules][TRACE] antecedent string:', JSON.stringify(antecedent));
+        debugLog('[parseRules][TRACE] consequent string:', JSON.stringify(consequent));
+        // Parse the full antecedent and consequent block as a whole (allowNoDot=true), pass prefixMap
+        const antecedentTriples = this.parseTriples(antecedent, true, prefixMap);
+        const consequentTriples = this.parseTriples(consequent, true, prefixMap);
+        debugLog('[parseRules][DEBUG][CUSTOM] Parsed rule antecedent triples:', JSON.stringify(antecedentTriples, null, 2));
+        debugLog('[parseRules][DEBUG][CUSTOM] Parsed rule consequent triples:', JSON.stringify(consequentTriples, null, 2));
         // Extra: flag any triple whose predicate matches a known or custom builtin URI
         const builtinPattern = /#|custom#|math#|string#|log#|type#|other#/;
         antecedentTriples.forEach((triple, idx) => {
@@ -195,10 +357,14 @@ export class N3LogicParser {
           antecedent: antecedentFormula,
           consequent: consequentFormula,
         });
+        // Log the fully parsed rule for debug
+        debugLog('[parseRules][DEBUG][FINAL RULE]', JSON.stringify({ antecedent: antecedentFormula, consequent: consequentFormula }, null, 2));
       } catch (err) {
         throw new Error(`parseRules: Failed to parse rule: ${err instanceof Error ? err.message : err}`);
       }
     }
+    // Log all rules at the end
+    debugLog('[parseRules][DEBUG][FINAL RULES]', JSON.stringify(rules, null, 2));
     return rules;
   }
 

@@ -1,0 +1,16 @@
+{
+  "test": "log:or returns true if either is true (string case)",
+  "a": {
+    "type": "Literal",
+    "value": "x"
+  },
+  "b": {
+    "type": "Literal",
+    "value": ""
+  },
+  "expected": true,
+  "result": true,
+  "pass": true,
+  "debug": "getValue(x): x getValue(y): \nisTruthy(getValue(x)): true x: [object Object] valX: x\nisTruthy(getValue(y)): false y: [object Object] valY: \nfinal result: true from isTruthy(getValue(x)): true isTruthy(getValue(y)): false",
+  "timestamp": "2025-08-02T03:41:07.221Z"
+}

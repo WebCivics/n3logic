@@ -1,0 +1,65 @@
+{
+  "summary": "Test failures and debug log review for n3logic-vscode-extension as of 2025-08-02.\n\nUPDATE: As of the latest parser and regression runner fixes, all custom builtin and diagnostic inference issues are resolved. All demo-app regression scenarios now pass, and the matcher correctly invokes custom builtins. Only unrelated issues remain.",
+  "test_failures": [
+    {
+      "test": "N3LogicReasoner › supports custom builtins",
+      "status": "fixed",
+      "details": "FIXED: The parser now robustly splits and parses all triples and rules, and prefix expansion is applied correctly. The matcher correctly invokes custom builtins and inference works as expected. Regression runner and demo-app confirm this is resolved.",
+      "files_involved": [
+        "tests/reasoner.test.ts",
+        "n3logic/N3LogicReasoner.ts",
+        "n3logic/N3LogicParser.ts",
+        "n3logic/reasoner/matcher.ts",
+        "n3logic/reasoner/builtinEvaluator.ts",
+        "n3logic/reasoner/builtinsManager.ts",
+        "n3logic/builtins/N3LogicLogicBuiltins.ts"
+      ]
+    },
+    {
+      "test": "N3LogicReasoner › diagnostic: reasoner should infer triple for 'foo' only",
+      "status": "fixed",
+      "details": "FIXED: Diagnostic inference now works as expected. Only the correct triple is inferred. Regression runner and demo-app confirm this is resolved.",
+      "files_involved": [
+        "tests/reasoner.test.ts",
+        "n3logic/N3LogicReasoner.ts",
+        "n3logic/N3LogicParser.ts",
+        "n3logic/reasoner/matcher.ts",
+        "n3logic/reasoner/builtinEvaluator.ts",
+        "n3logic/reasoner/builtinsManager.ts",
+        "n3logic/builtins/N3LogicLogicBuiltins.ts"
+      ]
+    },
+    {
+      "test": "LogicBuiltins › log:or returns true if either is true (string and boolean cases)",
+      "error": "expect(received).toBe(expected) // Object.is equality\nExpected: true\nReceived: false",
+      "location": "tests/builtins/N3LogicLogicBuiltins.test.ts:143:22",
+      "details": "The test expected the log:or builtin to return true for certain cases, but it returned false. This may indicate a logic error in the builtin implementation or in the test case setup.",
+      "files_involved": [
+        "tests/builtins/N3LogicLogicBuiltins.test.ts",
+        "n3logic/builtins/N3LogicLogicBuiltins.ts"
+      ]
+    },
+    {
+      "test": "N3LogicAIAgentHelper.test.ts (suite failed to run)",
+      "error": "SyntaxError: Identifier '__filename' has already been declared",
+      "location": "tests/N3LogicAIAgentHelper.test.ts:8",
+      "details": "Jest failed to parse the file due to a redeclaration of __filename. This is likely a test setup or import issue.",
+      "files_involved": [
+        "tests/N3LogicAIAgentHelper.test.ts"
+      ]
+    }
+  ],
+  "general_findings": [
+    "FIXED: The matcher and builtin evaluator now correctly match and invoke custom builtins. All regression and demo-app scenarios pass.",
+    "The test file now logs all resolved file paths for direct imports at the start of the run, aiding traceability.",
+    "The matcher has extensive debug output for builtins, triple matching, and warnings for non-IRI/string predicates.",
+    "The log:or builtin test failure may be due to a logic error in the builtin or a test case issue.",
+    "The N3LogicAIAgentHelper test suite fails to run due to a redeclaration of __filename, which is a test setup error."
+  ],
+  "recommendations": [
+    "No further action needed for custom builtin or diagnostic inference issues—they are fixed.",
+    "Review the implementation and test cases for log:or in N3LogicLogicBuiltins if any failures remain.",
+    "Fix the redeclaration of __filename in N3LogicAIAgentHelper.test.ts.",
+    "Continue using the enhanced debug output and file path logging to trace the inference pipeline and file involvement."
+  ]
+}

@@ -6,7 +6,7 @@ Message: Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32m
 
 Expected: [32mtrue[39m
 Received: [31mfalse[39m
-    at F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:137:22
+    at F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:143:22
     at Array.forEach (<anonymous>)
     at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\builtins\N3LogicLogicBuiltins.test.ts:134:11)
     at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
@@ -29,7 +29,7 @@ Test: N3LogicReasoner supports custom builtins
 Message: Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeDefined[2m()[22m
 
 Received: [31mundefined[39m
-    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:109:32)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:118:30)
     at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
     at new Promise (<anonymous>)
     at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)
@@ -50,7 +50,7 @@ Test: N3LogicReasoner diagnostic: reasoner should infer triple for "foo" only
 Message: Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeDefined[2m()[22m
 
 Received: [31mundefined[39m
-    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:153:25)
+    at Object.<anonymous> (F:\github-dev\n3logic\n3logic-vscode-extension\tests\reasoner.test.ts:149:25)
     at Promise.finally.completed (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1559:28)
     at new Promise (<anonymous>)
     at callAsyncCircusFn (F:\github-dev\n3logic\n3logic-vscode-extension\node_modules\jest-circus\build\jestAdapterInit.js:1499:10)

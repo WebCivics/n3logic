@@ -1,0 +1,86 @@
+[
+  {
+    "test": "log:or",
+    "case": 0,
+    "args": [
+      "",
+      "x"
+    ],
+    "expected": true,
+    "result": true,
+    "pass": true,
+    "error": null
+  },
+  {
+    "test": "log:or",
+    "case": 1,
+    "args": [
+      "x",
+      ""
+    ],
+    "expected": true,
+    "result": true,
+    "pass": true,
+    "error": null
+  },
+  {
+    "test": "log:or",
+    "case": 2,
+    "args": [
+      "",
+      ""
+    ],
+    "expected": false,
+    "result": false,
+    "pass": true,
+    "error": null
+  },
+  {
+    "test": "log:or",
+    "case": 3,
+    "args": [
+      "x",
+      "y"
+    ],
+    "expected": true,
+    "result": true,
+    "pass": true,
+    "error": null
+  },
+  {
+    "test": "log:or",
+    "case": 4,
+    "args": [
+      "true",
+      "false"
+    ],
+    "expected": true,
+    "result": true,
+    "pass": true,
+    "error": null
+  },
+  {
+    "test": "log:or",
+    "case": 5,
+    "args": [
+      "false",
+      "false"
+    ],
+    "expected": false,
+    "result": false,
+    "pass": true,
+    "error": null
+  },
+  {
+    "test": "custom-builtin",
+    "inferredTriples": [
+      "<@prefix> <ex:> <http://example.org/custom @prefix : < :a ex:alwaysTrue \"foo\" . { ?x ex:alwaysTrue ?y } => .",
+      "<@prefix> <ex:> <<http://example.org/custom> ."
+    ],
+    "pass": false
+  },
+  {
+    "test": "diagnostic-inference",
+    "pass": false
+  }
+]

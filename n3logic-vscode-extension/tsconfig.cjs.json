@@ -11,7 +11,7 @@
     "n3logic/**/*.ts"
   ],
   "exclude": [
-    "../n3logic/**/*.test.ts",
+    "n3logic/**/*.test.ts",
     "n3logic/esm",
     "n3logic/reasoner/debug.esm.ts",
     "n3logic/N3LogicReasoner.esm.ts",

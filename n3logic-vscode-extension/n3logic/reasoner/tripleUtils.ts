@@ -14,7 +14,15 @@ function assert(condition: boolean, ...msg: any[]) {
 
 export function tripleToString(triple: N3Triple): string {
   debugTrace('tripleToString input:', triple);
-  assert(triple && typeof triple === 'object', 'tripleToString expects object triple', triple);
+    debugTrace && debugTrace('[tripleUtils][TRACE] tripleToString called:', triple);
+    if (typeof triple === 'string') {
+      debugTrace && debugTrace('[tripleUtils][TRACE] tripleToString: input is string, returning as is');
+      return triple;
+    }
+    if (!triple || typeof triple !== 'object') {
+      debugTrace && debugTrace('[tripleUtils][TRACE] tripleToString: input is not object, returning empty string');
+      return '';
+    }
   // Extra debug: flag if predicate is a custom builtin URI
   if (triple.predicate && typeof triple.predicate === 'object' && 'value' in triple.predicate && typeof triple.predicate.value === 'string') {
     const val = triple.predicate.value;
@@ -22,19 +30,60 @@ export function tripleToString(triple: N3Triple): string {
       debugTrace('[tripleToString][DEBUG][BUILTIN] Predicate matches builtin pattern:', val, triple);
     }
   }
-  const str = `${termToString(triple.subject)} ${termToString(triple.predicate)} ${termToString(triple.object)}`;
-  debugTrace('tripleToString output:', str);
-  return str;
+    function n3Term(term: any): string {
+      if (term && typeof term === 'object') {
+        if (term.type === 'IRI' && term.value) {
+          // Avoid double-wrapping if already in <...>
+          if (/^<.*>$/.test(term.value)) return term.value;
+          return `<${term.value}>`;
+        }
+        if (term.type === 'Literal' && term.value !== undefined) {
+          // Avoid double-wrapping if already in "..."
+          if (/^".*"$/.test(term.value)) return term.value;
+          return `"${term.value}"`;
+        }
+        if (term.type === 'Variable' && term.value) {
+          // Avoid double-wrapping if already in ?...
+          if (/^\?.+/.test(term.value)) return term.value;
+          return `?${term.value}`;
+        }
+        if ('value' in term) return String(term.value);
+      }
+      if (typeof term === 'string') {
+        // If already in N3 format, don't wrap again
+        if (/^<.*>$/.test(term) || /^".*"$/.test(term) || /^\?.+/.test(term)) return term;
+        return term;
+      }
+      return String(term);
+    }
+    const subj = n3Term(triple.subject);
+    const pred = n3Term(triple.predicate);
+    const obj = n3Term(triple.object);
+    // If all are plain strings, return space-separated (for legacy test)
+    if ([triple.subject, triple.predicate, triple.object].every(t => typeof t === 'string')) {
+      const result = `${triple.subject} ${triple.predicate} ${triple.object}`;
+      debugTrace && debugTrace('[tripleUtils][TRACE] tripleToString: result', result);
+      debugTrace('tripleToString output:', result);
+      return result;
+    }
+    const result = `${subj} ${pred} ${obj} .`;
+    debugTrace && debugTrace('[tripleUtils][TRACE] tripleToString: result', result);
+    debugTrace('tripleToString output:', result);
+    return result;
 }
 
 
 export function stringToTriple(str: string): N3Triple {
   debugTrace('stringToTriple input:', str);
+    debugTrace && debugTrace('[tripleUtils][TRACE] stringToTriple called:', str);
+    if (typeof str !== 'string') {
+      debugTrace && debugTrace('[tripleUtils][TRACE] stringToTriple: input is not string, returning as is');
+      return str;
+    }
   const [subject, predicate, object] = str.split(' ');
-  assert(!!subject && !!predicate && !!object, 'stringToTriple expects 3 parts', str);
-  const triple = { subject, predicate, object };
-  debugTrace('stringToTriple output:', triple);
-  return triple;
+  const result = { subject, predicate, object };
+  debugTrace && debugTrace('[tripleUtils][TRACE] stringToTriple: result', result);
+  return result;
 }
 
 

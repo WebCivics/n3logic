@@ -134,6 +134,12 @@ describe('LogicBuiltins', () => {
     cases.forEach(({ a, b, expected }, idx) => {
       const result = fn?.apply(a, b);
       debugCase(`log:or string case #${idx}`, a, b, expected, result);
+      // Enhanced debug output for troubleshooting
+      console.log(`[ENHANCED DEBUG] log:or string case #${idx}`);
+      console.log('a:', a, 'b:', b, 'expected:', expected, 'result:', result);
+      console.log('typeof a:', typeof a, 'typeof b:', typeof b);
+      console.log('a.value:', a && a.value, 'b.value:', b && b.value);
+      console.log('a === b:', a === b);
       expect(result).toBe(expected);
     });
     // Boolean RDF literal cases

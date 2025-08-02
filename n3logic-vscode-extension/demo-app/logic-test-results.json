@@ -1,0 +1,104 @@
+[
+  {
+    "name": "log:or",
+    "case": 0,
+    "args": [
+      {
+        "type": "Literal",
+        "value": ""
+      },
+      {
+        "type": "Literal",
+        "value": "x"
+      }
+    ],
+    "expected": true,
+    "result": true,
+    "pass": true
+  },
+  {
+    "name": "log:or",
+    "case": 1,
+    "args": [
+      {
+        "type": "Literal",
+        "value": "x"
+      },
+      {
+        "type": "Literal",
+        "value": ""
+      }
+    ],
+    "expected": true,
+    "result": true,
+    "pass": true
+  },
+  {
+    "name": "log:or",
+    "case": 2,
+    "args": [
+      {
+        "type": "Literal",
+        "value": ""
+      },
+      {
+        "type": "Literal",
+        "value": ""
+      }
+    ],
+    "expected": false,
+    "result": false,
+    "pass": true
+  },
+  {
+    "name": "log:or",
+    "case": 3,
+    "args": [
+      {
+        "type": "Literal",
+        "value": "x"
+      },
+      {
+        "type": "Literal",
+        "value": "y"
+      }
+    ],
+    "expected": true,
+    "result": true,
+    "pass": true
+  },
+  {
+    "name": "log:or",
+    "case": 4,
+    "args": [
+      {
+        "type": "Literal",
+        "value": "true"
+      },
+      {
+        "type": "Literal",
+        "value": "false"
+      }
+    ],
+    "expected": true,
+    "result": true,
+    "pass": true
+  },
+  {
+    "name": "log:or",
+    "case": 5,
+    "args": [
+      {
+        "type": "Literal",
+        "value": "false"
+      },
+      {
+        "type": "Literal",
+        "value": "false"
+      }
+    ],
+    "expected": false,
+    "result": false,
+    "pass": true
+  }
+]

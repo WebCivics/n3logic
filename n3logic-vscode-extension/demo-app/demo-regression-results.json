@@ -1,0 +1,117 @@
+[
+  {
+    "scenario": "log:or builtins",
+    "results": [
+      {
+        "case": 0,
+        "args": [
+          {
+            "type": "Literal",
+            "value": ""
+          },
+          {
+            "type": "Literal",
+            "value": "x"
+          }
+        ],
+        "expected": true,
+        "result": true,
+        "pass": true
+      },
+      {
+        "case": 1,
+        "args": [
+          {
+            "type": "Literal",
+            "value": "x"
+          },
+          {
+            "type": "Literal",
+            "value": ""
+          }
+        ],
+        "expected": true,
+        "result": true,
+        "pass": true
+      },
+      {
+        "case": 2,
+        "args": [
+          {
+            "type": "Literal",
+            "value": ""
+          },
+          {
+            "type": "Literal",
+            "value": ""
+          }
+        ],
+        "expected": false,
+        "result": false,
+        "pass": true
+      },
+      {
+        "case": 3,
+        "args": [
+          {
+            "type": "Literal",
+            "value": "x"
+          },
+          {
+            "type": "Literal",
+            "value": "y"
+          }
+        ],
+        "expected": true,
+        "result": true,
+        "pass": true
+      },
+      {
+        "case": 4,
+        "args": [
+          {
+            "type": "Literal",
+            "value": "true"
+          },
+          {
+            "type": "Literal",
+            "value": "false"
+          }
+        ],
+        "expected": true,
+        "result": true,
+        "pass": true
+      },
+      {
+        "case": 5,
+        "args": [
+          {
+            "type": "Literal",
+            "value": "false"
+          },
+          {
+            "type": "Literal",
+            "value": "false"
+          }
+        ],
+        "expected": false,
+        "result": false,
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  {
+    "scenario": "custom builtin inference",
+    "inferredTriples": [
+      "<:a> <http://example.org/custom#alwaysTrue> \"foo\" .",
+      "<:a> <:inferred> ?y ."
+    ],
+    "pass": true
+  },
+  {
+    "scenario": "diagnostic inference",
+    "fooTriple": "<:foo> <:inferred> <true> .",
+    "pass": true
+  }
+]

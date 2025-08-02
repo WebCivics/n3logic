@@ -55,8 +55,8 @@ function assert(condition: boolean, ...msg: any[]) {
 export function n3TermToString(term: N3Term): string {
   // Only IRIs get angle brackets, not literals
   if (typeof term === 'string') {
-    // If the string is a quoted literal, output as literal
-    if (/^".*"$/.test(term)) return term;
+    // If already in N3 format, return as is
+    if (/^<.*>$/.test(term) || /^".*"$/.test(term) || /^\?.+/.test(term) || /^_:.+/.test(term)) return term;
     return `<${term}>`;
   }
   if (typeof term === 'object' && term !== null) {
@@ -146,6 +146,21 @@ export function termMatch(pattern: N3Term, value: N3Term, bindings: Record<strin
 export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins: N3Builtin[]): Array<Record<string, N3Term>> {
   const results: Array<Record<string, N3Term>> = [];
   debugLog('[MATCHER][DEBUG][LOGGING] Builtins available at match time:', builtins ? builtins.map((b) => b.uri) : builtins);
+  // EXTRA DEBUG: Log all patterns and their predicates
+  patterns.forEach((pattern, idx) => {
+    debugLog(`[MATCHER][DEBUG][PATTERN] Pattern #${idx}:`, JSON.stringify(pattern));
+    debugLog(`[MATCHER][DEBUG][PATTERN] Pattern #${idx} predicate:`, pattern.predicate);
+  });
+  // Log all data triples and their predicates
+  data.forEach((triple, idx) => {
+    debugLog(`[MATCHER][DEBUG][DATA] Data triple #${idx}:`, JSON.stringify(triple));
+    debugLog(`[MATCHER][DEBUG][DATA] Data triple #${idx} predicate:`, triple.predicate);
+  });
+  if (typeof (global as any).debugLog === 'function') {
+    (global as any).debugLog('[MATCHER][TRACE][EXTRA] Builtins at match time:', builtins ? builtins.map((b) => b.uri) : builtins);
+    (global as any).debugLog('[MATCHER][TRACE][EXTRA] Patterns:', JSON.stringify(patterns, null, 2));
+    (global as any).debugLog('[MATCHER][TRACE][EXTRA] Data:', JSON.stringify(data, null, 2));
+  }
   debugLog('[MATCHER][DEBUG][LOGGING] Patterns:', JSON.stringify(patterns, null, 2));
   debugLog('[MATCHER][DEBUG][LOGGING] Data:', JSON.stringify(data, null, 2));
   debugLog('[MATCHER][DEBUG][LOGGING] Builtin URIs:', Array.isArray(builtins) ? builtins.map((b) => b.uri) : builtins);
@@ -184,8 +199,20 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
   // Try each triple as the builtin, or as a regular triple
   for (let i = 0; i < patterns.length; i++) {
     const triple = patterns[i];
+  debugLog('[MATCHER][TRACE][LITERAL] Pattern triple:', JSON.stringify(triple));
+  if (triple && triple.subject) debugLog('[MATCHER][TRACE][LITERAL] Subject:', JSON.stringify(triple.subject), 'Type:', typeof triple.subject, 'Value:', (typeof triple.subject === 'object' && triple.subject !== null && 'value' in triple.subject) ? (triple.subject as any).value : triple.subject);
+  if (triple && triple.object) debugLog('[MATCHER][TRACE][LITERAL] Object:', JSON.stringify(triple.object), 'Type:', typeof triple.object, 'Value:', (typeof triple.object === 'object' && triple.object !== null && 'value' in triple.object) ? (triple.object as any).value : triple.object);
+  if (triple && triple.predicate) debugLog('[MATCHER][TRACE][LITERAL] Predicate:', JSON.stringify(triple.predicate), 'Type:', typeof triple.predicate, 'Value:', (typeof triple.predicate === 'object' && triple.predicate !== null && 'value' in triple.predicate) ? (triple.predicate as any).value : triple.predicate);
     debugLog('[MATCHER][DEBUG] Checking pattern triple #', i, ':', JSON.stringify(triple));
     debugLog('[MATCHER][DEBUG][LOGGING] Pattern triple details:', JSON.stringify(triple, null, 2));
+    debugTrace('[MATCHER][TRACE] Triple matching logic entered:', JSON.stringify(triple));
+    // EXTRA DEBUG: Print predicate value and type
+    let predType = (triple.predicate && typeof triple.predicate === 'object' && 'type' in triple.predicate) ? triple.predicate.type : typeof triple.predicate;
+    let predValue = (triple.predicate && typeof triple.predicate === 'object' && 'value' in triple.predicate) ? triple.predicate.value : triple.predicate;
+    debugLog('[MATCHER][EXTRA][DEBUG] Pattern triple predicate type:', predType, 'value:', predValue);
+    if (typeof (global as any).debugLog === 'function') {
+      (global as any).debugLog('[MATCHER][EXTRA][DEBUG] Pattern triple predicate type:', predType, 'value:', predValue);
+    }
     // Always extract predicate as string for builtin matching
     let predicateUri: string | undefined = undefined;
     if (isN3IRI(triple.predicate) && typeof triple.predicate.value === 'string') {
@@ -194,52 +221,95 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
       predicateUri = triple.predicate;
     } else {
       predicateUri = undefined;
+      debugLog('[MATCHER][WARN] Pattern triple predicate is not a string or IRI:', JSON.stringify(triple.predicate));
+      if (typeof (global as any).debugLog === 'function') {
+        (global as any).debugLog('[MATCHER][WARN] Pattern triple predicate is not a string or IRI:', JSON.stringify(triple.predicate));
+      }
     }
     debugLog('[MATCHER][DEBUG][LOGGING] Attempting builtin match for triple predicate:', predicateUri);
+    if (typeof (global as any).debugLog === 'function') {
+      (global as any).debugLog('[MATCHER][TRACE][EXTRA] Attempting builtin match for triple predicate:', predicateUri);
+    }
     debugLog('[MATCHER][DEBUG][LOGGING] All builtins at this point:', builtins ? builtins.map((b) => b.uri) : builtins);
+    debugLog('[MATCHER][DEBUG][CUSTOM] Builtins full array:', JSON.stringify(builtins, null, 2));
+    debugLog('[MATCHER][DEBUG][CUSTOM] Triple predicate:', JSON.stringify(triple.predicate));
+    debugTrace('[MATCHER][TRACE] Builtin candidate URIs:', builtins ? builtins.map((b) => b.uri) : builtins);
     // Find builtin by comparing string value of predicate to builtin.uri
     let builtin = undefined;
     if (builtins && predicateUri) {
       for (const b of builtins) {
         debugLog('[MATCHER][DEBUG][LOGGING] Checking builtin candidate:', b.uri, 'against predicateUri:', predicateUri);
+        debugTrace('[MATCHER][TRACE] Checking builtin candidate:', b.uri, 'against predicateUri:', predicateUri);
         if (b.uri === predicateUri) {
           debugLog('[MATCHER][DEBUG][LOGGING] Builtin match found:', b.uri);
+          debugTrace('[MATCHER][TRACE] Builtin match found:', b.uri);
+          if (typeof (global as any).debugLog === 'function') {
+            (global as any).debugLog('[MATCHER][TRACE][EXTRA] Builtin match found:', b.uri, 'for predicateUri:', predicateUri);
+          }
           builtin = b;
           break;
         }
       }
       if (!builtin) {
         debugLog('[MATCHER][DEBUG][LOGGING] No builtin match found for predicateUri:', predicateUri);
+        debugTrace('[MATCHER][TRACE] No builtin match found for predicateUri:', predicateUri);
+        debugLog('[MATCHER][EXTRA][WARN] No builtin found for predicateUri:', predicateUri, 'Builtins available:', builtins ? builtins.map((b) => b.uri) : builtins);
+        if (typeof (global as any).debugLog === 'function') {
+          (global as any).debugLog('[MATCHER][EXTRA][WARN] No builtin found for predicateUri:', predicateUri, 'Builtins available:', builtins ? builtins.map((b) => b.uri) : builtins);
+        }
       }
     }
     debugLog('[MATCHER][DEBUG] Builtin found:', !!builtin, 'for predicateUri:', predicateUri, 'triple:', JSON.stringify(triple));
+    debugTrace('[MATCHER][TRACE] Builtin found:', !!builtin, 'for predicateUri:', predicateUri);
     if (builtin) {
-      // ...existing builtin logic (unchanged)...
+      debugLog('[MATCHER][TRACE][LITERAL] Builtin match found:', builtin.uri, 'Triple:', JSON.stringify(triple));
+      debugLog('[MATCHER][TRACE][LITERAL] Builtin apply function:', builtin.apply && builtin.apply.toString());
+      if (typeof (global as any).debugLog === 'function') {
+        (global as any).debugLog('[MATCHER][TRACE][EXTRA] Invoking builtin:', builtin.uri, 'with triple:', JSON.stringify(triple));
+      }
       debugLog('[MATCHER][DEBUG][LOGGING] Invoking builtin:', builtin.uri, 'with triple:', JSON.stringify(triple));
+      debugTrace('[MATCHER][TRACE] Invoking builtin:', builtin.uri, 'with triple:', JSON.stringify(triple));
       const rest = patterns.slice(0, i).concat(patterns.slice(i + 1));
       const restBindingsList = matchAntecedent(rest, data, builtins);
       debugLog('Rest bindings list for builtin:', restBindingsList);
+      debugTrace('[MATCHER][TRACE] Rest bindings list for builtin:', restBindingsList);
       for (const [restIdx, restBindings] of restBindingsList.entries()) {
         debugLog('matchAntecedent: restBindings:', JSON.stringify(restBindings, null, 2));
         debugLog(`Rest bindings #${restIdx}:`, restBindings);
+        debugTrace('[MATCHER][TRACE] Rest bindings #', restIdx, ':', restBindings);
         const subjRes = resolveSubjectVals(triple, restBindings, data);
         const objectRes = resolveObjectVals(triple, restBindings, data);
         const subjectVals = subjRes.vals;
         const objectVals = objectRes.vals;
         if (builtin.arity === 1) {
           for (const sVal of subjectVals) {
+            debugLog('[MATCHER][TRACE][LITERAL] Builtin arity 1, sVal:', JSON.stringify(sVal), 'Type:', typeof sVal, 'Value:', (typeof sVal === 'object' && sVal !== null && 'value' in sVal) ? (sVal as any).value : sVal);
             const mergedBindings = { ...restBindings };
             if (typeof subjRes.varName === 'string') {
               mergedBindings[subjRes.varName] = sVal;
             }
             const args: N3Term[] = [sVal];
+            debugLog('[MATCHER][TRACE][LITERAL] Builtin args:', JSON.stringify(args));
+            debugTrace('[MATCHER][TRACE] Invoking builtin (arity 1):', builtin.uri, 'args:', args, 'bindings:', mergedBindings);
             try {
+              if (typeof (global as any).debugLog === 'function') {
+                (global as any).debugLog('[MATCHER][TRACE][EXTRA] About to call builtin.apply (arity 1):', builtin.uri, 'args:', args, 'bindings:', mergedBindings);
+              }
               const result = builtin.apply(...args);
+              debugLog('[MATCHER][TRACE][LITERAL] Builtin result (arity 1):', result);
+              debugTrace('[MATCHER][TRACE] Builtin result (arity 1):', result);
+              if (typeof (global as any).debugLog === 'function') {
+                (global as any).debugLog('[MATCHER][TRACE][EXTRA] Builtin result (arity 1):', result);
+              }
               if (result === true) {
                 results.push(normalizeBindings({ ...mergedBindings }));
               }
             } catch (e) {
               debugLog('[MATCHER][ERROR] Exception in builtin (arity 1):', e, 'args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
+              debugTrace('[MATCHER][TRACE][ERROR] Exception in builtin (arity 1):', e, 'args:', args, 'bindings:', mergedBindings);
+              if (typeof (global as any).debugLog === 'function') {
+                (global as any).debugLog('[MATCHER][TRACE][EXTRA] Exception in builtin (arity 1):', e, 'args:', args, 'bindings:', mergedBindings);
+              }
             }
           }
         } else {
@@ -253,29 +323,43 @@ export function matchAntecedent(patterns: N3Triple[], data: N3Triple[], builtins
                 mergedBindings[objectRes.varName] = oVal;
               }
               const args: N3Term[] = [sVal, oVal];
+              debugTrace('[MATCHER][TRACE] Invoking builtin (arity 2):', builtin.uri, 'args:', args, 'bindings:', mergedBindings);
               try {
+                if (typeof (global as any).debugLog === 'function') {
+                  (global as any).debugLog('[MATCHER][TRACE][EXTRA] About to call builtin.apply (arity 2):', builtin.uri, 'args:', args, 'bindings:', mergedBindings);
+                }
                 const result = builtin.apply(...args);
+                debugTrace('[MATCHER][TRACE] Builtin result (arity 2):', result);
+                if (typeof (global as any).debugLog === 'function') {
+                  (global as any).debugLog('[MATCHER][TRACE][EXTRA] Builtin result (arity 2):', result);
+                }
                 if (result === true) {
                   results.push(normalizeBindings({ ...mergedBindings }));
                 }
               } catch (e) {
                 debugLog('[BUILTIN][DEBUG][INVOKE][ERROR] Exception in builtin (arity 2):', e, 'args:', JSON.stringify(args), 'bindings:', JSON.stringify(mergedBindings));
+                debugTrace('[MATCHER][TRACE][ERROR] Exception in builtin (arity 2):', e, 'args:', args, 'bindings:', mergedBindings);
+                if (typeof (global as any).debugLog === 'function') {
+                  (global as any).debugLog('[MATCHER][TRACE][EXTRA] Exception in builtin (arity 2):', e, 'args:', args, 'bindings:', mergedBindings);
+                }
               }
             }
           }
         }
       }
     } else {
-      // No builtin: match against data triples
       debugLog('[MATCHER][DEBUG][LOGGING] No builtin found, matching pattern triple against data triples.');
+      debugTrace('[MATCHER][TRACE] No builtin found, matching pattern triple against data triples.');
       for (const dataTriple of data) {
         const bindings = matchTriple(triple, dataTriple, termMatch);
         if (bindings) {
           debugLog('[MATCHER][DEBUG][LOGGING] Data triple matched:', JSON.stringify(dataTriple), 'bindings:', JSON.stringify(bindings));
+          debugTrace('[MATCHER][TRACE] Data triple matched:', dataTriple, 'bindings:', bindings);
           const rest = patterns.slice(0, i).concat(patterns.slice(i + 1));
           const restBindingsList = matchAntecedent(rest, data, builtins);
           for (const restBindings of restBindingsList) {
             results.push({ ...restBindings, ...bindings });
+            debugTrace('[MATCHER][TRACE] Added result bindings:', { ...restBindings, ...bindings });
           }
         }
       }
