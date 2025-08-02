@@ -52,6 +52,24 @@ export function termToString(term: N3Term): string {
 
 export function termEquals(a: N3Term, b: N3Term): boolean {
   debugTrace('termEquals input:', a, b);
+  // If both are objects and type Literal, compare value
+  if (typeof a === 'object' && a && a.type === 'Literal') {
+    if (typeof b === 'object' && b && b.type === 'Literal') {
+      const eq = a.value === b.value;
+      debugTrace('termEquals: both Literal objects, value equality', eq);
+      return eq;
+    }
+    if (typeof b === 'string') {
+      const eq = a.value === b;
+      debugTrace('termEquals: Literal object vs string, value equality', eq);
+      return eq;
+    }
+  }
+  if (typeof b === 'object' && b && b.type === 'Literal' && typeof a === 'string') {
+    const eq = b.value === a;
+    debugTrace('termEquals: string vs Literal object, value equality', eq);
+    return eq;
+  }
   if (typeof a !== typeof b) {
     debugTrace('termEquals: type mismatch', typeof a, typeof b);
     return false;
